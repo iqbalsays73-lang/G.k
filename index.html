@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GS Halwa - SSC CGL Master Hub</title>
+    <title>Ancient History Halwa Hub - SSC CGL Master</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
             --accent: #38bdf8;
-            --accent-hover: #0284c7;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --success: #22c55e;
+            --accent-hover: #0ea5e9;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --success: #10b981;
             --danger: #ef4444;
+            --border: #1f2937;
+            --gold: #f59e0b;
         }
         * {
             margin: 0;
@@ -24,16 +26,16 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            padding: 20px;
+            padding: 15px;
             min-height: 100vh;
         }
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
         }
         header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         header h1 {
             font-size: 2.2rem;
@@ -42,156 +44,173 @@
         }
         header p {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-        .tab-btn {
+        .selector-bar {
             background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 12px 18px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        select {
+            background-color: #1f2937;
             color: var(--text-main);
-            border: 1px solid #334155;
-            padding: 10px 18px;
-            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 6px;
+            outline: none;
             cursor: pointer;
             font-weight: 600;
+        }
+        .phase-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
             transition: 0.3s;
         }
-        .tab-btn.active, .tab-btn:hover {
-            background-color: var(--accent);
-            color: #0f172a;
-            border-color: var(--accent);
+        .phase-card.locked {
+            opacity: 0.55;
+            background-color: #0f111a;
+            border-color: #312e81;
         }
-        .section-content {
+        .lock-banner {
             display: none;
+            background-color: #312e81;
+            color: #c7d2fe;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 12px;
         }
-        .section-content.active {
+        .phase-card.locked .lock-banner {
             display: block;
         }
-        .card {
-            background-color: var(--card-bg);
-            border-left: 4px solid var(--accent);
-            padding: 18px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        .phase-card.locked .test-btn {
+            background-color: #374151;
+            color: #9ca3af;
+            cursor: not-allowed;
         }
-        .card h3 {
+        .phase-title {
             color: var(--accent);
-            margin-bottom: 8px;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .card p {
+        .chapter-box {
+            background-color: #1f2937;
+            border-left: 4px solid var(--accent);
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        .chapter-box h4 {
+            color: #f3f4f6;
+            margin-bottom: 5px;
+        }
+        .chapter-box p {
             color: var(--text-muted);
-            line-height: 1.6;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
-        /* Quiz Section Styling */
-        .quiz-container {
+        .trick-tag {
+            background-color: #312e81;
+            color: #a5b4fc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 5px;
+            display: inline-block;
+        }
+        .test-btn {
+            background-color: var(--accent);
+            color: #0b0f19;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.2s;
+        }
+        .test-btn:hover:not(:disabled) {
+            background-color: var(--accent-hover);
+        }
+        .quiz-modal {
+            display: none;
             background-color: var(--card-bg);
-            padding: 25px;
+            border: 1px solid var(--border);
+            padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin-top: 20px;
+        }
+        .quiz-modal.active {
+            display: block;
         }
         .quiz-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--border);
             padding-bottom: 10px;
         }
-        .score-board {
-            font-weight: bold;
-            color: var(--accent);
-        }
         .question-text {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            line-height: 1.4;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
         }
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 15px;
         }
         @media(max-width: 600px) {
             .options-grid { grid-template-columns: 1fr; }
         }
         .opt-btn {
-            background-color: #334155;
+            background-color: #1f2937;
             color: var(--text-main);
-            border: 1px solid #475569;
-            padding: 12px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            text-align: left;
-            transition: 0.2s;
-        }
-        .opt-btn:hover:not([disabled]) {
-            background-color: var(--accent);
-            color: #0f172a;
-        }
-        .opt-btn.correct {
-            background-color: var(--success) !important;
-            color: #fff !important;
-        }
-        .opt-btn.wrong {
-            background-color: var(--danger) !important;
-            color: #fff !important;
-        }
-        .explanation-box {
-            background-color: #0f172a;
-            border-left: 3px solid var(--accent);
+            border: 1px solid #374151;
             padding: 12px;
             border-radius: 6px;
-            margin-bottom: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        .opt-btn.correct { background-color: var(--success) !important; color: #fff !important; }
+        .opt-btn.wrong { background-color: var(--danger) !important; color: #fff !important; }
+        .explanation-box {
+            background-color: #0b0f19;
+            border-left: 3px solid var(--accent);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
             display: none;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
-        .control-btn {
-            background-color: var(--accent);
-            color: #0f172a;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-        .control-btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        /* Flashcards */
-        .flashcard {
-            background-color: var(--card-bg);
-            border: 1px solid #334155;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .flashcard:hover {
-            border-color: var(--accent);
-        }
-        .flashcard-answer {
-            display: none;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed #475569;
-            color: var(--accent);
+        .badge {
+            background-color: #0284c7;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
             font-weight: bold;
         }
     </style>
@@ -200,196 +219,691 @@
 
     <div class="container">
         <header>
-            <h1>🔥 GS Halwa Hub</h1>
-            <p>SSC CGL Prep: Interactive Smart Revision & Quiz</p>
+            <h1>🏛️ Prachin Bharat Complete Mastery</h1>
+            <p>SSC CGL / CHSL / CPO (2020-2025) Complete Syllabus & PYQ Unlock Hub</p>
         </header>
 
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchTab('quiz', event)">🎯 Dynamic Quiz</button>
-            <button class="tab-btn" onclick="switchTab('history', event)">📜 Modern History</button>
-            <button class="tab-btn" onclick="switchTab('tricks', event)">💡 Interactive Tricks</button>
-            <button class="tab-btn" onclick="switchTab('reasoning', event)">⚡ Reasoning Boost</button>
+        <div class="selector-bar">
+            <div>
+                <label for="exam-select">🎯 Select Target Exam: </label>
+                <select id="exam-select" onchange="updateExam()">
+                    <option value="cgl">SSC CGL</option>
+                    <option value="chsl">SSC CHSL</option>
+                    <option value="cpo">SSC CPO</option>
+                </select>
+            </div>
+            <div>
+                <span>Selected Course: <strong id="exam-tag" style="color:var(--accent);">SSC CGL Ancient History</strong></span>
+            </div>
         </div>
 
-        <!-- Quiz Section -->
-        <div id="quiz" class="section-content active">
-            <div class="quiz-container">
-                <div class="quiz-header">
-                    <span id="q-counter">Question 1 of 5</span>
-                    <span class="score-board">Score: <span id="score">0</span></span>
+        <!-- PHASE 1 -->
+        <div class="phase-card" id="phase1-card">
+            <div class="phase-title">
+                <span>Phase 1: Chapters 1 to 3</span>
+                <span class="badge" id="phase1-badge" style="background-color: var(--success);">Unlocked</span>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 1: Pashan Kaal (Stone Age)</h4>
+                <p>• Pura Pashan (Paleolithic), Madhya Pashan (Mesolithic), Nav Pashan (Neolithic).<br>
+                • <strong>Key Sites:</strong> Bimbetka (Gufa Chitr - MP), Mehrgarh (Sabse pehle Kishi aur Gehun ke sakshya), Burzahom (Kashmir - Garta Vaas/Pit Dwellings).<br>
+                <span class="trick-tag">💡 Trick: "Mehrgarh mein Meharbani se Pehli Kheti hui"</span></p>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 2: Sindhu Ghati Sabhyata (Indus Valley 2500–1750 BC)</h4>
+                <p>• Harappa (1921 - Daya Ram Sahni, Ravi nadi). Mohenjodaro (1922 - R.D. Banerji, Sindhu nadi, Great Bath/Kasya Nartaki).<br>
+                • Lothal (Gujarat - Dockyard/Bandargah), Kalibangan (Rajasthan - Kaali churiyan & Jute khet), Dholavira (Water reservoir - 3 bhaag mein vibhajit nagar).<br>
+                <span class="trick-tag">💡 Trick: "Lothal ka Hathi-dant bhaga Bhogava nadi mein" (Lothal = Bhogava nadi)</span></p>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 3: Vaidik Kaal & Ved (1500–600 BC)</h4>
+                <p>• Rigveda (10 Mandal, Gayatri Mantra 3rd Mandal mein), Samveda (Sangeet), Yajurveda (Yagya/Gadya-Padya), Atharvaveda (Jaadu-tona/Chikitsa).<br>
+                • Nadiyon ke Vaidik Naam: Vitasta (Jhelum), Parushni (Ravi), Asikni (Chenab), Vipasa (Beas), Sutudri (Satluj).<br>
+                <span class="trick-tag">💡 Trick: "Ravi par Parushni bahi, Jhelum ko Vitasta kahi"</span></p>
+            </div>
+
+            <button class="test-btn" id="btn-phase1" onclick="startPhaseTest(1)">📝 Start Phase 1 PYQ Test (70% Marks to Unlock Phase 2)</button>
+        </div>
+
+        <!-- PHASE 2 -->
+        <div class="phase-card locked" id="phase2-card">
+            <div class="lock-banner">🔒 Locked: Phase 1 PYQ Test mein 70%+ Score laayein tabhi unlock hoga.</div>
+            <div class="phase-title">
+                <span>Phase 2: Chapters 4 to 6</span>
+                <span class="badge" id="phase2-badge">Locked</span>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 4: Mahajanpad & Magadha Uday</h4>
+                <p>• 16 Mahajanpad (Varnan: Anguttara Nikaya - Bouddha Granth).<br>• Magadha ke Rajvansh Sequence: Haryanka Vansh (Bimbisara, Ajatashatru), Shishunaga Vansh, Nanda Vansh (Dhanananda).<br>
+                <span class="trick-tag">💡 Trick: "HASIN MASHUKA" (Haryanka, Shishunaga, Nanda, Maurya, Shunga, Kanva)</span></p>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 5: Jainism & Buddhism</h4>
+                <p>• Gautama Buddha: Janm - Lumbini, Gyan - Bodh Gaya, Pehla Updesh - Sarnath, Mahaparinirvana - Kushinagar.<br>
+                • 4 Bouddha Sangeeti Sthal: Rajgir (Ajatashatru), Vaishali (Kalasoka), Pataliputra (Ashoka), Kashmir (Kanishka).<br>
+                <span class="trick-tag">💡 Trick: "Raja Vaishali ki Pataliputra Kashmir gayi" (R-V-P-K)</span></p>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 6: Maurya Samrajya</h4>
+                <p>• Chandragupta Maurya & Chanakya (Arthashastra), Megasthenes (Indica).<br>
+                • Ashoka: Kalinga Yuddh (261 BC - 13th Shilalekh mein varnan). Upagupta se Bouddha dharm ki deeksha li.<br>
+                <span class="trick-tag">💡 Trick: "13vein Shilalekh ne Kalinga mein Ashoka ka hriday badla"</span></p>
+            </div>
+
+            <button class="test-btn" id="btn-phase2" onclick="startPhaseTest(2)">📝 Start Phase 2 PYQ Test (70% Marks to Unlock Phase 3)</button>
+        </div>
+
+        <!-- PHASE 3 -->
+        <div class="phase-card locked" id="phase3-card">
+            <div class="lock-banner">🔒 Locked: Phase 2 PYQ Test mein 70%+ Score laayein tabhi unlock hoga.</div>
+            <div class="phase-title">
+                <span>Phase 3: Chapters 7 to 8</span>
+                <span class="badge" id="phase3-badge">Locked</span>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 7: Gupta Vansh & Harshavardhana</h4>
+                <p>• Sri Gupta (Sthapna), Samudragupta ('Bharat ka Napoleon' - Prayag Prashasti by Harishena).<br>
+                • Chandragupta II (Vikramaditya - Navratna darbar, Fahien aagaman). Nalanda Stahpna - Kumaragupta I.<br>
+                • Harshavardhana: Kannauj/Prayag Assembly, Hiuen Tsang visit (Book: Si-Yu-Ki).<br>
+                <span class="trick-tag">💡 Trick: "H se Harshavardhana = H se Hiuen Tsang"</span></p>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 8: Dakshin Bharat ke Rajvansh & Temples</h4>
+                <p>• Rashtrakuta: Krishna I ne Ellora ka Kailash Temple banwaya.<br>
+                • Chola Vansh: Rajaraja I ne Brihadeeswarar Temple (Thanjavur) banwaya.<br>
+                • Pallava: Narasimhavarman I ne Mamallapuram ke Rath Mandir banwaye.<br>
+                <span class="trick-tag">💡 Trick: "Rashtrakuta Krishna ne Kailash ko banaya"</span></p>
+            </div>
+
+            <button class="test-btn" id="btn-phase3" onclick="startPhaseTest(3)">📝 Start Final Prachin Bharat Mastery Test</button>
+        </div>
+
+        <!-- Quiz Modal -->
+        <div class="quiz-modal" id="quiz-modal">
+            <div class="quiz-header">
+                <div>
+                    <h3 id="quiz-title" style="color:var(--accent);">Phase Test</h3>
+                    <span id="q-counter" style="color:var(--text-muted); font-size: 0.85rem;">Q 1 of 5</span>
                 </div>
-                <div class="question-text" id="question">Loading Question...</div>
-                <div class="options-grid" id="options"></div>
-                <div class="explanation-box" id="explanation"></div>
-                <div class="controls">
-                    <button class="control-btn" onclick="prevQuestion()">Previous</button>
-                    <button class="control-btn" onclick="nextQuestion()">Next Question</button>
-                </div>
+                <span>Score: <strong id="score" style="color:var(--accent); font-size:1.2rem;">0</strong></span>
+            </div>
+
+            <div class="question-text" id="question">Loading...</div>
+            <div class="options-grid" id="options"></div>
+            <div class="explanation-box" id="explanation"></div>
+
+            <div style="text-align: right;">
+                <button class="test-btn" style="width: auto; padding: 10px 20px;" onclick="nextQuestion()">Agla PYQ ➔</button>
             </div>
         </div>
 
-        <!-- History Section -->
-        <div id="history" class="section-content">
-            <div class="card">
-                <h3>1857 - 1885: Pehli Kranti & INC</h3>
-                <p>• 1857: Mangal Pandey & Revolt.<br>• 1885: A.O. Hume ne INC banaya. Pehle President: W.C. Bonnerjee (Bombay Session, 72 delegates).</p>
-            </div>
-            <div class="card">
-                <h3>1905 - 1919: Partition & Movements</h3>
-                <p>• 1905: Bengal Partition (Lord Curzon) ➔ Swadeshi Movement.<br>• 1906: Muslim League.<br>• 1907: Surat Split (Naram & Garam Dal).<br>• 1916: Lucknow Pact.<br>• 1919: Rowlatt Act & Jallianwala Bagh Massacre.</p>
-            </div>
-            <div class="card">
-                <h3>1920 - 1947: Gandhian Era & Freedom</h3>
-                <p>• 1920: Non-Cooperation Movement.<br>• 1922: Chauri Chaura Kand.<br>• 1930: Dandi March & Civil Disobedience.<br>• 1942: Quit India Movement ("Do or Die").<br>• 1947: Cabinet Mission & Independence.</p>
-            </div>
-        </div>
-
-        <!-- Tricks Section -->
-        <div id="tricks" class="section-content">
-            <p style="margin-bottom: 15px; color: var(--text-muted);">Card par click karke trick aur answer dekhein:</p>
-            <div class="flashcard" onclick="toggleFlashcard(this)">
-                📌 <strong>Assam ke National Parks kaise yaad rakhein?</strong>
-                <div class="flashcard-answer">Trick: "Kaziranga aur Manas ne Assam mein ekasingha gende ke sath party ki." (Kaziranga & Manas = Assam)</div>
-            </div>
-            <div class="flashcard" onclick="toggleFlashcard(this)">
-                📌 <strong>Classical Dances Memory Trick</strong>
-                <div class="flashcard-answer">Trick: "Bharatnatyam kare Tamilnadu ki Bharat, Kathakali kare Kerala ki kali."</div>
-            </div>
-            <div class="flashcard" onclick="toggleFlashcard(this)">
-                📌 <strong>Mughal Emperors Sequence (BHAJSA)</strong>
-                <div class="flashcard-answer">B - Babur, H - Humayun, A - Akbar, J - Jahangir, S - Shah Jahan, A - Aurangzeb.</div>
-            </div>
-        </div>
-
-        <!-- Reasoning Section -->
-        <div id="reasoning" class="section-content">
-            <div class="card">
-                <h3>Calendar Logic Shortcut</h3>
-                <p>• Normal Year = 1 Odd Day.<br>• Leap Year = 2 Odd Days.<br>• Same date next year = +1 day (if normal year).</p>
-            </div>
-            <div class="card">
-                <h3>Direction & Distance (Pythagoras Triplet)</h3>
-                <p>Direct triplets yaad rakho calculation se bachne ke liye:<br>• (3, 4, 5)<br>• (5, 12, 13)<br>• (8, 15, 17)<br>• (7, 24, 25)</p>
-            </div>
-        </div>
     </div>
 
     <script>
-        // Tab Switcher
-        function switchTab(tabId, event) {
-            document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
+        // 2020 - 2025 Real SSC PYQ Database
+        const pyqTests = {
+            1: [
+                { q: "Harappan sthal 'Lothal' kis nadi ke tat par sthit tha? (SSC CGL 2023)", options: ["Bhogava Nadi", "Ravi Nadi", "Sindhu Nadi", "Ghaggar Nadi"], correct: 0, exp: "Lothal (Gujarat) Bhogava nadi ke kinare sthit tha. Yeh Sindhu Sabhyata ka bandargah (Dockyard) tha." },
+                { q: "Gayatri Mantra Rigveda ke kis Mandal mein sthit hai? (SSC CGL 2021)", options: ["1st Mandal", "3rd Mandal", "7th Mandal", "10th Mandal"], correct: 1, exp: "Gayatri Mantra Rigveda ke 3rd Mandal mein hai. Iski rachna Vishwamitra ne ki thi." },
+                { q: "Pura Pashan kaal ke gufa chitr 'Bimbetka' kis rajya mein sthit hain? (SSC CHSL 2022)", options: ["Madhya Pradesh", "Rajasthan", "Uttar Pradesh", "Bihar"], correct: 0, exp: "Bimbetka ki gufaayein Madhya Pradesh ke Raisen zile mein hain." },
+                { q: "Sindhu Ghati Sabhyata mein 'Jute hue khet' ke praman kahan se mile? (SSC CPO 2023)", options: ["Mohenjodaro", "Kalibangan", "Dholavira", "Lothal"], correct: 1, exp: "Kalibangan (Rajasthan) se jute hue khet aur agnikund ke praman mile hain." },
+                { q: "Jhelum nadi ka prachin Vaidik naam kya tha? (SSC CGL 2024)", options: ["Vitasta", "Parushni", "Asikni", "Sutudri"], correct: 0, exp: "Jhelum = Vitasta, Ravi = Parushni, Chenab = Asikni, Satluj = Sutudri." }
+            ],
+            2: [
+                { q: "Pratham Bouddha Sangeeti (483 BC) kis shasak ke kaal mein hui thi? (SSC CGL 2024)", options: ["Ajatashatru", "Kalasoka", "Ashoka", "Kanishka"], correct: 0, exp: "Pehli Bouddha Sangeeti Rajgir mein Ajatashatru (Haryanka Vansh) ke samay hui." },
+                { q: "Chandragupta Maurya ke darbar mein aaya Megasthenes kis raja ka raajdoot tha? (SSC CHSL 2023)", options: ["Seleucus Nicator", "Alexander", "Darius", "Antiochus"], correct: 0, exp: "Megasthenes Seleucus Nicator ka raajdoot tha. Usne 'Indica' likhi thi." },
+                { q: "Ashoka ne Kalinga Yuddh kis varsh lada tha? (SSC CGL 2022)", options: ["261 BC", "326 BC", "232 BC", "185 BC"], correct: 0, exp: "261 BC mein Kalinga Yuddh hua jiska varnan 13vein Shilalekh mein milta hai." },
+                { q: "16 Mahajanpado ki jankari kis Bouddha granth se milti hai? (SSC CPO 2022)", options: ["Anguttara Nikaya", "Tripitaka", "Mahavamsa", "Jataka"], correct: 0, exp: "Anguttara Nikaya aur Jain granth Bhagavati Sutra se 16 Mahajanpado ki jankari milti hai." },
+                { q: "Jain dharm ke 24th Tirthankara Vardhaman Mahavira ka janm kahan hua tha? (SSC CGL 2020)", options: ["Vaishali (Kundagrama)", "Lumbini", "Pataliputra", "Bodh Gaya"], correct: 0, exp: "Mahavira Swami ka janm Kundagrama (Vaishali) mein hua tha." }
+            ],
+            3: [
+                { q: "'Bharat ka Napoleon' kis Gupta shasak ko kaha jata hai? (SSC CGL 2023)", options: ["Samudragupta", "Chandragupta Vikramaditya", "Skandagupta", "Kumaragupta"], correct: 0, exp: "Samudragupta ko Vincent Smith ne Bharat ka Napoleon kaha. Harishena ne Prayag Prashasti likhi." },
+                { q: "Ellora ke Kailash Mandir ka nirman kis Rashtrakuta raja ne karwaya tha? (SSC CGL 2021)", options: ["Krishna I", "Amoghavarsha", "Dantidurga", "Govinda III"], correct: 0, exp: "Rashtrakuta raja Krishna I ne Maharashtra ke Ellora mein Kailash Temple banwaya." },
+                { q: "Chinese yatri Hiuen Tsang kis shasak ke samay Bharat aaya tha? (SSC CHSL 2022)", options: ["Harshavardhana", "Chandragupta II", "Samudragupta", "Kanishka"], correct: 0, exp: "Hiuen Tsang Harshavardhana ke kaal mein aaya tha. Uski pustak ka naam Si-Yu-Ki hai." },
+                { q: "Nalanda Vishwavidyalaya ki sthapna kis Gupta raja ne ki thi? (SSC CPO 2023)", options: ["Kumaragupta I", "Skandagupta", "Chandragupta I", "Bhanugupta"], correct: 0, exp: "Kumaragupta I ne 5th Century AD mein Nalanda Vishwavidyalaya ki sthapna ki thi." },
+                { q: "Thanjavur ka prasiddh Brihadeeswarar Mandir kisine banwaya tha? (SSC CGL 2024)", options: ["Rajaraja Chola I", "Rajendra Chola", "Karikala", "Narasimhavarman"], correct: 0, exp: "Chola shasak Rajaraja I ne Tamil Nadu ke Thanjavur mein Brihadeeswarar Temple banwaya." }
+            ]
+        };
+
+        let currentActivePhase = 1;
+        let currentQIndex = 0;
+        let currentScore = 0;
+
+        function updateExam() {
+            const ex = document.getElementById('exam-select').value.toUpperCase();
+            document.getElementById('exam-tag').innerText = `SSC ${ex} Ancient History`;
         }
 
-        // Toggle Flashcards
-        function toggleFlashcard(card) {
-            const ans = card.querySelector('.flashcard-answer');
-            ans.style.display = (ans.style.display === 'block') ? 'none' : 'block';
-        }
-
-        // Question Bank
-        const quizData = [
-            {
-                q: "Indian National Congress (INC) ki sthapna kis varsh hui thi?",
-                options: ["1857", "1885", "1905", "1919"],
-                correct: 1,
-                exp: "INC ki sthapna 28 December 1885 ko A.O. Hume dwara ki gayi thi. Pehla session Bombay mein hua tha."
-            },
-            {
-                q: "Bengal ka Partition (1905) kis Viceroy ke samay hua tha?",
-                options: ["Lord Ripon", "Lord Curzon", "Lord Dalhousie", "Lord Irwin"],
-                correct: 1,
-                exp: "Lord Curzon ne 1905 mein Bengal ka batwara kiya tha, jiske virodh mein Swadeshi Andolan shuru hua."
-            },
-            {
-                q: "1916 ke Lucknow Session ki adhyakshata kisine ki thi?",
-                options: ["Ambika Charan Mazumdar", "W.C. Bonnerjee", "Mahatma Gandhi", "Bal Gangadhar Tilak"],
-                correct: 0,
-                exp: "Ambika Charan Mazumdar ne adhyakshata ki thi. Is session mein Congress ke Naram aur Garam dal ek hue the."
-            },
-            {
-                q: "Mahatma Gandhi ne 'Karo ya Maro' (Do or Die) ka naara kis andolan mein diya tha?",
-                options: ["Asahyog Andolan (1920)", "Savinay Avagya (1930)", "Bharat Chodo Andolan (1942)", "Khilafat Andolan"],
-                correct: 2,
-                exp: "1942 ke Quit India Movement (Bharat Chodo Andolan) ke dauran Gandhi ji ne 'Do or Die' ka naara diya tha."
-            },
-            {
-                q: "Kaziranga National Park kiske liye prasiddh hai?",
-                options: ["Asian Lion", "One-horned Rhino (Ek-singh genda)", "Tiger", "Elephant"],
-                correct: 1,
-                exp: "Assam ka Kaziranga National Park ek-singh wale gende (One-horned Rhinoceros) ke liye vishwa bhar mein prasiddh hai."
+        function startPhaseTest(phaseNum) {
+            if(phaseNum > 1 && localStorage.getItem(`phase${phaseNum}_unlocked`) !== "true") {
+                alert("Pehle purana phase test clear karein!");
+                return;
             }
-        ];
 
-        let currentQ = 0;
-        let score = 0;
-        let answered = false;
+            currentActivePhase = phaseNum;
+            currentQIndex = 0;
+            currentScore = 0;
+
+            const modal = document.getElementById('quiz-modal');
+            modal.classList.add('active');
+            document.getElementById('quiz-title').innerText = `Phase ${phaseNum} PYQ Mastery Test`;
+            modal.scrollIntoView({ behavior: 'smooth' });
+
+            loadQuestion();
+        }
 
         function loadQuestion() {
-            answered = false;
-            const data = quizData[currentQ];
-            document.getElementById('q-counter').innerText = `Question ${currentQ + 1} of ${quizData.length}`;
-            document.getElementById('question').innerText = `${currentQ + 1}. ${data.q}`;
-            
-            const optionsContainer = document.getElementById('options');
-            optionsContainer.innerHTML = '';
-            
-            data.options.forEach((opt, index) => {
+            const qList = pyqTests[currentActivePhase];
+            const qData = qList[currentQIndex];
+
+            document.getElementById('q-counter').innerText = `Q ${currentQIndex + 1} of ${qList.length}`;
+            document.getElementById('score').innerText = currentScore;
+            document.getElementById('question').innerText = `${currentQIndex + 1}. ${qData.q}`;
+
+            const optDiv = document.getElementById('options');
+            optDiv.innerHTML = '';
+
+            qData.options.forEach((opt, idx) => {
                 const btn = document.createElement('button');
                 btn.className = 'opt-btn';
                 btn.innerText = opt;
-                btn.onclick = () => checkAnswer(index, btn);
-                optionsContainer.appendChild(btn);
+                btn.onclick = () => checkAns(idx, btn);
+                optDiv.appendChild(btn);
             });
 
-            const expBox = document.getElementById('explanation');
-            expBox.style.display = 'none';
-            expBox.innerText = '';
+            document.getElementById('explanation').style.display = 'none';
         }
 
-        function checkAnswer(selectedIndex, btn) {
-            if(answered) return;
-            answered = true;
+        function checkAns(selected, btn) {
+            const qData = pyqTests[currentActivePhase][currentQIndex];
+            const allBtns = document.querySelectorAll('.opt-btn');
 
-            const data = quizData[currentQ];
-            const allButtons = document.querySelectorAll('.opt-btn');
+            if(selected === qData.correct) {
+                btn.cl<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History Halwa Hub - SSC CGL Master</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border: #1f2937;
+            --gold: #f59e0b;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 15px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .selector-bar {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 12px 18px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        select {
+            background-color: #1f2937;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .phase-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: 0.3s;
+        }
+        .phase-card.locked {
+            opacity: 0.55;
+            background-color: #0f111a;
+            border-color: #312e81;
+        }
+        .lock-banner {
+            display: none;
+            background-color: #312e81;
+            color: #c7d2fe;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        .phase-card.locked .lock-banner {
+            display: block;
+        }
+        .phase-card.locked .test-btn {
+            background-color: #374151;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+        .phase-title {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chapter-box {
+            background-color: #1f2937;
+            border-left: 4px solid var(--accent);
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        .chapter-box h4 {
+            color: #f3f4f6;
+            margin-bottom: 5px;
+        }
+        .chapter-box p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .trick-tag {
+            background-color: #312e81;
+            color: #a5b4fc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 5px;
+            display: inline-block;
+        }
+        .test-btn {
+            background-color: var(--accent);
+            color: #0b0f19;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.2s;
+        }
+        .test-btn:hover:not(:disabled) {
+            background-color: var(--accent-hover);
+        }
+        .quiz-modal {
+            display: none;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        .quiz-modal.active {
+            display: block;
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        @media(max-width: 600px) {
+            .options-grid { grid-template-columns: 1fr; }
+        }
+        .opt-btn {
+            background-color: #1f2937;
+            color: var(--text-main);
+            border: 1px solid #374151;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        .opt-btn.correct { background-color: var(--success) !important; color: #fff !important; }
+        .opt-btn.wrong { background-color: var(--danger) !important; color: #fff !important; }
+        .explanation-box {
+            background-color: #0b0f19;
+            border-left: 3px solid var(--accent);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .badge {
+            background-color: #0284c7;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
 
-            if(selectedIndex === data.correct) {
-                btn.classList.add('correct');
-                score += 10;
-                document.getElementById('score').innerText = score;
-            } else {
-                btn.classList.add('wrong');
-                allButtons[data.correct].classList.add('correct');
+    <div class="container">
+        <header>
+            <h1>🏛️ Prachin Bharat Complete Mastery</h1>
+            <p>SSC CGL / CHSL / CPO (2020-2025) Complete Syllabus & PYQ Unlock Hub</p>
+        </header>
+
+        <div class="selector-bar">
+            <div>
+                <label for="exam-select">🎯 Select Target Exam: </label>
+                <select id="exam-select" onchange="updateExam()">
+                    <option value="cgl">SSC CGL</option>
+                    <option value="chsl">SSC CHSL</option>
+                    <option value="cpo">SSC CPO</option>
+                </select>
+            </div>
+            <div>
+                <span>Selected Course: <strong id="exam-tag" style="color:var(--accent);">SSC CGL Ancient History</strong></span>
+            </div>
+        </div>
+
+        <!-- PHASE 1 -->
+        <div class="phase-card" id="phase1-card">
+            <div class="phase-title">
+                <span>Phase 1: Chapters 1 to 3</span>
+                <span class="badge" id="phase1-badge" style="background-color: var(--success);">Unlocked</span>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 1: Pashan Kaal (Stone Age)</h4>
+                <p>• Pura Pashan (Paleolithic), Madhya Pashan (Mesolithic), Nav Pashan (Neolithic).<br>
+                • <strong>Key Sites:</strong> Bimbetka (Gufa Chitr - MP), Mehrgarh (Sabse pehle Kishi aur Gehun ke sakshya), Burzahom (Kashmir - Garta Vaas/Pit Dwellings).<br>
+                <span class="trick-tag">💡 Trick: "Mehrgarh mein Meharbani se Pehli Kheti hui"</span></p>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 2: Sindhu Ghati Sabhyata (Indus Valley 2500–1750 BC)</h4>
+                <p>• Harappa (1921 - Daya Ram Sahni, Ravi nadi). Mohenjodaro (1922 - R.D. Banerji, Sindhu nadi, Great Bath/Kasya Nartaki).<br>
+                • Lothal (Gujarat - Dockyard/Bandargah), Kalibangan (Rajasthan - Kaali churiyan & Jute khet), Dholavira (Water reservoir - 3 bhaag mein vibhajit nagar).<br>
+                <span class="trick-tag">💡 Trick: "Lothal ka Hathi-dant bhaga Bhogava nadi mein" (Lothal = Bhogava nadi)</span></p>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 3: Vaidik Kaal & Ved (1500–600 BC)</h4>
+                <p>• Rigveda (10 Mandal, Gayatri Mantra 3rd Mandal mein), Samveda (Sangeet), Yajurveda (Yagya/Gadya-Padya), Atharvaveda (Jaadu-tona/Chikitsa).<br>
+                • Nadiyon ke Vaidik Naam: Vitasta (Jhelum), Parushni (Ravi), Asikni (Chenab), Vipasa (Beas), Sutudri (Satluj).<br>
+                <span class="trick-tag">💡 Trick: "Ravi par Parushni bahi, Jhelum ko Vitasta kahi"</span></p>
+            </div>
+
+            <button class="test-btn" id="btn-phase1" onclick="startPhaseTest(1)">📝 Start Phase 1 PYQ Test (70% Marks to Unlock Phase 2)</button>
+        </div>
+
+        <!-- PHASE 2 -->
+        <div class="phase-card locked" id="phase2-card">
+            <div class="lock-banner">🔒 Locked: Phase 1 PYQ Test mein 70%+ Score laayein tabhi unlock hoga.</div>
+            <div class="phase-title">
+                <span>Phase 2: Chapters 4 to 6</span>
+                <span class="badge" id="phase2-badge">Locked</span>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 4: Mahajanpad & Magadha Uday</h4>
+                <p>• 16 Mahajanpad (Varnan: Anguttara Nikaya - Bouddha Granth).<br>• Magadha ke Rajvansh Sequence: Haryanka Vansh (Bimbisara, Ajatashatru), Shishunaga Vansh, Nanda Vansh (Dhanananda).<br>
+                <span class="trick-tag">💡 Trick: "HASIN MASHUKA" (Haryanka, Shishunaga, Nanda, Maurya, Shunga, Kanva)</span></p>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 5: Jainism & Buddhism</h4>
+                <p>• Gautama Buddha: Janm - Lumbini, Gyan - Bodh Gaya, Pehla Updesh - Sarnath, Mahaparinirvana - Kushinagar.<br>
+                • 4 Bouddha Sangeeti Sthal: Rajgir (Ajatashatru), Vaishali (Kalasoka), Pataliputra (Ashoka), Kashmir (Kanishka).<br>
+                <span class="trick-tag">💡 Trick: "Raja Vaishali ki Pataliputra Kashmir gayi" (R-V-P-K)</span></p>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 6: Maurya Samrajya</h4>
+                <p>• Chandragupta Maurya & Chanakya (Arthashastra), Megasthenes (Indica).<br>
+                • Ashoka: Kalinga Yuddh (261 BC - 13th Shilalekh mein varnan). Upagupta se Bouddha dharm ki deeksha li.<br>
+                <span class="trick-tag">💡 Trick: "13vein Shilalekh ne Kalinga mein Ashoka ka hriday badla"</span></p>
+            </div>
+
+            <button class="test-btn" id="btn-phase2" onclick="startPhaseTest(2)">📝 Start Phase 2 PYQ Test (70% Marks to Unlock Phase 3)</button>
+        </div>
+
+        <!-- PHASE 3 -->
+        <div class="phase-card locked" id="phase3-card">
+            <div class="lock-banner">🔒 Locked: Phase 2 PYQ Test mein 70%+ Score laayein tabhi unlock hoga.</div>
+            <div class="phase-title">
+                <span>Phase 3: Chapters 7 to 8</span>
+                <span class="badge" id="phase3-badge">Locked</span>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 7: Gupta Vansh & Harshavardhana</h4>
+                <p>• Sri Gupta (Sthapna), Samudragupta ('Bharat ka Napoleon' - Prayag Prashasti by Harishena).<br>
+                • Chandragupta II (Vikramaditya - Navratna darbar, Fahien aagaman). Nalanda Stahpna - Kumaragupta I.<br>
+                • Harshavardhana: Kannauj/Prayag Assembly, Hiuen Tsang visit (Book: Si-Yu-Ki).<br>
+                <span class="trick-tag">💡 Trick: "H se Harshavardhana = H se Hiuen Tsang"</span></p>
+            </div>
+
+            <div class="chapter-box">
+                <h4>Ch 8: Dakshin Bharat ke Rajvansh & Temples</h4>
+                <p>• Rashtrakuta: Krishna I ne Ellora ka Kailash Temple banwaya.<br>
+                • Chola Vansh: Rajaraja I ne Brihadeeswarar Temple (Thanjavur) banwaya.<br>
+                • Pallava: Narasimhavarman I ne Mamallapuram ke Rath Mandir banwaye.<br>
+                <span class="trick-tag">💡 Trick: "Rashtrakuta Krishna ne Kailash ko banaya"</span></p>
+            </div>
+
+            <button class="test-btn" id="btn-phase3" onclick="startPhaseTest(3)">📝 Start Final Prachin Bharat Mastery Test</button>
+        </div>
+
+        <!-- Quiz Modal -->
+        <div class="quiz-modal" id="quiz-modal">
+            <div class="quiz-header">
+                <div>
+                    <h3 id="quiz-title" style="color:var(--accent);">Phase Test</h3>
+                    <span id="q-counter" style="color:var(--text-muted); font-size: 0.85rem;">Q 1 of 5</span>
+                </div>
+                <span>Score: <strong id="score" style="color:var(--accent); font-size:1.2rem;">0</strong></span>
+            </div>
+
+            <div class="question-text" id="question">Loading...</div>
+            <div class="options-grid" id="options"></div>
+            <div class="explanation-box" id="explanation"></div>
+
+            <div style="text-align: right;">
+                <button class="test-btn" style="width: auto; padding: 10px 20px;" onclick="nextQuestion()">Agla PYQ ➔</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 2020 - 2025 Real SSC PYQ Database
+        const pyqTests = {
+            1: [
+                { q: "Harappan sthal 'Lothal' kis nadi ke tat par sthit tha? (SSC CGL 2023)", options: ["Bhogava Nadi", "Ravi Nadi", "Sindhu Nadi", "Ghaggar Nadi"], correct: 0, exp: "Lothal (Gujarat) Bhogava nadi ke kinare sthit tha. Yeh Sindhu Sabhyata ka bandargah (Dockyard) tha." },
+                { q: "Gayatri Mantra Rigveda ke kis Mandal mein sthit hai? (SSC CGL 2021)", options: ["1st Mandal", "3rd Mandal", "7th Mandal", "10th Mandal"], correct: 1, exp: "Gayatri Mantra Rigveda ke 3rd Mandal mein hai. Iski rachna Vishwamitra ne ki thi." },
+                { q: "Pura Pashan kaal ke gufa chitr 'Bimbetka' kis rajya mein sthit hain? (SSC CHSL 2022)", options: ["Madhya Pradesh", "Rajasthan", "Uttar Pradesh", "Bihar"], correct: 0, exp: "Bimbetka ki gufaayein Madhya Pradesh ke Raisen zile mein hain." },
+                { q: "Sindhu Ghati Sabhyata mein 'Jute hue khet' ke praman kahan se mile? (SSC CPO 2023)", options: ["Mohenjodaro", "Kalibangan", "Dholavira", "Lothal"], correct: 1, exp: "Kalibangan (Rajasthan) se jute hue khet aur agnikund ke praman mile hain." },
+                { q: "Jhelum nadi ka prachin Vaidik naam kya tha? (SSC CGL 2024)", options: ["Vitasta", "Parushni", "Asikni", "Sutudri"], correct: 0, exp: "Jhelum = Vitasta, Ravi = Parushni, Chenab = Asikni, Satluj = Sutudri." }
+            ],
+            2: [
+                { q: "Pratham Bouddha Sangeeti (483 BC) kis shasak ke kaal mein hui thi? (SSC CGL 2024)", options: ["Ajatashatru", "Kalasoka", "Ashoka", "Kanishka"], correct: 0, exp: "Pehli Bouddha Sangeeti Rajgir mein Ajatashatru (Haryanka Vansh) ke samay hui." },
+                { q: "Chandragupta Maurya ke darbar mein aaya Megasthenes kis raja ka raajdoot tha? (SSC CHSL 2023)", options: ["Seleucus Nicator", "Alexander", "Darius", "Antiochus"], correct: 0, exp: "Megasthenes Seleucus Nicator ka raajdoot tha. Usne 'Indica' likhi thi." },
+                { q: "Ashoka ne Kalinga Yuddh kis varsh lada tha? (SSC CGL 2022)", options: ["261 BC", "326 BC", "232 BC", "185 BC"], correct: 0, exp: "261 BC mein Kalinga Yuddh hua jiska varnan 13vein Shilalekh mein milta hai." },
+                { q: "16 Mahajanpado ki jankari kis Bouddha granth se milti hai? (SSC CPO 2022)", options: ["Anguttara Nikaya", "Tripitaka", "Mahavamsa", "Jataka"], correct: 0, exp: "Anguttara Nikaya aur Jain granth Bhagavati Sutra se 16 Mahajanpado ki jankari milti hai." },
+                { q: "Jain dharm ke 24th Tirthankara Vardhaman Mahavira ka janm kahan hua tha? (SSC CGL 2020)", options: ["Vaishali (Kundagrama)", "Lumbini", "Pataliputra", "Bodh Gaya"], correct: 0, exp: "Mahavira Swami ka janm Kundagrama (Vaishali) mein hua tha." }
+            ],
+            3: [
+                { q: "'Bharat ka Napoleon' kis Gupta shasak ko kaha jata hai? (SSC CGL 2023)", options: ["Samudragupta", "Chandragupta Vikramaditya", "Skandagupta", "Kumaragupta"], correct: 0, exp: "Samudragupta ko Vincent Smith ne Bharat ka Napoleon kaha. Harishena ne Prayag Prashasti likhi." },
+                { q: "Ellora ke Kailash Mandir ka nirman kis Rashtrakuta raja ne karwaya tha? (SSC CGL 2021)", options: ["Krishna I", "Amoghavarsha", "Dantidurga", "Govinda III"], correct: 0, exp: "Rashtrakuta raja Krishna I ne Maharashtra ke Ellora mein Kailash Temple banwaya." },
+                { q: "Chinese yatri Hiuen Tsang kis shasak ke samay Bharat aaya tha? (SSC CHSL 2022)", options: ["Harshavardhana", "Chandragupta II", "Samudragupta", "Kanishka"], correct: 0, exp: "Hiuen Tsang Harshavardhana ke kaal mein aaya tha. Uski pustak ka naam Si-Yu-Ki hai." },
+                { q: "Nalanda Vishwavidyalaya ki sthapna kis Gupta raja ne ki thi? (SSC CPO 2023)", options: ["Kumaragupta I", "Skandagupta", "Chandragupta I", "Bhanugupta"], correct: 0, exp: "Kumaragupta I ne 5th Century AD mein Nalanda Vishwavidyalaya ki sthapna ki thi." },
+                { q: "Thanjavur ka prasiddh Brihadeeswarar Mandir kisine banwaya tha? (SSC CGL 2024)", options: ["Rajaraja Chola I", "Rajendra Chola", "Karikala", "Narasimhavarman"], correct: 0, exp: "Chola shasak Rajaraja I ne Tamil Nadu ke Thanjavur mein Brihadeeswarar Temple banwaya." }
+            ]
+        };
+
+        let currentActivePhase = 1;
+        let currentQIndex = 0;
+        let currentScore = 0;
+
+        function updateExam() {
+            const ex = document.getElementById('exam-select').value.toUpperCase();
+            document.getElementById('exam-tag').innerText = `SSC ${ex} Ancient History`;
+        }
+
+        function startPhaseTest(phaseNum) {
+            if(phaseNum > 1 && localStorage.getItem(`phase${phaseNum}_unlocked`) !== "true") {
+                alert("Pehle purana phase test clear karein!");
+                return;
             }
 
-            allButtons.forEach(b => b.disabled = true);
+            currentActivePhase = phaseNum;
+            currentQIndex = 0;
+            currentScore = 0;
 
-            const expBox = document.getElementById('explanation');
-            expBox.innerHTML = `<strong>Explanation:</strong> ${data.exp}`;
-            expBox.style.display = 'block';
+            const modal = document.getElementById('quiz-modal');
+            modal.classList.add('active');
+            document.getElementById('quiz-title').innerText = `Phase ${phaseNum} PYQ Mastery Test`;
+            modal.scrollIntoView({ behavior: 'smooth' });
+
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const qList = pyqTests[currentActivePhase];
+            const qData = qList[currentQIndex];
+
+            document.getElementById('q-counter').innerText = `Q ${currentQIndex + 1} of ${qList.length}`;
+            document.getElementById('score').innerText = currentScore;
+            document.getElementById('question').innerText = `${currentQIndex + 1}. ${qData.q}`;
+
+            const optDiv = document.getElementById('options');
+            optDiv.innerHTML = '';
+
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'opt-btn';
+                btn.innerText = opt;
+                btn.onclick = () => checkAns(idx, btn);
+                optDiv.appendChild(btn);
+            });
+
+            document.getElementById('explanation').style.display = 'none';
+        }
+
+        function checkAns(selected, btn) {
+            const qData = pyqTests[currentActivePhase][currentQIndex];
+            const allBtns = document.querySelectorAll('.opt-btn');
+
+            if(selected === qData.correct) {
+                btn.classList.add('correct');
+                currentScore += 20; // 5 Questions = 100 Total Marks
+                document.getElementById('score').innerText = currentScore;
+            } else {
+                btn.classList.add('wrong');
+                allBtns[qData.correct].classList.add('correct');
+            }
+
+            allBtns.forEach(b => b.disabled = true);
+            const exp = document.getElementById('explanation');
+            exp.innerHTML = `<strong>SSC Exam Explanation:</strong> ${qData.exp}`;
+            exp.style.display = 'block';
         }
 
         function nextQuestion() {
-            if(currentQ < quizData.length - 1) {
-                currentQ++;
+            const totalQ = pyqTests[currentActivePhase].length;
+            if(currentQIndex < totalQ - 1) {
+                currentQIndex++;
                 loadQuestion();
             } else {
-                alert(`Quiz Complete! Aapka Total Score: ${score} / ${quizData.length * 10}`);
+                // Check 70% passing criteria (70 out of 100)
+                const percentage = (currentScore / 100) * 100;
+                if(percentage >= 70) {
+                    alert(`🎉 Shaandar! Aapne ${percentage}% score karke Phase ${currentActivePhase} clear kar liya!`);
+                    unlockNextPhase(currentActivePhase + 1);
+                } else {
+                    alert(`❌ Aapka score ${percentage}% hai. Phase unlock karne ke liye minimum 70% chahiye. Phir se attempt karein!`);
+                }
+                document.getElementById('quiz-modal').classList.remove('active');
             }
         }
 
-        function prevQuestion() {
-            if(currentQ > 0) {
-                currentQ--;
-                loadQuestion();
+        function unlockNextPhase(nextPhaseNum) {
+            if(nextPhaseNum <= 3) {
+                const card = document.getElementById(`phase${nextPhaseNum}-card`);
+                card.classList.remove('locked');
+                const badge = document.getElementById(`phase${nextPhaseNum}-badge`);
+                if(badge) {
+                    badge.innerText = "Unlocked";
+                    badge.style.backgroundColor = "var(--success)";
+                }
+                localStorage.setItem(`phase${nextPhaseNum}_unlocked`, "true");
             }
         }
 
-        // Initialize First Question
-        loadQuestion();
+        // Auto Load saved unlocks from browser memory
+        if(localStorage.getItem('phase2_unlocked') === "true") unlockNextPhase(2);
+        if(localStorage.getItem('phase3_unlocked') === "true") unlockNextPhase(3);
     </script>
 </body>
 </html>
