@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GS Halwa - Ancient History Master Hub</title>
+    <title>GS Halwa - Ancient History Master Portal</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -47,7 +47,6 @@
             color: var(--text-muted);
             font-size: 0.95rem;
         }
-        /* Top Navigation & Controls */
         .control-bar {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
@@ -81,7 +80,6 @@
             color: #0b0f19;
             border: none;
         }
-        /* Phase Modules */
         .phase-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
@@ -110,9 +108,9 @@
             display: block;
         }
         .phase-card.locked .test-btn {
-            background-color: #374151;
-            color: #9ca3af;
-            cursor: not-allowed;
+            background-color: #374151 !important;
+            color: #9ca3af !important;
+            cursor: not-allowed !important;
         }
         .phase-title {
             color: var(--accent);
@@ -124,7 +122,6 @@
             border-bottom: 1px solid var(--border);
             padding-bottom: 10px;
         }
-        /* Chapter Detailed Layout */
         .chapter-box {
             background-color: #1f2937;
             border-left: 4px solid var(--accent);
@@ -193,7 +190,6 @@
         .test-btn:hover:not(:disabled) {
             background-color: var(--accent-hover);
         }
-        /* Quiz Styling */
         .quiz-modal {
             display: none;
             background-color: var(--card-bg);
@@ -271,7 +267,7 @@
         <div class="control-bar">
             <div class="select-group">
                 <label for="exam-select" id="lbl-exam">🎯 Exam Target:</label>
-                <select id="exam-select" onchange="updateExam()">
+                <select id="exam-select">
                     <option value="cgl">SSC CGL</option>
                     <option value="chsl">SSC CHSL</option>
                     <option value="cpo">SSC CPO</option>
@@ -279,15 +275,13 @@
             </div>
 
             <div class="select-group">
-                <span id="lbl-lang">🌐 Select Language:</span>
+                <span id="lbl-lang">🌐 Choose Language:</span>
                 <button class="lang-toggle" onclick="toggleLanguage()" id="btn-lang">English</button>
             </div>
         </div>
 
-        <!-- Dynamic Chapter Content Rendering Area -->
         <div id="content-area"></div>
 
-        <!-- Quiz Modal -->
         <div class="quiz-modal" id="quiz-modal">
             <div class="quiz-header">
                 <div>
@@ -309,9 +303,8 @@
     </div>
 
     <script>
-        let currentLang = 'hi'; // Default Hindi
+        let currentLang = 'hi';
 
-        // Structured Comprehensive Content DB
         const fullContent = {
             hi: {
                 title: "🏛️ प्राचीन भारत (Ancient History) संपूर्ण मास्टर पोर्टल",
@@ -323,7 +316,6 @@
                 locked: "लॉक है",
                 btnTest: "📝 चरण PYQ टेस्ट शुरू करें (अनलॉक हेतु 70% अंक आवश्यक)",
                 btnNext: "अगला प्रश्न ➔",
-
                 phases: [
                     {
                         id: 1,
@@ -338,9 +330,7 @@
                                         <li><strong>2. मध्यपाषाण काल (Mesolithic Age):</strong> सूक्ष्म पाषाण औजार (Microliths) का प्रयोग शुरू हुआ। पशुपालन (Animal Husbandry) का प्रथम साक्ष्य <em>आदमगढ़ (MP)</em> तथा <em>बागोर (राजस्थान)</em> से मिला।</li>
                                         <li><strong>3. नवपाषाण काल (Neolithic Age):</strong> कृषि (Agriculture) एवं पहिए (Wheel) का आविष्कार हुआ। <em>मेहरगढ़ (पाकिस्तान):</em> कृषि का प्रथम साक्ष्य (गेहूं और जौ)। <em>बुर्जहोम (कश्मीर):</em> गर्तवास (Pit dwellings) तथा मालिक के साथ कुत्ते को दफनाने के साक्ष्य।</li>
                                     </ul>
-                                    <div class="trick-box">
-                                        <strong>💡 Memory Trick:</strong> "मेहरगढ़ से मेहरबानी हुई अन्न पर, बुर्जहोम के गड्ढे में कुत्ता सोया मालिक संग।"
-                                    </div>
+                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "मेहरगढ़ से मेहरबानी हुई अन्न पर, बुर्जहोम के गड्ढे में कुत्ता सोया मालिक संग।"</div>
                                 </div>`
                             },
                             {
@@ -350,14 +340,12 @@
                                     <table class="data-table">
                                         <tr><th>प्रमुख स्थल</th><th>नदी</th><th>उत्खननकर्ता (वर्ष)</th><th>प्राप्त महत्वपूर्ण अवशेष</th></tr>
                                         <tr><td>हड़प्पा</td><td>रावी</td><td>दयाराम साहनी (1921)</td><td>अन्नागार (Granary), आर-37 कब्रिस्तान</td></tr>
-                                        <tr><td>मोहनजोदड़ो</td><td>सिंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार (Great Bath), कांस्य नर्तकी की मूर्ति</td></tr>
+                                        <tr><td>मोहनजोदड़ो</td><td>सिंंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार (Great Bath), कांस्य नर्तकी की मूर्ति</td></tr>
                                         <tr><td>लोथल</td><td>भोगवा</td><td>एस.आर. राव (1954)</td><td>गोदीवाड़ा (Dockyard), धान की भूसी, हाथीदांत स्केल</td></tr>
                                         <tr><td>कालीबंगन</td><td>घग्गर</td><td>अम्लानंद घोष / बी.बी. लाल</td><td>जूते हुए खेत के साक्ष्य, बेलनाकार मोहरें, अग्निकुंड</td></tr>
                                         <tr><td>धोलावीरा</td><td>लूनी</td><td>आर.एस. बिष्ट (1990)</td><td>त्रिस्तरीय नगर विभाजन, विशाल जलाशय (Water Reservoir)</td></tr>
                                     </table>
-                                    <div class="trick-box">
-                                        <strong>💡 Memory Trick:</strong> "हड़प्पा रावी तट दया दिखाए, लोथल भोगवा बंदरगाह बनाए।"
-                                    </div>
+                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "हड़प्पा रावी तट दया दिखाए, लोथल भोगवा बंदरगाह बनाए।"</div>
                                 </div>`
                             },
                             {
@@ -376,9 +364,7 @@
                                         <tr><td>असिकनी</td><td>चिनाब</td><td>विपाशा</td><td>व्यास</td></tr>
                                         <tr><td>शुतुद्री</td><td>सतलज</td><td>दृषद्वती</td><td>घग्गर</td></tr>
                                     </table>
-                                    <div class="trick-box">
-                                        <strong>💡 Memory Trick:</strong> "झेलम का पानी वितस्ता कहलाए, रावी तट पर परुष्णी गाए।"
-                                    </div>
+                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "झेलम का पानी वितस्ता कहलाए, रावी तट पर परुष्णी गाए।"</div>
                                 </div>`
                             }
                         ]
@@ -410,9 +396,7 @@
                                         <tr><td>तृतीय (250 BC)</td><td>पाटलिपुत्र</td><td>मोग्गलिपुत्त तिस्स</td><td>अशोक</td></tr>
                                         <tr><td>चतुर्थ (1st AD)</td><td>कुण्डलवन (कश्मीर)</td><td>वसुमित्र / अश्वघोष</td><td>कनिष्क</td></tr>
                                     </table>
-                                    <div class="trick-box">
-                                        <strong>💡 Sangeeti Trick (R-V-P-K):</strong> "राजा वैशाली की पाटलिपुत्र कश्मीर गई" | <strong>Raja Trick (A-K-A-K):</strong> "अजात कला के अशोक कनिष्क"
-                                    </div>
+                                    <div class="trick-box"><strong>💡 Sangeeti Trick (R-V-P-K):</strong> "राजा वैशाली की पाटलिपुत्र कश्मीर गई" | <strong>Raja Trick (A-K-A-K):</strong> "अजात कला के अशोक कनिष्क"</div>
                                 </div>`
                             },
                             {
@@ -422,9 +406,7 @@
                                         <li><strong>चंद्रगुप्त मौर्य:</strong> चाणक्य की सहायता से घनानंद को पराजित किया। सेल्यूकस निकेटर को हराया। ग्रीक राजदूत <em>मेगस्थनीज</em> ने <strong>इण्डिका (Indica)</strong> लिखी।</li>
                                         <li><strong>अशोक (268-232 BC):</strong> 261 BC में <em>कलिंग युद्ध</em> लड़ा (13वें शिलालेख में वर्णन)। उपगुप्त से बौद्ध धर्म की दीक्षा ली। शिलालेख पढ़ने वाला प्रथम व्यक्ति - जेम्स प्रिंसेप (1837)।</li>
                                     </ul>
-                                    <div class="trick-box">
-                                        <strong>💡 Memory Trick:</strong> "13वें शिलालेख ने कलिंग में अशोक का हृदय बदला, प्रिंसेप ने 37 में ब्राह्मी को पढ़ा।"
-                                    </div>
+                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "13वें शिलालेख ने कलिंग में अशोक का हृदय बदला, प्रिंसेप ने 37 में ब्राह्मी को पढ़ा।"</div>
                                 </div>`
                             }
                         ]
@@ -436,12 +418,17 @@
                             {
                                 title: "अध्याय 7: गुप्त साम्राज्य एवं हर्षवर्धन",
                                 html: `<div class="content-block">
-                                    <ul><!DOCTYPE html>
+                                    <ul>
+                                        <li><strong>श्रीगुप्त:</strong> गुप्त वंश का संस्थापक। चंद्रगुप्त प्रथम (वास्तविक संस्थापक - 319 AD गुप्त संवत)।</li>
+                                        <li><strong>समुद्रगुप्त:</strong> 'भारत का नेपोलियन' (विंसेंट स्मिथ द्वारा)। दरबारी कवि <em>हरिषेण</em> ने प्रयाग प्रशस्ति की रचना की।</li>
+                                        <li><strong>चंद्रगुप्त द्वितीय (विक्रमादित्य):</strong> नवरत्न दरबारी (कालिदास, वराहमिहिर)। चीनी यात्री <em>फाह्यान</em> भारत आया।</li>
+                                        <li><strong>कुमारगुप्त प्रथम:</strong> नालंदा विश्वविद्यालय की स्थापना की।</li>
+                                        <li><strong>हर्षवर्धन (वर्द्धन वंश):</strong> राजधानी कन्नौज। चीनी यात्री <em>ह्वेनसांग (Si-Yu-Ki)</em> इसी के का<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GS Halwa - Ancient History Master Hub</title>
+    <title>GS Halwa - Ancient History Master Portal</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -485,7 +472,6 @@
             color: var(--text-muted);
             font-size: 0.95rem;
         }
-        /* Top Navigation & Controls */
         .control-bar {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
@@ -519,7 +505,6 @@
             color: #0b0f19;
             border: none;
         }
-        /* Phase Modules */
         .phase-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
@@ -548,9 +533,9 @@
             display: block;
         }
         .phase-card.locked .test-btn {
-            background-color: #374151;
-            color: #9ca3af;
-            cursor: not-allowed;
+            background-color: #374151 !important;
+            color: #9ca3af !important;
+            cursor: not-allowed !important;
         }
         .phase-title {
             color: var(--accent);
@@ -562,7 +547,6 @@
             border-bottom: 1px solid var(--border);
             padding-bottom: 10px;
         }
-        /* Chapter Detailed Layout */
         .chapter-box {
             background-color: #1f2937;
             border-left: 4px solid var(--accent);
@@ -631,7 +615,6 @@
         .test-btn:hover:not(:disabled) {
             background-color: var(--accent-hover);
         }
-        /* Quiz Styling */
         .quiz-modal {
             display: none;
             background-color: var(--card-bg);
@@ -709,7 +692,7 @@
         <div class="control-bar">
             <div class="select-group">
                 <label for="exam-select" id="lbl-exam">🎯 Exam Target:</label>
-                <select id="exam-select" onchange="updateExam()">
+                <select id="exam-select">
                     <option value="cgl">SSC CGL</option>
                     <option value="chsl">SSC CHSL</option>
                     <option value="cpo">SSC CPO</option>
@@ -717,15 +700,13 @@
             </div>
 
             <div class="select-group">
-                <span id="lbl-lang">🌐 Select Language:</span>
+                <span id="lbl-lang">🌐 Choose Language:</span>
                 <button class="lang-toggle" onclick="toggleLanguage()" id="btn-lang">English</button>
             </div>
         </div>
 
-        <!-- Dynamic Chapter Content Rendering Area -->
         <div id="content-area"></div>
 
-        <!-- Quiz Modal -->
         <div class="quiz-modal" id="quiz-modal">
             <div class="quiz-header">
                 <div>
@@ -747,9 +728,8 @@
     </div>
 
     <script>
-        let currentLang = 'hi'; // Default Hindi
+        let currentLang = 'hi';
 
-        // Structured Comprehensive Content DB
         const fullContent = {
             hi: {
                 title: "🏛️ प्राचीन भारत (Ancient History) संपूर्ण मास्टर पोर्टल",
@@ -761,7 +741,6 @@
                 locked: "लॉक है",
                 btnTest: "📝 चरण PYQ टेस्ट शुरू करें (अनलॉक हेतु 70% अंक आवश्यक)",
                 btnNext: "अगला प्रश्न ➔",
-
                 phases: [
                     {
                         id: 1,
@@ -776,9 +755,7 @@
                                         <li><strong>2. मध्यपाषाण काल (Mesolithic Age):</strong> सूक्ष्म पाषाण औजार (Microliths) का प्रयोग शुरू हुआ। पशुपालन (Animal Husbandry) का प्रथम साक्ष्य <em>आदमगढ़ (MP)</em> तथा <em>बागोर (राजस्थान)</em> से मिला।</li>
                                         <li><strong>3. नवपाषाण काल (Neolithic Age):</strong> कृषि (Agriculture) एवं पहिए (Wheel) का आविष्कार हुआ। <em>मेहरगढ़ (पाकिस्तान):</em> कृषि का प्रथम साक्ष्य (गेहूं और जौ)। <em>बुर्जहोम (कश्मीर):</em> गर्तवास (Pit dwellings) तथा मालिक के साथ कुत्ते को दफनाने के साक्ष्य।</li>
                                     </ul>
-                                    <div class="trick-box">
-                                        <strong>💡 Memory Trick:</strong> "मेहरगढ़ से मेहरबानी हुई अन्न पर, बुर्जहोम के गड्ढे में कुत्ता सोया मालिक संग।"
-                                    </div>
+                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "मेहरगढ़ से मेहरबानी हुई अन्न पर, बुर्जहोम के गड्ढे में कुत्ता सोया मालिक संग।"</div>
                                 </div>`
                             },
                             {
@@ -788,14 +765,12 @@
                                     <table class="data-table">
                                         <tr><th>प्रमुख स्थल</th><th>नदी</th><th>उत्खननकर्ता (वर्ष)</th><th>प्राप्त महत्वपूर्ण अवशेष</th></tr>
                                         <tr><td>हड़प्पा</td><td>रावी</td><td>दयाराम साहनी (1921)</td><td>अन्नागार (Granary), आर-37 कब्रिस्तान</td></tr>
-                                        <tr><td>मोहनजोदड़ो</td><td>सिंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार (Great Bath), कांस्य नर्तकी की मूर्ति</td></tr>
+                                        <tr><td>मोहनजोदड़ो</td><td>सिंंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार (Great Bath), कांस्य नर्तकी की मूर्ति</td></tr>
                                         <tr><td>लोथल</td><td>भोगवा</td><td>एस.आर. राव (1954)</td><td>गोदीवाड़ा (Dockyard), धान की भूसी, हाथीदांत स्केल</td></tr>
                                         <tr><td>कालीबंगन</td><td>घग्गर</td><td>अम्लानंद घोष / बी.बी. लाल</td><td>जूते हुए खेत के साक्ष्य, बेलनाकार मोहरें, अग्निकुंड</td></tr>
                                         <tr><td>धोलावीरा</td><td>लूनी</td><td>आर.एस. बिष्ट (1990)</td><td>त्रिस्तरीय नगर विभाजन, विशाल जलाशय (Water Reservoir)</td></tr>
                                     </table>
-                                    <div class="trick-box">
-                                        <strong>💡 Memory Trick:</strong> "हड़प्पा रावी तट दया दिखाए, लोथल भोगवा बंदरगाह बनाए।"
-                                    </div>
+                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "हड़प्पा रावी तट दया दिखाए, लोथल भोगवा बंदरगाह बनाए।"</div>
                                 </div>`
                             },
                             {
@@ -814,9 +789,7 @@
                                         <tr><td>असिकनी</td><td>चिनाब</td><td>विपाशा</td><td>व्यास</td></tr>
                                         <tr><td>शुतुद्री</td><td>सतलज</td><td>दृषद्वती</td><td>घग्गर</td></tr>
                                     </table>
-                                    <div class="trick-box">
-                                        <strong>💡 Memory Trick:</strong> "झेलम का पानी वितस्ता कहलाए, रावी तट पर परुष्णी गाए।"
-                                    </div>
+                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "झेलम का पानी वितस्ता कहलाए, रावी तट पर परुष्णी गाए।"</div>
                                 </div>`
                             }
                         ]
@@ -848,9 +821,7 @@
                                         <tr><td>तृतीय (250 BC)</td><td>पाटलिपुत्र</td><td>मोग्गलिपुत्त तिस्स</td><td>अशोक</td></tr>
                                         <tr><td>चतुर्थ (1st AD)</td><td>कुण्डलवन (कश्मीर)</td><td>वसुमित्र / अश्वघोष</td><td>कनिष्क</td></tr>
                                     </table>
-                                    <div class="trick-box">
-                                        <strong>💡 Sangeeti Trick (R-V-P-K):</strong> "राजा वैशाली की पाटलिपुत्र कश्मीर गई" | <strong>Raja Trick (A-K-A-K):</strong> "अजात कला के अशोक कनिष्क"
-                                    </div>
+                                    <div class="trick-box"><strong>💡 Sangeeti Trick (R-V-P-K):</strong> "राजा वैशाली की पाटलिपुत्र कश्मीर गई" | <strong>Raja Trick (A-K-A-K):</strong> "अजात कला के अशोक कनिष्क"</div>
                                 </div>`
                             },
                             {
@@ -860,9 +831,7 @@
                                         <li><strong>चंद्रगुप्त मौर्य:</strong> चाणक्य की सहायता से घनानंद को पराजित किया। सेल्यूकस निकेटर को हराया। ग्रीक राजदूत <em>मेगस्थनीज</em> ने <strong>इण्डिका (Indica)</strong> लिखी।</li>
                                         <li><strong>अशोक (268-232 BC):</strong> 261 BC में <em>कलिंग युद्ध</em> लड़ा (13वें शिलालेख में वर्णन)। उपगुप्त से बौद्ध धर्म की दीक्षा ली। शिलालेख पढ़ने वाला प्रथम व्यक्ति - जेम्स प्रिंसेप (1837)।</li>
                                     </ul>
-                                    <div class="trick-box">
-                                        <strong>💡 Memory Trick:</strong> "13वें शिलालेख ने कलिंग में अशोक का हृदय बदला, प्रिंसेप ने 37 में ब्राह्मी को पढ़ा।"
-                                    </div>
+                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "13वें शिलालेख ने कलिंग में अशोक का हृदय बदला, प्रिंसेप ने 37 में ब्राह्मी को पढ़ा।"</div>
                                 </div>`
                             }
                         ]
@@ -908,7 +877,6 @@
                 locked: "Locked",
                 btnTest: "📝 Start Phase PYQ Test (70% Passing Marks Required)",
                 btnNext: "Next Question ➔",
-
                 phases: [
                     {
                         id: 1,
@@ -923,9 +891,7 @@
                                         <li><strong>2. Mesolithic Age (Middle Stone Age):</strong> Characterized by Microliths (small stone tools). First evidence of Animal Husbandry found at <em>Adamgarh (MP)</em> and <em>Bagor (Rajasthan)</em>.</li>
                                         <li><strong>3. Neolithic Age (New Stone Age):</strong> Invention of Agriculture and Wheel. <em>Mehrgarh (Pakistan):</em> Earliest evidence of farming (Wheat & Barley). <em>Burzahom (Kashmir):</em> Pit dwellings and dogs buried with masters.</li>
                                     </ul>
-                                    <div class="trick-box">
-                                        <strong>💡 Memory Trick:</strong> "Mehrgarh birthed Wheat & Grain, Burzahom pits sheltered Dogs in rain."
-                                    </div>
+                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "Mehrgarh birthed Wheat & Grain, Burzahom pits sheltered Dogs in rain."</div>
                                 </div>`
                             },
                             {
@@ -1027,7 +993,6 @@
             }
         };
 
-        // Official TCS PYQ Tests
         const pyqTests = {
             1: [
                 { q: "Harappan site 'Lothal' was situated on the banks of which river? (SSC CGL 2023)", options: ["Bhogava", "Ravi", "Indus", "Ghaggar"], correct: 0, exp: "Lothal in Gujarat was situated on the Bhogava river. It served as the prominent tidal dockyard of IVC." },
@@ -1094,7 +1059,7 @@
                         </span>
                     </div>
                     ${chsHtml}
-                    <button class="test-btn" ${isUnlocked ? '' : 'disabled'} onclick="startPhaseTest(${phase.id})">
+                    <button class="test-btn" ${isUnlocked ? '' : 'disabled="true"'} onclick="startPhaseTest(${phase.id})">
                         ${data.btnTest}
                     </button>
                 `;
@@ -1105,10 +1070,6 @@
         function toggleLanguage() {
             currentLang = (currentLang === 'hi') ? 'en' : 'hi';
             renderPage();
-        }
-
-        function updateExam() {
-            // Updated exam state tracking
         }
 
         function startPhaseTest(phaseNum) {
@@ -1183,10 +1144,9 @@
             }
         }
 
-        // Initial Load
-        renderPage();
+        window.onload = function() {
+            renderPage();
+        };
     </script>
 </body>
 </html>
-
-                                        <li><strong>श्रीगुप्त:</strong> गुप्त वंश का संस्थापक। चंद्रगुप्त प्रथम (वास्तविक संस्था
