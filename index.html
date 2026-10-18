@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ancient History Halwa Hub - SSC CGL Master</title>
+    <title>GS Halwa - Ancient History Master Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -15,7 +15,8 @@
             --success: #10b981;
             --danger: #ef4444;
             --border: #1f2937;
-            --gold: #f59e0b;
+            --trick-bg: #1e1b4b;
+            --trick-border: #6366f1;
         }
         * {
             margin: 0;
@@ -30,7 +31,7 @@
             min-height: 100vh;
         }
         .container {
-            max-width: 950px;
+            max-width: 980px;
             margin: 0 auto;
         }
         header {
@@ -46,7 +47,8 @@
             color: var(--text-muted);
             font-size: 0.95rem;
         }
-        .selector-bar {
+        /* Top Navigation & Controls */
+        .control-bar {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
             padding: 12px 18px;
@@ -55,42 +57,54 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 20px;
         }
-        select {
+        .select-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        select, button.lang-toggle {
             background-color: #1f2937;
             color: var(--text-main);
             border: 1px solid var(--border);
-            padding: 8px 12px;
+            padding: 8px 14px;
             border-radius: 6px;
             outline: none;
             cursor: pointer;
             font-weight: 600;
+            font-size: 0.9rem;
         }
+        button.lang-toggle {
+            background-color: var(--accent);
+            color: #0b0f19;
+            border: none;
+        }
+        /* Phase Modules */
         .phase-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 22px;
+            margin-bottom: 25px;
             position: relative;
-            transition: 0.3s;
         }
         .phase-card.locked {
-            opacity: 0.55;
-            background-color: #0f111a;
-            border-color: #312e81;
+            opacity: 0.5;
+            background-color: #0d111c;
+            border-color: #1e1b4b;
         }
         .lock-banner {
             display: none;
             background-color: #312e81;
             color: #c7d2fe;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            text-align: center;
         }
         .phase-card.locked .lock-banner {
             display: block;
@@ -102,47 +116,76 @@
         }
         .phase-title {
             color: var(--accent);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
         }
+        /* Chapter Detailed Layout */
         .chapter-box {
             background-color: #1f2937;
             border-left: 4px solid var(--accent);
-            padding: 12px 15px;
-            border-radius: 6px;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+        }
+        .chapter-box h3 {
+            color: #f3f4f6;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        .content-block {
+            color: #d1d5db;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .content-block ul {
+            margin-left: 20px;
             margin-bottom: 10px;
         }
-        .chapter-box h4 {
-            color: #f3f4f6;
-            margin-bottom: 5px;
+        .content-block li {
+            margin-bottom: 6px;
         }
-        .chapter-box p {
-            color: var(--text-muted);
+        .trick-box {
+            background-color: var(--trick-bg);
+            border: 1px solid var(--trick-border);
+            color: #c7d2fe;
+            padding: 10px 14px;
+            border-radius: 6px;
             font-size: 0.9rem;
-            line-height: 1.5;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
-        .trick-tag {
-            background-color: #312e81;
-            color: #a5b4fc;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-top: 5px;
-            display: inline-block;
+        .trick-box strong {
+            color: #818cf8;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.88rem;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #374151;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #111827;
+            color: var(--accent);
         }
         .test-btn {
             background-color: var(--accent);
             color: #0b0f19;
             border: none;
-            padding: 12px;
+            padding: 14px;
             width: 100%;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 1.05rem;
             cursor: pointer;
             margin-top: 15px;
             transition: 0.2s;
@@ -150,11 +193,12 @@
         .test-btn:hover:not(:disabled) {
             background-color: var(--accent-hover);
         }
+        /* Quiz Styling */
         .quiz-modal {
             display: none;
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 20px;
+            padding: 22px;
             border-radius: 12px;
             margin-top: 20px;
         }
@@ -170,15 +214,15 @@
             padding-bottom: 10px;
         }
         .question-text {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            font-size: 1.15rem;
+            margin-bottom: 18px;
             line-height: 1.5;
         }
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 18px;
         }
         @media(max-width: 600px) {
             .options-grid { grid-template-columns: 1fr; }
@@ -190,7 +234,7 @@
             padding: 12px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             text-align: left;
         }
         .opt-btn.correct { background-color: var(--success) !important; color: #fff !important; }
@@ -198,19 +242,20 @@
         .explanation-box {
             background-color: #0b0f19;
             border-left: 3px solid var(--accent);
-            padding: 10px;
+            padding: 12px;
             border-radius: 6px;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             display: none;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.92rem;
+            line-height: 1.5;
         }
         .badge {
             background-color: #0284c7;
             color: #fff;
-            padding: 3px 8px;
+            padding: 4px 10px;
             border-radius: 4px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: bold;
         }
     </style>
@@ -219,220 +264,184 @@
 
     <div class="container">
         <header>
-            <h1>🏛️ Prachin Bharat Complete Mastery</h1>
-            <p>SSC CGL / CHSL / CPO (2020-2025) Complete Syllabus & PYQ Unlock Hub</p>
+            <h1 id="txt-title">🏛️ Prachin Bharat Master Portal</h1>
+            <p id="txt-subtitle">Complete SSC CGL, CHSL & CPO Exam Prep (TCS Pattern)</p>
         </header>
 
-        <div class="selector-bar">
-            <div>
-                <label for="exam-select">🎯 Select Target Exam: </label>
+        <div class="control-bar">
+            <div class="select-group">
+                <label for="exam-select" id="lbl-exam">🎯 Exam Target:</label>
                 <select id="exam-select" onchange="updateExam()">
                     <option value="cgl">SSC CGL</option>
                     <option value="chsl">SSC CHSL</option>
                     <option value="cpo">SSC CPO</option>
                 </select>
             </div>
-            <div>
-                <span>Selected Course: <strong id="exam-tag" style="color:var(--accent);">SSC CGL Ancient History</strong></span>
+
+            <div class="select-group">
+                <span id="lbl-lang">🌐 Select Language:</span>
+                <button class="lang-toggle" onclick="toggleLanguage()" id="btn-lang">English</button>
             </div>
         </div>
 
-        <!-- PHASE 1 -->
-        <div class="phase-card" id="phase1-card">
-            <div class="phase-title">
-                <span>Phase 1: Chapters 1 to 3</span>
-                <span class="badge" id="phase1-badge" style="background-color: var(--success);">Unlocked</span>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 1: Pashan Kaal (Stone Age)</h4>
-                <p>• Pura Pashan (Paleolithic), Madhya Pashan (Mesolithic), Nav Pashan (Neolithic).<br>
-                • <strong>Key Sites:</strong> Bimbetka (Gufa Chitr - MP), Mehrgarh (Sabse pehle Kishi aur Gehun ke sakshya), Burzahom (Kashmir - Garta Vaas/Pit Dwellings).<br>
-                <span class="trick-tag">💡 Trick: "Mehrgarh mein Meharbani se Pehli Kheti hui"</span></p>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 2: Sindhu Ghati Sabhyata (Indus Valley 2500–1750 BC)</h4>
-                <p>• Harappa (1921 - Daya Ram Sahni, Ravi nadi). Mohenjodaro (1922 - R.D. Banerji, Sindhu nadi, Great Bath/Kasya Nartaki).<br>
-                • Lothal (Gujarat - Dockyard/Bandargah), Kalibangan (Rajasthan - Kaali churiyan & Jute khet), Dholavira (Water reservoir - 3 bhaag mein vibhajit nagar).<br>
-                <span class="trick-tag">💡 Trick: "Lothal ka Hathi-dant bhaga Bhogava nadi mein" (Lothal = Bhogava nadi)</span></p>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 3: Vaidik Kaal & Ved (1500–600 BC)</h4>
-                <p>• Rigveda (10 Mandal, Gayatri Mantra 3rd Mandal mein), Samveda (Sangeet), Yajurveda (Yagya/Gadya-Padya), Atharvaveda (Jaadu-tona/Chikitsa).<br>
-                • Nadiyon ke Vaidik Naam: Vitasta (Jhelum), Parushni (Ravi), Asikni (Chenab), Vipasa (Beas), Sutudri (Satluj).<br>
-                <span class="trick-tag">💡 Trick: "Ravi par Parushni bahi, Jhelum ko Vitasta kahi"</span></p>
-            </div>
-
-            <button class="test-btn" id="btn-phase1" onclick="startPhaseTest(1)">📝 Start Phase 1 PYQ Test (70% Marks to Unlock Phase 2)</button>
-        </div>
-
-        <!-- PHASE 2 -->
-        <div class="phase-card locked" id="phase2-card">
-            <div class="lock-banner">🔒 Locked: Phase 1 PYQ Test mein 70%+ Score laayein tabhi unlock hoga.</div>
-            <div class="phase-title">
-                <span>Phase 2: Chapters 4 to 6</span>
-                <span class="badge" id="phase2-badge">Locked</span>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 4: Mahajanpad & Magadha Uday</h4>
-                <p>• 16 Mahajanpad (Varnan: Anguttara Nikaya - Bouddha Granth).<br>• Magadha ke Rajvansh Sequence: Haryanka Vansh (Bimbisara, Ajatashatru), Shishunaga Vansh, Nanda Vansh (Dhanananda).<br>
-                <span class="trick-tag">💡 Trick: "HASIN MASHUKA" (Haryanka, Shishunaga, Nanda, Maurya, Shunga, Kanva)</span></p>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 5: Jainism & Buddhism</h4>
-                <p>• Gautama Buddha: Janm - Lumbini, Gyan - Bodh Gaya, Pehla Updesh - Sarnath, Mahaparinirvana - Kushinagar.<br>
-                • 4 Bouddha Sangeeti Sthal: Rajgir (Ajatashatru), Vaishali (Kalasoka), Pataliputra (Ashoka), Kashmir (Kanishka).<br>
-                <span class="trick-tag">💡 Trick: "Raja Vaishali ki Pataliputra Kashmir gayi" (R-V-P-K)</span></p>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 6: Maurya Samrajya</h4>
-                <p>• Chandragupta Maurya & Chanakya (Arthashastra), Megasthenes (Indica).<br>
-                • Ashoka: Kalinga Yuddh (261 BC - 13th Shilalekh mein varnan). Upagupta se Bouddha dharm ki deeksha li.<br>
-                <span class="trick-tag">💡 Trick: "13vein Shilalekh ne Kalinga mein Ashoka ka hriday badla"</span></p>
-            </div>
-
-            <button class="test-btn" id="btn-phase2" onclick="startPhaseTest(2)">📝 Start Phase 2 PYQ Test (70% Marks to Unlock Phase 3)</button>
-        </div>
-
-        <!-- PHASE 3 -->
-        <div class="phase-card locked" id="phase3-card">
-            <div class="lock-banner">🔒 Locked: Phase 2 PYQ Test mein 70%+ Score laayein tabhi unlock hoga.</div>
-            <div class="phase-title">
-                <span>Phase 3: Chapters 7 to 8</span>
-                <span class="badge" id="phase3-badge">Locked</span>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 7: Gupta Vansh & Harshavardhana</h4>
-                <p>• Sri Gupta (Sthapna), Samudragupta ('Bharat ka Napoleon' - Prayag Prashasti by Harishena).<br>
-                • Chandragupta II (Vikramaditya - Navratna darbar, Fahien aagaman). Nalanda Stahpna - Kumaragupta I.<br>
-                • Harshavardhana: Kannauj/Prayag Assembly, Hiuen Tsang visit (Book: Si-Yu-Ki).<br>
-                <span class="trick-tag">💡 Trick: "H se Harshavardhana = H se Hiuen Tsang"</span></p>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 8: Dakshin Bharat ke Rajvansh & Temples</h4>
-                <p>• Rashtrakuta: Krishna I ne Ellora ka Kailash Temple banwaya.<br>
-                • Chola Vansh: Rajaraja I ne Brihadeeswarar Temple (Thanjavur) banwaya.<br>
-                • Pallava: Narasimhavarman I ne Mamallapuram ke Rath Mandir banwaye.<br>
-                <span class="trick-tag">💡 Trick: "Rashtrakuta Krishna ne Kailash ko banaya"</span></p>
-            </div>
-
-            <button class="test-btn" id="btn-phase3" onclick="startPhaseTest(3)">📝 Start Final Prachin Bharat Mastery Test</button>
-        </div>
+        <!-- Dynamic Chapter Content Rendering Area -->
+        <div id="content-area"></div>
 
         <!-- Quiz Modal -->
         <div class="quiz-modal" id="quiz-modal">
             <div class="quiz-header">
                 <div>
                     <h3 id="quiz-title" style="color:var(--accent);">Phase Test</h3>
-                    <span id="q-counter" style="color:var(--text-muted); font-size: 0.85rem;">Q 1 of 5</span>
+                    <span id="q-counter" style="color:var(--text-muted); font-size: 0.88rem;">Question 1 of 5</span>
                 </div>
-                <span>Score: <strong id="score" style="color:var(--accent); font-size:1.2rem;">0</strong></span>
+                <span>Score: <strong id="score" style="color:var(--accent); font-size:1.3rem;">0</strong></span>
             </div>
 
-            <div class="question-text" id="question">Loading...</div>
+            <div class="question-text" id="question">Loading PYQ...</div>
             <div class="options-grid" id="options"></div>
             <div class="explanation-box" id="explanation"></div>
 
             <div style="text-align: right;">
-                <button class="test-btn" style="width: auto; padding: 10px 20px;" onclick="nextQuestion()">Agla PYQ ➔</button>
+                <button class="test-btn" style="width: auto; padding: 10px 22px;" id="btn-next" onclick="nextQuestion()">Next Question ➔</button>
             </div>
         </div>
 
     </div>
 
     <script>
-        // 2020 - 2025 Real SSC PYQ Database
-        const pyqTests = {
-            1: [
-                { q: "Harappan sthal 'Lothal' kis nadi ke tat par sthit tha? (SSC CGL 2023)", options: ["Bhogava Nadi", "Ravi Nadi", "Sindhu Nadi", "Ghaggar Nadi"], correct: 0, exp: "Lothal (Gujarat) Bhogava nadi ke kinare sthit tha. Yeh Sindhu Sabhyata ka bandargah (Dockyard) tha." },
-                { q: "Gayatri Mantra Rigveda ke kis Mandal mein sthit hai? (SSC CGL 2021)", options: ["1st Mandal", "3rd Mandal", "7th Mandal", "10th Mandal"], correct: 1, exp: "Gayatri Mantra Rigveda ke 3rd Mandal mein hai. Iski rachna Vishwamitra ne ki thi." },
-                { q: "Pura Pashan kaal ke gufa chitr 'Bimbetka' kis rajya mein sthit hain? (SSC CHSL 2022)", options: ["Madhya Pradesh", "Rajasthan", "Uttar Pradesh", "Bihar"], correct: 0, exp: "Bimbetka ki gufaayein Madhya Pradesh ke Raisen zile mein hain." },
-                { q: "Sindhu Ghati Sabhyata mein 'Jute hue khet' ke praman kahan se mile? (SSC CPO 2023)", options: ["Mohenjodaro", "Kalibangan", "Dholavira", "Lothal"], correct: 1, exp: "Kalibangan (Rajasthan) se jute hue khet aur agnikund ke praman mile hain." },
-                { q: "Jhelum nadi ka prachin Vaidik naam kya tha? (SSC CGL 2024)", options: ["Vitasta", "Parushni", "Asikni", "Sutudri"], correct: 0, exp: "Jhelum = Vitasta, Ravi = Parushni, Chenab = Asikni, Satluj = Sutudri." }
-            ],
-            2: [
-                { q: "Pratham Bouddha Sangeeti (483 BC) kis shasak ke kaal mein hui thi? (SSC CGL 2024)", options: ["Ajatashatru", "Kalasoka", "Ashoka", "Kanishka"], correct: 0, exp: "Pehli Bouddha Sangeeti Rajgir mein Ajatashatru (Haryanka Vansh) ke samay hui." },
-                { q: "Chandragupta Maurya ke darbar mein aaya Megasthenes kis raja ka raajdoot tha? (SSC CHSL 2023)", options: ["Seleucus Nicator", "Alexander", "Darius", "Antiochus"], correct: 0, exp: "Megasthenes Seleucus Nicator ka raajdoot tha. Usne 'Indica' likhi thi." },
-                { q: "Ashoka ne Kalinga Yuddh kis varsh lada tha? (SSC CGL 2022)", options: ["261 BC", "326 BC", "232 BC", "185 BC"], correct: 0, exp: "261 BC mein Kalinga Yuddh hua jiska varnan 13vein Shilalekh mein milta hai." },
-                { q: "16 Mahajanpado ki jankari kis Bouddha granth se milti hai? (SSC CPO 2022)", options: ["Anguttara Nikaya", "Tripitaka", "Mahavamsa", "Jataka"], correct: 0, exp: "Anguttara Nikaya aur Jain granth Bhagavati Sutra se 16 Mahajanpado ki jankari milti hai." },
-                { q: "Jain dharm ke 24th Tirthankara Vardhaman Mahavira ka janm kahan hua tha? (SSC CGL 2020)", options: ["Vaishali (Kundagrama)", "Lumbini", "Pataliputra", "Bodh Gaya"], correct: 0, exp: "Mahavira Swami ka janm Kundagrama (Vaishali) mein hua tha." }
-            ],
-            3: [
-                { q: "'Bharat ka Napoleon' kis Gupta shasak ko kaha jata hai? (SSC CGL 2023)", options: ["Samudragupta", "Chandragupta Vikramaditya", "Skandagupta", "Kumaragupta"], correct: 0, exp: "Samudragupta ko Vincent Smith ne Bharat ka Napoleon kaha. Harishena ne Prayag Prashasti likhi." },
-                { q: "Ellora ke Kailash Mandir ka nirman kis Rashtrakuta raja ne karwaya tha? (SSC CGL 2021)", options: ["Krishna I", "Amoghavarsha", "Dantidurga", "Govinda III"], correct: 0, exp: "Rashtrakuta raja Krishna I ne Maharashtra ke Ellora mein Kailash Temple banwaya." },
-                { q: "Chinese yatri Hiuen Tsang kis shasak ke samay Bharat aaya tha? (SSC CHSL 2022)", options: ["Harshavardhana", "Chandragupta II", "Samudragupta", "Kanishka"], correct: 0, exp: "Hiuen Tsang Harshavardhana ke kaal mein aaya tha. Uski pustak ka naam Si-Yu-Ki hai." },
-                { q: "Nalanda Vishwavidyalaya ki sthapna kis Gupta raja ne ki thi? (SSC CPO 2023)", options: ["Kumaragupta I", "Skandagupta", "Chandragupta I", "Bhanugupta"], correct: 0, exp: "Kumaragupta I ne 5th Century AD mein Nalanda Vishwavidyalaya ki sthapna ki thi." },
-                { q: "Thanjavur ka prasiddh Brihadeeswarar Mandir kisine banwaya tha? (SSC CGL 2024)", options: ["Rajaraja Chola I", "Rajendra Chola", "Karikala", "Narasimhavarman"], correct: 0, exp: "Chola shasak Rajaraja I ne Tamil Nadu ke Thanjavur mein Brihadeeswarar Temple banwaya." }
-            ]
-        };
+        let currentLang = 'hi'; // Default Hindi
 
-        let currentActivePhase = 1;
-        let currentQIndex = 0;
-        let currentScore = 0;
+        // Structured Comprehensive Content DB
+        const fullContent = {
+            hi: {
+                title: "🏛️ प्राचीन भारत (Ancient History) संपूर्ण मास्टर पोर्टल",
+                subtitle: "SSC CGL, CHSL, CPO (2020-2025) आधिकारिक TCS पैटर्न नोट्स एवं PYQs",
+                lblExam: "🎯 लक्षित परीक्षा:",
+                lblLang: "🌐 भाषा चुनें:",
+                lockMsg: "🔒 लॉक: अगले चरण को अनलॉक करने के लिए पिछले टेस्ट में 70% अंक प्राप्त करें।",
+                unlocked: "अनलॉक्ड",
+                locked: "लॉक है",
+                btnTest: "📝 चरण PYQ टेस्ट शुरू करें (अनलॉक हेतु 70% अंक आवश्यक)",
+                btnNext: "अगला प्रश्न ➔",
 
-        function updateExam() {
-            const ex = document.getElementById('exam-select').value.toUpperCase();
-            document.getElementById('exam-tag').innerText = `SSC ${ex} Ancient History`;
-        }
-
-        function startPhaseTest(phaseNum) {
-            if(phaseNum > 1 && localStorage.getItem(`phase${phaseNum}_unlocked`) !== "true") {
-                alert("Pehle purana phase test clear karein!");
-                return;
-            }
-
-            currentActivePhase = phaseNum;
-            currentQIndex = 0;
-            currentScore = 0;
-
-            const modal = document.getElementById('quiz-modal');
-            modal.classList.add('active');
-            document.getElementById('quiz-title').innerText = `Phase ${phaseNum} PYQ Mastery Test`;
-            modal.scrollIntoView({ behavior: 'smooth' });
-
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            const qList = pyqTests[currentActivePhase];
-            const qData = qList[currentQIndex];
-
-            document.getElementById('q-counter').innerText = `Q ${currentQIndex + 1} of ${qList.length}`;
-            document.getElementById('score').innerText = currentScore;
-            document.getElementById('question').innerText = `${currentQIndex + 1}. ${qData.q}`;
-
-            const optDiv = document.getElementById('options');
-            optDiv.innerHTML = '';
-
-            qData.options.forEach((opt, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'opt-btn';
-                btn.innerText = opt;
-                btn.onclick = () => checkAns(idx, btn);
-                optDiv.appendChild(btn);
-            });
-
-            document.getElementById('explanation').style.display = 'none';
-        }
-
-        function checkAns(selected, btn) {
-            const qData = pyqTests[currentActivePhase][currentQIndex];
-            const allBtns = document.querySelectorAll('.opt-btn');
-
-            if(selected === qData.correct) {
-                btn.cl<!DOCTYPE html>
+                phases: [
+                    {
+                        id: 1,
+                        name: "Phase 1: पाषाण काल से वैदिक सभ्यता (अध्याय 1 - 3)",
+                        chapters: [
+                            {
+                                title: "अध्याय 1: पाषाण काल (Stone Age)",
+                                html: `<div class="content-block">
+                                    <p>भारत में पाषाण काल को तीन मुख्य भागों में विभाजित किया गया है:</p>
+                                    <ul>
+                                        <li><strong>1. पुरापाषाण काल (Paleolithic Age):</strong> मानव मुख्य रूप से शिकारी एवं खाद्य संग्राहक था। आग (Fire) की खोज इसी काल में हुई। <em>भीमबेटका (MP):</em> पुरापाषाण काल के शैल चित्रों के लिए प्रसिद्ध है।</li>
+                                        <li><strong>2. मध्यपाषाण काल (Mesolithic Age):</strong> सूक्ष्म पाषाण औजार (Microliths) का प्रयोग शुरू हुआ। पशुपालन (Animal Husbandry) का प्रथम साक्ष्य <em>आदमगढ़ (MP)</em> तथा <em>बागोर (राजस्थान)</em> से मिला।</li>
+                                        <li><strong>3. नवपाषाण काल (Neolithic Age):</strong> कृषि (Agriculture) एवं पहिए (Wheel) का आविष्कार हुआ। <em>मेहरगढ़ (पाकिस्तान):</em> कृषि का प्रथम साक्ष्य (गेहूं और जौ)। <em>बुर्जहोम (कश्मीर):</em> गर्तवास (Pit dwellings) तथा मालिक के साथ कुत्ते को दफनाने के साक्ष्य।</li>
+                                    </ul>
+                                    <div class="trick-box">
+                                        <strong>💡 Memory Trick:</strong> "मेहरगढ़ से मेहरबानी हुई अन्न पर, बुर्जहोम के गड्ढे में कुत्ता सोया मालिक संग।"
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                title: "अध्याय 2: सिंधु घाटी सभ्यता (Indus Valley Civilization - 2500-1750 BC)",
+                                html: `<div class="content-block">
+                                    <p>यह एक कांस्ययुगीन (Bronze Age) एवं नगरीय सभ्यता (Urban Civilization) थी। नगर नियोजन ग्रिड पद्धति (Grid System) पर आधारित था।</p>
+                                    <table class="data-table">
+                                        <tr><th>प्रमुख स्थल</th><th>नदी</th><th>उत्खननकर्ता (वर्ष)</th><th>प्राप्त महत्वपूर्ण अवशेष</th></tr>
+                                        <tr><td>हड़प्पा</td><td>रावी</td><td>दयाराम साहनी (1921)</td><td>अन्नागार (Granary), आर-37 कब्रिस्तान</td></tr>
+                                        <tr><td>मोहनजोदड़ो</td><td>सिंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार (Great Bath), कांस्य नर्तकी की मूर्ति</td></tr>
+                                        <tr><td>लोथल</td><td>भोगवा</td><td>एस.आर. राव (1954)</td><td>गोदीवाड़ा (Dockyard), धान की भूसी, हाथीदांत स्केल</td></tr>
+                                        <tr><td>कालीबंगन</td><td>घग्गर</td><td>अम्लानंद घोष / बी.बी. लाल</td><td>जूते हुए खेत के साक्ष्य, बेलनाकार मोहरें, अग्निकुंड</td></tr>
+                                        <tr><td>धोलावीरा</td><td>लूनी</td><td>आर.एस. बिष्ट (1990)</td><td>त्रिस्तरीय नगर विभाजन, विशाल जलाशय (Water Reservoir)</td></tr>
+                                    </table>
+                                    <div class="trick-box">
+                                        <strong>💡 Memory Trick:</strong> "हड़प्पा रावी तट दया दिखाए, लोथल भोगवा बंदरगाह बनाए।"
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                title: "अध्याय 3: वैदिक संस्कृति एवं वेद (1500 - 600 BC)",
+                                html: `<div class="content-block">
+                                    <p>वैदिक काल को ऋग्वैदिक काल (1500-1000 BC) तथा उत्तर वैदिक काल (1000-600 BC) में बाँटा गया है।</p>
+                                    <ul>
+                                        <li><strong>ऋग्वेद:</strong> सबसे प्राचीन वेद (10 मण्डल, 1028 सूक्त)। तीसरे मण्डल में <em>गायत्री मन्त्र</em> (विश्वामित्र द्वारा रचित)। 10वें मण्डल में पुरुषसूक्त (वर्ण व्यवस्था)।</li>
+                                        <li><strong>सामवेद:</strong> भारतीय संगीत का जनक।</li>
+                                        <li><strong>यजुर्वेद:</strong> गद्य एवं पद्य दोनों में रचित (यज्ञीय अनुष्ठान)।</li>
+                                        <li><strong>अथर्ववेद:</strong> औषधि, जादू-टोना, और वशीकरण से संबंधित।</li>
+                                    </ul>
+                                    <table class="data-table">
+                                        <tr><th>वैदिक नदी</th><th>आधुनिक नाम</th><th>वैदिक नदी</th><th>आधुनिक नाम</th></tr>
+                                        <tr><td>वितस्ता</td><td>झेलम</td><td>परुष्णी</td><td>रावी</td></tr>
+                                        <tr><td>असिकनी</td><td>चिनाब</td><td>विपाशा</td><td>व्यास</td></tr>
+                                        <tr><td>शुतुद्री</td><td>सतलज</td><td>दृषद्वती</td><td>घग्गर</td></tr>
+                                    </table>
+                                    <div class="trick-box">
+                                        <strong>💡 Memory Trick:</strong> "झेलम का पानी वितस्ता कहलाए, रावी तट पर परुष्णी गाए।"
+                                    </div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        name: "Phase 2: महाजनपद काल से मौर्य साम्राज्य (अध्याय 4 - 6)",
+                        chapters: [
+                            {
+                                title: "अध्याय 4: 16 महाजनपद एवं मगध का उत्कर्ष",
+                                html: `<div class="content-block">
+                                    <p>16 महाजनपदों की सूची बौद्ध ग्रंथ <em>अंगुत्तर निकाय</em> तथा जैन ग्रंथ <em>भगवती सूत्र</em> में मिलती है।</p>
+                                    <p><strong>मगध साम्राज्य के प्रथम राजवंश (Trick: HASIN MASHUKA):</strong></p>
+                                    <ul>
+                                        <li><strong>1. हर्यक वंश:</strong> बिम्बिसार (संस्थापक), अजातशत्रु (पितृहंता), उदयन (पाटलिपुत्र की स्थापना)।</li>
+                                        <li><strong>2. शिशुनाग वंश:</strong> शिशुनाग (वैशाली को राजधानी बनाया), कालाशोक (द्वितीय बौद्ध संगीति)।</li>
+                                        <li><strong>3. नंद वंश:</strong> महापद्मानंद (सर्वक्षत्रान्तक/एकराट), घनानंद (अंतिम शासक, सिकंदर का समकालीन)।</li>
+                                    </ul>
+                                </div>`
+                            },
+                            {
+                                title: "अध्याय 5: बौद्ध एवं जैन धर्म",
+                                html: `<div class="content-block">
+                                    <p><strong>गौतम बुद्ध (बौद्ध धर्म):</strong> जन्म - लुम्बिनी, ज्ञान - बोधगया, प्रथम उपदेश - सारनाथ (धर्मचक्रप्रवर्तन), महापरिनिर्वाण - कुशीनगर।</p>
+                                    <table class="data-table">
+                                        <tr><th>संगीति</th><th>स्थान</th><th>अध्यक्ष</th><th>शासक</th></tr>
+                                        <tr><td>प्रथम (483 BC)</td><td>राजगृह</td><td>महाकश्यप</td><td>अजातशत्रु</td></tr>
+                                        <tr><td>द्वितीय (383 BC)</td><td>वैशाली</td><td>सबकामी</td><td>कालाशोक</td></tr>
+                                        <tr><td>तृतीय (250 BC)</td><td>पाटलिपुत्र</td><td>मोग्गलिपुत्त तिस्स</td><td>अशोक</td></tr>
+                                        <tr><td>चतुर्थ (1st AD)</td><td>कुण्डलवन (कश्मीर)</td><td>वसुमित्र / अश्वघोष</td><td>कनिष्क</td></tr>
+                                    </table>
+                                    <div class="trick-box">
+                                        <strong>💡 Sangeeti Trick (R-V-P-K):</strong> "राजा वैशाली की पाटलिपुत्र कश्मीर गई" | <strong>Raja Trick (A-K-A-K):</strong> "अजात कला के अशोक कनिष्क"
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                title: "अध्याय 6: मौर्य साम्राज्य (322 - 185 BC)",
+                                html: `<div class="content-block">
+                                    <ul>
+                                        <li><strong>चंद्रगुप्त मौर्य:</strong> चाणक्य की सहायता से घनानंद को पराजित किया। सेल्यूकस निकेटर को हराया। ग्रीक राजदूत <em>मेगस्थनीज</em> ने <strong>इण्डिका (Indica)</strong> लिखी।</li>
+                                        <li><strong>अशोक (268-232 BC):</strong> 261 BC में <em>कलिंग युद्ध</em> लड़ा (13वें शिलालेख में वर्णन)। उपगुप्त से बौद्ध धर्म की दीक्षा ली। शिलालेख पढ़ने वाला प्रथम व्यक्ति - जेम्स प्रिंसेप (1837)।</li>
+                                    </ul>
+                                    <div class="trick-box">
+                                        <strong>💡 Memory Trick:</strong> "13वें शिलालेख ने कलिंग में अशोक का हृदय बदला, प्रिंसेप ने 37 में ब्राह्मी को पढ़ा।"
+                                    </div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        id: 3,
+                        name: "Phase 3: गुप्त साम्राज्य एवं दक्षिण भारत के राजवंश (अध्याय 7 - 8)",
+                        chapters: [
+                            {
+                                title: "अध्याय 7: गुप्त साम्राज्य एवं हर्षवर्धन",
+                                html: `<div class="content-block">
+                                    <ul><!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ancient History Halwa Hub - SSC CGL Master</title>
+    <title>GS Halwa - Ancient History Master Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -444,7 +453,8 @@
             --success: #10b981;
             --danger: #ef4444;
             --border: #1f2937;
-            --gold: #f59e0b;
+            --trick-bg: #1e1b4b;
+            --trick-border: #6366f1;
         }
         * {
             margin: 0;
@@ -459,7 +469,7 @@
             min-height: 100vh;
         }
         .container {
-            max-width: 950px;
+            max-width: 980px;
             margin: 0 auto;
         }
         header {
@@ -475,7 +485,8 @@
             color: var(--text-muted);
             font-size: 0.95rem;
         }
-        .selector-bar {
+        /* Top Navigation & Controls */
+        .control-bar {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
             padding: 12px 18px;
@@ -484,42 +495,54 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 20px;
         }
-        select {
+        .select-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        select, button.lang-toggle {
             background-color: #1f2937;
             color: var(--text-main);
             border: 1px solid var(--border);
-            padding: 8px 12px;
+            padding: 8px 14px;
             border-radius: 6px;
             outline: none;
             cursor: pointer;
             font-weight: 600;
+            font-size: 0.9rem;
         }
+        button.lang-toggle {
+            background-color: var(--accent);
+            color: #0b0f19;
+            border: none;
+        }
+        /* Phase Modules */
         .phase-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 22px;
+            margin-bottom: 25px;
             position: relative;
-            transition: 0.3s;
         }
         .phase-card.locked {
-            opacity: 0.55;
-            background-color: #0f111a;
-            border-color: #312e81;
+            opacity: 0.5;
+            background-color: #0d111c;
+            border-color: #1e1b4b;
         }
         .lock-banner {
             display: none;
             background-color: #312e81;
             color: #c7d2fe;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            text-align: center;
         }
         .phase-card.locked .lock-banner {
             display: block;
@@ -531,47 +554,76 @@
         }
         .phase-title {
             color: var(--accent);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
         }
+        /* Chapter Detailed Layout */
         .chapter-box {
             background-color: #1f2937;
             border-left: 4px solid var(--accent);
-            padding: 12px 15px;
-            border-radius: 6px;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+        }
+        .chapter-box h3 {
+            color: #f3f4f6;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        .content-block {
+            color: #d1d5db;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .content-block ul {
+            margin-left: 20px;
             margin-bottom: 10px;
         }
-        .chapter-box h4 {
-            color: #f3f4f6;
-            margin-bottom: 5px;
+        .content-block li {
+            margin-bottom: 6px;
         }
-        .chapter-box p {
-            color: var(--text-muted);
+        .trick-box {
+            background-color: var(--trick-bg);
+            border: 1px solid var(--trick-border);
+            color: #c7d2fe;
+            padding: 10px 14px;
+            border-radius: 6px;
             font-size: 0.9rem;
-            line-height: 1.5;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
-        .trick-tag {
-            background-color: #312e81;
-            color: #a5b4fc;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-top: 5px;
-            display: inline-block;
+        .trick-box strong {
+            color: #818cf8;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.88rem;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #374151;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #111827;
+            color: var(--accent);
         }
         .test-btn {
             background-color: var(--accent);
             color: #0b0f19;
             border: none;
-            padding: 12px;
+            padding: 14px;
             width: 100%;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 1.05rem;
             cursor: pointer;
             margin-top: 15px;
             transition: 0.2s;
@@ -579,11 +631,12 @@
         .test-btn:hover:not(:disabled) {
             background-color: var(--accent-hover);
         }
+        /* Quiz Styling */
         .quiz-modal {
             display: none;
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 20px;
+            padding: 22px;
             border-radius: 12px;
             margin-top: 20px;
         }
@@ -599,15 +652,15 @@
             padding-bottom: 10px;
         }
         .question-text {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            font-size: 1.15rem;
+            margin-bottom: 18px;
             line-height: 1.5;
         }
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 18px;
         }
         @media(max-width: 600px) {
             .options-grid { grid-template-columns: 1fr; }
@@ -619,7 +672,7 @@
             padding: 12px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             text-align: left;
         }
         .opt-btn.correct { background-color: var(--success) !important; color: #fff !important; }
@@ -627,19 +680,20 @@
         .explanation-box {
             background-color: #0b0f19;
             border-left: 3px solid var(--accent);
-            padding: 10px;
+            padding: 12px;
             border-radius: 6px;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             display: none;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.92rem;
+            line-height: 1.5;
         }
         .badge {
             background-color: #0284c7;
             color: #fff;
-            padding: 3px 8px;
+            padding: 4px 10px;
             border-radius: 4px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: bold;
         }
     </style>
@@ -648,157 +702,353 @@
 
     <div class="container">
         <header>
-            <h1>🏛️ Prachin Bharat Complete Mastery</h1>
-            <p>SSC CGL / CHSL / CPO (2020-2025) Complete Syllabus & PYQ Unlock Hub</p>
+            <h1 id="txt-title">🏛️ Prachin Bharat Master Portal</h1>
+            <p id="txt-subtitle">Complete SSC CGL, CHSL & CPO Exam Prep (TCS Pattern)</p>
         </header>
 
-        <div class="selector-bar">
-            <div>
-                <label for="exam-select">🎯 Select Target Exam: </label>
+        <div class="control-bar">
+            <div class="select-group">
+                <label for="exam-select" id="lbl-exam">🎯 Exam Target:</label>
                 <select id="exam-select" onchange="updateExam()">
                     <option value="cgl">SSC CGL</option>
                     <option value="chsl">SSC CHSL</option>
                     <option value="cpo">SSC CPO</option>
                 </select>
             </div>
-            <div>
-                <span>Selected Course: <strong id="exam-tag" style="color:var(--accent);">SSC CGL Ancient History</strong></span>
+
+            <div class="select-group">
+                <span id="lbl-lang">🌐 Select Language:</span>
+                <button class="lang-toggle" onclick="toggleLanguage()" id="btn-lang">English</button>
             </div>
         </div>
 
-        <!-- PHASE 1 -->
-        <div class="phase-card" id="phase1-card">
-            <div class="phase-title">
-                <span>Phase 1: Chapters 1 to 3</span>
-                <span class="badge" id="phase1-badge" style="background-color: var(--success);">Unlocked</span>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 1: Pashan Kaal (Stone Age)</h4>
-                <p>• Pura Pashan (Paleolithic), Madhya Pashan (Mesolithic), Nav Pashan (Neolithic).<br>
-                • <strong>Key Sites:</strong> Bimbetka (Gufa Chitr - MP), Mehrgarh (Sabse pehle Kishi aur Gehun ke sakshya), Burzahom (Kashmir - Garta Vaas/Pit Dwellings).<br>
-                <span class="trick-tag">💡 Trick: "Mehrgarh mein Meharbani se Pehli Kheti hui"</span></p>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 2: Sindhu Ghati Sabhyata (Indus Valley 2500–1750 BC)</h4>
-                <p>• Harappa (1921 - Daya Ram Sahni, Ravi nadi). Mohenjodaro (1922 - R.D. Banerji, Sindhu nadi, Great Bath/Kasya Nartaki).<br>
-                • Lothal (Gujarat - Dockyard/Bandargah), Kalibangan (Rajasthan - Kaali churiyan & Jute khet), Dholavira (Water reservoir - 3 bhaag mein vibhajit nagar).<br>
-                <span class="trick-tag">💡 Trick: "Lothal ka Hathi-dant bhaga Bhogava nadi mein" (Lothal = Bhogava nadi)</span></p>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 3: Vaidik Kaal & Ved (1500–600 BC)</h4>
-                <p>• Rigveda (10 Mandal, Gayatri Mantra 3rd Mandal mein), Samveda (Sangeet), Yajurveda (Yagya/Gadya-Padya), Atharvaveda (Jaadu-tona/Chikitsa).<br>
-                • Nadiyon ke Vaidik Naam: Vitasta (Jhelum), Parushni (Ravi), Asikni (Chenab), Vipasa (Beas), Sutudri (Satluj).<br>
-                <span class="trick-tag">💡 Trick: "Ravi par Parushni bahi, Jhelum ko Vitasta kahi"</span></p>
-            </div>
-
-            <button class="test-btn" id="btn-phase1" onclick="startPhaseTest(1)">📝 Start Phase 1 PYQ Test (70% Marks to Unlock Phase 2)</button>
-        </div>
-
-        <!-- PHASE 2 -->
-        <div class="phase-card locked" id="phase2-card">
-            <div class="lock-banner">🔒 Locked: Phase 1 PYQ Test mein 70%+ Score laayein tabhi unlock hoga.</div>
-            <div class="phase-title">
-                <span>Phase 2: Chapters 4 to 6</span>
-                <span class="badge" id="phase2-badge">Locked</span>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 4: Mahajanpad & Magadha Uday</h4>
-                <p>• 16 Mahajanpad (Varnan: Anguttara Nikaya - Bouddha Granth).<br>• Magadha ke Rajvansh Sequence: Haryanka Vansh (Bimbisara, Ajatashatru), Shishunaga Vansh, Nanda Vansh (Dhanananda).<br>
-                <span class="trick-tag">💡 Trick: "HASIN MASHUKA" (Haryanka, Shishunaga, Nanda, Maurya, Shunga, Kanva)</span></p>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 5: Jainism & Buddhism</h4>
-                <p>• Gautama Buddha: Janm - Lumbini, Gyan - Bodh Gaya, Pehla Updesh - Sarnath, Mahaparinirvana - Kushinagar.<br>
-                • 4 Bouddha Sangeeti Sthal: Rajgir (Ajatashatru), Vaishali (Kalasoka), Pataliputra (Ashoka), Kashmir (Kanishka).<br>
-                <span class="trick-tag">💡 Trick: "Raja Vaishali ki Pataliputra Kashmir gayi" (R-V-P-K)</span></p>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 6: Maurya Samrajya</h4>
-                <p>• Chandragupta Maurya & Chanakya (Arthashastra), Megasthenes (Indica).<br>
-                • Ashoka: Kalinga Yuddh (261 BC - 13th Shilalekh mein varnan). Upagupta se Bouddha dharm ki deeksha li.<br>
-                <span class="trick-tag">💡 Trick: "13vein Shilalekh ne Kalinga mein Ashoka ka hriday badla"</span></p>
-            </div>
-
-            <button class="test-btn" id="btn-phase2" onclick="startPhaseTest(2)">📝 Start Phase 2 PYQ Test (70% Marks to Unlock Phase 3)</button>
-        </div>
-
-        <!-- PHASE 3 -->
-        <div class="phase-card locked" id="phase3-card">
-            <div class="lock-banner">🔒 Locked: Phase 2 PYQ Test mein 70%+ Score laayein tabhi unlock hoga.</div>
-            <div class="phase-title">
-                <span>Phase 3: Chapters 7 to 8</span>
-                <span class="badge" id="phase3-badge">Locked</span>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 7: Gupta Vansh & Harshavardhana</h4>
-                <p>• Sri Gupta (Sthapna), Samudragupta ('Bharat ka Napoleon' - Prayag Prashasti by Harishena).<br>
-                • Chandragupta II (Vikramaditya - Navratna darbar, Fahien aagaman). Nalanda Stahpna - Kumaragupta I.<br>
-                • Harshavardhana: Kannauj/Prayag Assembly, Hiuen Tsang visit (Book: Si-Yu-Ki).<br>
-                <span class="trick-tag">💡 Trick: "H se Harshavardhana = H se Hiuen Tsang"</span></p>
-            </div>
-
-            <div class="chapter-box">
-                <h4>Ch 8: Dakshin Bharat ke Rajvansh & Temples</h4>
-                <p>• Rashtrakuta: Krishna I ne Ellora ka Kailash Temple banwaya.<br>
-                • Chola Vansh: Rajaraja I ne Brihadeeswarar Temple (Thanjavur) banwaya.<br>
-                • Pallava: Narasimhavarman I ne Mamallapuram ke Rath Mandir banwaye.<br>
-                <span class="trick-tag">💡 Trick: "Rashtrakuta Krishna ne Kailash ko banaya"</span></p>
-            </div>
-
-            <button class="test-btn" id="btn-phase3" onclick="startPhaseTest(3)">📝 Start Final Prachin Bharat Mastery Test</button>
-        </div>
+        <!-- Dynamic Chapter Content Rendering Area -->
+        <div id="content-area"></div>
 
         <!-- Quiz Modal -->
         <div class="quiz-modal" id="quiz-modal">
             <div class="quiz-header">
                 <div>
                     <h3 id="quiz-title" style="color:var(--accent);">Phase Test</h3>
-                    <span id="q-counter" style="color:var(--text-muted); font-size: 0.85rem;">Q 1 of 5</span>
+                    <span id="q-counter" style="color:var(--text-muted); font-size: 0.88rem;">Question 1 of 5</span>
                 </div>
-                <span>Score: <strong id="score" style="color:var(--accent); font-size:1.2rem;">0</strong></span>
+                <span>Score: <strong id="score" style="color:var(--accent); font-size:1.3rem;">0</strong></span>
             </div>
 
-            <div class="question-text" id="question">Loading...</div>
+            <div class="question-text" id="question">Loading PYQ...</div>
             <div class="options-grid" id="options"></div>
             <div class="explanation-box" id="explanation"></div>
 
             <div style="text-align: right;">
-                <button class="test-btn" style="width: auto; padding: 10px 20px;" onclick="nextQuestion()">Agla PYQ ➔</button>
+                <button class="test-btn" style="width: auto; padding: 10px 22px;" id="btn-next" onclick="nextQuestion()">Next Question ➔</button>
             </div>
         </div>
 
     </div>
 
     <script>
-        // 2020 - 2025 Real SSC PYQ Database
+        let currentLang = 'hi'; // Default Hindi
+
+        // Structured Comprehensive Content DB
+        const fullContent = {
+            hi: {
+                title: "🏛️ प्राचीन भारत (Ancient History) संपूर्ण मास्टर पोर्टल",
+                subtitle: "SSC CGL, CHSL, CPO (2020-2025) आधिकारिक TCS पैटर्न नोट्स एवं PYQs",
+                lblExam: "🎯 लक्षित परीक्षा:",
+                lblLang: "🌐 भाषा चुनें:",
+                lockMsg: "🔒 लॉक: अगले चरण को अनलॉक करने के लिए पिछले टेस्ट में 70% अंक प्राप्त करें।",
+                unlocked: "अनलॉक्ड",
+                locked: "लॉक है",
+                btnTest: "📝 चरण PYQ टेस्ट शुरू करें (अनलॉक हेतु 70% अंक आवश्यक)",
+                btnNext: "अगला प्रश्न ➔",
+
+                phases: [
+                    {
+                        id: 1,
+                        name: "Phase 1: पाषाण काल से वैदिक सभ्यता (अध्याय 1 - 3)",
+                        chapters: [
+                            {
+                                title: "अध्याय 1: पाषाण काल (Stone Age)",
+                                html: `<div class="content-block">
+                                    <p>भारत में पाषाण काल को तीन मुख्य भागों में विभाजित किया गया है:</p>
+                                    <ul>
+                                        <li><strong>1. पुरापाषाण काल (Paleolithic Age):</strong> मानव मुख्य रूप से शिकारी एवं खाद्य संग्राहक था। आग (Fire) की खोज इसी काल में हुई। <em>भीमबेटका (MP):</em> पुरापाषाण काल के शैल चित्रों के लिए प्रसिद्ध है।</li>
+                                        <li><strong>2. मध्यपाषाण काल (Mesolithic Age):</strong> सूक्ष्म पाषाण औजार (Microliths) का प्रयोग शुरू हुआ। पशुपालन (Animal Husbandry) का प्रथम साक्ष्य <em>आदमगढ़ (MP)</em> तथा <em>बागोर (राजस्थान)</em> से मिला।</li>
+                                        <li><strong>3. नवपाषाण काल (Neolithic Age):</strong> कृषि (Agriculture) एवं पहिए (Wheel) का आविष्कार हुआ। <em>मेहरगढ़ (पाकिस्तान):</em> कृषि का प्रथम साक्ष्य (गेहूं और जौ)। <em>बुर्जहोम (कश्मीर):</em> गर्तवास (Pit dwellings) तथा मालिक के साथ कुत्ते को दफनाने के साक्ष्य।</li>
+                                    </ul>
+                                    <div class="trick-box">
+                                        <strong>💡 Memory Trick:</strong> "मेहरगढ़ से मेहरबानी हुई अन्न पर, बुर्जहोम के गड्ढे में कुत्ता सोया मालिक संग।"
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                title: "अध्याय 2: सिंधु घाटी सभ्यता (Indus Valley Civilization - 2500-1750 BC)",
+                                html: `<div class="content-block">
+                                    <p>यह एक कांस्ययुगीन (Bronze Age) एवं नगरीय सभ्यता (Urban Civilization) थी। नगर नियोजन ग्रिड पद्धति (Grid System) पर आधारित था।</p>
+                                    <table class="data-table">
+                                        <tr><th>प्रमुख स्थल</th><th>नदी</th><th>उत्खननकर्ता (वर्ष)</th><th>प्राप्त महत्वपूर्ण अवशेष</th></tr>
+                                        <tr><td>हड़प्पा</td><td>रावी</td><td>दयाराम साहनी (1921)</td><td>अन्नागार (Granary), आर-37 कब्रिस्तान</td></tr>
+                                        <tr><td>मोहनजोदड़ो</td><td>सिंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार (Great Bath), कांस्य नर्तकी की मूर्ति</td></tr>
+                                        <tr><td>लोथल</td><td>भोगवा</td><td>एस.आर. राव (1954)</td><td>गोदीवाड़ा (Dockyard), धान की भूसी, हाथीदांत स्केल</td></tr>
+                                        <tr><td>कालीबंगन</td><td>घग्गर</td><td>अम्लानंद घोष / बी.बी. लाल</td><td>जूते हुए खेत के साक्ष्य, बेलनाकार मोहरें, अग्निकुंड</td></tr>
+                                        <tr><td>धोलावीरा</td><td>लूनी</td><td>आर.एस. बिष्ट (1990)</td><td>त्रिस्तरीय नगर विभाजन, विशाल जलाशय (Water Reservoir)</td></tr>
+                                    </table>
+                                    <div class="trick-box">
+                                        <strong>💡 Memory Trick:</strong> "हड़प्पा रावी तट दया दिखाए, लोथल भोगवा बंदरगाह बनाए।"
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                title: "अध्याय 3: वैदिक संस्कृति एवं वेद (1500 - 600 BC)",
+                                html: `<div class="content-block">
+                                    <p>वैदिक काल को ऋग्वैदिक काल (1500-1000 BC) तथा उत्तर वैदिक काल (1000-600 BC) में बाँटा गया है।</p>
+                                    <ul>
+                                        <li><strong>ऋग्वेद:</strong> सबसे प्राचीन वेद (10 मण्डल, 1028 सूक्त)। तीसरे मण्डल में <em>गायत्री मन्त्र</em> (विश्वामित्र द्वारा रचित)। 10वें मण्डल में पुरुषसूक्त (वर्ण व्यवस्था)।</li>
+                                        <li><strong>सामवेद:</strong> भारतीय संगीत का जनक।</li>
+                                        <li><strong>यजुर्वेद:</strong> गद्य एवं पद्य दोनों में रचित (यज्ञीय अनुष्ठान)।</li>
+                                        <li><strong>अथर्ववेद:</strong> औषधि, जादू-टोना, और वशीकरण से संबंधित।</li>
+                                    </ul>
+                                    <table class="data-table">
+                                        <tr><th>वैदिक नदी</th><th>आधुनिक नाम</th><th>वैदिक नदी</th><th>आधुनिक नाम</th></tr>
+                                        <tr><td>वितस्ता</td><td>झेलम</td><td>परुष्णी</td><td>रावी</td></tr>
+                                        <tr><td>असिकनी</td><td>चिनाब</td><td>विपाशा</td><td>व्यास</td></tr>
+                                        <tr><td>शुतुद्री</td><td>सतलज</td><td>दृषद्वती</td><td>घग्गर</td></tr>
+                                    </table>
+                                    <div class="trick-box">
+                                        <strong>💡 Memory Trick:</strong> "झेलम का पानी वितस्ता कहलाए, रावी तट पर परुष्णी गाए।"
+                                    </div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        name: "Phase 2: महाजनपद काल से मौर्य साम्राज्य (अध्याय 4 - 6)",
+                        chapters: [
+                            {
+                                title: "अध्याय 4: 16 महाजनपद एवं मगध का उत्कर्ष",
+                                html: `<div class="content-block">
+                                    <p>16 महाजनपदों की सूची बौद्ध ग्रंथ <em>अंगुत्तर निकाय</em> तथा जैन ग्रंथ <em>भगवती सूत्र</em> में मिलती है।</p>
+                                    <p><strong>मगध साम्राज्य के प्रथम राजवंश (Trick: HASIN MASHUKA):</strong></p>
+                                    <ul>
+                                        <li><strong>1. हर्यक वंश:</strong> बिम्बिसार (संस्थापक), अजातशत्रु (पितृहंता), उदयन (पाटलिपुत्र की स्थापना)।</li>
+                                        <li><strong>2. शिशुनाग वंश:</strong> शिशुनाग (वैशाली को राजधानी बनाया), कालाशोक (द्वितीय बौद्ध संगीति)।</li>
+                                        <li><strong>3. नंद वंश:</strong> महापद्मानंद (सर्वक्षत्रान्तक/एकराट), घनानंद (अंतिम शासक, सिकंदर का समकालीन)।</li>
+                                    </ul>
+                                </div>`
+                            },
+                            {
+                                title: "अध्याय 5: बौद्ध एवं जैन धर्म",
+                                html: `<div class="content-block">
+                                    <p><strong>गौतम बुद्ध (बौद्ध धर्म):</strong> जन्म - लुम्बिनी, ज्ञान - बोधगया, प्रथम उपदेश - सारनाथ (धर्मचक्रप्रवर्तन), महापरिनिर्वाण - कुशीनगर।</p>
+                                    <table class="data-table">
+                                        <tr><th>संगीति</th><th>स्थान</th><th>अध्यक्ष</th><th>शासक</th></tr>
+                                        <tr><td>प्रथम (483 BC)</td><td>राजगृह</td><td>महाकश्यप</td><td>अजातशत्रु</td></tr>
+                                        <tr><td>द्वितीय (383 BC)</td><td>वैशाली</td><td>सबकामी</td><td>कालाशोक</td></tr>
+                                        <tr><td>तृतीय (250 BC)</td><td>पाटलिपुत्र</td><td>मोग्गलिपुत्त तिस्स</td><td>अशोक</td></tr>
+                                        <tr><td>चतुर्थ (1st AD)</td><td>कुण्डलवन (कश्मीर)</td><td>वसुमित्र / अश्वघोष</td><td>कनिष्क</td></tr>
+                                    </table>
+                                    <div class="trick-box">
+                                        <strong>💡 Sangeeti Trick (R-V-P-K):</strong> "राजा वैशाली की पाटलिपुत्र कश्मीर गई" | <strong>Raja Trick (A-K-A-K):</strong> "अजात कला के अशोक कनिष्क"
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                title: "अध्याय 6: मौर्य साम्राज्य (322 - 185 BC)",
+                                html: `<div class="content-block">
+                                    <ul>
+                                        <li><strong>चंद्रगुप्त मौर्य:</strong> चाणक्य की सहायता से घनानंद को पराजित किया। सेल्यूकस निकेटर को हराया। ग्रीक राजदूत <em>मेगस्थनीज</em> ने <strong>इण्डिका (Indica)</strong> लिखी।</li>
+                                        <li><strong>अशोक (268-232 BC):</strong> 261 BC में <em>कलिंग युद्ध</em> लड़ा (13वें शिलालेख में वर्णन)। उपगुप्त से बौद्ध धर्म की दीक्षा ली। शिलालेख पढ़ने वाला प्रथम व्यक्ति - जेम्स प्रिंसेप (1837)।</li>
+                                    </ul>
+                                    <div class="trick-box">
+                                        <strong>💡 Memory Trick:</strong> "13वें शिलालेख ने कलिंग में अशोक का हृदय बदला, प्रिंसेप ने 37 में ब्राह्मी को पढ़ा।"
+                                    </div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        id: 3,
+                        name: "Phase 3: गुप्त साम्राज्य एवं दक्षिण भारत के राजवंश (अध्याय 7 - 8)",
+                        chapters: [
+                            {
+                                title: "अध्याय 7: गुप्त साम्राज्य एवं हर्षवर्धन",
+                                html: `<div class="content-block">
+                                    <ul>
+                                        <li><strong>श्रीगुप्त:</strong> गुप्त वंश का संस्थापक। चंद्रगुप्त प्रथम (वास्तविक संस्थापक - 319 AD गुप्त संवत)।</li>
+                                        <li><strong>समुद्रगुप्त:</strong> 'भारत का नेपोलियन' (विंसेंट स्मिथ द्वारा)। दरबारी कवि <em>हरिषेण</em> ने प्रयाग प्रशस्ति की रचना की।</li>
+                                        <li><strong>चंद्रगुप्त द्वितीय (विक्रमादित्य):</strong> नवरत्न दरबारी (कालिदास, वराहमिहिर)। चीनी यात्री <em>फाह्यान</em> भारत आया।</li>
+                                        <li><strong>कुमारगुप्त प्रथम:</strong> नालंदा विश्वविद्यालय की स्थापना की।</li>
+                                        <li><strong>हर्षवर्धन (वर्द्धन वंश):</strong> राजधानी कन्नौज। चीनी यात्री <em>ह्वेनसांग (Si-Yu-Ki)</em> इसी के काल में आया।</li>
+                                    </ul>
+                                </div>`
+                            },
+                            {
+                                title: "अध्याय 8: दक्षिण भारत के प्रमुख राजवंश एवं मंदिर स्थापत्य",
+                                html: `<div class="content-block">
+                                    <table class="data-table">
+                                        <tr><th>राजवंश</th><th>संस्थापक / प्रमुख शासक</th><th>प्रसिद्ध मंदिर / निर्माण</th></tr>
+                                        <tr><td>राष्ट्रकूट</td><td>दंतिदुर्ग / कृष्ण प्रथम</td><td>एलोरा का कैलाश मंदिर (एकाश्म शैली)</td></tr>
+                                        <tr><td>चोल वंश</td><td>विजयालय / राजराज I</td><td>तंजावुर का बृहदीश्वर मंदिर (द्रविड़ शैली)</td></tr>
+                                        <tr><td>पल्लव वंश</td><td>सिंहविष्णु / नरसिंहवर्मन I</td><td>महाबलीपुरम का रथ मंदिर (सप्त पैगोडा)</td></tr>
+                                    </table>
+                                </div>`
+                            }
+                        ]
+                    }
+                ]
+            },
+            en: {
+                title: "🏛️ Ancient History Master Portal",
+                subtitle: "Comprehensive SSC CGL, CHSL, CPO (2020-2025) TCS Pattern Notes & Official PYQs",
+                lblExam: "🎯 Target Exam:",
+                lblLang: "🌐 Choose Language:",
+                lockMsg: "🔒 Locked: Score 70%+ in the previous phase test to unlock this section.",
+                unlocked: "Unlocked",
+                locked: "Locked",
+                btnTest: "📝 Start Phase PYQ Test (70% Passing Marks Required)",
+                btnNext: "Next Question ➔",
+
+                phases: [
+                    {
+                        id: 1,
+                        name: "Phase 1: Stone Age to Vedic Period (Chapters 1 - 3)",
+                        chapters: [
+                            {
+                                title: "Chapter 1: Stone Age (Pashan Kaal)",
+                                html: `<div class="content-block">
+                                    <p>The Stone Age in India is classified into three distinct periods:</p>
+                                    <ul>
+                                        <li><strong>1. Paleolithic Age (Old Stone Age):</strong> Humans were hunters and food gatherers. Discovery of Fire occurred during this age. <em>Bhimbetka (MP):</em> World-famous for prehistoric rock cave paintings.</li>
+                                        <li><strong>2. Mesolithic Age (Middle Stone Age):</strong> Characterized by Microliths (small stone tools). First evidence of Animal Husbandry found at <em>Adamgarh (MP)</em> and <em>Bagor (Rajasthan)</em>.</li>
+                                        <li><strong>3. Neolithic Age (New Stone Age):</strong> Invention of Agriculture and Wheel. <em>Mehrgarh (Pakistan):</em> Earliest evidence of farming (Wheat & Barley). <em>Burzahom (Kashmir):</em> Pit dwellings and dogs buried with masters.</li>
+                                    </ul>
+                                    <div class="trick-box">
+                                        <strong>💡 Memory Trick:</strong> "Mehrgarh birthed Wheat & Grain, Burzahom pits sheltered Dogs in rain."
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                title: "Chapter 2: Indus Valley Civilization (2500 - 1750 BC)",
+                                html: `<div class="content-block">
+                                    <p>A Bronze Age Urban Civilization known for its advanced Grid System town planning and drainage systems.</p>
+                                    <table class="data-table">
+                                        <tr><th>Major Site</th><th>River</th><th>Excavator (Year)</th><th>Key Findings</th></tr>
+                                        <tr><td>Harappa</td><td>Ravi</td><td>Daya Ram Sahni (1921)</td><td>Great Granary, R-37 Cemetery</td></tr>
+                                        <tr><td>Mohenjodaro</td><td>Indus</td><td>R.D. Banerji (1922)</td><td>Great Bath, Bronze Dancing Girl</td></tr>
+                                        <tr><td>Lothal</td><td>Bhogava</td><td>S.R. Rao (1954)</td><td>Tidal Dockyard, Rice husk, Ivory Scale</td></tr>
+                                        <tr><td>Kalibangan</td><td>Ghaggar</td><td>A. Ghosh / B.B. Lal</td><td>Ploughed field, Fire altars, Black bangles</td></tr>
+                                        <tr><td>Dholavira</td><td>Luni</td><td>R.S. Bisht (1990)</td><td>3-tier town division, Giant Water Reservoir</td></tr>
+                                    </table>
+                                </div>`
+                            },
+                            {
+                                title: "Chapter 3: Vedic Culture & Vedas (1500 - 600 BC)",
+                                html: `<div class="content-block">
+                                    <p>Divided into Rigvedic Age (1500-1000 BC) and Later Vedic Age (1000-600 BC).</p>
+                                    <ul>
+                                        <li><strong>Rigveda:</strong> Oldest Veda (10 Mandalas, 1028 Hymns). <em>Gayatri Mantra</em> in 3rd Mandala (composed by Vishwamitra). Purusha Sukta (Varna system) in 10th Mandala.</li>
+                                        <li><strong>Samaveda:</strong> Origin of Indian Classical Music.</li>
+                                        <li><strong>Yajurveda:</strong> Rituals and Sacrifices (Prose and Verse).</li>
+                                        <li><strong>Atharvaveda:</strong> Charms, Spells, Medicine, and Magic.</li>
+                                    </ul>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        name: "Phase 2: Mahajanapadas to Mauryan Empire (Chapters 4 - 6)",
+                        chapters: [
+                            {
+                                title: "Chapter 4: 16 Mahajanapadas & Rise of Magadha",
+                                html: `<div class="content-block">
+                                    <p>16 Mahajanapadas are mentioned in Buddhist text <em>Anguttara Nikaya</em> and Jain text <em>Bhagavati Sutra</em>.</p>
+                                    <p><strong>Magadha Dynasties Sequence (Trick: HASIN MASHUKA):</strong></p>
+                                    <ul>
+                                        <li><strong>1. Haryanka Dynasty:</strong> Bimbisara (Founder), Ajatashatru, Udayin (Founded Pataliputra).</li>
+                                        <li><strong>2. Shishunaga Dynasty:</strong> Shishunaga, Kalasoka (2nd Buddhist Council).</li>
+                                        <li><strong>3. Nanda Dynasty:</strong> Mahapadma Nanda (Ekarat), Dhanananda (Contemporary of Alexander).</li>
+                                    </ul>
+                                </div>`
+                            },
+                            {
+                                title: "Chapter 5: Buddhism & Jainism",
+                                html: `<div class="content-block">
+                                    <p><strong>Gautama Buddha:</strong> Birth - Lumbini, Enlightenment - Bodh Gaya, 1st Sermon - Sarnath (Dharmachakrapravartana), Death - Kushinagar.</p>
+                                    <table class="data-table">
+                                        <tr><th>Council</th><th>Venue</th><th>Chairman</th><th>Patron King</th></tr>
+                                        <tr><td>1st (483 BC)</td><td>Rajgir</td><td>Mahakasyapa</td><td>Ajatashatru</td></tr>
+                                        <tr><td>2nd (383 BC)</td><td>Vaishali</td><td>Sabakami</td><td>Kalasoka</td></tr>
+                                        <tr><td>3rd (250 BC)</td><td>Pataliputra</td><td>Moggaliputta Tissa</td><td>Ashoka</td></tr>
+                                        <tr><td>4th (1st AD)</td><td>Kashmir</td><td>Vasumitra / Asvaghosha</td><td>Kanishka</td></tr>
+                                    </table>
+                                </div>`
+                            },
+                            {
+                                title: "Chapter 6: Mauryan Empire (322 - 185 BC)",
+                                html: `<div class="content-block">
+                                    <ul>
+                                        <li><strong>Chandragupta Maurya:</strong> Defeated Dhanananda with Chanakya's help. Greek ambassador <em>Megasthenes</em> wrote <strong>Indica</strong>.</li>
+                                        <li><strong>Ashoka (268-232 BC):</strong> Fought <em>Kalinga War (261 BC)</em> recorded in 13th Major Rock Edict. Converted to Buddhism by Upagupta. Edicts deciphered by James Prinsep in 1837.</li>
+                                    </ul>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        id: 3,
+                        name: "Phase 3: Gupta Empire & South Indian Dynasties (Chapters 7 - 8)",
+                        chapters: [
+                            {
+                                title: "Chapter 7: Gupta Empire & Harshavardhana",
+                                html: `<div class="content-block">
+                                    <ul>
+                                        <li><strong>Samudragupta:</strong> Known as 'Napoleon of India' (by V.A. Smith). Prayag Prashasti written by Harishena.</li>
+                                        <li><strong>Chandragupta II (Vikramaditya):</strong> Navratnas court (Kalidasa, Varahamihira). Chinese pilgrim <em>Fahien</em> visited.</li>
+                                        <li><strong>Harshavardhana:</strong> Capital Kannauj. Chinese traveler <em>Hiuen Tsang (Si-Yu-Ki)</em> visited during his reign.</li>
+                                    </ul>
+                                </div>`
+                            },
+                            {
+                                title: "Chapter 8: South Indian Dynasties & Temple Architecture",
+                                html: `<div class="content-block">
+                                    <table class="data-table">
+                                        <tr><th>Dynasty</th><th>Ruler</th><th>Monuments / Temples</th></tr>
+                                        <tr><td>Rashtrakuta</td><td>Krishna I</td><td>Kailash Temple at Ellora (Monolithic)</td></tr>
+                                        <tr><td>Chola</td><td>Rajaraja I</td><td>Brihadeeswarar Temple at Thanjavur (Dravidian)</td></tr>
+                                        <tr><td>Pallava</td><td>Narasimhavarman I</td><td>Ratha Temples at Mamallapuram</td></tr>
+                                    </table>
+                                </div>`
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // Official TCS PYQ Tests
         const pyqTests = {
             1: [
-                { q: "Harappan sthal 'Lothal' kis nadi ke tat par sthit tha? (SSC CGL 2023)", options: ["Bhogava Nadi", "Ravi Nadi", "Sindhu Nadi", "Ghaggar Nadi"], correct: 0, exp: "Lothal (Gujarat) Bhogava nadi ke kinare sthit tha. Yeh Sindhu Sabhyata ka bandargah (Dockyard) tha." },
-                { q: "Gayatri Mantra Rigveda ke kis Mandal mein sthit hai? (SSC CGL 2021)", options: ["1st Mandal", "3rd Mandal", "7th Mandal", "10th Mandal"], correct: 1, exp: "Gayatri Mantra Rigveda ke 3rd Mandal mein hai. Iski rachna Vishwamitra ne ki thi." },
-                { q: "Pura Pashan kaal ke gufa chitr 'Bimbetka' kis rajya mein sthit hain? (SSC CHSL 2022)", options: ["Madhya Pradesh", "Rajasthan", "Uttar Pradesh", "Bihar"], correct: 0, exp: "Bimbetka ki gufaayein Madhya Pradesh ke Raisen zile mein hain." },
-                { q: "Sindhu Ghati Sabhyata mein 'Jute hue khet' ke praman kahan se mile? (SSC CPO 2023)", options: ["Mohenjodaro", "Kalibangan", "Dholavira", "Lothal"], correct: 1, exp: "Kalibangan (Rajasthan) se jute hue khet aur agnikund ke praman mile hain." },
-                { q: "Jhelum nadi ka prachin Vaidik naam kya tha? (SSC CGL 2024)", options: ["Vitasta", "Parushni", "Asikni", "Sutudri"], correct: 0, exp: "Jhelum = Vitasta, Ravi = Parushni, Chenab = Asikni, Satluj = Sutudri." }
+                { q: "Harappan site 'Lothal' was situated on the banks of which river? (SSC CGL 2023)", options: ["Bhogava", "Ravi", "Indus", "Ghaggar"], correct: 0, exp: "Lothal in Gujarat was situated on the Bhogava river. It served as the prominent tidal dockyard of IVC." },
+                { q: "The Gayatri Mantra is found in which Mandal of the Rigveda? (SSC CGL 2021)", options: ["1st Mandal", "3rd Mandal", "7th Mandal", "10th Mandal"], correct: 1, exp: "Gayatri Mantra is in 3rd Mandal, composed by Maharshi Vishwamitra and dedicated to Savitr (Sun God)." },
+                { q: "In which state are the prehistoric cave paintings of Bhimbetka located? (SSC CHSL 2022)", options: ["Madhya Pradesh", "Rajasthan", "Uttar Pradesh", "Bihar"], correct: 0, exp: "Bhimbetka caves are located in Raisen district of Madhya Pradesh." },
+                { q: "Evidence of 'Ploughed Fields' in Indus Valley Civilization was discovered at: (SSC CPO 2023)", options: ["Mohenjodaro", "Kalibangan", "Dholavira", "Lothal"], correct: 1, exp: "Kalibangan (Rajasthan) yielded evidence of ploughed agricultural fields and fire altars." },
+                { q: "What was the ancient Vedic name of the Jhelum River? (SSC CGL 2024)", options: ["Vitasta", "Parushni", "Asikni", "Sutudri"], correct: 0, exp: "Jhelum = Vitasta, Ravi = Parushni, Chenab = Asikni, Satluj = Sutudri." }
             ],
             2: [
-                { q: "Pratham Bouddha Sangeeti (483 BC) kis shasak ke kaal mein hui thi? (SSC CGL 2024)", options: ["Ajatashatru", "Kalasoka", "Ashoka", "Kanishka"], correct: 0, exp: "Pehli Bouddha Sangeeti Rajgir mein Ajatashatru (Haryanka Vansh) ke samay hui." },
-                { q: "Chandragupta Maurya ke darbar mein aaya Megasthenes kis raja ka raajdoot tha? (SSC CHSL 2023)", options: ["Seleucus Nicator", "Alexander", "Darius", "Antiochus"], correct: 0, exp: "Megasthenes Seleucus Nicator ka raajdoot tha. Usne 'Indica' likhi thi." },
-                { q: "Ashoka ne Kalinga Yuddh kis varsh lada tha? (SSC CGL 2022)", options: ["261 BC", "326 BC", "232 BC", "185 BC"], correct: 0, exp: "261 BC mein Kalinga Yuddh hua jiska varnan 13vein Shilalekh mein milta hai." },
-                { q: "16 Mahajanpado ki jankari kis Bouddha granth se milti hai? (SSC CPO 2022)", options: ["Anguttara Nikaya", "Tripitaka", "Mahavamsa", "Jataka"], correct: 0, exp: "Anguttara Nikaya aur Jain granth Bhagavati Sutra se 16 Mahajanpado ki jankari milti hai." },
-                { q: "Jain dharm ke 24th Tirthankara Vardhaman Mahavira ka janm kahan hua tha? (SSC CGL 2020)", options: ["Vaishali (Kundagrama)", "Lumbini", "Pataliputra", "Bodh Gaya"], correct: 0, exp: "Mahavira Swami ka janm Kundagrama (Vaishali) mein hua tha." }
+                { q: "Under whose reign was the First Buddhist Council held in 483 BC? (SSC CGL 2024)", options: ["Ajatashatru", "Kalasoka", "Ashoka", "Kanishka"], correct: 0, exp: "First Buddhist Council was held at Rajgir presided by Mahakasyapa under king Ajatashatru." },
+                { q: "Megasthenes, who visited the court of Chandragupta Maurya, was the ambassador of: (SSC CHSL 2023)", options: ["Seleucus Nicator", "Alexander", "Darius", "Antiochus"], correct: 0, exp: "Megasthenes was sent by Seleucus Nicator and wrote 'Indica'." },
+                { q: "In which year did Ashoka fight the famous Kalinga War? (SSC CGL 2022)", options: ["261 BC", "326 BC", "232 BC", "185 BC"], correct: 0, exp: "Ashoka fought Kalinga War in 261 BC (8th year of coronation) mentioned in 13th Major Rock Edict." },
+                { q: "Information about 16 Mahajanapadas is found in which Buddhist text? (SSC CPO 2022)", options: ["Anguttara Nikaya", "Tripitaka", "Mahavamsa", "Jataka"], correct: 0, exp: "Anguttara Nikaya (Buddhist) and Bhagavati Sutra (Jain) list the 16 Mahajanapadas." },
+                { q: "24th Tirthankara Vardhaman Mahavira was born at which place? (SSC CGL 2020)", options: ["Vaishali (Kundagrama)", "Lumbini", "Pataliputra", "Bodh Gaya"], correct: 0, exp: "Mahavira Swami was born in Kundagrama near Vaishali." }
             ],
             3: [
-                { q: "'Bharat ka Napoleon' kis Gupta shasak ko kaha jata hai? (SSC CGL 2023)", options: ["Samudragupta", "Chandragupta Vikramaditya", "Skandagupta", "Kumaragupta"], correct: 0, exp: "Samudragupta ko Vincent Smith ne Bharat ka Napoleon kaha. Harishena ne Prayag Prashasti likhi." },
-                { q: "Ellora ke Kailash Mandir ka nirman kis Rashtrakuta raja ne karwaya tha? (SSC CGL 2021)", options: ["Krishna I", "Amoghavarsha", "Dantidurga", "Govinda III"], correct: 0, exp: "Rashtrakuta raja Krishna I ne Maharashtra ke Ellora mein Kailash Temple banwaya." },
-                { q: "Chinese yatri Hiuen Tsang kis shasak ke samay Bharat aaya tha? (SSC CHSL 2022)", options: ["Harshavardhana", "Chandragupta II", "Samudragupta", "Kanishka"], correct: 0, exp: "Hiuen Tsang Harshavardhana ke kaal mein aaya tha. Uski pustak ka naam Si-Yu-Ki hai." },
-                { q: "Nalanda Vishwavidyalaya ki sthapna kis Gupta raja ne ki thi? (SSC CPO 2023)", options: ["Kumaragupta I", "Skandagupta", "Chandragupta I", "Bhanugupta"], correct: 0, exp: "Kumaragupta I ne 5th Century AD mein Nalanda Vishwavidyalaya ki sthapna ki thi." },
-                { q: "Thanjavur ka prasiddh Brihadeeswarar Mandir kisine banwaya tha? (SSC CGL 2024)", options: ["Rajaraja Chola I", "Rajendra Chola", "Karikala", "Narasimhavarman"], correct: 0, exp: "Chola shasak Rajaraja I ne Tamil Nadu ke Thanjavur mein Brihadeeswarar Temple banwaya." }
+                { q: "Which Gupta ruler was referred to as 'Napoleon of India' by V.A. Smith? (SSC CGL 2023)", options: ["Samudragupta", "Chandragupta II", "Skandagupta", "Kumaragupta"], correct: 0, exp: "Samudragupta was titled 'Napoleon of India'. Harishena composed his Prayag Prashasti." },
+                { q: "The famous Kailash Temple at Ellora was built by which Rashtrakuta King? (SSC CGL 2021)", options: ["Krishna I", "Amoghavarsha", "Dantidurga", "Govinda III"], correct: 0, exp: "Rashtrakuta king Krishna I built the monolithic rock-cut Kailash Temple at Ellora." },
+                { q: "Chinese traveler Hiuen Tsang visited India during the reign of: (SSC CHSL 2022)", options: ["Harshavardhana", "Chandragupta II", "Samudragupta", "Kanishka"], correct: 0, exp: "Hiuen Tsang came during Harshavardhana's reign and wrote 'Si-Yu-Ki'." },
+                { q: "Nalanda University was established by which Gupta ruler? (SSC CPO 2023)", options: ["Kumaragupta I", "Skandagupta", "Chandragupta I", "Bhanugupta"], correct: 0, exp: "Kumaragupta I founded Nalanda University in the 5th century AD." },
+                { q: "Who constructed the famous Brihadeeswarar Temple at Thanjavur? (SSC CGL 2024)", options: ["Rajaraja Chola I", "Rajendra Chola", "Karikala", "Narasimhavarman"], correct: 0, exp: "Chola king Rajaraja I constructed the Brihadeeswarar Temple in Dravidian architecture." }
             ]
         };
 
@@ -806,24 +1056,69 @@
         let currentQIndex = 0;
         let currentScore = 0;
 
+        function renderPage() {
+            const data = fullContent[currentLang];
+            document.getElementById('txt-title').innerText = data.title;
+            document.getElementById('txt-subtitle').innerText = data.subtitle;
+            document.getElementById('lbl-exam').innerText = data.lblExam;
+            document.getElementById('lbl-lang').innerText = data.lblLang;
+            document.getElementById('btn-lang').innerText = (currentLang === 'hi') ? 'English' : 'हिंदी';
+            document.getElementById('btn-next').innerText = data.btnNext;
+
+            const area = document.getElementById('content-area');
+            area.innerHTML = '';
+
+            data.phases.forEach(phase => {
+                const isUnlocked = phase.id === 1 || localStorage.getItem(`phase${phase.id}_unlocked`) === 'true';
+                
+                let chsHtml = '';
+                phase.chapters.forEach(ch => {
+                    chsHtml += `
+                        <div class="chapter-box">
+                            <h3>${ch.title}</h3>
+                            ${ch.html}
+                        </div>
+                    `;
+                });
+
+                const phaseCard = document.createElement('div');
+                phaseCard.className = `phase-card ${isUnlocked ? '' : 'locked'}`;
+                phaseCard.id = `phase${phase.id}-card`;
+
+                phaseCard.innerHTML = `
+                    <div class="lock-banner">${data.lockMsg}</div>
+                    <div class="phase-title">
+                        <span>${phase.name}</span>
+                        <span class="badge" style="background-color: ${isUnlocked ? 'var(--success)' : '#4b5563'};">
+                            ${isUnlocked ? data.unlocked : data.locked}
+                        </span>
+                    </div>
+                    ${chsHtml}
+                    <button class="test-btn" ${isUnlocked ? '' : 'disabled'} onclick="startPhaseTest(${phase.id})">
+                        ${data.btnTest}
+                    </button>
+                `;
+                area.appendChild(phaseCard);
+            });
+        }
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'hi') ? 'en' : 'hi';
+            renderPage();
+        }
+
         function updateExam() {
-            const ex = document.getElementById('exam-select').value.toUpperCase();
-            document.getElementById('exam-tag').innerText = `SSC ${ex} Ancient History`;
+            // Updated exam state tracking
         }
 
         function startPhaseTest(phaseNum) {
-            if(phaseNum > 1 && localStorage.getItem(`phase${phaseNum}_unlocked`) !== "true") {
-                alert("Pehle purana phase test clear karein!");
-                return;
-            }
-
             currentActivePhase = phaseNum;
             currentQIndex = 0;
             currentScore = 0;
 
             const modal = document.getElementById('quiz-modal');
             modal.classList.add('active');
-            document.getElementById('quiz-title').innerText = `Phase ${phaseNum} PYQ Mastery Test`;
+            document.getElementById('quiz-title').innerText = `Phase ${phaseNum} TCS PYQ Test`;
             modal.scrollIntoView({ behavior: 'smooth' });
 
             loadQuestion();
@@ -833,7 +1128,7 @@
             const qList = pyqTests[currentActivePhase];
             const qData = qList[currentQIndex];
 
-            document.getElementById('q-counter').innerText = `Q ${currentQIndex + 1} of ${qList.length}`;
+            document.getElementById('q-counter').innerText = `Question ${currentQIndex + 1} of ${qList.length}`;
             document.getElementById('score').innerText = currentScore;
             document.getElementById('question').innerText = `${currentQIndex + 1}. ${qData.q}`;
 
@@ -857,7 +1152,7 @@
 
             if(selected === qData.correct) {
                 btn.classList.add('correct');
-                currentScore += 20; // 5 Questions = 100 Total Marks
+                currentScore += 20;
                 document.getElementById('score').innerText = currentScore;
             } else {
                 btn.classList.add('wrong');
@@ -866,7 +1161,7 @@
 
             allBtns.forEach(b => b.disabled = true);
             const exp = document.getElementById('explanation');
-            exp.innerHTML = `<strong>SSC Exam Explanation:</strong> ${qData.exp}`;
+            exp.innerHTML = `<strong>Official TCS Explanation:</strong> ${qData.exp}`;
             exp.style.display = 'block';
         }
 
@@ -876,34 +1171,22 @@
                 currentQIndex++;
                 loadQuestion();
             } else {
-                // Check 70% passing criteria (70 out of 100)
                 const percentage = (currentScore / 100) * 100;
                 if(percentage >= 70) {
-                    alert(`🎉 Shaandar! Aapne ${percentage}% score karke Phase ${currentActivePhase} clear kar liya!`);
-                    unlockNextPhase(currentActivePhase + 1);
+                    alert(`🎉 Excellent! You scored ${percentage}% and passed Phase ${currentActivePhase}!`);
+                    localStorage.setItem(`phase${currentActivePhase + 1}_unlocked`, "true");
+                    renderPage();
                 } else {
-                    alert(`❌ Aapka score ${percentage}% hai. Phase unlock karne ke liye minimum 70% chahiye. Phir se attempt karein!`);
+                    alert(`❌ Your score is ${percentage}%. You need at least 70% to unlock the next phase. Try again!`);
                 }
                 document.getElementById('quiz-modal').classList.remove('active');
             }
         }
 
-        function unlockNextPhase(nextPhaseNum) {
-            if(nextPhaseNum <= 3) {
-                const card = document.getElementById(`phase${nextPhaseNum}-card`);
-                card.classList.remove('locked');
-                const badge = document.getElementById(`phase${nextPhaseNum}-badge`);
-                if(badge) {
-                    badge.innerText = "Unlocked";
-                    badge.style.backgroundColor = "var(--success)";
-                }
-                localStorage.setItem(`phase${nextPhaseNum}_unlocked`, "true");
-            }
-        }
-
-        // Auto Load saved unlocks from browser memory
-        if(localStorage.getItem('phase2_unlocked') === "true") unlockNextPhase(2);
-        if(localStorage.getItem('phase3_unlocked') === "true") unlockNextPhase(3);
+        // Initial Load
+        renderPage();
     </script>
 </body>
 </html>
+
+                                        <li><strong>श्रीगुप्त:</strong> गुप्त वंश का संस्थापक। चंद्रगुप्त प्रथम (वास्तविक संस्था
