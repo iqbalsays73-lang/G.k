@@ -9,9 +9,11 @@
             --bg-color: #0f172a;
             --card-bg: #1e293b;
             --accent: #38bdf8;
+            --accent-hover: #0284c7;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --success: #22c55e;
+            --danger: #ef4444;
         }
         * {
             margin: 0;
@@ -23,39 +25,40 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
         }
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--accent);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         header p {
             color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
+            font-size: 1rem;
         }
         .nav-tabs {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 10px;
+            margin-bottom: 25px;
             flex-wrap: wrap;
         }
         .tab-btn {
             background-color: var(--card-bg);
             color: var(--text-main);
             border: 1px solid #334155;
-            padding: 10px 20px;
+            padding: 10px 18px;
             border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
             transition: 0.3s;
         }
         .tab-btn.active, .tab-btn:hover {
@@ -72,7 +75,7 @@
         .card {
             background-color: var(--card-bg);
             border-left: 4px solid var(--accent);
-            padding: 20px;
+            padding: 18px;
             border-radius: 8px;
             margin-bottom: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
@@ -83,42 +86,113 @@
         }
         .card p {
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.6;
         }
-        .quiz-box {
+        /* Quiz Section Styling */
+        .quiz-container {
             background-color: var(--card-bg);
             padding: 25px;
             border-radius: 12px;
-            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-        .quiz-box h3 {
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 15px;
-            font-size: 1.3rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 10px;
         }
-        .options {
+        .score-board {
+            font-weight: bold;
+            color: var(--accent);
+        }
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        @media(max-width: 600px) {
+            .options-grid { grid-template-columns: 1fr; }
         }
         .opt-btn {
             background-color: #334155;
             color: var(--text-main);
-            border: none;
-            padding: 12px;
-            border-radius: 6px;
+            border: 1px solid #475569;
+            padding: 12px 15px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            text-align: left;
             transition: 0.2s;
         }
-        .opt-btn:hover {
+        .opt-btn:hover:not([disabled]) {
             background-color: var(--accent);
             color: #0f172a;
         }
-        #result-msg {
-            margin-top: 15px;
+        .opt-btn.correct {
+            background-color: var(--success) !important;
+            color: #fff !important;
+        }
+        .opt-btn.wrong {
+            background-color: var(--danger) !important;
+            color: #fff !important;
+        }
+        .explanation-box {
+            background-color: #0f172a;
+            border-left: 3px solid var(--accent);
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .control-btn {
+            background-color: var(--accent);
+            color: #0f172a;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
             font-weight: bold;
-            font-size: 1.1rem;
+            transition: 0.2s;
+        }
+        .control-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Flashcards */
+        .flashcard {
+            background-color: var(--card-bg);
+            border: 1px solid #334155;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .flashcard:hover {
+            border-color: var(--accent);
+        }
+        .flashcard-answer {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #475569;
+            color: var(--accent);
+            font-weight: bold;
         }
     </style>
 </head>
@@ -127,41 +201,63 @@
     <div class="container">
         <header>
             <h1>🔥 GS Halwa Hub</h1>
-            <p>SSC CGL Preparation ko banao bilkul aasan aur mazedaar!</p>
+            <p>SSC CGL Prep: Interactive Smart Revision & Quiz</p>
         </header>
 
         <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchTab('history', event)">📜 Modern History Story</button>
-            <button class="tab-btn" onclick="switchTab('tricks', event)">💡 Static GK Tricks</button>
+            <button class="tab-btn active" onclick="switchTab('quiz', event)">🎯 Dynamic Quiz</button>
+            <button class="tab-btn" onclick="switchTab('history', event)">📜 Modern History</button>
+            <button class="tab-btn" onclick="switchTab('tricks', event)">💡 Interactive Tricks</button>
             <button class="tab-btn" onclick="switchTab('reasoning', event)">⚡ Reasoning Boost</button>
-            <button class="tab-btn" onclick="switchTab('quiz', event)">🎯 Daily Mini Quiz</button>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz" class="section-content active">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <span id="q-counter">Question 1 of 5</span>
+                    <span class="score-board">Score: <span id="score">0</span></span>
+                </div>
+                <div class="question-text" id="question">Loading Question...</div>
+                <div class="options-grid" id="options"></div>
+                <div class="explanation-box" id="explanation"></div>
+                <div class="controls">
+                    <button class="control-btn" onclick="prevQuestion()">Previous</button>
+                    <button class="control-btn" onclick="nextQuestion()">Next Question</button>
+                </div>
+            </div>
         </div>
 
         <!-- History Section -->
-        <div id="history" class="section-content active">
+        <div id="history" class="section-content">
             <div class="card">
-                <h3>1857 - 1885: Shuruat aur Pehli Kranti</h3>
-                <p>Mangal Pandey se shuru hui ladai. 1885 mein A.O. Hume dwara Indian National Congress (INC) ki sthapna hui, pehle adhyaksh W.C. Bonnerjee the.</p>
+                <h3>1857 - 1885: Pehli Kranti & INC</h3>
+                <p>• 1857: Mangal Pandey & Revolt.<br>• 1885: A.O. Hume ne INC banaya. Pehle President: W.C. Bonnerjee (Bombay Session, 72 delegates).</p>
             </div>
             <div class="card">
-                <h3>1905 - 1919: Halchal aur Andolan</h3>
-                <p>1905: Bengal Partition (Lord Curzon). 1906: Muslim League bani. 1916: Lucknow Pact (Congress & Muslim League ek hue). 1919: Jallianwala Bagh Massacre.</p>
+                <h3>1905 - 1919: Partition & Movements</h3>
+                <p>• 1905: Bengal Partition (Lord Curzon) ➔ Swadeshi Movement.<br>• 1906: Muslim League.<br>• 1907: Surat Split (Naram & Garam Dal).<br>• 1916: Lucknow Pact.<br>• 1919: Rowlatt Act & Jallianwala Bagh Massacre.</p>
             </div>
             <div class="card">
-                <h3>1920 - 1947: Gandhi Era & Freedom</h3>
-                <p>1920: Non-Cooperation Movement. 1930: Dandi March. 1942: Quit India Movement ("Karo ya Maro"). 1947: 15 August ko Bharat Azaad hua.</p>
+                <h3>1920 - 1947: Gandhian Era & Freedom</h3>
+                <p>• 1920: Non-Cooperation Movement.<br>• 1922: Chauri Chaura Kand.<br>• 1930: Dandi March & Civil Disobedience.<br>• 1942: Quit India Movement ("Do or Die").<br>• 1947: Cabinet Mission & Independence.</p>
             </div>
         </div>
 
         <!-- Tricks Section -->
         <div id="tricks" class="section-content">
-            <div class="card">
-                <h3>National Parks Trick (Assam)</h3>
-                <p><strong>Trick:</strong> "Kaziranga aur Manas ne Assam mein ekasingha gende ke sath party ki." <br>➔ Yad rakho: Kaziranga & Manas dono Assam mein hain!</p>
+            <p style="margin-bottom: 15px; color: var(--text-muted);">Card par click karke trick aur answer dekhein:</p>
+            <div class="flashcard" onclick="toggleFlashcard(this)">
+                📌 <strong>Assam ke National Parks kaise yaad rakhein?</strong>
+                <div class="flashcard-answer">Trick: "Kaziranga aur Manas ne Assam mein ekasingha gende ke sath party ki." (Kaziranga & Manas = Assam)</div>
             </div>
-            <div class="card">
-                <h3>Classical Dances Trick</h3>
-                <p><strong>Trick:</strong> "Bharatnatyam kare Tamilnadu ki Bharat, Kathakali kare Kerala ki kali." <br>➔ State-wise classical dances kabhi nahi bhuloge.</p>
+            <div class="flashcard" onclick="toggleFlashcard(this)">
+                📌 <strong>Classical Dances Memory Trick</strong>
+                <div class="flashcard-answer">Trick: "Bharatnatyam kare Tamilnadu ki Bharat, Kathakali kare Kerala ki kali."</div>
+            </div>
+            <div class="flashcard" onclick="toggleFlashcard(this)">
+                📌 <strong>Mughal Emperors Sequence (BHAJSA)</strong>
+                <div class="flashcard-answer">B - Babur, H - Humayun, A - Akbar, J - Jahangir, S - Shah Jahan, A - Aurangzeb.</div>
             </div>
         </div>
 
@@ -169,48 +265,131 @@
         <div id="reasoning" class="section-content">
             <div class="card">
                 <h3>Calendar Logic Shortcut</h3>
-                <p>Har saal aage badhne par **1 Odd Day** badhta hai (Normal year), aur Leap year mein **2 Odd Days** badhte hain. Isse bina pen uthaye din nikal sakte hain!</p>
+                <p>• Normal Year = 1 Odd Day.<br>• Leap Year = 2 Odd Days.<br>• Same date next year = +1 day (if normal year).</p>
             </div>
             <div class="card">
-                <h3>Direction & Distance (Pythagoras)</h3>
-                <p>Hamesha **Hypotenuse (Karan) = √(Base² + Perpendicular²)** ka formula lagao jab shortest distance poochhi jaye.</p>
-            </div>
-        </div>
-
-        <!-- Quiz Section -->
-        <div id="quiz" class="section-content">
-            <div class="quiz-box">
-                <h3 id="question">1. Indian National Congress (INC) ki sthapna kis varsh hui thi?</h3>
-                <div class="options">
-                    <button class="opt-btn" onclick="checkAnswer(false)">1857</button>
-                    <button class="opt-btn" onclick="checkAnswer(true)">1885</button>
-                    <button class="opt-btn" onclick="checkAnswer(false)">1905</button>
-                    <button class="opt-btn" onclick="checkAnswer(false)">1919</button>
-                </div>
-                <p id="result-msg"></p>
+                <h3>Direction & Distance (Pythagoras Triplet)</h3>
+                <p>Direct triplets yaad rakho calculation se bachne ke liye:<br>• (3, 4, 5)<br>• (5, 12, 13)<br>• (8, 15, 17)<br>• (7, 24, 25)</p>
             </div>
         </div>
     </div>
 
     <script>
+        // Tab Switcher
         function switchTab(tabId, event) {
             document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
 
-        function checkAnswer(isCorrect) {
-            const msg = document.getElementById('result-msg');
-            if(isCorrect) {
-                msg.style.color = '#22c55e';
-                msg.innerText = "🎉 Ekdam Sahi! Aapki tayari mast chal rahi hai.";
+        // Toggle Flashcards
+        function toggleFlashcard(card) {
+            const ans = card.querySelector('.flashcard-answer');
+            ans.style.display = (ans.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // Question Bank
+        const quizData = [
+            {
+                q: "Indian National Congress (INC) ki sthapna kis varsh hui thi?",
+                options: ["1857", "1885", "1905", "1919"],
+                correct: 1,
+                exp: "INC ki sthapna 28 December 1885 ko A.O. Hume dwara ki gayi thi. Pehla session Bombay mein hua tha."
+            },
+            {
+                q: "Bengal ka Partition (1905) kis Viceroy ke samay hua tha?",
+                options: ["Lord Ripon", "Lord Curzon", "Lord Dalhousie", "Lord Irwin"],
+                correct: 1,
+                exp: "Lord Curzon ne 1905 mein Bengal ka batwara kiya tha, jiske virodh mein Swadeshi Andolan shuru hua."
+            },
+            {
+                q: "1916 ke Lucknow Session ki adhyakshata kisine ki thi?",
+                options: ["Ambika Charan Mazumdar", "W.C. Bonnerjee", "Mahatma Gandhi", "Bal Gangadhar Tilak"],
+                correct: 0,
+                exp: "Ambika Charan Mazumdar ne adhyakshata ki thi. Is session mein Congress ke Naram aur Garam dal ek hue the."
+            },
+            {
+                q: "Mahatma Gandhi ne 'Karo ya Maro' (Do or Die) ka naara kis andolan mein diya tha?",
+                options: ["Asahyog Andolan (1920)", "Savinay Avagya (1930)", "Bharat Chodo Andolan (1942)", "Khilafat Andolan"],
+                correct: 2,
+                exp: "1942 ke Quit India Movement (Bharat Chodo Andolan) ke dauran Gandhi ji ne 'Do or Die' ka naara diya tha."
+            },
+            {
+                q: "Kaziranga National Park kiske liye prasiddh hai?",
+                options: ["Asian Lion", "One-horned Rhino (Ek-singh genda)", "Tiger", "Elephant"],
+                correct: 1,
+                exp: "Assam ka Kaziranga National Park ek-singh wale gende (One-horned Rhinoceros) ke liye vishwa bhar mein prasiddh hai."
+            }
+        ];
+
+        let currentQ = 0;
+        let score = 0;
+        let answered = false;
+
+        function loadQuestion() {
+            answered = false;
+            const data = quizData[currentQ];
+            document.getElementById('q-counter').innerText = `Question ${currentQ + 1} of ${quizData.length}`;
+            document.getElementById('question').innerText = `${currentQ + 1}. ${data.q}`;
+            
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            data.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'opt-btn';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+
+            const expBox = document.getElementById('explanation');
+            expBox.style.display = 'none';
+            expBox.innerText = '';
+        }
+
+        function checkAnswer(selectedIndex, btn) {
+            if(answered) return;
+            answered = true;
+
+            const data = quizData[currentQ];
+            const allButtons = document.querySelectorAll('.opt-btn');
+
+            if(selectedIndex === data.correct) {
+                btn.classList.add('correct');
+                score += 10;
+                document.getElementById('score').innerText = score;
             } else {
-                msg.style.color = '#ef4444';
-                msg.innerText = "❌ Galat jawab! Sahi jawab 1885 hai.";
+                btn.classList.add('wrong');
+                allButtons[data.correct].classList.add('correct');
+            }
+
+            allButtons.forEach(b => b.disabled = true);
+
+            const expBox = document.getElementById('explanation');
+            expBox.innerHTML = `<strong>Explanation:</strong> ${data.exp}`;
+            expBox.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            if(currentQ < quizData.length - 1) {
+                currentQ++;
+                loadQuestion();
+            } else {
+                alert(`Quiz Complete! Aapka Total Score: ${score} / ${quizData.length * 10}`);
             }
         }
+
+        function prevQuestion() {
+            if(currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        // Initialize First Question
+        loadQuestion();
     </script>
 </body>
 </html>
