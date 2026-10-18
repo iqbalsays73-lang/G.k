@@ -89,7 +89,7 @@
             position: relative;
         }
         .phase-card.locked {
-            opacity: 0.5;
+            opacity: 0.55;
             background-color: #0d111c;
             border-color: #1e1b4b;
         }
@@ -106,11 +106,6 @@
         }
         .phase-card.locked .lock-banner {
             display: block;
-        }
-        .phase-card.locked .test-btn {
-            background-color: #374151 !important;
-            color: #9ca3af !important;
-            cursor: not-allowed !important;
         }
         .phase-title {
             color: var(--accent);
@@ -189,6 +184,11 @@
         }
         .test-btn:hover:not(:disabled) {
             background-color: var(--accent-hover);
+        }
+        .test-btn:disabled {
+            background-color: #374151 !important;
+            color: #9ca3af !important;
+            cursor: not-allowed !important;
         }
         .quiz-modal {
             display: none;
@@ -326,45 +326,35 @@
                                 html: `<div class="content-block">
                                     <p>भारत में पाषाण काल को तीन मुख्य भागों में विभाजित किया गया है:</p>
                                     <ul>
-                                        <li><strong>1. पुरापाषाण काल (Paleolithic Age):</strong> मानव मुख्य रूप से शिकारी एवं खाद्य संग्राहक था। आग (Fire) की खोज इसी काल में हुई। <em>भीमबेटका (MP):</em> पुरापाषाण काल के शैल चित्रों के लिए प्रसिद्ध है।</li>
-                                        <li><strong>2. मध्यपाषाण काल (Mesolithic Age):</strong> सूक्ष्म पाषाण औजार (Microliths) का प्रयोग शुरू हुआ। पशुपालन (Animal Husbandry) का प्रथम साक्ष्य <em>आदमगढ़ (MP)</em> तथा <em>बागोर (राजस्थान)</em> से मिला।</li>
-                                        <li><strong>3. नवपाषाण काल (Neolithic Age):</strong> कृषि (Agriculture) एवं पहिए (Wheel) का आविष्कार हुआ। <em>मेहरगढ़ (पाकिस्तान):</em> कृषि का प्रथम साक्ष्य (गेहूं और जौ)। <em>बुर्जहोम (कश्मीर):</em> गर्तवास (Pit dwellings) तथा मालिक के साथ कुत्ते को दफनाने के साक्ष्य।</li>
+                                        <li><strong>1. पुरापाषाण काल (Paleolithic Age):</strong> मानव मुख्य रूप से शिकारी एवं खाद्य संग्राहक था। आग की खोज इसी काल में हुई। <em>भीमबेटका (MP):</em> शैल चित्रों के लिए प्रसिद्ध।</li>
+                                        <li><strong>2. मध्यपाषाण काल (Mesolithic Age):</strong> सूक्ष्म पाषाण औजार (Microliths) का प्रयोग शुरू हुआ। पशुपालन का प्रथम साक्ष्य <em>आदमगढ़ (MP)</em> तथा <em>बागोर (राजस्थान)</em> से मिला।</li>
+                                        <li><strong>3. नवपाषाण काल (Neolithic Age):</strong> कृषि एवं पहिए का आविष्कार हुआ। <em>मेहरगढ़ (पाकिस्तान):</em> कृषि का प्रथम साक्ष्य। <em>बुर्जहोम (कश्मीर):</em> गर्तवास तथा कुत्ते को दफनाने के साक्ष्य।</li>
                                     </ul>
-                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "मेहरगढ़ से मेहरबानी हुई अन्न पर, बुर्जहोम के गड्ढे में कुत्ता सोया मालिक संग।"</div>
+                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "मेहरगढ़ से अन्न मिला, बुर्जहोम के गड्ढे में कुत्ता सोया।"</div>
                                 </div>`
                             },
                             {
                                 title: "अध्याय 2: सिंधु घाटी सभ्यता (Indus Valley Civilization - 2500-1750 BC)",
                                 html: `<div class="content-block">
-                                    <p>यह एक कांस्ययुगीन (Bronze Age) एवं नगरीय सभ्यता (Urban Civilization) थी। नगर नियोजन ग्रिड पद्धति (Grid System) पर आधारित था।</p>
+                                    <p>यह कांस्ययुगीन एवं नगरीय सभ्यता थी। नगर नियोजन ग्रिड पद्धति पर आधारित था।</p>
                                     <table class="data-table">
-                                        <tr><th>प्रमुख स्थल</th><th>नदी</th><th>उत्खननकर्ता (वर्ष)</th><th>प्राप्त महत्वपूर्ण अवशेष</th></tr>
-                                        <tr><td>हड़प्पा</td><td>रावी</td><td>दयाराम साहनी (1921)</td><td>अन्नागार (Granary), आर-37 कब्रिस्तान</td></tr>
-                                        <tr><td>मोहनजोदड़ो</td><td>सिंंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार (Great Bath), कांस्य नर्तकी की मूर्ति</td></tr>
-                                        <tr><td>लोथल</td><td>भोगवा</td><td>एस.आर. राव (1954)</td><td>गोदीवाड़ा (Dockyard), धान की भूसी, हाथीदांत स्केल</td></tr>
-                                        <tr><td>कालीबंगन</td><td>घग्गर</td><td>अम्लानंद घोष / बी.बी. लाल</td><td>जूते हुए खेत के साक्ष्य, बेलनाकार मोहरें, अग्निकुंड</td></tr>
-                                        <tr><td>धोलावीरा</td><td>लूनी</td><td>आर.एस. बिष्ट (1990)</td><td>त्रिस्तरीय नगर विभाजन, विशाल जलाशय (Water Reservoir)</td></tr>
+                                        <tr><th>स्थल</th><th>नदी</th><th>उत्खननकर्ता</th><th>अवशेष</th></tr>
+                                        <tr><td>हड़प्पा</td><td>रावी</td><td>दयाराम साहनी (1921)</td><td>अन्नागार (Granary)</td></tr>
+                                        <tr><td>मोहनजोदड़ो</td><td>सिंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार, कांस्य नर्तकी</td></tr>
+                                        <tr><td>लोथल</td><td>भोगवा</td><td>एस.आर. राव (1954)</td><td>गोदीवाड़ा (Dockyard)</td></tr>
+                                        <tr><td>कालीबंगन</td><td>घग्गर</td><td>बी.बी. लाल / ए. घोष</td><td>जूते हुए खेत के साक्ष्य</td></tr>
                                     </table>
-                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "हड़प्पा रावी तट दया दिखाए, लोथल भोगवा बंदरगाह बनाए।"</div>
                                 </div>`
                             },
                             {
                                 title: "अध्याय 3: वैदिक संस्कृति एवं वेद (1500 - 600 BC)",
                                 html: `<div class="content-block">
-                                    <p>वैदिक काल को ऋग्वैदिक काल (1500-1000 BC) तथा उत्तर वैदिक काल (1000-600 BC) में बाँटा गया है।</p>
                                     <ul>
-                                        <li><strong>ऋग्वेद:</strong> सबसे प्राचीन वेद (10 मण्डल, 1028 सूक्त)। तीसरे मण्डल में <em>गायत्री मन्त्र</em> (विश्वामित्र द्वारा रचित)। 10वें मण्डल में पुरुषसूक्त (वर्ण व्यवस्था)।</li>
+                                        <li><strong>ऋग्वेद:</strong> सबसे प्राचीन वेद (10 मण्डल, 1028 सूक्त)। तीसरे मण्डल में <em>गायत्री मन्त्र</em>।</li>
                                         <li><strong>सामवेद:</strong> भारतीय संगीत का जनक।</li>
                                         <li><strong>यजुर्वेद:</strong> गद्य एवं पद्य दोनों में रचित (यज्ञीय अनुष्ठान)।</li>
-                                        <li><strong>अथर्ववेद:</strong> औषधि, जादू-टोना, और वशीकरण से संबंधित।</li>
+                                        <li><strong>अथर्ववेद:</strong> औषधि, जादू-टोना से संबंधित।</li>
                                     </ul>
-                                    <table class="data-table">
-                                        <tr><th>वैदिक नदी</th><th>आधुनिक नाम</th><th>वैदिक नदी</th><th>आधुनिक नाम</th></tr>
-                                        <tr><td>वितस्ता</td><td>झेलम</td><td>परुष्णी</td><td>रावी</td></tr>
-                                        <tr><td>असिकनी</td><td>चिनाब</td><td>विपाशा</td><td>व्यास</td></tr>
-                                        <tr><td>शुतुद्री</td><td>सतलज</td><td>दृषद्वती</td><td>घग्गर</td></tr>
-                                    </table>
-                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "झेलम का पानी वितस्ता कहलाए, रावी तट पर परुष्णी गाए।"</div>
                                 </div>`
                             }
                         ]
@@ -376,37 +366,34 @@
                             {
                                 title: "अध्याय 4: 16 महाजनपद एवं मगध का उत्कर्ष",
                                 html: `<div class="content-block">
-                                    <p>16 महाजनपदों की सूची बौद्ध ग्रंथ <em>अंगुत्तर निकाय</em> तथा जैन ग्रंथ <em>भगवती सूत्र</em> में मिलती है।</p>
-                                    <p><strong>मगध साम्राज्य के प्रथम राजवंश (Trick: HASIN MASHUKA):</strong></p>
+                                    <p><strong>मगध साम्राज्य के राजवंश (Trick: HASIN MASHUKA):</strong></p>
                                     <ul>
-                                        <li><strong>1. हर्यक वंश:</strong> बिम्बिसार (संस्थापक), अजातशत्रु (पितृहंता), उदयन (पाटलिपुत्र की स्थापना)।</li>
-                                        <li><strong>2. शिशुनाग वंश:</strong> शिशुनाग (वैशाली को राजधानी बनाया), कालाशोक (द्वितीय बौद्ध संगीति)।</li>
-                                        <li><strong>3. नंद वंश:</strong> महापद्मानंद (सर्वक्षत्रान्तक/एकराट), घनानंद (अंतिम शासक, सिकंदर का समकालीन)।</li>
+                                        <li><strong>1. हर्यक वंश:</strong> बिम्बिसार (संस्थापक), अजातशत्रु, उदयन (पाटलिपुत्र की स्थापना)।</li>
+                                        <li><strong>2. शिशुनाग वंश:</strong> शिशुनाग, कालाशोक।</li>
+                                        <li><strong>3. नंद वंश:</strong> महापद्मानंद, घनानंद।</li>
                                     </ul>
                                 </div>`
                             },
                             {
                                 title: "अध्याय 5: बौद्ध एवं जैन धर्म",
                                 html: `<div class="content-block">
-                                    <p><strong>गौतम बुद्ध (बौद्ध धर्म):</strong> जन्म - लुम्बिनी, ज्ञान - बोधगया, प्रथम उपदेश - सारनाथ (धर्मचक्रप्रवर्तन), महापरिनिर्वाण - कुशीनगर।</p>
+                                    <p><strong>गौतम बुद्ध:</strong> जन्म - लुम्बिनी, ज्ञान - बोधगया, प्रथम उपदेश - सारनाथ, महापरिनिर्वाण - कुशीनगर।</p>
                                     <table class="data-table">
-                                        <tr><th>संगीति</th><th>स्थान</th><th>अध्यक्ष</th><th>शासक</th></tr>
-                                        <tr><td>प्रथम (483 BC)</td><td>राजगृह</td><td>महाकश्यप</td><td>अजातशत्रु</td></tr>
-                                        <tr><td>द्वितीय (383 BC)</td><td>वैशाली</td><td>सबकामी</td><td>कालाशोक</td></tr>
-                                        <tr><td>तृतीय (250 BC)</td><td>पाटलिपुत्र</td><td>मोग्गलिपुत्त तिस्स</td><td>अशोक</td></tr>
-                                        <tr><td>चतुर्थ (1st AD)</td><td>कुण्डलवन (कश्मीर)</td><td>वसुमित्र / अश्वघोष</td><td>कनिष्क</td></tr>
+                                        <tr><th>संगीति</th><th>स्थान</th><th>शासक</th></tr>
+                                        <tr><td>प्रथम (483 BC)</td><td>राजगृह</td><td>अजातशत्रु</td></tr>
+                                        <tr><td>द्वितीय (383 BC)</td><td>वैशाली</td><td>कालाशोक</td></tr>
+                                        <tr><td>तृतीय (250 BC)</td><td>पाटलिपुत्र</td><td>अशोक</td></tr>
+                                        <tr><td>चतुर्थ (1st AD)</td><td>कुण्डलवन</td><td>कनिष्क</td></tr>
                                     </table>
-                                    <div class="trick-box"><strong>💡 Sangeeti Trick (R-V-P-K):</strong> "राजा वैशाली की पाटलिपुत्र कश्मीर गई" | <strong>Raja Trick (A-K-A-K):</strong> "अजात कला के अशोक कनिष्क"</div>
                                 </div>`
                             },
                             {
                                 title: "अध्याय 6: मौर्य साम्राज्य (322 - 185 BC)",
                                 html: `<div class="content-block">
                                     <ul>
-                                        <li><strong>चंद्रगुप्त मौर्य:</strong> चाणक्य की सहायता से घनानंद को पराजित किया। सेल्यूकस निकेटर को हराया। ग्रीक राजदूत <em>मेगस्थनीज</em> ने <strong>इण्डिका (Indica)</strong> लिखी।</li>
-                                        <li><strong>अशोक (268-232 BC):</strong> 261 BC में <em>कलिंग युद्ध</em> लड़ा (13वें शिलालेख में वर्णन)। उपगुप्त से बौद्ध धर्म की दीक्षा ली। शिलालेख पढ़ने वाला प्रथम व्यक्ति - जेम्स प्रिंसेप (1837)।</li>
+                                        <li><strong>चंद्रगुप्त मौर्य:</strong> चाणक्य की सहायता से घनानंद को पराजित किया। <em>मेगस्थनीज</em> ने <strong>इण्डिका</strong> लिखी।</li>
+                                        <li><strong>अशोक:</strong> 261 BC में <em>कलिंग युद्ध</em> लड़ा (13वें शिलालेख में वर्णन)।</li>
                                     </ul>
-                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "13वें शिलालेख ने कलिंग में अशोक का हृदय बदला, प्रिंसेप ने 37 में ब्राह्मी को पढ़ा।"</div>
                                 </div>`
                             }
                         ]
@@ -419,11 +406,57 @@
                                 title: "अध्याय 7: गुप्त साम्राज्य एवं हर्षवर्धन",
                                 html: `<div class="content-block">
                                     <ul>
-                                        <li><strong>श्रीगुप्त:</strong> गुप्त वंश का संस्थापक। चंद्रगुप्त प्रथम (वास्तविक संस्थापक - 319 AD गुप्त संवत)।</li>
-                                        <li><strong>समुद्रगुप्त:</strong> 'भारत का नेपोलियन' (विंसेंट स्मिथ द्वारा)। दरबारी कवि <em>हरिषेण</em> ने प्रयाग प्रशस्ति की रचना की।</li>
-                                        <li><strong>चंद्रगुप्त द्वितीय (विक्रमादित्य):</strong> नवरत्न दरबारी (कालिदास, वराहमिहिर)। चीनी यात्री <em>फाह्यान</em> भारत आया।</li>
-                                        <li><strong>कुमारगुप्त प्रथम:</strong> नालंदा विश्वविद्यालय की स्थापना की।</li>
-                                        <li><strong>हर्षवर्धन (वर्द्धन वंश):</strong> राजधानी कन्नौज। चीनी यात्री <em>ह्वेनसांग (Si-Yu-Ki)</em> इसी के का<!DOCTYPE html>
+                                        <li><strong>समुद्रगुप्त:</strong> 'भारत का नेपोलियन'। प्रयाग प्रशस्ति की रचना हरिषेण ने की।</li>
+                                        <li><strong>चंद्रगुप्त द्वितीय:</strong> नवरत्न दरबारी। चीनी यात्री फाह्यान भारत आया।</li>
+                                        <li><strong>हर्षवर्धन:</strong> चीनी यात्री ह्वेनसांग (Si-Yu-Ki) इसी के काल में आया।</li>
+                                    </ul>
+                                </div>`
+                            },
+                            {
+                                title: "अध्याय 8: दक्षिण भारत के राजवंश",
+                                html: `<div class="content-block">
+                                    <ul>
+                                        <li><strong>राष्ट्रकूट:</strong> कृष्ण प्रथम ने एलोरा का कैलाश मंदिर बनवाया।</li>
+                                        <li><strong>चोल वंश:</strong> राजराज I ने तंजावुर का बृहदीश्वर मंदिर बनवाया।</li>
+                                    </ul>
+                                </div>`
+                            }
+                        ]
+                    }
+                ]
+            },
+            en: {
+                title: "🏛️ Ancient History Master Portal",
+                subtitle: "Comprehensive SSC CGL, CHSL, CPO (2020-2025) TCS Pattern Notes & Official PYQs",
+                lblExam: "🎯 Target Exam:",
+                lblLang: "🌐 Choose Language:",
+                lockMsg: "🔒 Locked: Score 70%+ in the previous phase test to unlock this section.",
+                unlocked: "Unlocked",
+                locked: "Locked",
+                btnTest: "📝 Start Phase PYQ Test (70% Passing Marks Required)",
+                btnNext: "Next Question ➔",
+                phases: [
+                    {
+                        id: 1,
+                        name: "Phase 1: Stone Age to Vedic Period (Chapters 1 - 3)",
+                        chapters: [
+                            {
+                                title: "Chapter 1: Stone Age (Pashan Kaal)",
+                                html: `<div class="content-block">
+                                    <p>The Stone Age in India is classified into three distinct periods:</p>
+                                    <ul>
+                                        <li><strong>1. Paleolithic Age:</strong> Humans were hunters and food gatherers. Discovery of Fire occurred.</li>
+                                        <li><strong>2. Mesolithic Age:</strong> Use of Microliths began. First evidence of Animal Husbandry at Adamgarh and Bagor.</li>
+                                        <li><strong>3. Neolithic Age:</strong> Invention of Agriculture and Wheel. Mehrgarh: Agriculture evidence. Burzahom: Pit dwellings.</li>
+                                    </ul>
+                                </div>`
+                            },
+                            {
+                                title: "Chapter 2: Indus Valley Civilization (2500 - 1750 BC)",
+                                html: `<div class="content-block">
+                                    <table class="data-table">
+                                        <tr><th>Major Site</th><th>River</th><th>Excavator</th><th>Key Findings</th></tr>
+                                        <tr><td>Harappa</td><td>Ravi</td><td>Daya Ram S<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
@@ -514,7 +547,7 @@
             position: relative;
         }
         .phase-card.locked {
-            opacity: 0.5;
+            opacity: 0.55;
             background-color: #0d111c;
             border-color: #1e1b4b;
         }
@@ -531,11 +564,6 @@
         }
         .phase-card.locked .lock-banner {
             display: block;
-        }
-        .phase-card.locked .test-btn {
-            background-color: #374151 !important;
-            color: #9ca3af !important;
-            cursor: not-allowed !important;
         }
         .phase-title {
             color: var(--accent);
@@ -614,6 +642,11 @@
         }
         .test-btn:hover:not(:disabled) {
             background-color: var(--accent-hover);
+        }
+        .test-btn:disabled {
+            background-color: #374151 !important;
+            color: #9ca3af !important;
+            cursor: not-allowed !important;
         }
         .quiz-modal {
             display: none;
@@ -751,45 +784,35 @@
                                 html: `<div class="content-block">
                                     <p>भारत में पाषाण काल को तीन मुख्य भागों में विभाजित किया गया है:</p>
                                     <ul>
-                                        <li><strong>1. पुरापाषाण काल (Paleolithic Age):</strong> मानव मुख्य रूप से शिकारी एवं खाद्य संग्राहक था। आग (Fire) की खोज इसी काल में हुई। <em>भीमबेटका (MP):</em> पुरापाषाण काल के शैल चित्रों के लिए प्रसिद्ध है।</li>
-                                        <li><strong>2. मध्यपाषाण काल (Mesolithic Age):</strong> सूक्ष्म पाषाण औजार (Microliths) का प्रयोग शुरू हुआ। पशुपालन (Animal Husbandry) का प्रथम साक्ष्य <em>आदमगढ़ (MP)</em> तथा <em>बागोर (राजस्थान)</em> से मिला।</li>
-                                        <li><strong>3. नवपाषाण काल (Neolithic Age):</strong> कृषि (Agriculture) एवं पहिए (Wheel) का आविष्कार हुआ। <em>मेहरगढ़ (पाकिस्तान):</em> कृषि का प्रथम साक्ष्य (गेहूं और जौ)। <em>बुर्जहोम (कश्मीर):</em> गर्तवास (Pit dwellings) तथा मालिक के साथ कुत्ते को दफनाने के साक्ष्य।</li>
+                                        <li><strong>1. पुरापाषाण काल (Paleolithic Age):</strong> मानव मुख्य रूप से शिकारी एवं खाद्य संग्राहक था। आग की खोज इसी काल में हुई। <em>भीमबेटका (MP):</em> शैल चित्रों के लिए प्रसिद्ध।</li>
+                                        <li><strong>2. मध्यपाषाण काल (Mesolithic Age):</strong> सूक्ष्म पाषाण औजार (Microliths) का प्रयोग शुरू हुआ। पशुपालन का प्रथम साक्ष्य <em>आदमगढ़ (MP)</em> तथा <em>बागोर (राजस्थान)</em> से मिला।</li>
+                                        <li><strong>3. नवपाषाण काल (Neolithic Age):</strong> कृषि एवं पहिए का आविष्कार हुआ। <em>मेहरगढ़ (पाकिस्तान):</em> कृषि का प्रथम साक्ष्य। <em>बुर्जहोम (कश्मीर):</em> गर्तवास तथा कुत्ते को दफनाने के साक्ष्य।</li>
                                     </ul>
-                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "मेहरगढ़ से मेहरबानी हुई अन्न पर, बुर्जहोम के गड्ढे में कुत्ता सोया मालिक संग।"</div>
+                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "मेहरगढ़ से अन्न मिला, बुर्जहोम के गड्ढे में कुत्ता सोया।"</div>
                                 </div>`
                             },
                             {
                                 title: "अध्याय 2: सिंधु घाटी सभ्यता (Indus Valley Civilization - 2500-1750 BC)",
                                 html: `<div class="content-block">
-                                    <p>यह एक कांस्ययुगीन (Bronze Age) एवं नगरीय सभ्यता (Urban Civilization) थी। नगर नियोजन ग्रिड पद्धति (Grid System) पर आधारित था।</p>
+                                    <p>यह कांस्ययुगीन एवं नगरीय सभ्यता थी। नगर नियोजन ग्रिड पद्धति पर आधारित था।</p>
                                     <table class="data-table">
-                                        <tr><th>प्रमुख स्थल</th><th>नदी</th><th>उत्खननकर्ता (वर्ष)</th><th>प्राप्त महत्वपूर्ण अवशेष</th></tr>
-                                        <tr><td>हड़प्पा</td><td>रावी</td><td>दयाराम साहनी (1921)</td><td>अन्नागार (Granary), आर-37 कब्रिस्तान</td></tr>
-                                        <tr><td>मोहनजोदड़ो</td><td>सिंंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार (Great Bath), कांस्य नर्तकी की मूर्ति</td></tr>
-                                        <tr><td>लोथल</td><td>भोगवा</td><td>एस.आर. राव (1954)</td><td>गोदीवाड़ा (Dockyard), धान की भूसी, हाथीदांत स्केल</td></tr>
-                                        <tr><td>कालीबंगन</td><td>घग्गर</td><td>अम्लानंद घोष / बी.बी. लाल</td><td>जूते हुए खेत के साक्ष्य, बेलनाकार मोहरें, अग्निकुंड</td></tr>
-                                        <tr><td>धोलावीरा</td><td>लूनी</td><td>आर.एस. बिष्ट (1990)</td><td>त्रिस्तरीय नगर विभाजन, विशाल जलाशय (Water Reservoir)</td></tr>
+                                        <tr><th>स्थल</th><th>नदी</th><th>उत्खननकर्ता</th><th>अवशेष</th></tr>
+                                        <tr><td>हड़प्पा</td><td>रावी</td><td>दयाराम साहनी (1921)</td><td>अन्नागार (Granary)</td></tr>
+                                        <tr><td>मोहनजोदड़ो</td><td>सिंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार, कांस्य नर्तकी</td></tr>
+                                        <tr><td>लोथल</td><td>भोगवा</td><td>एस.आर. राव (1954)</td><td>गोदीवाड़ा (Dockyard)</td></tr>
+                                        <tr><td>कालीबंगन</td><td>घग्गर</td><td>बी.बी. लाल / ए. घोष</td><td>जूते हुए खेत के साक्ष्य</td></tr>
                                     </table>
-                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "हड़प्पा रावी तट दया दिखाए, लोथल भोगवा बंदरगाह बनाए।"</div>
                                 </div>`
                             },
                             {
                                 title: "अध्याय 3: वैदिक संस्कृति एवं वेद (1500 - 600 BC)",
                                 html: `<div class="content-block">
-                                    <p>वैदिक काल को ऋग्वैदिक काल (1500-1000 BC) तथा उत्तर वैदिक काल (1000-600 BC) में बाँटा गया है।</p>
                                     <ul>
-                                        <li><strong>ऋग्वेद:</strong> सबसे प्राचीन वेद (10 मण्डल, 1028 सूक्त)। तीसरे मण्डल में <em>गायत्री मन्त्र</em> (विश्वामित्र द्वारा रचित)। 10वें मण्डल में पुरुषसूक्त (वर्ण व्यवस्था)।</li>
+                                        <li><strong>ऋग्वेद:</strong> सबसे प्राचीन वेद (10 मण्डल, 1028 सूक्त)। तीसरे मण्डल में <em>गायत्री मन्त्र</em>।</li>
                                         <li><strong>सामवेद:</strong> भारतीय संगीत का जनक।</li>
                                         <li><strong>यजुर्वेद:</strong> गद्य एवं पद्य दोनों में रचित (यज्ञीय अनुष्ठान)।</li>
-                                        <li><strong>अथर्ववेद:</strong> औषधि, जादू-टोना, और वशीकरण से संबंधित।</li>
+                                        <li><strong>अथर्ववेद:</strong> औषधि, जादू-टोना से संबंधित।</li>
                                     </ul>
-                                    <table class="data-table">
-                                        <tr><th>वैदिक नदी</th><th>आधुनिक नाम</th><th>वैदिक नदी</th><th>आधुनिक नाम</th></tr>
-                                        <tr><td>वितस्ता</td><td>झेलम</td><td>परुष्णी</td><td>रावी</td></tr>
-                                        <tr><td>असिकनी</td><td>चिनाब</td><td>विपाशा</td><td>व्यास</td></tr>
-                                        <tr><td>शुतुद्री</td><td>सतलज</td><td>दृषद्वती</td><td>घग्गर</td></tr>
-                                    </table>
-                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "झेलम का पानी वितस्ता कहलाए, रावी तट पर परुष्णी गाए।"</div>
                                 </div>`
                             }
                         ]
@@ -801,37 +824,34 @@
                             {
                                 title: "अध्याय 4: 16 महाजनपद एवं मगध का उत्कर्ष",
                                 html: `<div class="content-block">
-                                    <p>16 महाजनपदों की सूची बौद्ध ग्रंथ <em>अंगुत्तर निकाय</em> तथा जैन ग्रंथ <em>भगवती सूत्र</em> में मिलती है।</p>
-                                    <p><strong>मगध साम्राज्य के प्रथम राजवंश (Trick: HASIN MASHUKA):</strong></p>
+                                    <p><strong>मगध साम्राज्य के राजवंश (Trick: HASIN MASHUKA):</strong></p>
                                     <ul>
-                                        <li><strong>1. हर्यक वंश:</strong> बिम्बिसार (संस्थापक), अजातशत्रु (पितृहंता), उदयन (पाटलिपुत्र की स्थापना)।</li>
-                                        <li><strong>2. शिशुनाग वंश:</strong> शिशुनाग (वैशाली को राजधानी बनाया), कालाशोक (द्वितीय बौद्ध संगीति)।</li>
-                                        <li><strong>3. नंद वंश:</strong> महापद्मानंद (सर्वक्षत्रान्तक/एकराट), घनानंद (अंतिम शासक, सिकंदर का समकालीन)।</li>
+                                        <li><strong>1. हर्यक वंश:</strong> बिम्बिसार (संस्थापक), अजातशत्रु, उदयन (पाटलिपुत्र की स्थापना)।</li>
+                                        <li><strong>2. शिशुनाग वंश:</strong> शिशुनाग, कालाशोक।</li>
+                                        <li><strong>3. नंद वंश:</strong> महापद्मानंद, घनानंद।</li>
                                     </ul>
                                 </div>`
                             },
                             {
                                 title: "अध्याय 5: बौद्ध एवं जैन धर्म",
                                 html: `<div class="content-block">
-                                    <p><strong>गौतम बुद्ध (बौद्ध धर्म):</strong> जन्म - लुम्बिनी, ज्ञान - बोधगया, प्रथम उपदेश - सारनाथ (धर्मचक्रप्रवर्तन), महापरिनिर्वाण - कुशीनगर।</p>
+                                    <p><strong>गौतम बुद्ध:</strong> जन्म - लुम्बिनी, ज्ञान - बोधगया, प्रथम उपदेश - सारनाथ, महापरिनिर्वाण - कुशीनगर।</p>
                                     <table class="data-table">
-                                        <tr><th>संगीति</th><th>स्थान</th><th>अध्यक्ष</th><th>शासक</th></tr>
-                                        <tr><td>प्रथम (483 BC)</td><td>राजगृह</td><td>महाकश्यप</td><td>अजातशत्रु</td></tr>
-                                        <tr><td>द्वितीय (383 BC)</td><td>वैशाली</td><td>सबकामी</td><td>कालाशोक</td></tr>
-                                        <tr><td>तृतीय (250 BC)</td><td>पाटलिपुत्र</td><td>मोग्गलिपुत्त तिस्स</td><td>अशोक</td></tr>
-                                        <tr><td>चतुर्थ (1st AD)</td><td>कुण्डलवन (कश्मीर)</td><td>वसुमित्र / अश्वघोष</td><td>कनिष्क</td></tr>
+                                        <tr><th>संगीति</th><th>स्थान</th><th>शासक</th></tr>
+                                        <tr><td>प्रथम (483 BC)</td><td>राजगृह</td><td>अजातशत्रु</td></tr>
+                                        <tr><td>द्वितीय (383 BC)</td><td>वैशाली</td><td>कालाशोक</td></tr>
+                                        <tr><td>तृतीय (250 BC)</td><td>पाटलिपुत्र</td><td>अशोक</td></tr>
+                                        <tr><td>चतुर्थ (1st AD)</td><td>कुण्डलवन</td><td>कनिष्क</td></tr>
                                     </table>
-                                    <div class="trick-box"><strong>💡 Sangeeti Trick (R-V-P-K):</strong> "राजा वैशाली की पाटलिपुत्र कश्मीर गई" | <strong>Raja Trick (A-K-A-K):</strong> "अजात कला के अशोक कनिष्क"</div>
                                 </div>`
                             },
                             {
                                 title: "अध्याय 6: मौर्य साम्राज्य (322 - 185 BC)",
                                 html: `<div class="content-block">
                                     <ul>
-                                        <li><strong>चंद्रगुप्त मौर्य:</strong> चाणक्य की सहायता से घनानंद को पराजित किया। सेल्यूकस निकेटर को हराया। ग्रीक राजदूत <em>मेगस्थनीज</em> ने <strong>इण्डिका (Indica)</strong> लिखी।</li>
-                                        <li><strong>अशोक (268-232 BC):</strong> 261 BC में <em>कलिंग युद्ध</em> लड़ा (13वें शिलालेख में वर्णन)। उपगुप्त से बौद्ध धर्म की दीक्षा ली। शिलालेख पढ़ने वाला प्रथम व्यक्ति - जेम्स प्रिंसेप (1837)।</li>
+                                        <li><strong>चंद्रगुप्त मौर्य:</strong> चाणक्य की सहायता से घनानंद को पराजित किया। <em>मेगस्थनीज</em> ने <strong>इण्डिका</strong> लिखी।</li>
+                                        <li><strong>अशोक:</strong> 261 BC में <em>कलिंग युद्ध</em> लड़ा (13वें शिलालेख में वर्णन)।</li>
                                     </ul>
-                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "13वें शिलालेख ने कलिंग में अशोक का हृदय बदला, प्रिंसेप ने 37 में ब्राह्मी को पढ़ा।"</div>
                                 </div>`
                             }
                         ]
@@ -844,23 +864,19 @@
                                 title: "अध्याय 7: गुप्त साम्राज्य एवं हर्षवर्धन",
                                 html: `<div class="content-block">
                                     <ul>
-                                        <li><strong>श्रीगुप्त:</strong> गुप्त वंश का संस्थापक। चंद्रगुप्त प्रथम (वास्तविक संस्थापक - 319 AD गुप्त संवत)।</li>
-                                        <li><strong>समुद्रगुप्त:</strong> 'भारत का नेपोलियन' (विंसेंट स्मिथ द्वारा)। दरबारी कवि <em>हरिषेण</em> ने प्रयाग प्रशस्ति की रचना की।</li>
-                                        <li><strong>चंद्रगुप्त द्वितीय (विक्रमादित्य):</strong> नवरत्न दरबारी (कालिदास, वराहमिहिर)। चीनी यात्री <em>फाह्यान</em> भारत आया।</li>
-                                        <li><strong>कुमारगुप्त प्रथम:</strong> नालंदा विश्वविद्यालय की स्थापना की।</li>
-                                        <li><strong>हर्षवर्धन (वर्द्धन वंश):</strong> राजधानी कन्नौज। चीनी यात्री <em>ह्वेनसांग (Si-Yu-Ki)</em> इसी के काल में आया।</li>
+                                        <li><strong>समुद्रगुप्त:</strong> 'भारत का नेपोलियन'। प्रयाग प्रशस्ति की रचना हरिषेण ने की।</li>
+                                        <li><strong>चंद्रगुप्त द्वितीय:</strong> नवरत्न दरबारी। चीनी यात्री फाह्यान भारत आया।</li>
+                                        <li><strong>हर्षवर्धन:</strong> चीनी यात्री ह्वेनसांग (Si-Yu-Ki) इसी के काल में आया।</li>
                                     </ul>
                                 </div>`
                             },
                             {
-                                title: "अध्याय 8: दक्षिण भारत के प्रमुख राजवंश एवं मंदिर स्थापत्य",
+                                title: "अध्याय 8: दक्षिण भारत के राजवंश",
                                 html: `<div class="content-block">
-                                    <table class="data-table">
-                                        <tr><th>राजवंश</th><th>संस्थापक / प्रमुख शासक</th><th>प्रसिद्ध मंदिर / निर्माण</th></tr>
-                                        <tr><td>राष्ट्रकूट</td><td>दंतिदुर्ग / कृष्ण प्रथम</td><td>एलोरा का कैलाश मंदिर (एकाश्म शैली)</td></tr>
-                                        <tr><td>चोल वंश</td><td>विजयालय / राजराज I</td><td>तंजावुर का बृहदीश्वर मंदिर (द्रविड़ शैली)</td></tr>
-                                        <tr><td>पल्लव वंश</td><td>सिंहविष्णु / नरसिंहवर्मन I</td><td>महाबलीपुरम का रथ मंदिर (सप्त पैगोडा)</td></tr>
-                                    </table>
+                                    <ul>
+                                        <li><strong>राष्ट्रकूट:</strong> कृष्ण प्रथम ने एलोरा का कैलाश मंदिर बनवाया।</li>
+                                        <li><strong>चोल वंश:</strong> राजराज I ने तंजावुर का बृहदीश्वर मंदिर बनवाया।</li>
+                                    </ul>
                                 </div>`
                             }
                         ]
@@ -887,36 +903,29 @@
                                 html: `<div class="content-block">
                                     <p>The Stone Age in India is classified into three distinct periods:</p>
                                     <ul>
-                                        <li><strong>1. Paleolithic Age (Old Stone Age):</strong> Humans were hunters and food gatherers. Discovery of Fire occurred during this age. <em>Bhimbetka (MP):</em> World-famous for prehistoric rock cave paintings.</li>
-                                        <li><strong>2. Mesolithic Age (Middle Stone Age):</strong> Characterized by Microliths (small stone tools). First evidence of Animal Husbandry found at <em>Adamgarh (MP)</em> and <em>Bagor (Rajasthan)</em>.</li>
-                                        <li><strong>3. Neolithic Age (New Stone Age):</strong> Invention of Agriculture and Wheel. <em>Mehrgarh (Pakistan):</em> Earliest evidence of farming (Wheat & Barley). <em>Burzahom (Kashmir):</em> Pit dwellings and dogs buried with masters.</li>
+                                        <li><strong>1. Paleolithic Age:</strong> Humans were hunters and food gatherers. Discovery of Fire occurred.</li>
+                                        <li><strong>2. Mesolithic Age:</strong> Use of Microliths began. First evidence of Animal Husbandry at Adamgarh and Bagor.</li>
+                                        <li><strong>3. Neolithic Age:</strong> Invention of Agriculture and Wheel. Mehrgarh: Agriculture evidence. Burzahom: Pit dwellings.</li>
                                     </ul>
-                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "Mehrgarh birthed Wheat & Grain, Burzahom pits sheltered Dogs in rain."</div>
                                 </div>`
                             },
                             {
                                 title: "Chapter 2: Indus Valley Civilization (2500 - 1750 BC)",
                                 html: `<div class="content-block">
-                                    <p>A Bronze Age Urban Civilization known for its advanced Grid System town planning and drainage systems.</p>
                                     <table class="data-table">
-                                        <tr><th>Major Site</th><th>River</th><th>Excavator (Year)</th><th>Key Findings</th></tr>
-                                        <tr><td>Harappa</td><td>Ravi</td><td>Daya Ram Sahni (1921)</td><td>Great Granary, R-37 Cemetery</td></tr>
+                                        <tr><th>Major Site</th><th>River</th><th>Excavator</th><th>Key Findings</th></tr>
+                                        <tr><td>Harappa</td><td>Ravi</td><td>Daya Ram Sahni (1921)</td><td>Great Granary</td></tr>
                                         <tr><td>Mohenjodaro</td><td>Indus</td><td>R.D. Banerji (1922)</td><td>Great Bath, Bronze Dancing Girl</td></tr>
-                                        <tr><td>Lothal</td><td>Bhogava</td><td>S.R. Rao (1954)</td><td>Tidal Dockyard, Rice husk, Ivory Scale</td></tr>
-                                        <tr><td>Kalibangan</td><td>Ghaggar</td><td>A. Ghosh / B.B. Lal</td><td>Ploughed field, Fire altars, Black bangles</td></tr>
-                                        <tr><td>Dholavira</td><td>Luni</td><td>R.S. Bisht (1990)</td><td>3-tier town division, Giant Water Reservoir</td></tr>
+                                        <tr><td>Lothal</td><td>Bhogava</td><td>S.R. Rao (1954)</td><td>Tidal Dockyard</td></tr>
                                     </table>
                                 </div>`
                             },
                             {
                                 title: "Chapter 3: Vedic Culture & Vedas (1500 - 600 BC)",
                                 html: `<div class="content-block">
-                                    <p>Divided into Rigvedic Age (1500-1000 BC) and Later Vedic Age (1000-600 BC).</p>
                                     <ul>
-                                        <li><strong>Rigveda:</strong> Oldest Veda (10 Mandalas, 1028 Hymns). <em>Gayatri Mantra</em> in 3rd Mandala (composed by Vishwamitra). Purusha Sukta (Varna system) in 10th Mandala.</li>
+                                        <li><strong>Rigveda:</strong> Oldest Veda. Gayatri Mantra in 3rd Mandala.</li>
                                         <li><strong>Samaveda:</strong> Origin of Indian Classical Music.</li>
-                                        <li><strong>Yajurveda:</strong> Rituals and Sacrifices (Prose and Verse).</li>
-                                        <li><strong>Atharvaveda:</strong> Charms, Spells, Medicine, and Magic.</li>
                                     </ul>
                                 </div>`
                             }
@@ -927,65 +936,30 @@
                         name: "Phase 2: Mahajanapadas to Mauryan Empire (Chapters 4 - 6)",
                         chapters: [
                             {
-                                title: "Chapter 4: 16 Mahajanapadas & Rise of Magadha",
-                                html: `<div class="content-block">
-                                    <p>16 Mahajanapadas are mentioned in Buddhist text <em>Anguttara Nikaya</em> and Jain text <em>Bhagavati Sutra</em>.</p>
-                                    <p><strong>Magadha Dynasties Sequence (Trick: HASIN MASHUKA):</strong></p>
-                                    <ul>
-                                        <li><strong>1. Haryanka Dynasty:</strong> Bimbisara (Founder), Ajatashatru, Udayin (Founded Pataliputra).</li>
-                                        <li><strong>2. Shishunaga Dynasty:</strong> Shishunaga, Kalasoka (2nd Buddhist Council).</li>
-                                        <li><strong>3. Nanda Dynasty:</strong> Mahapadma Nanda (Ekarat), Dhanananda (Contemporary of Alexander).</li>
-                                    </ul>
-                                </div>`
+                                title: "Chapter 4: 16 Mahajanapadas & Magadha",
+                                html: `<div class="content-block"><p>Magadha Dynasties: Haryanka, Shishunaga, Nanda.</p></div>`
                             },
                             {
                                 title: "Chapter 5: Buddhism & Jainism",
-                                html: `<div class="content-block">
-                                    <p><strong>Gautama Buddha:</strong> Birth - Lumbini, Enlightenment - Bodh Gaya, 1st Sermon - Sarnath (Dharmachakrapravartana), Death - Kushinagar.</p>
-                                    <table class="data-table">
-                                        <tr><th>Council</th><th>Venue</th><th>Chairman</th><th>Patron King</th></tr>
-                                        <tr><td>1st (483 BC)</td><td>Rajgir</td><td>Mahakasyapa</td><td>Ajatashatru</td></tr>
-                                        <tr><td>2nd (383 BC)</td><td>Vaishali</td><td>Sabakami</td><td>Kalasoka</td></tr>
-                                        <tr><td>3rd (250 BC)</td><td>Pataliputra</td><td>Moggaliputta Tissa</td><td>Ashoka</td></tr>
-                                        <tr><td>4th (1st AD)</td><td>Kashmir</td><td>Vasumitra / Asvaghosha</td><td>Kanishka</td></tr>
-                                    </table>
-                                </div>`
+                                html: `<div class="content-block"><p>Gautama Buddha: Birth - Lumbini, Sermon - Sarnath, Death - Kushinagar.</p></div>`
                             },
                             {
                                 title: "Chapter 6: Mauryan Empire (322 - 185 BC)",
-                                html: `<div class="content-block">
-                                    <ul>
-                                        <li><strong>Chandragupta Maurya:</strong> Defeated Dhanananda with Chanakya's help. Greek ambassador <em>Megasthenes</em> wrote <strong>Indica</strong>.</li>
-                                        <li><strong>Ashoka (268-232 BC):</strong> Fought <em>Kalinga War (261 BC)</em> recorded in 13th Major Rock Edict. Converted to Buddhism by Upagupta. Edicts deciphered by James Prinsep in 1837.</li>
-                                    </ul>
-                                </div>`
+                                html: `<div class="content-block"><p>Chandragupta Maurya & Ashoka (Kalinga War 261 BC).</p></div>`
                             }
                         ]
                     },
                     {
                         id: 3,
-                        name: "Phase 3: Gupta Empire & South Indian Dynasties (Chapters 7 - 8)",
+                        name: "Phase 3: Gupta Empire & South Dynasties (Chapters 7 - 8)",
                         chapters: [
                             {
                                 title: "Chapter 7: Gupta Empire & Harshavardhana",
-                                html: `<div class="content-block">
-                                    <ul>
-                                        <li><strong>Samudragupta:</strong> Known as 'Napoleon of India' (by V.A. Smith). Prayag Prashasti written by Harishena.</li>
-                                        <li><strong>Chandragupta II (Vikramaditya):</strong> Navratnas court (Kalidasa, Varahamihira). Chinese pilgrim <em>Fahien</em> visited.</li>
-                                        <li><strong>Harshavardhana:</strong> Capital Kannauj. Chinese traveler <em>Hiuen Tsang (Si-Yu-Ki)</em> visited during his reign.</li>
-                                    </ul>
-                                </div>`
+                                html: `<div class="content-block"><p>Samudragupta (Napoleon of India) & Chandragupta II.</p></div>`
                             },
                             {
-                                title: "Chapter 8: South Indian Dynasties & Temple Architecture",
-                                html: `<div class="content-block">
-                                    <table class="data-table">
-                                        <tr><th>Dynasty</th><th>Ruler</th><th>Monuments / Temples</th></tr>
-                                        <tr><td>Rashtrakuta</td><td>Krishna I</td><td>Kailash Temple at Ellora (Monolithic)</td></tr>
-                                        <tr><td>Chola</td><td>Rajaraja I</td><td>Brihadeeswarar Temple at Thanjavur (Dravidian)</td></tr>
-                                        <tr><td>Pallava</td><td>Narasimhavarman I</td><td>Ratha Temples at Mamallapuram</td></tr>
-                                    </table>
-                                </div>`
+                                title: "Chapter 8: South Indian Dynasties",
+                                html: `<div class="content-block"><p>Rashtrakuta (Kailash Temple) & Cholas (Brihadeeswarar Temple).</p></div>`
                             }
                         ]
                     }
@@ -995,25 +969,25 @@
 
         const pyqTests = {
             1: [
-                { q: "Harappan site 'Lothal' was situated on the banks of which river? (SSC CGL 2023)", options: ["Bhogava", "Ravi", "Indus", "Ghaggar"], correct: 0, exp: "Lothal in Gujarat was situated on the Bhogava river. It served as the prominent tidal dockyard of IVC." },
-                { q: "The Gayatri Mantra is found in which Mandal of the Rigveda? (SSC CGL 2021)", options: ["1st Mandal", "3rd Mandal", "7th Mandal", "10th Mandal"], correct: 1, exp: "Gayatri Mantra is in 3rd Mandal, composed by Maharshi Vishwamitra and dedicated to Savitr (Sun God)." },
-                { q: "In which state are the prehistoric cave paintings of Bhimbetka located? (SSC CHSL 2022)", options: ["Madhya Pradesh", "Rajasthan", "Uttar Pradesh", "Bihar"], correct: 0, exp: "Bhimbetka caves are located in Raisen district of Madhya Pradesh." },
-                { q: "Evidence of 'Ploughed Fields' in Indus Valley Civilization was discovered at: (SSC CPO 2023)", options: ["Mohenjodaro", "Kalibangan", "Dholavira", "Lothal"], correct: 1, exp: "Kalibangan (Rajasthan) yielded evidence of ploughed agricultural fields and fire altars." },
-                { q: "What was the ancient Vedic name of the Jhelum River? (SSC CGL 2024)", options: ["Vitasta", "Parushni", "Asikni", "Sutudri"], correct: 0, exp: "Jhelum = Vitasta, Ravi = Parushni, Chenab = Asikni, Satluj = Sutudri." }
+                { q: "Harappan site 'Lothal' was situated on the banks of which river? (SSC CGL 2023)", options: ["Bhogava", "Ravi", "Indus", "Ghaggar"], correct: 0, exp: "Lothal in Gujarat was situated on the Bhogava river." },
+                { q: "Gayatri Mantra is in which Mandal of Rigveda? (SSC CGL 2021)", options: ["1st Mandal", "3rd Mandal", "7th Mandal", "10th Mandal"], correct: 1, exp: "Gayatri Mantra is in 3rd Mandal, composed by Vishwamitra." },
+                { q: "Bhimbetka cave paintings are located in which state? (SSC CHSL 2022)", options: ["Madhya Pradesh", "Rajasthan", "Uttar Pradesh", "Bihar"], correct: 0, exp: "Bhimbetka is in MP." },
+                { q: "Ploughed fields evidence was found at: (SSC CPO 2023)", options: ["Mohenjodaro", "Kalibangan", "Dholavira", "Lothal"], correct: 1, exp: "Kalibangan (Rajasthan) yielded ploughed fields." },
+                { q: "Ancient Vedic name of Jhelum River? (SSC CGL 2024)", options: ["Vitasta", "Parushni", "Asikni", "Sutudri"], correct: 0, exp: "Jhelum = Vitasta." }
             ],
             2: [
-                { q: "Under whose reign was the First Buddhist Council held in 483 BC? (SSC CGL 2024)", options: ["Ajatashatru", "Kalasoka", "Ashoka", "Kanishka"], correct: 0, exp: "First Buddhist Council was held at Rajgir presided by Mahakasyapa under king Ajatashatru." },
-                { q: "Megasthenes, who visited the court of Chandragupta Maurya, was the ambassador of: (SSC CHSL 2023)", options: ["Seleucus Nicator", "Alexander", "Darius", "Antiochus"], correct: 0, exp: "Megasthenes was sent by Seleucus Nicator and wrote 'Indica'." },
-                { q: "In which year did Ashoka fight the famous Kalinga War? (SSC CGL 2022)", options: ["261 BC", "326 BC", "232 BC", "185 BC"], correct: 0, exp: "Ashoka fought Kalinga War in 261 BC (8th year of coronation) mentioned in 13th Major Rock Edict." },
-                { q: "Information about 16 Mahajanapadas is found in which Buddhist text? (SSC CPO 2022)", options: ["Anguttara Nikaya", "Tripitaka", "Mahavamsa", "Jataka"], correct: 0, exp: "Anguttara Nikaya (Buddhist) and Bhagavati Sutra (Jain) list the 16 Mahajanapadas." },
-                { q: "24th Tirthankara Vardhaman Mahavira was born at which place? (SSC CGL 2020)", options: ["Vaishali (Kundagrama)", "Lumbini", "Pataliputra", "Bodh Gaya"], correct: 0, exp: "Mahavira Swami was born in Kundagrama near Vaishali." }
+                { q: "First Buddhist Council in 483 BC was held under? (SSC CGL 2024)", options: ["Ajatashatru", "Kalasoka", "Ashoka", "Kanishka"], correct: 0, exp: "Held at Rajgir under Ajatashatru." },
+                { q: "Megasthenes was ambassador of: (SSC CHSL 2023)", options: ["Seleucus Nicator", "Alexander", "Darius", "Antiochus"], correct: 0, exp: "Megasthenes wrote Indica." },
+                { q: "Ashoka fought Kalinga War in: (SSC CGL 2022)", options: ["261 BC", "326 BC", "232 BC", "185 BC"], correct: 0, exp: "Kalinga War was fought in 261 BC." },
+                { q: "Information about 16 Mahajanapadas is in: (SSC CPO 2022)", options: ["Anguttara Nikaya", "Tripitaka", "Mahavamsa", "Jataka"], correct: 0, exp: "Mentioned in Anguttara Nikaya." },
+                { q: "24th Tirthankara Mahavira was born at: (SSC CGL 2020)", options: ["Vaishali (Kundagrama)", "Lumbini", "Pataliputra", "Bodh Gaya"], correct: 0, exp: "Born at Kundagrama near Vaishali." }
             ],
             3: [
-                { q: "Which Gupta ruler was referred to as 'Napoleon of India' by V.A. Smith? (SSC CGL 2023)", options: ["Samudragupta", "Chandragupta II", "Skandagupta", "Kumaragupta"], correct: 0, exp: "Samudragupta was titled 'Napoleon of India'. Harishena composed his Prayag Prashasti." },
-                { q: "The famous Kailash Temple at Ellora was built by which Rashtrakuta King? (SSC CGL 2021)", options: ["Krishna I", "Amoghavarsha", "Dantidurga", "Govinda III"], correct: 0, exp: "Rashtrakuta king Krishna I built the monolithic rock-cut Kailash Temple at Ellora." },
-                { q: "Chinese traveler Hiuen Tsang visited India during the reign of: (SSC CHSL 2022)", options: ["Harshavardhana", "Chandragupta II", "Samudragupta", "Kanishka"], correct: 0, exp: "Hiuen Tsang came during Harshavardhana's reign and wrote 'Si-Yu-Ki'." },
-                { q: "Nalanda University was established by which Gupta ruler? (SSC CPO 2023)", options: ["Kumaragupta I", "Skandagupta", "Chandragupta I", "Bhanugupta"], correct: 0, exp: "Kumaragupta I founded Nalanda University in the 5th century AD." },
-                { q: "Who constructed the famous Brihadeeswarar Temple at Thanjavur? (SSC CGL 2024)", options: ["Rajaraja Chola I", "Rajendra Chola", "Karikala", "Narasimhavarman"], correct: 0, exp: "Chola king Rajaraja I constructed the Brihadeeswarar Temple in Dravidian architecture." }
+                { q: "Which Gupta ruler was referred to as 'Napoleon of India'? (SSC CGL 2023)", options: ["Samudragupta", "Chandragupta II", "Skandagupta", "Kumaragupta"], correct: 0, exp: "Samudragupta was titled Napoleon of India." },
+                { q: "Kailash Temple at Ellora was built by: (SSC CGL 2021)", options: ["Krishna I", "Amoghavarsha", "Dantidurga", "Govinda III"], correct: 0, exp: "Built by Rashtrakuta king Krishna I." },
+                { q: "Hiuen Tsang visited India during the reign of: (SSC CHSL 2022)", options: ["Harshavardhana", "Chandragupta II", "Samudragupta", "Kanishka"], correct: 0, exp: "Visited during Harshavardhana's reign." },
+                { q: "Nalanda University was established by: (SSC CPO 2023)", options: ["Kumaragupta I", "Skandagupta", "Chandragupta I", "Bhanugupta"], correct: 0, exp: "Founded by Kumaragupta I." },
+                { q: "Brihadeeswarar Temple at Thanjavur was built by: (SSC CGL 2024)", options: ["Rajaraja Chola I", "Rajendra Chola", "Karikala", "Narasimhavarman"], correct: 0, exp: "Constructed by Rajaraja Chola I." }
             ]
         };
 
@@ -1059,7 +1033,7 @@
                         </span>
                     </div>
                     ${chsHtml}
-                    <button class="test-btn" ${isUnlocked ? '' : 'disabled="true"'} onclick="startPhaseTest(${phase.id})">
+                    <button class="test-btn" ${isUnlocked ? '' : 'disabled'} onclick="startPhaseTest(${phase.id})">
                         ${data.btnTest}
                     </button>
                 `;
@@ -1134,11 +1108,11 @@
             } else {
                 const percentage = (currentScore / 100) * 100;
                 if(percentage >= 70) {
-                    alert(`🎉 Excellent! You scored ${percentage}% and passed Phase ${currentActivePhase}!`);
+                    alert(`🎉 Shaandar! Aapne ${percentage}% score karke Phase ${currentActivePhase} clear kar liya!`);
                     localStorage.setItem(`phase${currentActivePhase + 1}_unlocked`, "true");
                     renderPage();
                 } else {
-                    alert(`❌ Your score is ${percentage}%. You need at least 70% to unlock the next phase. Try again!`);
+                    alert(`❌ Aapka score ${percentage}% hai. Phase unlock karne ke liye minimum 70% chahiye. Phir se attempt karein!`);
                 }
                 document.getElementById('quiz-modal').classList.remove('active');
             }
