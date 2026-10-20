@@ -3,52 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Exam Master Portal - All Unlocked</title>
+    <title>Selection Engine 🚀 - 100% Selection Guarantee Master Portal</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
-        .container { max-width: 950px; margin: auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.6); }
-        h1, h2, h3 { color: #38bdf8; text-align: center; }
-        .motto { text-align: center; color: #4ade80; font-weight: bold; margin-bottom: 25px; }
-        .exam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
-        .exam-card { background: #334155; padding: 15px; border-radius: 8px; text-align: center; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
-        .exam-card:hover, .exam-card.active { border-color: #38bdf8; background: #1e293b; }
-        .subject-tabs { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap; }
-        .tab-btn { background: #334155; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold; }
-        .tab-btn.active { background: #0284c7; }
-        .card { background: #334155; padding: 20px; margin: 15px 0; border-radius: 8px; border-left: 5px solid #38bdf8; }
-        .btn { background: #0284c7; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0b0f19; color: #f1f5f9; margin: 0; padding: 15px; line-height: 1.7; }
+        .container { max-width: 1100px; margin: auto; background: #131c2e; padding: 25px; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); border: 1px solid #1e293b; }
+        
+        .header { text-align: center; border-bottom: 2px solid #1e293b; padding-bottom: 20px; margin-bottom: 25px; }
+        h1 { color: #38bdf8; font-size: 28px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+        .motto { background: linear-gradient(90deg, #10b981, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-size: 18px; }
+
+        /* Banner */
+        .guarantee-banner { background: #064e3b; border: 2px dashed #10b981; border-radius: 10px; padding: 12px; text-align: center; color: #a7f3d0; font-weight: bold; margin-bottom: 20px; font-size: 15px; }
+
+        /* Exam Grid Selector */
+        .exam-section { background: #0f172a; padding: 18px; border-radius: 12px; border: 1px solid #38bdf8; margin-bottom: 25px; }
+        .section-title { font-size: 16px; font-weight: bold; color: #facc15; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .exam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+        .exam-card { background: #1e293b; padding: 14px; border-radius: 8px; text-align: center; cursor: pointer; border: 2px solid transparent; transition: 0.3s; font-weight: bold; font-size: 15px; }
+        .exam-card:hover, .exam-card.active { border-color: #38bdf8; background: #0284c7; color: #fff; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+
+        /* Subject Selector */
+        .subject-tabs { display: flex; gap: 10px; margin-bottom: 25px; justify-content: center; flex-wrap: wrap; }
+        .tab-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 12px 22px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 15px; transition: 0.3s; }
+        .tab-btn:hover, .tab-btn.active { background: #38bdf8; color: #0f172a; border-color: #38bdf8; font-size: 16px; }
+
+        /* Cards & Content */
+        .card { background: #1e293b; padding: 22px; margin: 18px 0; border-radius: 12px; border-left: 6px solid #38bdf8; border-top: 1px solid #334155; border-right: 1px solid #334155; border-bottom: 1px solid #334155; }
+        .card h3 { margin-top: 0; color: #f8fafc; font-size: 20px; }
+        
+        .btn { background: #0284c7; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.2s; }
         .btn:hover { background: #0369a1; }
         .btn-test { background: #16a34a; margin-left: 10px; }
         .btn-test:hover { background: #15803d; }
-        .trick-box { background: #064e3b; color: #a7f3d0; padding: 12px; border-radius: 6px; margin: 10px 0; font-weight: bold; line-height: 1.6; }
-        .theory-box { background: #1e293b; padding: 15px; border-radius: 6px; line-height: 1.7; }
-        .option-label { display: block; background: #475569; padding: 10px 14px; margin: 8px 0; border-radius: 6px; cursor: pointer; }
-        .option-label:hover { background: #64748b; }
-    </style>
 
-    <script src="history_data.js"></script>
-    <script src="geography_data.js"></script>
-    <script src="polity_data.js"></script>
-    <script src="economics_data.js"></script>
+        /* Content Modules */
+        .trick-box { background: #022c22; color: #6ee7b7; padding: 15px; border-radius: 8px; margin: 15px 0; font-weight: bold; border-left: 4px solid #10b981; }
+        .pyq-box { background: #172554; color: #93c5fd; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #3b82f6; }
+        .theory-box { background: #0f172a; padding: 20px; border-radius: 8px; border: 1px solid #334155; font-size: 15px; line-height: 1.8; }
+        .theory-box h4 { color: #facc15; margin-top: 18px; margin-bottom: 8px; font-size: 17px; border-bottom: 1px solid #334155; padding-bottom: 6px; }
+
+        .option-label { display: block; background: #334155; padding: 12px 16px; margin: 10px 0; border-radius: 8px; cursor: pointer; transition: 0.2s; font-size: 15px; }
+        .option-label:hover { background: #475569; }
+        ul { margin: 5px 0; padding-left: 20px; }
+        li { margin-bottom: 8px; }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>भारत का मुफ़्त शिक्षा मास्टर पोर्टल 🚀</h1>
-        <p class="motto">"सभी चैप्टर्स पूर्णतः अनलॉक्ड — विस्तृत थ्योरी, शॉर्ट ट्रिक्स और PYQ प्रैक्टिस सेट!"</p>
-
-        <h3>1. अपनी परीक्षा चुनें:</h3>
-        <div class="exam-grid">
-            <div class="exam-card active" onclick="selectExam('upssssc')">🎯 UPSSSC PET / VDO</div>
-            <div class="exam-card" onclick="selectExam('ssc')">🏆 SSC (CGL / CHSL / GD)</div>
-            <div class="exam-card" onclick="selectExam('upsi')">👮 UP SI / Police</div>
-            <div class="exam-card" onclick="selectExam('upsc')">🏛️ UPSC / State PCS Pre</div>
+        <div class="header">
+            <h1>SELECTION ENGINE (HUMAN + AI BRAIN) 🚀</h1>
+            <p class="motto">"अगर यहाँ का 100% सिलेबस और टेस्ट खत्म कर लिया, तो सिलेक्शन पक्का है — किसी कोचिंग की ज़रूरत नहीं!"</p>
         </div>
 
+        <div class="guarantee-banner">
+            🎯 100% Unlocked Portal: सभी विषय, पूरी विस्तृत थ्योरी, 2020-2025 PYQ One-Liners और चैप्टर-वाइज़ टेस्ट बिल्कुल फ्री!
+        </div>
+
+        <!-- 1. Target Exam Selection -->
+        <div class="exam-section">
+            <div class="section-title">🎯 कदम 1: अपनी लक्षित परीक्षा चुनें (Target Exam Selected):</div>
+            <div class="exam-grid">
+                <div class="exam-card active" onclick="selectExam('upssssc', this)">🎯 UPSSSC (PET / VDO)</div>
+                <div class="exam-card" onclick="selectExam('ssc', this)">🏆 SSC (CGL / CHSL / GD)</div>
+                <div class="exam-card" onclick="selectExam('upsi', this)">👮 UP SI / Police Constable</div>
+                <div class="exam-card" onclick="selectExam('upsc', this)">🏛️ UPSC Pre / State PCS</div>
+            </div>
+        </div>
+
+        <!-- 2. Subject Selector -->
         <div class="subject-tabs">
-            <button class="tab-btn active" onclick="switchSubject('history')">📜 History (इतिहास)</button>
-            <button class="tab-btn" onclick="switchSubject('geography')">🌍 Geography (भूगोल)</button>
-            <button class="tab-btn" onclick="switchSubject('polity')">⚖️ Polity (संविधान)</button>
-            <button class="tab-btn" onclick="switchSubject('economics')">📈 Economics (अर्थशास्त्र)</button>
+            <button class="tab-btn active" onclick="switchSubject('history', this)">📜 History (इतिहास)</button>
+            <button class="tab-btn" onclick="switchSubject('geography', this)">🌍 Geography (भूगोल)</button>
+            <button class="tab-btn" onclick="switchSubject('polity', this)">⚖️ Polity (संविधान)</button>
+            <button class="tab-btn" onclick="switchSubject('economics', this)">📈 Economics (अर्थशास्त्र)</button>
         </div>
 
         <div id="app-body"></div>
@@ -58,36 +86,175 @@
         let currentExam = 'upssssc';
         let currentSubject = 'history';
 
-        function selectExam(examKey) {
+        // MASTER DATABASE BUILT DIRECTLY IN ENGINE
+        const masterDatabase = {
+            history: {
+                subjectName: "इतिहास (Complete Master Syllabus - History)",
+                chapters: [
+                    {
+                        id: 1,
+                        title: "प्रागैतिहासिक काल एवं पाषाण काल (Prehistoric & Stone Age Complete)",
+                        trick: "<b>स्मार्ट ट्रिक:</b> पुरापाषाण (आग) ➔ मध्यपाषाण (पशुपालन-आदमगढ़/बागौर) ➔ नवपाषाण (पहिया, कृषि-मेहरगढ़ व स्थायी निवास)",
+                        oneLiners: [
+                            "<b>[PET 2021/2022]</b> धान/चावल की खेती का प्राचीनतम साक्ष्य कहाँ मिला? ➔ लहुरादेव (संत कबीर नगर) / कोल्डिहवा (प्रयागराज)",
+                            "<b>[SSC CGL 2022]</b> माइक्रोलिथ (छोटे पत्थरों के औज़ार) किस काल की पहचान हैं? ➔ मध्यपाषाण काल",
+                            "<b>[UP SI 2021]</b> भारत में पशुपालन के प्रथम साक्ष्य कहाँ मिले? ➔ आदमगढ़ (MP) एवं बागौर (राजस्थान)",
+                            "<b>[UPSC Pre]</b> मानव के साथ कुत्ता दफनाने और गर्तवास (गड्ढा घर) का साक्ष्य? ➔ बुर्जहोम (जम्मू-कश्मीर)"
+                        ],
+                        theory: `
+                            <h4>1. प्रागैतिहासिक काल (Prehistoric Age):</h4>
+                            • जिस काल का कोई लिखित साक्ष्य उपलब्ध नहीं है। भारतीय प्रागैतिहासिक इतिहास के जनक <b>रॉबर्ट ब्रूस फ्रूट (1863)</b> माने जाते हैं।<br><br>
+                            <h4>2. पुरापाषाण काल (Paleolithic Age):</h4>
+                            • मानव आखेटक (शिकारी) व भोजन संग्राहक था। <b>आग (Fire)</b> की खोज इसी काल में हुई।<br>
+                            • <b>भीमबेटका (MP):</b> प्रागैतिहासिक शैलचित्रों (Cave Paintings) के लिए प्रसिद्ध है।<br><br>
+                            <h4>3. मध्यपाषाण काल (Mesolithic Age):</h4>
+                            • छोटे औज़ार (Microliths) बने। पशुपालन की शुरुआत आदमगढ़ (MP) और बागौर (राजस्थान) से हुई।<br><br>
+                            <h4>4. नवपाषाण काल (Neolithic Age):</h4>
+                            • <b>पहिए (Wheel) का आविष्कार</b>, कृषि की शुरुआत और स्थायी निवास बना।<br>
+                            • <b>मेहरगढ़ (बलूचिस्तान):</b> गेहूं और जौ की खेती के प्राचीनतम साक्ष्य।<br>
+                            • <b>मानव द्वारा प्रथम प्रयुक्त धातु:</b> तांबा (Copper) | <b>प्रथम पालतू पशु:</b> कुत्ता।
+                        `,
+                        questions: [
+                            { q: "मानव द्वारा प्रयोग में लाई गई सबसे पहली धातु कौन-सी थी?", options: ["लोहा", "तांबा", "कांसा", "सोना"], ans: 1 },
+                            { q: "पहिए का आविष्कार किस काल में हुआ था?", options: ["पुरापाषाण काल", "मध्यपाषाण काल", "नवपाषाण काल", "ताम्रपाषाण काल"], ans: 2 },
+                            { q: "पशुपालन के प्राचीनतम साक्ष्य कहाँ से प्राप्त हुए?", options: ["भीमबेटका", "बागौर एवं आदमगढ़", "मेहरगढ़", "हस्तिनापुर"], ans: 1 },
+                            { q: "भीमबेटका की गुफाएं किस राज्य में स्थित हैं?", options: ["उत्तर प्रदेश", "राजस्थान", "मध्य प्रदेश", "गुजरात"], ans: 2 },
+                            { q: "मानव के साथ कुत्ते को दफनाने के साक्ष्य (गर्तवास) कहाँ से मिले हैं?", options: ["मेहरगढ़", "कोल्डिहवा", "बुर्जहोम", "लोथल"], ans: 2 }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        title: "सिंधु घाटी सभ्यता (Indus Valley Civilization Complete)",
+                        trick: "<b>प्रमुख स्थल व नदियाँ:</b> लोथल-भोगवा, हड़प्पा-रावी, मोहनजोदड़ो-सिंधु, कालीबंगा-घग्घर",
+                        oneLiners: [
+                            "<b>[PET 2021]</b> हड़प्पा सभ्यता के किस नगर से बंदरगाह (Dockyard) मिला? ➔ लोथल (गुजरात)",
+                            "<b>[SSC GD 2023]</b> 'मृतकों का टीला' किसे कहा जाता है? ➔ मोहनजोदड़ो",
+                            "<b>[UP SI 2021]</b> जूते हुए खेत के साक्ष्य कहाँ से मिले? ➔ कालीबंगा (राजस्थान)"
+                        ],
+                        theory: `
+                            <h4>1. सिंधु घाटी सभ्यता (2500 - 1750 ई.पू.):</h4>
+                            • कांस्ययुगीन व प्रथम नगरीय (Urban) सभ्यता थी।<br>
+                            • खोज: 1921 में दयाराम साहनी (हड़प्पा) और 1922 में राखालदास बनर्जी (मोहनजोदड़ो)।<br>
+                            • <b>लोथल (गुजरात):</b> प्रमुख बंदरगाह व चावल के साक्ष्य।<br>
+                            • <b>मोहनजोदड़ो:</b> विशाल स्नानागार (Great Bath) व नर्तकी की कांस्य मूर्ति मिली।
+                        `,
+                        questions: [
+                            { q: "हड़प्पा सभ्यता की खोज किस वर्ष हुई थी?", options: ["1921", "1922", "1931", "1942"], ans: 0 },
+                            { q: "सिंधु घाटी सभ्यता का प्रमुख बंदरगाह कौन-सा था?", options: ["कालीबंगा", "हड़प्पा", "लोथल", "बनवाली"], ans: 2 },
+                            { q: "जूते हुए खेत के साक्ष्य कहाँ से मिले हैं?", options: ["लोथल", "कालीबंगा", "धौलावीरा", "रोपड़"], ans: 1 }
+                        ]
+                    }
+                ]
+            },
+            geography: {
+                subjectName: "भूगोल (Complete Geography Syllabus)",
+                chapters: [
+                    {
+                        id: 1,
+                        title: "सौरमंडल एवं वायुमंडल की परतें (Solar System & Atmosphere)",
+                        trick: "<b>वायुमंडल परतें:</b> क्षोभमंडल (मौसम) ➔ समतापमंडल (ओजोन/वायुयान) ➔ आयनमंडल (रेडियो तरंगें)",
+                        oneLiners: [
+                            "<b>[PET 2022]</b> मौसम संबंधी सभी घटनाएं वायुमंडल की किस परत में होती हैं? ➔ क्षोभमंडल (Troposphere)",
+                            "<b>[SSC CGL]</b> 'भोर का तारा' और 'पृथ्वी की जुड़वां बहन' किस ग्रह को कहते हैं? ➔ शुक्र (Venus)",
+                            "<b>[UP SI]</b> ओजोन परत किस वायुमंडलीय परत में पाई जाती है? ➔ समतापमंडल (Stratosphere)"
+                        ],
+                        theory: `
+                            <h4>1. सौरमंडल (Solar System):</h4>
+                            • सबसे बड़ा व भारी ग्रह: बृहस्पति (Jupiter)। लाल ग्रह: मंगल (Mars)। बिना उपग्रह वाले ग्रह: बुध व शुक्र।<br>
+                            <h4>2. वायुमंडल (Atmosphere):</h4>
+                            • सर्वाधिक गैस: नाइट्रोजन (78%), ऑक्सीजन (21%)।<br>
+                            • <b>क्षोभमंडल:</b> बादल, वर्षा, आंधी सब यहीं होती हैं।<br>
+                            • <b>समतापमंडल:</b> वायुयान उड़ाने के लिए आदर्श, ओजोन परत पराबैंगनी किरणों से बचाती है।
+                        `,
+                        questions: [
+                            { q: "सौरमंडल का सबसे बड़ा ग्रह कौन-सा है?", options: ["शुक्र", "बृहस्पति", "शनि", "मंगल"], ans: 1 },
+                            { q: "मौसम संबंधी घटनाएं किस परत में होती हैं?", options: ["समतापमंडल", "क्षोभमंडल", "आयनमंडल", "बहिर्मंडल"], ans: 1 }
+                        ]
+                    }
+                ]
+            },
+            polity: {
+                subjectName: "भारतीय संविधान एवं राजव्यवस्था (Complete Polity Syllabus)",
+                chapters: [
+                    {
+                        id: 1,
+                        title: "संविधान सभा, निर्माण एवं मौलिक अधिकार (Constitutional Framework & Fundamental Rights)",
+                        trick: "<b>मौलिक अधिकार ट्रिक:</b> भाग 3 (अनुच्छेद 12-35) | 'संविधान की आत्मा' = अनुच्छेद 32 (संवैधानिक उपचार)",
+                        oneLiners: [
+                            "<b>[PET 2021]</b> संविधान सभा की प्रारूप समिति (Drafting Committee) के अध्यक्ष कौन थे? ➔ डॉ. बी.आर. अम्बेडकर",
+                            "<b>[UP SI 2021]</b> ग्राम पंचायतों के संगठन का उल्लेख किस अनुच्छेद में है? ➔ अनुच्छेद 40",
+                            "<b>[SSC CHSL]</b> 'सम्पत्ति का अधिकार' अब कैसा अधिकार है? ➔ कानूनी अधिकार (अनुच्छेद 300A)"
+                        ],
+                        theory: `
+                            <h4>1. संविधान सभा:</h4>
+                            • प्रथम बैठक: 9 दिसंबर 1946 (अस्थायी अध्यक्ष: डॉ. सच्चिदानंद सिन्हा)।<br>
+                            • स्थायी अध्यक्ष: डॉ. राजेंद्र प्रसाद (11 दिसंबर 1946)। लागू हुआ: 26 जनवरी 1950।<br>
+                            <h4>2. मौलिक अधिकार (भाग 3):</h4>
+                            • कुल 6 मौलिक अधिकार हैं (अमेरिका से लिए गए)।<br>
+                            • <b>अनुच्छेद 21A:</b> 6-14 वर्ष के बच्चों के लिए अनिवार्य शिक्षा (86वां संशोधन 2002)।
+                        `,
+                        questions: [
+                            { q: "संविधान सभा के स्थायी अध्यक्ष कौन थे?", options: ["डॉ. बी.आर. अम्बेडकर", "डॉ. राजेंद्र प्रसाद", "जवाहरलाल नेहरू", "सच्चिदानंद सिन्हा"], ans: 1 },
+                            { q: "ग्राम पंचायतों के गठन से संबंधित अनुच्छेद कौन-सा है?", options: ["अनुच्छेद 32", "अनुच्छेद 40", "अनुच्छेद 44", "अनुच्छेद 50"], ans: 1 }
+                        ]
+                    }
+                ]
+            },
+            economics: {
+                subjectName: "भारतीय अर्थव्यवस्था (Complete Economics Syllabus)",
+                chapters: [
+                    {
+                        id: 1,
+                        title: "राष्ट्रीय आय, नीति आयोग, बैंकिंग व GST (Complete Economics Core)",
+                        trick: "<b>महत्वपूर्ण तिथियां:</b> RBI स्थापना = 1 अप्रैल 1935 | नीति आयोग = 1 जनवरी 2015 | GST लागू = 1 जुलाई 2017",
+                        oneLiners: [
+                            "<b>[PET 2022]</b> भारत में GST किस वर्ष लागू किया गया था? ➔ 1 जुलाई 2017 (101वां संशोधन)",
+                            "<b>[SSC CGL]</b> नीति आयोग के पदेन अध्यक्ष कौन होते हैं? ➔ देश के प्रधानमंत्री",
+                            "<b>[UP SI]</b> 'रेपो रेट' कौन निर्धारित करता है? ➔ भारतीय रिजर्व बैंक (RBI)"
+                        ],
+                        theory: `
+                            <h4>1. भारतीय अर्थव्यवस्था:</h4>
+                            • भारत की अर्थव्यवस्था <b>मिश्रित अर्थव्यवस्था (Mixed Economy)</b> है।<br>
+                            • <b>RBI:</b> स्थापना 1 अप्रैल 1935 (राष्ट्रीयकरण: 1 जनवरी 1949)।<br>
+                            • <b>GST:</b> अप्रत्यक्ष कर है, विजय केलकर समिति की सिफारिश पर लागू हुआ।
+                        `,
+                        questions: [
+                            { q: "नीति आयोग की स्थापना कब हुई थी?", options: ["2014", "2015", "2016", "2017"], ans: 1 },
+                            { q: "भारत में GST कब लागू हुआ?", options: ["1 जुलाई 2017", "1 अप्रैल 2018", "15 अगस्त 2016", "1 जनवरी 2017"], ans: 0 }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        function selectExam(examKey, el) {
             currentExam = examKey;
             document.querySelectorAll('.exam-card').forEach(c => c.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            el.classList.add('active');
             renderDashboard();
         }
 
-        function switchSubject(subKey) {
+        function switchSubject(subKey, el) {
             currentSubject = subKey;
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+            el.classList.add('active');
             renderDashboard();
         }
 
         function renderDashboard() {
-            let dataVar = currentSubject + 'Data';
-            let data = window[dataVar] || null;
-
+            let data = masterDatabase[currentSubject];
             if(!data) {
-                document.getElementById('app-body').innerHTML = `<div class="card"><h3>Data Loading...</h3></div>`;
+                document.getElementById('app-body').innerHTML = `<div class="card"><h3>डेटा तैयार हो रहा है...</h3></div>`;
                 return;
             }
 
-            let html = `2. ${currentExam.toUpperCase()} - ${data.subjectName}</h2><div class="grid">`;
+            let html = `<h2>${currentExam.toUpperCase()} Master Selection - ${data.subjectName}</h2><div class="grid">`;
             data.chapters.forEach(ch => {
                 html += `<div class="card">
                     <h3>Chapter ${ch.id}: ${ch.title} 🔓</h3>
-                    <p>विस्तृत थ्योरी, शॉर्ट ट्रिक्स और प्रैक्टिस सेट हल करने के लिए नीचे क्लिक करें।</p>
-                    <button class="btn" onclick="openChapter(${ch.id})">📖 थ्योरी व ट्रिक्स पढ़ें</button>
-                    <button class="btn btn-test" onclick="startChapterTest(${ch.id})">📝 Chapter ${ch.id} Practice Set</button>
+                    <p>विस्तृत नोट्स, मास्टर ट्रिक्स, 2020-2025 PYQs और प्रैक्टिस सेट हल करने के लिए नीचे क्लिक करें।</p>
+                    <button class="btn" onclick="openChapter(${ch.id})">📖 थ्योरी नोट्स + 2020-2025 PYQs पढ़ें</button>
+                    <button class="btn btn-test" onclick="startChapterTest(${ch.id})">📝 100% Selection Test Set</button>
                 </div>`;
             });
             html += `</div>`;
@@ -95,34 +262,36 @@
         }
 
         function openChapter(id) {
-            let data = window[currentSubject + 'Data'];
+            let data = masterDatabase[currentSubject];
             let ch = data.chapters.find(c => c.id === id);
 
-            let html = `<h2>${ch.title}</h2>
+            let pyqHtml = "<ul>";
+            ch.oneLiners.forEach(item => { pyqHtml += `<li>${item}</li>`; });
+            pyqHtml += "</ul>";
+
+            let html = `<h2>Chapter ${ch.id}: ${ch.title}</h2>
                 <div class="card">
-                    <h3>💡 Master Short Trick (स्मार्ट ट्रिक)</h3>
+                    <h3>💡 Master Short Trick (याद रखने की स्मार्ट ट्रिक)</h3>
                     <div class="trick-box">${ch.trick}</div>
+
+                    <h3>🔥 2020-2025 Exam-Wise Real One-Liner PYQs (${currentExam.toUpperCase()})</h3>
+                    <div class="pyq-box">${pyqHtml}</div>
                     
-                    <h3>📖 Complete Theory & Important Points</h3>
+                    <h3>📖 Complete In-Depth Master Selection Notes</h3>
                     <div class="theory-box">${ch.theory}</div>
                 </div>
-                <button class="btn" onclick="renderDashboard()">⬅️ Back to Dashboard</button>
-                <button class="btn btn-test" onclick="startChapterTest(${id})">📝 Is Chapter Ka Test Dein</button>`;
+                <button class="btn" onclick="renderDashboard()">⬅️ मुख्य डैशबोर्ड पर जाएँ</button>
+                <button class="btn btn-test" onclick="startChapterTest(${id})">📝 इस चैप्टर का सिलेक्शन टेस्ट दें</button>`;
 
             document.getElementById('app-body').innerHTML = html;
         }
 
         function startChapterTest(id) {
-            let data = window[currentSubject + 'Data'];
+            let data = masterDatabase[currentSubject];
             let ch = data.chapters.find(c => c.id === id);
             let questions = ch.questions || [];
 
-            if(questions.length === 0) {
-                alert("Is chapter ke questions jald hi add ho rahe hain!");
-                return;
-            }
-
-            let html = `<h2>Chapter ${id}: ${ch.title} - PYQ Practice Set</h2><form id="testForm">`;
+            let html = `<h2>Chapter ${id}: ${ch.title} - Real Exam Practice Set</h2><form id="testForm">`;
             questions.forEach((q, idx) => {
                 html += `<div class="card"><p><b>Q${idx + 1}: ${q.q}</b></p>`;
                 q.options.forEach((opt, oIdx) => {
@@ -131,14 +300,319 @@
                 html += `</div>`;
             });
             html += `</form>
-                <button class="btn btn-test" onclick="submitChapterTest(${id})">Test Submit Karein</button>
-                <button class="btn" onclick="renderDashboard()">Cancel</button>`;
+                <button class="btn btn-test" onclick="submitChapterTest(${id})">उत्तर सबमिट करें</button>
+                <button class="btn" onclick="renderDashboard()">वापस जाएँ</button>`;
+
+            document.getElementById('app-body').innerHTM<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection Engine 🚀 - 100% Selection Guarantee Master Portal</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0b0f19; color: #f1f5f9; margin: 0; padding: 15px; line-height: 1.7; }
+        .container { max-width: 1100px; margin: auto; background: #131c2e; padding: 25px; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); border: 1px solid #1e293b; }
+        
+        .header { text-align: center; border-bottom: 2px solid #1e293b; padding-bottom: 20px; margin-bottom: 25px; }
+        h1 { color: #38bdf8; font-size: 28px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+        .motto { background: linear-gradient(90deg, #10b981, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-size: 18px; }
+
+        /* Banner */
+        .guarantee-banner { background: #064e3b; border: 2px dashed #10b981; border-radius: 10px; padding: 12px; text-align: center; color: #a7f3d0; font-weight: bold; margin-bottom: 20px; font-size: 15px; }
+
+        /* Exam Grid Selector */
+        .exam-section { background: #0f172a; padding: 18px; border-radius: 12px; border: 1px solid #38bdf8; margin-bottom: 25px; }
+        .section-title { font-size: 16px; font-weight: bold; color: #facc15; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .exam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+        .exam-card { background: #1e293b; padding: 14px; border-radius: 8px; text-align: center; cursor: pointer; border: 2px solid transparent; transition: 0.3s; font-weight: bold; font-size: 15px; }
+        .exam-card:hover, .exam-card.active { border-color: #38bdf8; background: #0284c7; color: #fff; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+
+        /* Subject Selector */
+        .subject-tabs { display: flex; gap: 10px; margin-bottom: 25px; justify-content: center; flex-wrap: wrap; }
+        .tab-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 12px 22px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 15px; transition: 0.3s; }
+        .tab-btn:hover, .tab-btn.active { background: #38bdf8; color: #0f172a; border-color: #38bdf8; font-size: 16px; }
+
+        /* Cards & Content */
+        .card { background: #1e293b; padding: 22px; margin: 18px 0; border-radius: 12px; border-left: 6px solid #38bdf8; border-top: 1px solid #334155; border-right: 1px solid #334155; border-bottom: 1px solid #334155; }
+        .card h3 { margin-top: 0; color: #f8fafc; font-size: 20px; }
+        
+        .btn { background: #0284c7; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.2s; }
+        .btn:hover { background: #0369a1; }
+        .btn-test { background: #16a34a; margin-left: 10px; }
+        .btn-test:hover { background: #15803d; }
+
+        /* Content Modules */
+        .trick-box { background: #022c22; color: #6ee7b7; padding: 15px; border-radius: 8px; margin: 15px 0; font-weight: bold; border-left: 4px solid #10b981; }
+        .pyq-box { background: #172554; color: #93c5fd; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #3b82f6; }
+        .theory-box { background: #0f172a; padding: 20px; border-radius: 8px; border: 1px solid #334155; font-size: 15px; line-height: 1.8; }
+        .theory-box h4 { color: #facc15; margin-top: 18px; margin-bottom: 8px; font-size: 17px; border-bottom: 1px solid #334155; padding-bottom: 6px; }
+
+        .option-label { display: block; background: #334155; padding: 12px 16px; margin: 10px 0; border-radius: 8px; cursor: pointer; transition: 0.2s; font-size: 15px; }
+        .option-label:hover { background: #475569; }
+        ul { margin: 5px 0; padding-left: 20px; }
+        li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SELECTION ENGINE (HUMAN + AI BRAIN) 🚀</h1>
+            <p class="motto">"अगर यहाँ का 100% सिलेबस और टेस्ट खत्म कर लिया, तो सिलेक्शन पक्का है — किसी कोचिंग की ज़रूरत नहीं!"</p>
+        </div>
+
+        <div class="guarantee-banner">
+            🎯 100% Unlocked Portal: सभी विषय, पूरी विस्तृत थ्योरी, 2020-2025 PYQ One-Liners और चैप्टर-वाइज़ टेस्ट बिल्कुल फ्री!
+        </div>
+
+        <!-- 1. Target Exam Selection -->
+        <div class="exam-section">
+            <div class="section-title">🎯 कदम 1: अपनी लक्षित परीक्षा चुनें (Target Exam Selected):</div>
+            <div class="exam-grid">
+                <div class="exam-card active" onclick="selectExam('upssssc', this)">🎯 UPSSSC (PET / VDO)</div>
+                <div class="exam-card" onclick="selectExam('ssc', this)">🏆 SSC (CGL / CHSL / GD)</div>
+                <div class="exam-card" onclick="selectExam('upsi', this)">👮 UP SI / Police Constable</div>
+                <div class="exam-card" onclick="selectExam('upsc', this)">🏛️ UPSC Pre / State PCS</div>
+            </div>
+        </div>
+
+        <!-- 2. Subject Selector -->
+        <div class="subject-tabs">
+            <button class="tab-btn active" onclick="switchSubject('history', this)">📜 History (इतिहास)</button>
+            <button class="tab-btn" onclick="switchSubject('geography', this)">🌍 Geography (भूगोल)</button>
+            <button class="tab-btn" onclick="switchSubject('polity', this)">⚖️ Polity (संविधान)</button>
+            <button class="tab-btn" onclick="switchSubject('economics', this)">📈 Economics (अर्थशास्त्र)</button>
+        </div>
+
+        <div id="app-body"></div>
+    </div>
+
+    <script>
+        let currentExam = 'upssssc';
+        let currentSubject = 'history';
+
+        // MASTER DATABASE BUILT DIRECTLY IN ENGINE
+        const masterDatabase = {
+            history: {
+                subjectName: "इतिहास (Complete Master Syllabus - History)",
+                chapters: [
+                    {
+                        id: 1,
+                        title: "प्रागैतिहासिक काल एवं पाषाण काल (Prehistoric & Stone Age Complete)",
+                        trick: "<b>स्मार्ट ट्रिक:</b> पुरापाषाण (आग) ➔ मध्यपाषाण (पशुपालन-आदमगढ़/बागौर) ➔ नवपाषाण (पहिया, कृषि-मेहरगढ़ व स्थायी निवास)",
+                        oneLiners: [
+                            "<b>[PET 2021/2022]</b> धान/चावल की खेती का प्राचीनतम साक्ष्य कहाँ मिला? ➔ लहुरादेव (संत कबीर नगर) / कोल्डिहवा (प्रयागराज)",
+                            "<b>[SSC CGL 2022]</b> माइक्रोलिथ (छोटे पत्थरों के औज़ार) किस काल की पहचान हैं? ➔ मध्यपाषाण काल",
+                            "<b>[UP SI 2021]</b> भारत में पशुपालन के प्रथम साक्ष्य कहाँ मिले? ➔ आदमगढ़ (MP) एवं बागौर (राजस्थान)",
+                            "<b>[UPSC Pre]</b> मानव के साथ कुत्ता दफनाने और गर्तवास (गड्ढा घर) का साक्ष्य? ➔ बुर्जहोम (जम्मू-कश्मीर)"
+                        ],
+                        theory: `
+                            <h4>1. प्रागैतिहासिक काल (Prehistoric Age):</h4>
+                            • जिस काल का कोई लिखित साक्ष्य उपलब्ध नहीं है। भारतीय प्रागैतिहासिक इतिहास के जनक <b>रॉबर्ट ब्रूस फ्रूट (1863)</b> माने जाते हैं।<br><br>
+                            <h4>2. पुरापाषाण काल (Paleolithic Age):</h4>
+                            • मानव आखेटक (शिकारी) व भोजन संग्राहक था। <b>आग (Fire)</b> की खोज इसी काल में हुई।<br>
+                            • <b>भीमबेटका (MP):</b> प्रागैतिहासिक शैलचित्रों (Cave Paintings) के लिए प्रसिद्ध है।<br><br>
+                            <h4>3. मध्यपाषाण काल (Mesolithic Age):</h4>
+                            • छोटे औज़ार (Microliths) बने। पशुपालन की शुरुआत आदमगढ़ (MP) और बागौर (राजस्थान) से हुई।<br><br>
+                            <h4>4. नवपाषाण काल (Neolithic Age):</h4>
+                            • <b>पहिए (Wheel) का आविष्कार</b>, कृषि की शुरुआत और स्थायी निवास बना।<br>
+                            • <b>मेहरगढ़ (बलूचिस्तान):</b> गेहूं और जौ की खेती के प्राचीनतम साक्ष्य।<br>
+                            • <b>मानव द्वारा प्रथम प्रयुक्त धातु:</b> तांबा (Copper) | <b>प्रथम पालतू पशु:</b> कुत्ता।
+                        `,
+                        questions: [
+                            { q: "मानव द्वारा प्रयोग में लाई गई सबसे पहली धातु कौन-सी थी?", options: ["लोहा", "तांबा", "कांसा", "सोना"], ans: 1 },
+                            { q: "पहिए का आविष्कार किस काल में हुआ था?", options: ["पुरापाषाण काल", "मध्यपाषाण काल", "नवपाषाण काल", "ताम्रपाषाण काल"], ans: 2 },
+                            { q: "पशुपालन के प्राचीनतम साक्ष्य कहाँ से प्राप्त हुए?", options: ["भीमबेटका", "बागौर एवं आदमगढ़", "मेहरगढ़", "हस्तिनापुर"], ans: 1 },
+                            { q: "भीमबेटका की गुफाएं किस राज्य में स्थित हैं?", options: ["उत्तर प्रदेश", "राजस्थान", "मध्य प्रदेश", "गुजरात"], ans: 2 },
+                            { q: "मानव के साथ कुत्ते को दफनाने के साक्ष्य (गर्तवास) कहाँ से मिले हैं?", options: ["मेहरगढ़", "कोल्डिहवा", "बुर्जहोम", "लोथल"], ans: 2 }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        title: "सिंधु घाटी सभ्यता (Indus Valley Civilization Complete)",
+                        trick: "<b>प्रमुख स्थल व नदियाँ:</b> लोथल-भोगवा, हड़प्पा-रावी, मोहनजोदड़ो-सिंधु, कालीबंगा-घग्घर",
+                        oneLiners: [
+                            "<b>[PET 2021]</b> हड़प्पा सभ्यता के किस नगर से बंदरगाह (Dockyard) मिला? ➔ लोथल (गुजरात)",
+                            "<b>[SSC GD 2023]</b> 'मृतकों का टीला' किसे कहा जाता है? ➔ मोहनजोदड़ो",
+                            "<b>[UP SI 2021]</b> जूते हुए खेत के साक्ष्य कहाँ से मिले? ➔ कालीबंगा (राजस्थान)"
+                        ],
+                        theory: `
+                            <h4>1. सिंधु घाटी सभ्यता (2500 - 1750 ई.पू.):</h4>
+                            • कांस्ययुगीन व प्रथम नगरीय (Urban) सभ्यता थी।<br>
+                            • खोज: 1921 में दयाराम साहनी (हड़प्पा) और 1922 में राखालदास बनर्जी (मोहनजोदड़ो)।<br>
+                            • <b>लोथल (गुजरात):</b> प्रमुख बंदरगाह व चावल के साक्ष्य।<br>
+                            • <b>मोहनजोदड़ो:</b> विशाल स्नानागार (Great Bath) व नर्तकी की कांस्य मूर्ति मिली।
+                        `,
+                        questions: [
+                            { q: "हड़प्पा सभ्यता की खोज किस वर्ष हुई थी?", options: ["1921", "1922", "1931", "1942"], ans: 0 },
+                            { q: "सिंधु घाटी सभ्यता का प्रमुख बंदरगाह कौन-सा था?", options: ["कालीबंगा", "हड़प्पा", "लोथल", "बनवाली"], ans: 2 },
+                            { q: "जूते हुए खेत के साक्ष्य कहाँ से मिले हैं?", options: ["लोथल", "कालीबंगा", "धौलावीरा", "रोपड़"], ans: 1 }
+                        ]
+                    }
+                ]
+            },
+            geography: {
+                subjectName: "भूगोल (Complete Geography Syllabus)",
+                chapters: [
+                    {
+                        id: 1,
+                        title: "सौरमंडल एवं वायुमंडल की परतें (Solar System & Atmosphere)",
+                        trick: "<b>वायुमंडल परतें:</b> क्षोभमंडल (मौसम) ➔ समतापमंडल (ओजोन/वायुयान) ➔ आयनमंडल (रेडियो तरंगें)",
+                        oneLiners: [
+                            "<b>[PET 2022]</b> मौसम संबंधी सभी घटनाएं वायुमंडल की किस परत में होती हैं? ➔ क्षोभमंडल (Troposphere)",
+                            "<b>[SSC CGL]</b> 'भोर का तारा' और 'पृथ्वी की जुड़वां बहन' किस ग्रह को कहते हैं? ➔ शुक्र (Venus)",
+                            "<b>[UP SI]</b> ओजोन परत किस वायुमंडलीय परत में पाई जाती है? ➔ समतापमंडल (Stratosphere)"
+                        ],
+                        theory: `
+                            <h4>1. सौरमंडल (Solar System):</h4>
+                            • सबसे बड़ा व भारी ग्रह: बृहस्पति (Jupiter)। लाल ग्रह: मंगल (Mars)। बिना उपग्रह वाले ग्रह: बुध व शुक्र।<br>
+                            <h4>2. वायुमंडल (Atmosphere):</h4>
+                            • सर्वाधिक गैस: नाइट्रोजन (78%), ऑक्सीजन (21%)।<br>
+                            • <b>क्षोभमंडल:</b> बादल, वर्षा, आंधी सब यहीं होती हैं।<br>
+                            • <b>समतापमंडल:</b> वायुयान उड़ाने के लिए आदर्श, ओजोन परत पराबैंगनी किरणों से बचाती है।
+                        `,
+                        questions: [
+                            { q: "सौरमंडल का सबसे बड़ा ग्रह कौन-सा है?", options: ["शुक्र", "बृहस्पति", "शनि", "मंगल"], ans: 1 },
+                            { q: "मौसम संबंधी घटनाएं किस परत में होती हैं?", options: ["समतापमंडल", "क्षोभमंडल", "आयनमंडल", "बहिर्मंडल"], ans: 1 }
+                        ]
+                    }
+                ]
+            },
+            polity: {
+                subjectName: "भारतीय संविधान एवं राजव्यवस्था (Complete Polity Syllabus)",
+                chapters: [
+                    {
+                        id: 1,
+                        title: "संविधान सभा, निर्माण एवं मौलिक अधिकार (Constitutional Framework & Fundamental Rights)",
+                        trick: "<b>मौलिक अधिकार ट्रिक:</b> भाग 3 (अनुच्छेद 12-35) | 'संविधान की आत्मा' = अनुच्छेद 32 (संवैधानिक उपचार)",
+                        oneLiners: [
+                            "<b>[PET 2021]</b> संविधान सभा की प्रारूप समिति (Drafting Committee) के अध्यक्ष कौन थे? ➔ डॉ. बी.आर. अम्बेडकर",
+                            "<b>[UP SI 2021]</b> ग्राम पंचायतों के संगठन का उल्लेख किस अनुच्छेद में है? ➔ अनुच्छेद 40",
+                            "<b>[SSC CHSL]</b> 'सम्पत्ति का अधिकार' अब कैसा अधिकार है? ➔ कानूनी अधिकार (अनुच्छेद 300A)"
+                        ],
+                        theory: `
+                            <h4>1. संविधान सभा:</h4>
+                            • प्रथम बैठक: 9 दिसंबर 1946 (अस्थायी अध्यक्ष: डॉ. सच्चिदानंद सिन्हा)।<br>
+                            • स्थायी अध्यक्ष: डॉ. राजेंद्र प्रसाद (11 दिसंबर 1946)। लागू हुआ: 26 जनवरी 1950।<br>
+                            <h4>2. मौलिक अधिकार (भाग 3):</h4>
+                            • कुल 6 मौलिक अधिकार हैं (अमेरिका से लिए गए)।<br>
+                            • <b>अनुच्छेद 21A:</b> 6-14 वर्ष के बच्चों के लिए अनिवार्य शिक्षा (86वां संशोधन 2002)।
+                        `,
+                        questions: [
+                            { q: "संविधान सभा के स्थायी अध्यक्ष कौन थे?", options: ["डॉ. बी.आर. अम्बेडकर", "डॉ. राजेंद्र प्रसाद", "जवाहरलाल नेहरू", "सच्चिदानंद सिन्हा"], ans: 1 },
+                            { q: "ग्राम पंचायतों के गठन से संबंधित अनुच्छेद कौन-सा है?", options: ["अनुच्छेद 32", "अनुच्छेद 40", "अनुच्छेद 44", "अनुच्छेद 50"], ans: 1 }
+                        ]
+                    }
+                ]
+            },
+            economics: {
+                subjectName: "भारतीय अर्थव्यवस्था (Complete Economics Syllabus)",
+                chapters: [
+                    {
+                        id: 1,
+                        title: "राष्ट्रीय आय, नीति आयोग, बैंकिंग व GST (Complete Economics Core)",
+                        trick: "<b>महत्वपूर्ण तिथियां:</b> RBI स्थापना = 1 अप्रैल 1935 | नीति आयोग = 1 जनवरी 2015 | GST लागू = 1 जुलाई 2017",
+                        oneLiners: [
+                            "<b>[PET 2022]</b> भारत में GST किस वर्ष लागू किया गया था? ➔ 1 जुलाई 2017 (101वां संशोधन)",
+                            "<b>[SSC CGL]</b> नीति आयोग के पदेन अध्यक्ष कौन होते हैं? ➔ देश के प्रधानमंत्री",
+                            "<b>[UP SI]</b> 'रेपो रेट' कौन निर्धारित करता है? ➔ भारतीय रिजर्व बैंक (RBI)"
+                        ],
+                        theory: `
+                            <h4>1. भारतीय अर्थव्यवस्था:</h4>
+                            • भारत की अर्थव्यवस्था <b>मिश्रित अर्थव्यवस्था (Mixed Economy)</b> है।<br>
+                            • <b>RBI:</b> स्थापना 1 अप्रैल 1935 (राष्ट्रीयकरण: 1 जनवरी 1949)।<br>
+                            • <b>GST:</b> अप्रत्यक्ष कर है, विजय केलकर समिति की सिफारिश पर लागू हुआ।
+                        `,
+                        questions: [
+                            { q: "नीति आयोग की स्थापना कब हुई थी?", options: ["2014", "2015", "2016", "2017"], ans: 1 },
+                            { q: "भारत में GST कब लागू हुआ?", options: ["1 जुलाई 2017", "1 अप्रैल 2018", "15 अगस्त 2016", "1 जनवरी 2017"], ans: 0 }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        function selectExam(examKey, el) {
+            currentExam = examKey;
+            document.querySelectorAll('.exam-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            renderDashboard();
+        }
+
+        function switchSubject(subKey, el) {
+            currentSubject = subKey;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            renderDashboard();
+        }
+
+        function renderDashboard() {
+            let data = masterDatabase[currentSubject];
+            if(!data) {
+                document.getElementById('app-body').innerHTML = `<div class="card"><h3>डेटा तैयार हो रहा है...</h3></div>`;
+                return;
+            }
+
+            let html = `<h2>${currentExam.toUpperCase()} Master Selection - ${data.subjectName}</h2><div class="grid">`;
+            data.chapters.forEach(ch => {
+                html += `<div class="card">
+                    <h3>Chapter ${ch.id}: ${ch.title} 🔓</h3>
+                    <p>विस्तृत नोट्स, मास्टर ट्रिक्स, 2020-2025 PYQs और प्रैक्टिस सेट हल करने के लिए नीचे क्लिक करें।</p>
+                    <button class="btn" onclick="openChapter(${ch.id})">📖 थ्योरी नोट्स + 2020-2025 PYQs पढ़ें</button>
+                    <button class="btn btn-test" onclick="startChapterTest(${ch.id})">📝 100% Selection Test Set</button>
+                </div>`;
+            });
+            html += `</div>`;
+            document.getElementById('app-body').innerHTML = html;
+        }
+
+        function openChapter(id) {
+            let data = masterDatabase[currentSubject];
+            let ch = data.chapters.find(c => c.id === id);
+
+            let pyqHtml = "<ul>";
+            ch.oneLiners.forEach(item => { pyqHtml += `<li>${item}</li>`; });
+            pyqHtml += "</ul>";
+
+            let html = `<h2>Chapter ${ch.id}: ${ch.title}</h2>
+                <div class="card">
+                    <h3>💡 Master Short Trick (याद रखने की स्मार्ट ट्रिक)</h3>
+                    <div class="trick-box">${ch.trick}</div>
+
+                    <h3>🔥 2020-2025 Exam-Wise Real One-Liner PYQs (${currentExam.toUpperCase()})</h3>
+                    <div class="pyq-box">${pyqHtml}</div>
+                    
+                    <h3>📖 Complete In-Depth Master Selection Notes</h3>
+                    <div class="theory-box">${ch.theory}</div>
+                </div>
+                <button class="btn" onclick="renderDashboard()">⬅️ मुख्य डैशबोर्ड पर जाएँ</button>
+                <button class="btn btn-test" onclick="startChapterTest(${id})">📝 इस चैप्टर का सिलेक्शन टेस्ट दें</button>`;
+
+            document.getElementById('app-body').innerHTML = html;
+        }
+
+        function startChapterTest(id) {
+            let data = masterDatabase[currentSubject];
+            let ch = data.chapters.find(c => c.id === id);
+            let questions = ch.questions || [];
+
+            let html = `<h2>Chapter ${id}: ${ch.title} - Real Exam Practice Set</h2><form id="testForm">`;
+            questions.forEach((q, idx) => {
+                html += `<div class="card"><p><b>Q${idx + 1}: ${q.q}</b></p>`;
+                q.options.forEach((opt, oIdx) => {
+                    html += `<label class="option-label"><input type="radio" name="q${idx}" value="${oIdx}"> ${opt}</label>`;
+                });
+                html += `</div>`;
+            });
+            html += `</form>
+                <button class="btn btn-test" onclick="submitChapterTest(${id})">उत्तर सबमिट करें</button>
+                <button class="btn" onclick="renderDashboard()">वापस जाएँ</button>`;
 
             document.getElementById('app-body').innerHTML = html;
         }
 
         function submitChapterTest(id) {
-            let data = window[currentSubject + 'Data'];
+            let data = masterDatabase[currentSubject];
             let ch = data.chapters.find(c => c.id === id);
             let questions = ch.questions || [];
             let score = 0;
@@ -151,7 +625,7 @@
             });
 
             let percentage = (score / questions.length) * 100;
-            alert(`Aapka Score: ${score}/${questions.length} (${percentage.toFixed(0)}%)\n\nShabash! Practice jaari rakhein.`);
+            alert(`आपका स्कोर: ${score}/${questions.length} (${percentage.toFixed(0)}%)\n\nशानदार प्रयास! अगर आपका स्कोर 80%+ है, तो आपकी तैयारी सही दिशा में है।`);
             renderDashboard();
         }
 
