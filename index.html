@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free India Exam Portal - 100% Free Preparation</title>
+    <title>Free Exam Master Portal - All Unlocked</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
         .container { max-width: 950px; margin: auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.6); }
@@ -18,19 +18,25 @@
         .card { background: #334155; padding: 20px; margin: 15px 0; border-radius: 8px; border-left: 5px solid #38bdf8; }
         .btn { background: #0284c7; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
         .btn:hover { background: #0369a1; }
-        .btn-test { background: #16a34a; }
-        .locked { opacity: 0.5; pointer-events: none; }
-        .trick-box { background: #064e3b; color: #a7f3d0; padding: 12px; border-radius: 6px; margin: 10px 0; font-weight: bold; }
-        .theory-box { background: #1e293b; padding: 15px; border-radius: 6px; line-height: 1.6; }
+        .btn-test { background: #16a34a; margin-left: 10px; }
+        .btn-test:hover { background: #15803d; }
+        .trick-box { background: #064e3b; color: #a7f3d0; padding: 12px; border-radius: 6px; margin: 10px 0; font-weight: bold; line-height: 1.6; }
+        .theory-box { background: #1e293b; padding: 15px; border-radius: 6px; line-height: 1.7; }
+        .option-label { display: block; background: #475569; padding: 10px 14px; margin: 8px 0; border-radius: 6px; cursor: pointer; }
+        .option-label:hover { background: #64748b; }
     </style>
+
+    <script src="history_data.js"></script>
+    <script src="geography_data.js"></script>
+    <script src="polity_data.js"></script>
+    <script src="economics_data.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>भारत का मुफ़्त शिक्षा मास्टर पोर्टल 🚀</h1>
-        <p class="motto">"महँगाई को मात, हर बच्चे का सिलेक्शन हमारा संकल्प!" (Full Syllabus + Short Tricks)</p>
+        <p class="motto">"सभी चैप्टर्स पूर्णतः अनलॉक्ड — विस्तृत थ्योरी, शॉर्ट ट्रिक्स और PYQ प्रैक्टिस सेट!"</p>
 
-        <!-- Exam Selection Options -->
-        <h3>1. अपनी परीक्षा चुनें (Select Target Exam):</h3>
+        <h3>1. अपनी परीक्षा चुनें:</h3>
         <div class="exam-grid">
             <div class="exam-card active" onclick="selectExam('upssssc')">🎯 UPSSSC PET / VDO</div>
             <div class="exam-card" onclick="selectExam('ssc')">🏆 SSC (CGL / CHSL / GD)</div>
@@ -38,7 +44,6 @@
             <div class="exam-card" onclick="selectExam('upsc')">🏛️ UPSC / State PCS Pre</div>
         </div>
 
-        <!-- Subject Selection Tabs -->
         <div class="subject-tabs">
             <button class="tab-btn active" onclick="switchSubject('history')">📜 History (इतिहास)</button>
             <button class="tab-btn" onclick="switchSubject('geography')">🌍 Geography (भूगोल)</button>
@@ -46,16 +51,8 @@
             <button class="tab-btn" onclick="switchSubject('economics')">📈 Economics (अर्थशास्त्र)</button>
         </div>
 
-        <div id="app-body">
-            <!-- Content will be injected dynamically -->
-        </div>
+        <div id="app-body"></div>
     </div>
-
-    <!-- External Full Question & Syllabus Files -->
-    <script src="history_data.js"></script>
-    <script src="geography_data.js"></script>
-    <script src="polity_data.js"></script>
-    <script src="economics_data.js"></script>
 
     <script>
         let currentExam = 'upssssc';
@@ -80,20 +77,17 @@
             let data = window[dataVar] || null;
 
             if(!data) {
-                document.getElementById('app-body').innerHTML = `
-                    <div class="card">
-                        <h3>⚠️ Data Loading...</h3>
-                        <p>Kripya '${currentSubject}_data.js' file ko apni repository mein create karein.</p>
-                    </div>`;
+                document.getElementById('app-body').innerHTML = `<div class="card"><h3>Data Loading...</h3></div>`;
                 return;
             }
 
-            let html = `<h2>${currentExam.toUpperCase()} - ${data.subjectName} Full Syllabus</h2><div class="grid">`;
+            let html = `2. ${currentExam.toUpperCase()} - ${data.subjectName}</h2><div class="grid">`;
             data.chapters.forEach(ch => {
-                html += `<div class="card ${ch.unlocked ? '' : 'locked'}">
-                    <h3>Chapter ${ch.id}: ${ch.title} ${ch.unlocked ? '🔓' : '🔒'}</h3>
-                    <p>${ch.unlocked ? 'Pura Syllabus, Theory aur Short Tricks padhein.' : 'Unlock karne ke liye pichla 3-Chapter Test (70%+) paas karein.'}</p>
-                    <button class="btn" ${ch.unlocked ? '' : 'disabled'} onclick="openChapter(${ch.id})">Padhai Shuru Karein</button>
+                html += `<div class="card">
+                    <h3>Chapter ${ch.id}: ${ch.title} 🔓</h3>
+                    <p>विस्तृत थ्योरी, शॉर्ट ट्रिक्स और प्रैक्टिस सेट हल करने के लिए नीचे क्लिक करें।</p>
+                    <button class="btn" onclick="openChapter(${ch.id})">📖 थ्योरी व ट्रिक्स पढ़ें</button>
+                    <button class="btn btn-test" onclick="startChapterTest(${ch.id})">📝 Chapter ${ch.id} Practice Set</button>
                 </div>`;
             });
             html += `</div>`;
@@ -109,19 +103,58 @@
                     <h3>💡 Master Short Trick (स्मार्ट ट्रिक)</h3>
                     <div class="trick-box">${ch.trick}</div>
                     
-                    <h3>📖 Complete Chapter Theory & One-Liners</h3>
+                    <h3>📖 Complete Theory & Important Points</h3>
                     <div class="theory-box">${ch.theory}</div>
                 </div>
-                <button class="btn" onclick="renderDashboard()">Back to Dashboard</button>`;
-
-            if(id % 3 === 0) {
-                html += ` <button class="btn btn-test" onclick="startTest(${id})">Take 3-Chapter PYQ Test (70% to Unlock)</button>`;
-            }
+                <button class="btn" onclick="renderDashboard()">⬅️ Back to Dashboard</button>
+                <button class="btn btn-test" onclick="startChapterTest(${id})">📝 Is Chapter Ka Test Dein</button>`;
 
             document.getElementById('app-body').innerHTML = html;
         }
 
-        // Initialize portal on load
+        function startChapterTest(id) {
+            let data = window[currentSubject + 'Data'];
+            let ch = data.chapters.find(c => c.id === id);
+            let questions = ch.questions || [];
+
+            if(questions.length === 0) {
+                alert("Is chapter ke questions jald hi add ho rahe hain!");
+                return;
+            }
+
+            let html = `<h2>Chapter ${id}: ${ch.title} - PYQ Practice Set</h2><form id="testForm">`;
+            questions.forEach((q, idx) => {
+                html += `<div class="card"><p><b>Q${idx + 1}: ${q.q}</b></p>`;
+                q.options.forEach((opt, oIdx) => {
+                    html += `<label class="option-label"><input type="radio" name="q${idx}" value="${oIdx}"> ${opt}</label>`;
+                });
+                html += `</div>`;
+            });
+            html += `</form>
+                <button class="btn btn-test" onclick="submitChapterTest(${id})">Test Submit Karein</button>
+                <button class="btn" onclick="renderDashboard()">Cancel</button>`;
+
+            document.getElementById('app-body').innerHTML = html;
+        }
+
+        function submitChapterTest(id) {
+            let data = window[currentSubject + 'Data'];
+            let ch = data.chapters.find(c => c.id === id);
+            let questions = ch.questions || [];
+            let score = 0;
+
+            questions.forEach((q, idx) => {
+                let selected = document.querySelector(`input[name="q${idx}"]:checked`);
+                if (selected && parseInt(selected.value) === q.ans) {
+                    score++;
+                }
+            });
+
+            let percentage = (score / questions.length) * 100;
+            alert(`Aapka Score: ${score}/${questions.length} (${percentage.toFixed(0)}%)\n\nShabash! Practice jaari rakhein.`);
+            renderDashboard();
+        }
+
         window.onload = renderDashboard;
     </script>
 </body>
