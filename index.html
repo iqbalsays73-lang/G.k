@@ -3,149 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prachin Bharat Master Portal - Complete Edition</title>
+    <title>Prachin Bharat & GS Master Portal - Pro Edition</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
-        .container { max-width: 850px; margin: auto; background: #1e293b; padding: 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .container { max-width: 900px; margin: auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.6); }
         h1, h2 { color: #38bdf8; text-align: center; }
-        .subject-tabs { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap; }
-        .tab-btn { background: #334155; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .subject-tabs { display: flex; gap: 10px; margin-bottom: 25px; justify-content: center; flex-wrap: wrap; }
+        .tab-btn { background: #334155; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; }
         .tab-btn.active { background: #0284c7; }
-        .card { background: #334155; padding: 18px; margin: 12px 0; border-radius: 8px; border-left: 5px solid #38bdf8; }
-        .btn { background: #0284c7; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .card { background: #334155; padding: 20px; margin: 15px 0; border-radius: 8px; border-left: 5px solid #38bdf8; }
+        .btn { background: #0284c7; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
         .btn:hover { background: #0369a1; }
         .btn-test { background: #16a34a; }
+        .btn-test:hover { background: #15803d; }
         .locked { opacity: 0.5; pointer-events: none; }
-        .option-label { display: block; background: #475569; padding: 10px; margin: 6px 0; border-radius: 5px; cursor: pointer; }
+        .option-label { display: block; background: #475569; padding: 10px 14px; margin: 8px 0; border-radius: 6px; cursor: pointer; transition: 0.2s; }
         .option-label:hover { background: #64748b; }
+        .theory-box { background: #1e293b; padding: 15px; border-radius: 6px; margin-top: 10px; border: 1px dashed #38bdf8; line-height: 1.6; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Prachin Bharat & GS Master Portal 🚀</h1>
-        <p style="text-align:center;">Pehle History, fir Geography, aur baaki subjects ke alag-alag practice sets!</p>
+        <p style="text-align:center; color:#94a3b8;">Complete Detailed Chapters, Short Tricks & 70% Passing Test System</p>
         
-        <!-- Alag-alag Subjects ke Options / Tabs -->
         <div class="subject-tabs">
-            <button class="tab-btn active" onclick="switchSubject('history')">📜 History (इतिहास)</button>
-            <button class="tab-btn" onclick="switchSubject('geography')">🌍 Geography (भूगोल)</button>
-            <button class="tab-btn" onclick="switchSubject('polity')">⚖️ Polity (संविधान)</button>
-            <button class="tab-btn" onclick="switchSubject('economics')">📈 Economics (अर्थशास्त्र)</button>
+            <button class="tab-btn active" onclick="switchSubject('history')">📜 History</button>
+            <button class="tab-btn" onclick="switchSubject('geography')">🌍 Geography</button>
+            <button class="tab-btn" onclick="switchSubject('polity')">⚖️ Polity</button>
+            <button class="tab-btn" onclick="switchSubject('economics')">📈 Economics</button>
         </div>
 
-        <div id="app-body">
-            <!-- Dynamic Content -->
-        </div>
+        <div id="app-body"></div>
     </div>
 
     <script>
-        // Subject-wise Data Structure
-        const portalData = {
+        // Full Detailed Master Data Base
+        const db = {
             history: {
-                name: "History",
+                name: "History (इतिहास)",
                 chapters: [
-                    { id: 1, title: "सिंधु घाटी सभ्यता एवं वैदिक काल", unlocked: true, trick: "लोथल-भोगवा नदी, हड़प्पा-रावी नदी।" },
-                    { id: 2, title: "महाजनपद काल एवं जैन/बौद्ध धर्म", unlocked: false, trick: "16 महाजनपद की सूची 'अंगुत्तर निकाय' में है।" },
-                    { id: 3, title: "मगध साम्राज्य एवं मौर्य वंश", unlocked: false, trick: "चन्द्रगुप्त मौर्य के गुरु चाणक्य (कौटिल्य) थे।" }
+                    {
+                        id: 1, title: "सिंधु घाटी सभ्यता (Indus Valley)", unlocked: true,
+                        trick: "नदियाँ याद रखने की ट्रिक: 'लोथल-भोगवा, हड़प्पा-रावी, मोहनजोदड़ो-सिंधु'",
+                        theory: "सिंधु घाटी सभ्यता एक नगरीय सभ्यता थी जिसकी खोज 1921 में दयाराम साहनी ने की[span_0](start_span)[span_0](end_span)। यहाँ की मुख्य विशेषता उन्नत नगर नियोजन और जल निकासी प्रणाली थी[span_1](start_span)[span_1](end_span)। लोथल यहाँ का प्रमुख बंदरगाह था[span_2](start_span)[span_2](end_span)।"
+                    },
+                    {
+                        id: 2, title: "वैदिक सभ्यता एवं नदियाँ", unlocked: false,
+                        trick: "वेद सबसे पुराना ऋग्वेद है जिसमें 10 मंडल हैं।",
+                        theory: "आर्यों द्वारा विकसित सभ्यता एक ग्रामीण सभ्यता थी[span_3](start_span)[span_3](end_span)। इनकी भाषा संस्कृत थी[span_4](start_span)[span_4](end_span)। सबसे प्राचीन वेद ऋग्वेद है[span_5](start_span)[span_5](end_span), जिसमें प्रसिद्ध गायत्री मन्त्र तीसरे मण्डल में Savitr (सूर्य देवता) को समर्पित है[span_6](start_span)[span_6](end_span)। लोकायत व उपनिषदों की कुल संख्या 108 है[span_7](start_span)[span_7](end_span)।"
+                    },
+                    {
+                        id: 3, title: "महाजनपद एवं जैन/बौद्ध धर्म", unlocked: false,
+                        trick: "बौद्ध धर्म के त्रिरत्न: बुद्ध, धम्म, संघ[span_8](start_span)[span_8](end_span)।",
+                        theory: "छठी शताब्दी ईसा पूर्व में 16 महाजनपदों का उल्लेख बौद्ध ग्रंथ 'अंगुत्तर निकाय' में मिलता है[span_9](start_span)[span_9](end_span)। गौतम बुद्ध का जन्म 563 ई.पू. लुम्बिनी में हुआ था[span_10](start_span)[span_10](end_span)। महावीर स्वामी जैन धर्म के 24वें तीर्थंकर थे[span_11](start_span)[span_11](end_span)।"
+                    }
+                ],
+                test3: [
+                    { q: "सिंधु घाटी सभ्यता की खोज किसने की थी?[span_12](start_span)[span_12](end_span)", options: ["दयाराम साहनी[span_13](start_span)[span_13](end_span)", "राखालदास बनर्जी", "कनिंघम", "सर जॉन मार्शल"], ans: 0 },
+                    { q: "मोहनजोदड़ो का शाब्दिक अर्थ क्या है?[span_14](start_span)[span_14](end_span)", options: ["जीवितों का नगर", "मृतकों का टीला[span_15](start_span)[span_15](end_span)", "सुंदर नगर", "व्यापारियों का स्थान"], ans: 1 },
+                    { q: "गायत्री मन्त्र ऋग्वेद کے किस मण्डल में है?[span_16](start_span)[span_16](end_span)", options: ["पहले मण्डल में", "दूसरे मण्डल में", "तीसरे मण्डल में[span_17](start_span)[span_17](end_span)", "दसवें मण्डल में"], ans: 2 },
+                    { q: "16 महाजनपदों की सूची किस बौद्ध ग्रंथ में मिलती है?[span_18](start_span)[span_18](end_span)", options: ["अंगुत्तर निकाय[span_19](start_span)[span_19](end_span)", "त्रिपिटक", "जातकों", "महावंश"], ans: 0 }
                 ]
             },
             geography: {
-                name: "Geography",
+                name: "Geography (भूगोल)",
                 chapters: [
-                    { id: 1, title: "सौरमंडल एवं ब्रह्मांड", unlocked: true, trick: "सूर्य के सबसे निकट ग्रह बुध (Mercury) है।" },
-                    { id: 2, title: "पृथ्वी की संरचना एवं अक्षांश-देशांतर", unlocked: false, trick: "कुल अक्षांश रेखाएं 181 हैं।" },
-                    { id: 3, title: "विश्व एवं भारत की नदियाँ और पर्वत", unlocked: false, trick: "गंगा नदी की लंबाई 2525 किमी है।" }
+                    {
+                        id: 1, title: "सौरमंडल एवं ब्रह्मांड", unlocked: true,
+                        trick: "सूर्य से दूरी का क्रम: बुध, शुक्र, पृथ्वी, मंगल (BU-SHU-PR-MA)",
+                        theory: "भूगोल का जनक हीकेटियस को कहा जाता है[span_20](start_span)[span_20](end_span)। सौरमंडल के सबसे चमकीला और गर्म ग्रह शुक्र (Venus) है[span_21](start_span)[span_21](end_span)। पृथ्वी को नीला ग्रह कहा जाता है क्योंकि यहाँ जल प्रचुर मात्रा में है[span_22](start_span)[span_22](end_span)।"
+                    },
+                    {
+                        id: 2, title: "अक्षांश, देशांतर एवं वायुमंडल", unlocked: false,
+                        trick: "क्षोभमंडल में सभी मौसम संबंधी घटनाएं होती हैं[span_23](start_span)[span_23](end_span)।",
+                        theory: "पृथ्वी के वायुमंडल का सर्वाधिक घनत्व क्षोभमंडल (Troposphere) में होता है[span_24](start_span)[span_24](end_span)। ओजोन परत समतापमंडल (Stratosphere) में पाई जाती है जो सूर्य की पराबैंगनी किरणों से बचाती है[span_25](start_span)[span_25](end_span)।"
+                    },
+                    {
+                        id: 3, title: "विश्व एवं भारत की नदियाँ", unlocked: false,
+                        trick: "विश्व की सबसे लंबी नदी नील नदी (Africa) है[span_26](start_span)[span_26](end_span)。",
+                        theory: "भारत की सबसे लंबी नदी गंगा (2525 किमी) है[span_27](start_span)[span_27](end_span)। ब्रह्मपुत्र नदी को तिब्बत में सांगपो कहा जाता है[span_28](start_span)[span_28](end_span)। विश्व का सबसे बड़ा नदी द्वीप माजुली (असम) ब्रह्मपुत्र नदी पर है[span_29](start_span)[span_29](end_span)।"
+                    }
+                ],
+                test3: [
+                    { q: "भूगोल का जनक किसे कहा जाता है?[span_30](start_span)[span_30](end_span)", options: ["हीकेटियस[span_31](start_span)[span_31](end_span)", "इरेटोस्थनीज[span_32](start_span)[span_32](end_span)", "कॉपरनिकस", "केपलर"], ans: 0 },
+                    { q: "मौसम संबंधी सभी घटनाएं किस मंडल में होती हैं?[span_33](start_span)[span_33](end_span)", options: ["समतापमंडल", "क्षोभमंडल[span_34](start_span)[span_34](end_span)", "आयनमंडल", "बहिर्मंडल"], ans: 1 },
+                    { q: "विश्व की सबसे लंबी नदी कौन-सी है?[span_35](start_span)[span_35](end_span)", options: ["अमेजन नदी", "नील नदी[span_36](start_span)[span_36](end_span)", "गंगा नदी", "यांग्त्सी नदी"], ans: 1 },
+                    { q: "भारत की सबसे लंबी नदी कौन-सी है?[span_37](start_span)[span_37](end_span)", options: ["गोदावरी", "यमुना", "गंगा[span_38](start_span)[span_38](end_span)", "ब्रह्मपुत्र"], ans: 2 }
                 ]
             },
             polity: {
-                name: "Polity",
+                name: "Polity (राजव्यवस्था)",
                 chapters: [
-                    { id: 1, title: "संविधान सभा एवं प्रस्तावना", unlocked: true, trick: "संविधान बनने में 2 वर्ष 11 महीने 18 दिन लगे।" },
-                    { id: 2, title: "मौलिक अधिकार एवं नीति निर्देशक तत्व", unlocked: false, trick: "भाग 3 को भारत का मैग्नाकार्टा कहा जाता है।" },
-                    { id: 3, title: "राष्ट्रपति, प्रधानमंत्री एवं संसद", unlocked: false, trick: "संसद के 3 अंग: राष्ट्रपति, लोकसभा, राज्यसभा।" }
+                    {
+                        id: 1, title: "संविधान सभा एवं प्रस्तावना", unlocked: true,
+                        trick: "संविधान बनने में 2 वर्ष, 11 महीने, 18 दिन लगे[span_39](start_span)[span_39](end_span)。",
+                        theory: "संविधान सभा की प्रथम बैठक 9 दिसंबर 1946 को हुई थी[span_40](start_span)[span_40](end_span)। डॉ. राजेंद्र प्रसाद को इसका स्थायी अध्यक्ष चुना गया था[span_41](start_span)[span_41](end_span)। भारतीय संविधान 26 जनवरी 1950 को लागू हुआ[span_42](start_span)[span_42](end_span)।"
+                    },
+                    {
+                        id: 2, title: "मौलिक अधिकार एवं नीति निर्देशक तत्व", unlocked: false,
+                        trick: "भाग 3 = मौलिक अधिकार (अमेरिका से लिए गए)[span_43](start_span)[span_43](end_span)。",
+                        theory: "भारतीय संविधान के भाग 3 को भारत का 'मैग्नाकार्टा' कहा जाता है[span_44](start_span)[span_44](end_span)। वर्तमान में नागरिकों को 6 मौलिक अधिकार प्राप्त हैं[span_45](start_span)[span_45](end_span)। संपत्ति के अधिकार को 44वें संशोधन (1978) द्वारा हटाया गया[span_46](start_span)[span_46](end_span)।"
+                    },
+                    {
+                        id: 3, title: "संसद, राष्ट्रपति और आपातकाल", unlocked: false,
+                        trick: "संसद के 3 अंग: राष्ट्रपति, लोकसभा, राज्यसभा[span_47](start_span)[span_47](end_span)。",
+                        theory: "भारत का राष्ट्रपति देश का प्रथम नागरिक होता है[span_48](start_span)[span_48](end_span)। राष्ट्रीय आपातकाल अनुच्छेद 352 के तहत लगाया जाता है[span_49](start_span)[span_49](end_span)। वित्तीय आपातकाल अनुच्छेद 360 के अंतर्गत आता है जो भारत में एक बार भी नहीं लगा[span_50](start_span)[span_50](end_span)।"
+                    }
+                ],
+                test3: [
+                    { q: "संविधान सभा की प्रथम बैठक कब हुई थी?[span_51](start_span)[span_51](end_span)", options: ["9 दिसंबर 1946[span_52](start_span)[span_52](end_span)", "11 दिसंबर 1946", "26 जनवरी 1950", "15 अगस्त 1947"], ans: 0 },
+                    { q: "संविधान के किस भाग को भारत का मैग्नाकार्टा कहा जाता है?[span_53](start_span)[span_53](end_span)", options: ["भाग 2", "भाग 3[span_54](start_span)[span_54](end_span)", "भाग 4", "भाग 9"], ans: 1 },
+                    { q: "संसद के कितने अंग होते हैं?[span_55](start_span)[span_55](end_span)", options: ["2", "3[span_56](start_span)[span_56](end_span)", "4", "1"], ans: 1 },
+                    { q: "राष्ट्रीय आपातकाल किस अनुच्छेद के तहत लगाया जाता है?[span_57](start_span)[span_57](end_span)", options: ["अनुच्छेद 352[span_58](start_span)[span_58](end_span)", "अनुच्छेद 356", "अनुच्छेद 360", "अनुच्छेद 368"], ans: 0 }
                 ]
             },
             economics: {
-                name: "Economics",
+                name: "Economics (अर्थशास्त्र)",
                 chapters: [
-                    { id: 1, title: "राष्ट्रीय आय एवं पंचवर्षीय योजनाएं", unlocked: true, trick: "दूसरी योजना महालनोबिस मॉडल पर आधारित थी।" },
-                    { id: 2, title: "बैंकिंग प्रणाली एवं RBI", unlocked: false, trick: "RBI की स्थापना 1 अप्रैल 1935 को हुई थी।" },
-                    { id: 3, title: "बजट, कर प्रणाली (GST) एवं संगठन", unlocked: false, trick: "GST भारत में 1 जुलाई 2017 से लागू हुआ।" }
+                    {
+                        id: 1, title: "राष्ट्रीय आय एवं पंचवर्षीय योजनाएं", unlocked: true,
+                        trick: "दूसरी योजना महालनोबिस मॉडल पर आधारित थी[span_59](start_span)[span_59](end_span)。",
+                        theory: "अर्थशास्त्र का जनक एडम स्मिथ को कहा जाता है[span_60](start_span)[span_60](end_span)। भारत में पंचवर्षीय योजना का मॉडल रूस से लिया गया था[span_61](start_span)[span_61](end_span)। राष्ट्रीय आय की गणना सबसे पहले दादाभाई नौरोजी ने की थी[span_62](start_span)[span_62](end_span)।"
+                    },
+                    {
+                        id: 2, title: "बैंकिंग प्रणाली एवं RBI", unlocked: false,
+                        trick: "RBI की स्थापना 1 अप्रैल 1935[span_63](start_span)[span_63](end_span)。",
+                        theory: "भारतीय रिजर्व बैंक (RBI) की स्थापना 1 अप्रैल 1935 को हुई थी[span_64](start_span)[span_64](end_span)। इसका राष्ट्रीयकरण 1 जनवरी 1949 को हुआ[span_65](start_span)[span_65](end_span)। रेपो रेट वह दर है जिसपर आरबीआई बैंकों को अल्पकालिक ऋण देता है[span_66](start_span)[span_66](end_span)।"
+                    },
+                    {
+                        id: 3, title: "बजट, GST एवं योजनाएं", unlocked: false,
+                        trick: "GST 1 जुलाई 2017 को लागू हुआ[span_67](start_span)[span_67](end_span) (101वां संशोधन[span_68](start_span)[span_68](end_span))。",
+                        theory: "संविधान के अनुच्छेद 112 में वार्षिक वित्तीय विवरण (बजट) का उल्लेख है[span_69](start_span)[span_69](end_span)। भारत में वस्तु एवं सेवा कर (GST) 1 जुलाई 2017 को लागू किया गया था जो एक अप्रत्यक्ष कर है[span_70](start_span)[span_70](end_span)।"
+                    }
+                ],
+                test3: [
+                    { q: "अर्थशास्त्र का जनक किसे कहा जाता है?[span_71](start_span)[span_71](end_span)", options: ["एडम स्मिथ[span_72](start_span)[span_72](end_span)", "कार्ल मार्क्स", "जे.एम. कीन्स", "अमर्त्य सेन"], ans: 0 },
+                    { q: "भारतीय रिजर्व बैंक (RBI) की स्थापना कब हुई थी?[span_73](start_span)[span_73](end_span)", options: ["1 अप्रैल 1935[span_74](start_span)[span_74](end_span)", "1 जनवरी 1949", "15 मार्च 1950", "12 जुलाई 1982"], ans: 0 },
+                    { q: "भारत में GST कब लागू किया गया था?[span_75](start_span)[span_75](end_span)", options: ["1 जुलाई 2017[span_76](start_span)[span_76](end_span)", "1 अप्रैल 2018", "26 जनवरी 2016", "15 अगस्त 2019"], ans: 0 },
+                    { q: "संविधान के किस अनुच्छेद में बजट का उल्लेख है?[span_77](start_span)[span_77](end_span)", options: ["अनुच्छेद 110", "अनुच्छेद 112[span_78](start_span)[span_78](end_span)", "अनुच्छेद 280", "अनुच्छेद 360"], ans: 1 }
                 ]
             }
         };
 
-        let currentSubject = 'history';
+        let currentSub = 'history';
 
-        function switchSubject(subjectKey) {
-            currentSubject = subjectKey;
+        function switchSubject(key) {
+            currentSub = key;
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
             renderDashboard();
         }
 
         function renderDashboard() {
-            let sub = portalData[currentSubject];
-            let html = `<h2>${sub.name} Chapters & Practice</h2><div class="grid">`;
-            
+            let sub = db[currentSub];
+            let html = `<h2>${sub.name} - Chapters</h2><div class="grid">`;
             sub.chapters.forEach(ch => {
                 html += `<div class="card ${ch.unlocked ? '' : 'locked'}">
                     <h3>Chapter ${ch.id}: ${ch.title} ${ch.unlocked ? '🔓' : '🔒'}</h3>
-                    <p>${ch.unlocked ? 'Padhne aur practice karne ke liye shuru karein.' : 'Unlock karne ke liye pichla test paas karein (70%+).'}</p>
-                    <button class="btn" ${ch.unlocked ? '' : 'disabled'} onclick="startChapter(${ch.id})">Shuru Karein</button>
+                    <p>${ch.unlocked ? 'Padhne aur samajhne ke liye click karein.' : 'Unlock karne ke liye pichla 3-Chapter Test paas karein (70%+).'}</p>
+                    <button class="btn" ${ch.unlocked ? '' : 'disabled'} onclick="openChapter(${ch.id})">Padhai Shuru Karein</button>
                 </div>`;
             });
             html += `</div>`;
             document.getElementById('app-body').innerHTML = html;
         }
 
-        function startChapter(chId) {
-            let sub = portalData[currentSubject];
-            let ch = sub.chapters.find(c => c.id === chId);
-            
-            let html = `<h2>${sub.name} - Chapter ${chId}</h2>
+        function openChapter(id) {
+            let sub = db[currentSub];
+            let ch = sub.chapters.find(c => c.id === id);
+            let html = `<h2>${sub.name} - Chapter ${id}</h2>
                 <div class="card">
-                    <h3>💡 Short Trick / Concept</h3>
-                    <p>${ch.trick}</p>
-                </div>
-                <div class="card">
-                    <p>Yahan is chapter ke important questions aur one-liners display honge.</p>
+                    <h3>💡 Short Trick</h3>
+                    <p style="color:#38bdf8; font-weight:bold;">${ch.trick}</p>
+                    <h3>📖 Detailed Content & Notes</h3>
+                    <div class="theory-box">${ch.theory}</div>
                 </div>
                 <button class="btn" onclick="renderDashboard()">Wapas Dashboard</button>`;
             
-            if (chId === 3) {
-                html += ` <button class="btn btn-test" onclick="startTest()">3-Chapter PYQ Test Dein (70% to Unlock Next)</button>`;
+            if (id === 3) {
+                html += ` <button class="btn btn-test" onclick="startTest()">3-Chapter PYQ Test Dein (70% Passing)</button>`;
             }
-
             document.getElementById('app-body').innerHTML = html;
         }
 
         function startTest() {
-            let html = `<h2>${portalData[currentSubject].name} - 3 Chapter Practice Test</h2>
-                <div class="card">
-                    <p><b>Q1: Is subject ke pehle 3 chapters se related mahatvapurna prashn yahan aayega?</b></p>
-                    <label class="option-label"><input type="radio" name="tq1" value="0"> A) Option A (Sahi Uttar)</label>
-                    <label class="option-label"><input type="radio" name="tq1" value="1"> B) Option B</label>
-                </div>
-                <button class="btn btn-test" onclick="submitTest()">Test Submit Karein</button>`;
+            let sub = db[currentSub];
+            let questions = sub.test3;
+            let html = `<h2>${sub.name} - 3 Chapter Practice Test</h2><form id="testForm">`;
+            
+            questions.forEach((q, idx) => {
+                html += `<div class="card"><p><b>Q${idx + 1}: ${q.q}</b></p>`;
+                q.options.forEach((opt, oIdx) => {
+                    html += `<label class="option-label"><input type="radio" name="tq${idx}" value="${oIdx}"> ${opt}</label>`;
+                });
+                html += `</div>`;
+            });
+            html += `</form><button class="btn btn-test" onclick="submitTest()">Test Submit Karein</button>`;
             document.getElementById('app-body').innerHTML = html;
         }
 
         function submitTest() {
-            // Mock evaluation for 70% passing
-            let passed = confirm("Test evaluate ho gaya! Kya aapke 70% ya usse zyada marks aaye hain? (OK dabayein pass hone ke liye)");
-            
-            let sub = portalData[currentSubject];
-            if (passed) {
-                alert("🎉 Badhai ho! Agle chapters unlock ho gaye hain.");
+            let sub = db[currentSub];
+            let questions = sub.test3;
+            let score = 0;
+
+            questions.forEach((q, idx) => {
+                let selected = document.querySelector(`input[name="tq${idx}"]:checked`);
+                if (selected && parseInt(selected.value) === q.ans) {
+                    score++;
+                }
+            });
+
+            let percentage = (score / questions.length) * 100;
+
+            if (percentage >= 70) {
+                alert(`🎉 Badhai ho! Aapne ${percentage.toFixed(0)}% score kiya hai. Agle chapters unlock ho gaye hain!`);
                 sub.chapters.forEach(ch => ch.unlocked = true);
                 renderDashboard();
             } else {
-                alert("❌ Kam se kam 70% marks chahiye. Dobara koshish karein!");
+                alert(`❌ Aapka score ${percentage.toFixed(0)}% hai. Agla level unlock karne ke liye kam se kam 70% chahiye. Phir se try karein!`);
+                startTest();
             }
         }
 
-        // Load initial dashboard
         window.onload = renderDashboard;
     </script>
 </body>
