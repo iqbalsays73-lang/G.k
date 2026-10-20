@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>संपूर्ण भारतीय इतिहास - ट्रिक महासागर & प्रैक्टिस हब</title>
+    <title>संपूर्ण इतिहास - महा ब्रह्मास्त्र (ट्रिक्स & प्रैक्टिस हब)</title>
     <style>
         :root {
             --primary: #0f172a;
@@ -25,6 +25,80 @@
             line-height: 1.6;
         }
 
+        /* User Login Modal */
+        #userModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.92);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal-box {
+            background: white;
+            padding: 2.2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        .modal-box h2 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.6rem;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            color: #334155;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .start-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        .start-btn:hover {
+            background: #1d4ed8;
+        }
+
+        #mainContent {
+            display: none;
+        }
+
         header {
             background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
             color: white;
@@ -33,17 +107,8 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.3rem;
-            color: #fbbf24;
-        }
-
-        header p {
-            margin-top: 8px;
-            font-size: 1.1rem;
-            color: #cbd5e1;
-        }
+        header h1 { margin: 0; font-size: 2.3rem; color: #fbbf24; }
+        header p { margin-top: 8px; font-size: 1.1rem; color: #cbd5e1; }
 
         .container {
             max-width: 1100px;
@@ -235,807 +300,153 @@
 </head>
 <body>
 
-    <header>
-        <h1>🏛️ संपूर्ण इतिहास: ट्रिक महासागर & प्रैक्टिस हब</h1>
-        <p>प्राचीन, मध्यकालीन एवं आधुनिक भारत की 35+ सुपर ट्रिक्स एवं प्रैक्टिस सेट्स</p>
-    </header>
-
-    <div class="container">
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchSection('tricks-section')">🔥 इतिहास की 35+ मास्टर ट्रिक्स</button>
-            <button class="tab-btn" onclick="switchSection('quiz-section')">📝 प्रैक्टिस टेस्ट (नेगेटिव मार्किंग)</button>
-        </div>
-
-        <!-- TRICKS REVISION SECTION -->
-        <div id="tricks-section" class="section-content active">
-            <h2>🔥 इतिहास के हर एक टॉपिक की शॉर्ट ट्रिक्स</h2>
-
-            <!-- ANCIENT HISTORY TRICKS -->
-            <div class="era-header">📜 1. प्राचीन भारत की ट्रिक्स (Ancient History)</div>
-
-            <div class="trick-card">
-                <h3>1. सिंधु सभ्यता के प्रमुख स्थल व नदियाँ</h3>
-                <p><strong>ट्रिक:</strong> "लोभ मौसी का हरा कंघा रमा ने ले लिया तो वो रोष में आ गई और उसे बस से कुचल दिया"<br>
-                • लोभ: लोथल (भोगवा) | मौसी: मोहनजोदड़ो (सिंधु) | हरा: हड़प्पा (रावी)<br>
-                • कंघा: कालीबंगा (घग्घर) | रमा: रंगपुर (भादर) | रोष: रोपड़ (सतलज) | बस: बनमाली (सरस्वती)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>2. वेद त्रयी (तीन प्रमुख वेद)</h3>
-                <p><strong>ट्रिक:</strong> "ऋ सा य"<br>
-                • ऋग्वेद, सामवेद, यजुर्वेद (अथर्ववेद इसमें शामिल नहीं है)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>3. चारों वेदों के उपवेद</h3>
-                <p><strong>ट्रिक:</strong> "अयाधु शि"<br>
-                • अर्थशास्त्र (अथर्ववेद) | आयुर्वेद (ऋग्वेद) | धनुर्वेद (यजुर्वेद) | गंधर्ववेद (सामवेद)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>4. बौद्ध संगीतियाँ (स्थान - शासक - अध्यक्ष)</h3>
-                <p>• <strong>स्थान ट्रिक ("रा-वै-पा-कु"):</strong> राजगृह, वैशाली, पाटलिपुत्र, कुण्डलवन<br>
-                • <strong>शासक ट्रिक ("अ-का-अ-क"):</strong> अजातशत्रु, कालाशोक, अशोक, कनिष्क<br>
-                • <strong>अध्यक्ष ट्रिक ("मा-स-मो-वसु"):</strong> महाकश्यप, सब्बाकामी, मोगलिपुत्त तिस्स, वसुमित्र</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>5. जैन धर्म के 5 महाव्रत</h3>
-                <p><strong>ट्रिक:</strong> "अ-अ-अ-अ-ब"<br>
-                • अहिंसा, अमृषा (सत्य), अस्तेय, अपरिग्रह, ब्रह्मचर्य (महावीर स्वामी द्वारा जोड़ा गया)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>6. मगध साम्राज्य के राजवंश (क्रमानुसार)</h3>
-                <p><strong>ट्रिक:</strong> "हसीन माशूक शाह"<br>
-                • हर्यक ➔ शिशुनाग ➔ नंद ➔ मौर्य ➔ शुंग ➔ कण्व ➔ सातवाहन</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>7. हर्यक वंश के शासक (क्रम से)</h3>
-                <p><strong>ट्रिक:</strong> "B.A.U."<br>
-                • बिम्बिसार (संस्थापक) ➔ अजातशत्रु ➔ उदयन (पाटलिपुत्र का संस्थापक)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>8. कनिष्क के दरबार की विभूतियाँ</h3>
-                <p><strong>ट्रिक:</strong> "अश्व नाचे पांव पे"<br>
-                • अश्वघोष, नागार्जुन, चरक, पार्श्व, वसुमित्र</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>9. चंद्रगुप्त विक्रमादित्य के नवरत्न</h3>
-                <p><strong>ट्रिक:</strong> "अमर कालिदास ने धन्य वर को बेताल घट में क्षपणक कहा"<br>
-                • अमरसिंह, कालिदास, धनवंतरी, वराहमिहिर, वररुचि, बेतालभट्ट, घटकर्पर, क्षपणक, शंकु</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>10. सम्राट अशोक के शिलालेखों की लिपियाँ</h3>
-                <p><strong>ट्रिक:</strong> "ब्राह्मी का ग्रीक अरमाइक में खरोष्ठी अनुवाद"<br>
-                • ब्राह्मी लिपि (भारत) | खरोष्ठी (पाकिस्तान) | ग्रीक व अरमाइक (अफगानिस्तान)</p>
-            </div>
-
-            <!-- MEDIEVAL HISTORY TRICKS -->
-            <div class="era-header">⚔️ 2. मध्यकालीन भारत की ट्रिक्स (Medieval History)</div>
-
-            <div class="trick-card">
-                <h3>11. दिल्ली सल्तनत के वंश (क्रमानुसार)</h3>
-                <p><strong>ट्रिक:</strong> "गुलाब खिले तो सांस लो"<br>
-                • गुलाम वंश (1206-1290) ➔ खिलजी (1290-1320) ➔ तुगलक (1320-1414) ➔ सैयद (1414-1451) ➔ लोदी (1451-1526)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>12. गुलाम वंश के प्रमुख शासक</h3>
-                <p><strong>ट्रिक:</strong> "ऐ इल्तु रज़िया बलबन"<br>
-                • कुतुबुद्दीन ऐबक ➔ इल्तुतमिश ➔ रज़िया सुल्तान ➔ बलबन</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>13. अलाउद्दीन खिलजी के निर्माण कार्य</h3>
-                <p><strong>ट्रिक:</strong> "अलाई का हजार सीरी चोर"<br>
-                • अलाई दरवाजा, हजार सितून (स्तंभ) महल, सीरी का किला, जमात खाना मस्जिद</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>14. मोहम्मद बिन तुगलक की 4 योजनाएं</h3>
-                <p><strong>ट्रिक:</strong> "दो रा सा करा"<br>
-                • दोआब में कर वृद्धि ➔ राजधानी परिवर्तन ➔ सांकेतिक मुद्रा ➔ कराचिल अभियान</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>15. फिरोजशाह तुगलक द्वारा बसाए गए नगर</h3>
-                <p><strong>ट्रिक:</strong> "फिरोजा हाफ गए"<br>
-                • फिरोजाबाद/फिरोजपुर, हिसार, फतेहाबाद, जौनपुर</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>16. मुगल बादशाहों का क्रमानुसार नाम</h3>
-                <p><strong>ट्रिक:</strong> "BHAJSA" (भजसा)<br>
-                • बाबर ➔ हुमायूँ ➔ अकबर ➔ जहांगीर ➔ शाहजहाँ ➔ औरंगजेब</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>17. बाबर द्वारा लड़े गए प्रमुख युद्ध</h3>
-                <p><strong>ट्रिक:</strong> "पान खा, घर चल, मर जा"<br>
-                • पानीपत (1526) ➔ खानवा (1527) ➔ चंदेरी (1528) ➔ घाघरा (1529) ➔ 1530 (मृत्यु)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>18. अकबर के नौ रत्न (Navrattan)</h3>
-                <p><strong>ट्रिक:</strong> "BAT BAT पे MDH"<br>
-                • Birbal, Abul Fazl, Tansen | Bhagwan Das, Abdul Rahim, Todarmal | Man Singh, Do-Piyaza, Hakim Humam</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>19. अकबर द्वारा किए गए कार्य व वर्ष</h3>
-                <p><strong>ट्रिक:</strong> "दास ती ज इ फ दी"<br>
-                • दास प्रथा अंत (1562) | तीर्थयात्रा कर अंत (1563) | जजिया कर अंत (1564) | इबादतखाना (1575) | फतेहपुर सीकरी (1571) | दीन-ए-इलाही (1582)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>20. शाहजहाँ द्वारा बनवाए गए निर्माण</h3>
-                <p><strong>ट्रिक:</strong> "मत जा रेशमा दीवानी"<br>
-                • मयूर सिंहासन, ताज महल, जामा मस्जिद, रेशमा बाग, शाहजहाँ बाग, मोती मस्जिद (आगरा), दीवान-ए-आम/खास</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>21. शिवाजी महाराज की अष्टप्रधान परिषद</h3>
-                <p><strong>ट्रिक:</strong> "पेशवा अमत्य मंत्री सचिव, सुमंत सेनापति पंडित न्यायाधीश"<br>
-                • पेशवा (प्रधानमंत्री), अमात्य (वित्त), वाकयानवीस (गृह), सचिब (पत्राचार), सुमंत (विदेश), सेनापति, पंडितराव (धर्म), न्यायाधीश</p>
-            </div>
-
-            <!-- MODERN HISTORY TRICKS -->
-            <div class="era-header">🚩 3. आधुनिक भारत की ट्रिक्स (Modern History)</div>
-
-            <div class="trick-card">
-                <h3>22. यूरोपीय कंपनियों के आगमन का क्रम</h3>
-                <p><strong>ट्रिक:</strong> "पुत्र अड़ा, डेड फंसा"<br>
-                • पुर्तगाली (1498) ➔ अंग्रेज (1600) ➔ डच (1602) ➔ डेनिश (1616) ➔ फ्रांसीसी (1664) ➔ स्वीडिश (1731)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>23. पुर्तगाली भारत में क्या-क्या लाए?</h3>
-                <p><strong>ट्रिक:</strong> "आलू-टमाटर, काजू-अनानास और तंबाकू का प्रिंटिंग प्रेस"<br>
-                • आलू, टमाटर, काजू, अनानास, तंबाकू, लाल मिर्च और प्रिंटिंग प्रेस (1556)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>24. वेलेजली की 'सहायक संधि' स्वीकार करने वाले राज्य</h3>
-                <p><strong>ट्रिक:</strong> "H.M.T. पे पेशवा ने भोसले और सिंधिया को दिया"<br>
-                • हैदराबाद (1798) ➔ मैसूर (1799) ➔ तंजौर (1799) ➔ अवध (1801) ➔ पेशवा (1802) ➔ भोसले (1803) ➔ सिंधिया (1804)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>25. ডलहौजी की 'हड़प नीति' (Doctrine of Lapse) के राज्य</h3>
-                <p><strong>ट्रिक:</strong> "सजे संभले जैतपुर, बघाट उदयपुर झाँसी नागपुर"<br>
-                • सतारा (1848) ➔ जैतपुर/संभलपुर (1849) ➔ बघाट (1850) ➔ उदयपुर (1852) ➔ झाँसी (1853) ➔ नागपुर (1854)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>26. 1857 की क्रांति के प्रमुख केंद्र व नेता</h3>
-                <p><strong>ट्रिक:</strong> "दिल्ली में बहादुर, कानपुर में नाना, लखनऊ में बेगम, झाँसी में रानी, बिहार में कुंवर, इलाहाबाद में लियाकत"<br>
-                • दिल्ली: बहादुर शाह जफर | कानपुर: नाना साहब | लखनऊ: बेगम हजरत महल | झाँसी: रानी लक्ष्मीबाई | बिहार: कुंवर सिंह | इलाहाबाद: लियाकत अली</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>27. प्रमुख सामाजिक-धार्मिक संस्थाएँ व संस्थापक</h3>
-                <p><strong>ट्रिक:</strong> "ब्रह्म राजा, आर्य दयानंद, रामकृष्ण विवेक, प्रार्थना आत्मा"<br>
-                • ब्रह्म समाज: राजा राममोहन राय | आर्य समाज: स्वामी दयानंद सरस्वती | रामकृष्ण मिशन: स्वामी विवेकानंद | प्रार्थना समाज: आत्माराम पांडुरंग</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>28. कांग्रेस के शुरुआती अध्यक्ष (क्रम से)</h3>
-                <p><strong>ट्रिक:</strong> "बक मई बक"<br>
-                • ब्योमेश चंद्र बनर्जी (1885) ➔ दादाभाई नौरोजी (1886) ➔ बदरुद्दीन तैयबजी (1887) ➔ जॉर्ज यूल (1888)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>29. कांग्रेस की महिला अध्यक्ष</h3>
-                <p><strong>ट्रिक:</strong> "ए-स-न" (8 साल के अंतर पर)<br>
-                • ऐनी बेसेंट (1917) ➔ सरोजिनी नायडू (1925) ➔ नलिनी सेनगुप्ता (1933)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>30. गांधीजी के शुरुआती आंदोलन (क्रमानुसार)</h3>
-                <p><strong>ट्रिक:</strong> "गांधी चंपारण से खेड़ा गए, अहमदाबाद में मिल मजदूरों से खिलाफत कराके असहयोग किया"<br>
-                • चंपारण सत्याग्रह (1917) ➔ खेड़ा सत्याग्रह (1918) ➔ अहमदाबाद मिल (1918) ➔ खिलाफत (1919) ➔ असहयोग आंदोलन (1920)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>31. गांधीजी के बाद के प्रमुख आंदोलन</h3>
-                <p><strong>ट्रिक:</strong> "दांडी में सविनय नमक बनाके भारत छोड़ा"<br>
-                • दांडी यात्रा / सविनय अवज्ञा आंदोलन (1930) ➔ भारत छोड़ो आंदोलन (1942)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>32. 1930 के तीनों गोलमेज सम्मेलन (Round Table)</h3>
-                <p><strong>ट्रिक:</strong> "30, 31, 32 - पहला, दूसरा, तीसरा"<br>
-                • 1st: 1930 | 2nd: 1931 (गांधी जी गए थे) | 3rd: 1932 (अंबेडकर जी तीनों में गए थे)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>33. क्रांतिकारी घटनाएं (वर्ष अनुसार)</h3>
-                <p><strong>ट्रिक:</strong> "काकोरी 25, साइमन 28, लाहौर 29, फांसी 31"<br>
-                • काकोरी ट्रेन एक्शन (1925) ➔ साइमन कमीशन (1928) ➔ लाहौर अधिवेशन (1929) ➔ भगत सिंह को फांसी (23 मार्च 1931)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>34. बंगाल के गवर्नर जनरल (क्रमानुसार)</h3>
-                <p><strong>ट्रिक:</strong> "हेस्टिंग्स कॉर्नवॉलिस वेलेजली मिंटो हास्टिंग्स"<br>
-                • वॉरेन हेस्टिंग्स ➔ लॉर्ड कॉर्नवॉलिस ➔ लॉर्ड वेलेजली ➔ लॉर्ड मिंटो ➔ लॉर्ड हेस्टिंग्स</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>35. भारत के प्रमुख वायसराय का क्रम</h3>
-                <p><strong>ट्रिक:</strong> "कैनिंग मेयो रिपन कर्जन इरविन माउंट" <br>
-                • लॉर्ड कैनिंग (1857) ➔ लॉर्ड मेयो ➔ लॉर्ड रिपन ➔ लॉर्ड कर्जन (1905) ➔ लॉर्ड इरविन (1931) ➔ लॉर्ड माउंटबेटन (1947)</p>
-            </div>
-
-        </div>
-
-        <!-- PRACTICE SET SECTION -->
-        <div id="quiz-section" class="section-content">
-            <div class="controls-panel">
-                <div>
-                    <label for="set-select"><strong>प्रैक्टिस सेट नंबर चुनें:</strong></label>
-                    <input type="number" id="set-select" min="1" max="2000" value="1" onchange="loadPracticeSet()">
-                    <button onclick="loadPracticeSet()" style="padding: 10px 15px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">लोड सेट</button>
+    <!-- USER REGISTRATION MODAL FORM -->
+    <div id="userModal">
+        <div class="modal-box">
+            <h2>🏛️ इतिहास पोर्टल प्रवेश</h2>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 20px;">पढ़ाई और प्रैक्टिस शुरू करने से पहले अपनी जानकारी दर्ज करें:</p>
+            <form id="userDataForm" onsubmit="submitUserData(event)">
+                <div class="input-group">
+                    <label>आपका नाम (Name):</label>
+                    <input type="text" id="userName" placeholder="उदाहरण: राहुल कुमार" required>
                 </div>
-                <div class="marking-badge">
-                    ⚠️ नेगेटिव मार्किंग: +1 सही | -0.25 गलत
+                <div class="input-group">
+                    <label>मोबाइल नंबर (Mobile No):</label>
+                    <input type="tel" id="userPhone" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर" required>
                 </div>
-            </div>
-
-            <h2 id="set-title" style="color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 5px;">प्रैक्टिस सेट #1</h2>
-
-            <form id="practiceForm">
-                <div id="questions-container">
-                    <!-- Dynamic Questions Loaded Here -->
+                <div class="input-group">
+                    <label>शहर / राज्य (City/State):</label>
+                    <input type="text" id="userCity" placeholder="उदाहरण: प्रयागराज, यूपी" required>
                 </div>
-
-                <button type="button" class="submit-btn" onclick="calculateScore()">टेस्ट सबमिट करें और स्कोरकार्ड देखें</button>
+                <button type="submit" class="start-btn">एंट्री करें & पढ़ाई शुरू करें</button>
             </form>
-
-            <div id="quiz-result">
-                <h3 id="result-status"></h3>
-                <div class="score-box">
-                    <div class="score-item" style="color: #1e293b;">
-                        <div>कुल प्रश्न</div>
-                        <div class="num" id="res-total">0</div>
-                    </div>
-                    <div class="score-item" style="color: var(--success);">
-                        <div>सही उत्तर (+1)</div>
-                        <div class="num" id="res-correct">0</div>
-                    </div>
-                    <div class="score-item" style="color: var(--danger);">
-                        <div>गलत <!DOCTYPE html>
-<html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>संपूर्ण भारतीय इतिहास - ट्रिक महासागर & प्रैक्टिस हब</title>
-    <style>
-        :root {
-            --primary: #0f172a;
-            --secondary: #d97706;
-            --accent: #2563eb;
-            --success: #16a34a;
-            --danger: #dc2626;
-            --light-bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-color: #0f172a;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
-            color: white;
-            text-align: center;
-            padding: 2.5rem 1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.3rem;
-            color: #fbbf24;
-        }
-
-        header p {
-            margin-top: 8px;
-            font-size: 1.1rem;
-            color: #cbd5e1;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background-color: var(--card-bg);
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            padding: 12px 24px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            background-color: var(--primary);
-            color: #fbbf24;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
-        }
-
-        .section-content {
-            display: none;
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-
-        .section-content.active {
-            display: block;
-        }
-
-        .era-header {
-            background: var(--primary);
-            color: #fbbf24;
-            padding: 12px 18px;
-            border-radius: 8px;
-            margin-top: 2rem;
-            margin-bottom: 1.2rem;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        .trick-card {
-            background: #fffbebf8;
-            border-left: 6px solid var(--secondary);
-            padding: 16px;
-            margin-bottom: 16px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-        }
-
-        .trick-card h3 {
-            margin: 0 0 8px;
-            color: #b45309;
-            font-size: 1.15rem;
-        }
-
-        .trick-card p {
-            margin: 0;
-            font-size: 1rem;
-        }
-
-        .controls-panel {
-            background: #e2e8f0;
-            padding: 18px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .controls-panel input {
-            padding: 10px 15px;
-            border-radius: 6px;
-            border: 1px solid #cbd5e1;
-            font-size: 1rem;
-            font-weight: bold;
-        }
-
-        .marking-badge {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            border: 1px solid #fca5a5;
-        }
-
-        .quiz-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-
-        .quiz-card p {
-            font-weight: bold;
-            font-size: 1.05rem;
-            margin-top: 0;
-            color: var(--primary);
-        }
-
-        .options label {
-            display: block;
-            margin: 8px 0;
-            padding: 10px 14px;
-            background: white;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .options label:hover {
-            background: #f1f5f9;
-        }
-
-        .submit-btn {
-            background-color: var(--success);
-            color: white;
-            border: none;
-            padding: 16px 30px;
-            font-size: 1.15rem;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .submit-btn:hover {
-            background-color: #15803d;
-        }
-
-        #quiz-result {
-            margin-top: 25px;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            display: none;
-        }
-
-        .score-box {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .score-item {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            min-width: 120px;
-        }
-
-        .score-item .num {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 1.8rem; }
-            .tab-btn { width: 100%; text-align: center; }
-            .controls-panel { flex-direction: column; align-items: stretch; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>🏛️ संपूर्ण इतिहास: ट्रिक महासागर & प्रैक्टिस हब</h1>
-        <p>प्राचीन, मध्यकालीन एवं आधुनिक भारत की 35+ सुपर ट्रिक्स एवं प्रैक्टिस सेट्स</p>
-    </header>
-
-    <div class="container">
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchSection('tricks-section')">🔥 इतिहास की 35+ मास्टर ट्रिक्स</button>
-            <button class="tab-btn" onclick="switchSection('quiz-section')">📝 प्रैक्टिस टेस्ट (नेगेटिव मार्किंग)</button>
         </div>
+    </div>
 
-        <!-- TRICKS REVISION SECTION -->
-        <div id="tricks-section" class="section-content active">
-            <h2>🔥 इतिहास के हर एक टॉपिक की शॉर्ट ट्रिक्स</h2>
+    <!-- MAIN STUDY CONTENT -->
+    <div id="mainContent">
+        <header>
+            <h1>🏛️ संपूर्ण इतिहास: ट्रिक महासागर & प्रैक्टिस हब</h1>
+            <p>प्राचीन, मध्यकालीन एवं आधुनिक भारत की मास्टर ट्रिक्स एवं 2000+ प्रैक्टिस सेट्स</p>
+        </header>
 
-            <!-- ANCIENT HISTORY TRICKS -->
-            <div class="era-header">📜 1. प्राचीन भारत की ट्रिक्स (Ancient History)</div>
-
-            <div class="trick-card">
-                <h3>1. सिंधु सभ्यता के प्रमुख स्थल व नदियाँ</h3>
-                <p><strong>ट्रिक:</strong> "लोभ मौसी का हरा कंघा रमा ने ले लिया तो वो रोष में आ गई और उसे बस से कुचल दिया"<br>
-                • लोभ: लोथल (भोगवा) | मौसी: मोहनजोदड़ो (सिंधु) | हरा: हड़प्पा (रावी)<br>
-                • कंघा: कालीबंगा (घग्घर) | रमा: रंगपुर (भादर) | रोष: रोपड़ (सतलज) | बस: बनमाली (सरस्वती)</p>
+        <div class="container">
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="switchSection('tricks-section')">🔥 इतिहास की 35+ मास्टर ट्रिक्स</button>
+                <button class="tab-btn" onclick="switchSection('quiz-section')">📝 प्रैक्टिस टेस्ट (नेगेटिव मार्किंग)</button>
             </div>
 
-            <div class="trick-card">
-                <h3>2. वेद त्रयी (तीन प्रमुख वेद)</h3>
-                <p><strong>ट्रिक:</strong> "ऋ सा य"<br>
-                • ऋग्वेद, सामवेद, यजुर्वेद (अथर्ववेद इसमें शामिल नहीं है)</p>
+            <!-- TRICKS REVISION SECTION -->
+            <div id="tricks-section" class="section-content active">
+                <h2>🔥 इतिहास के हर एक टॉपिक की शॉर्ट ट्रिक्स</h2>
+
+                <div class="era-header">📜 1. प्राचीन भारत की ट्रिक्स (Ancient History)</div>
+                <div class="trick-card">
+                    <h3>1. सिंधु सभ्यता के प्रमुख स्थल व नदियाँ</h3>
+                    <p><strong>ट्रिक:</strong> "लोभ मौसी का हरा कंघा रमा ने ले लिया तो वो रोष में आ गई और उसे बस से कुचल दिया"<br>
+                    • लोभ: लोथल (भोगवा) | मौसी: मोहनजोदड़ो (सिंधु) | हरा: हड़प्पा (रावी)<br>
+                    • कंघा: कालीबंगा (घग्घर) | रमा: रंगपुर (भादर) | रोष: रोपड़ (सतलज) | बस: बनमाली (सरस्वती)</p>
+                </div>
+                <div class="trick-card">
+                    <h3>2. मगध साम्राज्य के राजवंश (क्रमानुसार)</h3>
+                    <p><strong>ट्रिक:</strong> "हसीन माशूक शाह"<br>हर्यक ➔ शिशुनाग ➔ नंद ➔ मौर्य ➔ शुंग ➔ कण्व ➔ सातवाहन</p>
+                </div>
+
+                <div class="era-header">⚔️ 2. मध्यकालीन भारत की ट्रिक्स (Medieval History)</div>
+                <div class="trick-card">
+                    <h3>3. दिल्ली सल्तनत के वंश (क्रमानुसार)</h3>
+                    <p><strong>ट्रिक:</strong> "गुलाब खिले तो सांस लो"<br>गुलाम ➔ खिलजी ➔ तुगलक ➔ सैयद ➔ लोदी</p>
+                </div>
+                <div class="trick-card">
+                    <h3>4. मुगल बादशाहों का क्रमानुसार नाम</h3>
+                    <p><strong>ट्रिक:</strong> "BHAJSA" (भजसा)<br>बाबर ➔ हुमायूँ ➔ अकबर ➔ जहांगीर ➔ शाहजहाँ ➔ औरंगजेब</p>
+                </div>
+
+                <div class="era-header">🚩 3. आधुनिक भारत की ट्रिक्स (Modern History)</div>
+                <div class="trick-card">
+                    <h3>5. गांधीजी के शुरुआती आंदोलन (क्रमानुसार)</h3>
+                    <p><strong>ट्रिक:</strong> "गांधी चंपारण से खेड़ा गए, अहमदाबाद में मिल मजदूरों से खिलाफत कराके असहयोग किया"<br>चंपारण (1917) ➔ खेड़ा (1918) ➔ अहमदाबाद मिल (1918) ➔ खिलाफत (1919) ➔ असहयोग (1920)</p>
+                </div>
             </div>
 
-            <div class="trick-card">
-                <h3>3. चारों वेदों के उपवेद</h3>
-                <p><strong>ट्रिक:</strong> "अयाधु शि"<br>
-                • अर्थशास्त्र (अथर्ववेद) | आयुर्वेद (ऋग्वेद) | धनुर्वेद (यजुर्वेद) | गंधर्ववेद (सामवेद)</p>
+            <!-- PRACTICE SET SECTION -->
+            <div id="quiz-section" class="section-content">
+                <div class="controls-panel">
+                    <div>
+                        <label for="set-select"><strong>प्रैक्टिस सेट नंबर चुनें (1 से 2000):</strong></label>
+                        <input type="number" id="set-select" min="1" max="2000" value="1" onchange="loadPracticeSet()">
+                        <button onclick="loadPracticeSet()" style="padding: 10px 15px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">लोड सेट</button>
+                    </div>
+                    <div class="marking-badge">
+                        ⚠️ नेगेटिव मार्किंग: +1 सही | -0.25 गलत
+                    </div>
+                </div>
+
+                <h2 id="set-title" style="color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 5px;">प्रैक्टिस सेट #1</h2>
+
+                <form id="practiceForm">
+                    <div id="questions-container"></div>
+                    <button type="button" class="submit-btn" onclick="calculateScore()">टेस्ट सबमिट करें और स्कोरकार्ड देखें</button>
+                </form>
+
+                <div id="quiz-result">
+                    <h3 id="result-status"></h3>
+                    <div class="score-box">
+                        <div class="score-item" style="color: #1e293b;">
+                            <div>कुल प्रश्न</div>
+                            <div class="num" id="res-total">0</div>
+                        </div>
+                        <div class="score-item" style="color: var(--success);">
+                            <div>सही उत्तर (+1)</div>
+                            <div class="num" id="res-correct">0</div>
+                        </div>
+                        <div class="score-item" style="color: var(--danger);">
+                            <div>गलत उत्तर (-0.25)</div>
+                            <div class="num" id="res-wrong">0</div>
+                        </div>
+                        <div class="score-item" style="color: var(--accent);">
+                            <div>अंतिम प्राप्तांक</div>
+                            <div class="num" id="res-final">0</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="trick-card">
-                <h3>4. बौद्ध संगीतियाँ (स्थान - शासक - अध्यक्ष)</h3>
-                <p>• <strong>स्थान ट्रिक ("रा-वै-पा-कु"):</strong> राजगृह, वैशाली, पाटलिपुत्र, कुण्डलवन<br>
-                • <strong>शासक ट्रिक ("अ-का-अ-क"):</strong> अजातशत्रु, कालाशोक, अशोक, कनिष्क<br>
-                • <strong>अध्यक्ष ट्रिक ("मा-स-मो-वसु"):</strong> महाकश्यप, सब्बाकामी, मोगलिपुत्त तिस्स, वसुमित्र</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>5. जैन धर्म के 5 महाव्रत</h3>
-                <p><strong>ट्रिक:</strong> "अ-अ-अ-अ-ब"<br>
-                • अहिंसा, अमृषा (सत्य), अस्तेय, अपरिग्रह, ब्रह्मचर्य (महावीर स्वामी द्वारा जोड़ा गया)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>6. मगध साम्राज्य के राजवंश (क्रमानुसार)</h3>
-                <p><strong>ट्रिक:</strong> "हसीन माशूक शाह"<br>
-                • हर्यक ➔ शिशुनाग ➔ नंद ➔ मौर्य ➔ शुंग ➔ कण्व ➔ सातवाहन</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>7. हर्यक वंश के शासक (क्रम से)</h3>
-                <p><strong>ट्रिक:</strong> "B.A.U."<br>
-                • बिम्बिसार (संस्थापक) ➔ अजातशत्रु ➔ उदयन (पाटलिपुत्र का संस्थापक)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>8. कनिष्क के दरबार की विभूतियाँ</h3>
-                <p><strong>ट्रिक:</strong> "अश्व नाचे पांव पे"<br>
-                • अश्वघोष, नागार्जुन, चरक, पार्श्व, वसुमित्र</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>9. चंद्रगुप्त विक्रमादित्य के नवरत्न</h3>
-                <p><strong>ट्रिक:</strong> "अमर कालिदास ने धन्य वर को बेताल घट में क्षपणक कहा"<br>
-                • अमरसिंह, कालिदास, धनवंतरी, वराहमिहिर, वररुचि, बेतालभट्ट, घटकर्पर, क्षपणक, शंकु</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>10. सम्राट अशोक के शिलालेखों की लिपियाँ</h3>
-                <p><strong>ट्रिक:</strong> "ब्राह्मी का ग्रीक अरमाइक में खरोष्ठी अनुवाद"<br>
-                • ब्राह्मी लिपि (भारत) | खरोष्ठी (पाकिस्तान) | ग्रीक व अरमाइक (अफगानिस्तान)</p>
-            </div>
-
-            <!-- MEDIEVAL HISTORY TRICKS -->
-            <div class="era-header">⚔️ 2. मध्यकालीन भारत की ट्रिक्स (Medieval History)</div>
-
-            <div class="trick-card">
-                <h3>11. दिल्ली सल्तनत के वंश (क्रमानुसार)</h3>
-                <p><strong>ट्रिक:</strong> "गुलाब खिले तो सांस लो"<br>
-                • गुलाम वंश (1206-1290) ➔ खिलजी (1290-1320) ➔ तुगलक (1320-1414) ➔ सैयद (1414-1451) ➔ लोदी (1451-1526)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>12. गुलाम वंश के प्रमुख शासक</h3>
-                <p><strong>ट्रिक:</strong> "ऐ इल्तु रज़िया बलबन"<br>
-                • कुतुबुद्दीन ऐबक ➔ इल्तुतमिश ➔ रज़िया सुल्तान ➔ बलबन</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>13. अलाउद्दीन खिलजी के निर्माण कार्य</h3>
-                <p><strong>ट्रिक:</strong> "अलाई का हजार सीरी चोर"<br>
-                • अलाई दरवाजा, हजार सितून (स्तंभ) महल, सीरी का किला, जमात खाना मस्जिद</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>14. मोहम्मद बिन तुगलक की 4 योजनाएं</h3>
-                <p><strong>ट्रिक:</strong> "दो रा सा करा"<br>
-                • दोआब में कर वृद्धि ➔ राजधानी परिवर्तन ➔ सांकेतिक मुद्रा ➔ कराचिल अभियान</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>15. फिरोजशाह तुगलक द्वारा बसाए गए नगर</h3>
-                <p><strong>ट्रिक:</strong> "फिरोजा हाफ गए"<br>
-                • फिरोजाबाद/फिरोजपुर, हिसार, फतेहाबाद, जौनपुर</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>16. मुगल बादशाहों का क्रमानुसार नाम</h3>
-                <p><strong>ट्रिक:</strong> "BHAJSA" (भजसा)<br>
-                • बाबर ➔ हुमायूँ ➔ अकबर ➔ जहांगीर ➔ शाहजहाँ ➔ औरंगजेब</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>17. बाबर द्वारा लड़े गए प्रमुख युद्ध</h3>
-                <p><strong>ट्रिक:</strong> "पान खा, घर चल, मर जा"<br>
-                • पानीपत (1526) ➔ खानवा (1527) ➔ चंदेरी (1528) ➔ घाघरा (1529) ➔ 1530 (मृत्यु)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>18. अकबर के नौ रत्न (Navrattan)</h3>
-                <p><strong>ट्रिक:</strong> "BAT BAT पे MDH"<br>
-                • Birbal, Abul Fazl, Tansen | Bhagwan Das, Abdul Rahim, Todarmal | Man Singh, Do-Piyaza, Hakim Humam</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>19. अकबर द्वारा किए गए कार्य व वर्ष</h3>
-                <p><strong>ट्रिक:</strong> "दास ती ज इ फ दी"<br>
-                • दास प्रथा अंत (1562) | तीर्थयात्रा कर अंत (1563) | जजिया कर अंत (1564) | इबादतखाना (1575) | फतेहपुर सीकरी (1571) | दीन-ए-इलाही (1582)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>20. शाहजहाँ द्वारा बनवाए गए निर्माण</h3>
-                <p><strong>ट्रिक:</strong> "मत जा रेशमा दीवानी"<br>
-                • मयूर सिंहासन, ताज महल, जामा मस्जिद, रेशमा बाग, शाहजहाँ बाग, मोती मस्जिद (आगरा), दीवान-ए-आम/खास</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>21. शिवाजी महाराज की अष्टप्रधान परिषद</h3>
-                <p><strong>ट्रिक:</strong> "पेशवा अमत्य मंत्री सचिव, सुमंत सेनापति पंडित न्यायाधीश"<br>
-                • पेशवा (प्रधानमंत्री), अमात्य (वित्त), वाकयानवीस (गृह), सचिब (पत्राचार), सुमंत (विदेश), सेनापति, पंडितराव (धर्म), न्यायाधीश</p>
-            </div>
-
-            <!-- MODERN HISTORY TRICKS -->
-            <div class="era-header">🚩 3. आधुनिक भारत की ट्रिक्स (Modern History)</div>
-
-            <div class="trick-card">
-                <h3>22. यूरोपीय कंपनियों के आगमन का क्रम</h3>
-                <p><strong>ट्रिक:</strong> "पुत्र अड़ा, डेड फंसा"<br>
-                • पुर्तगाली (1498) ➔ अंग्रेज (1600) ➔ डच (1602) ➔ डेनिश (1616) ➔ फ्रांसीसी (1664) ➔ स्वीडिश (1731)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>23. पुर्तगाली भारत में क्या-क्या लाए?</h3>
-                <p><strong>ट्रिक:</strong> "आलू-टमाटर, काजू-अनानास और तंबाकू का प्रिंटिंग प्रेस"<br>
-                • आलू, टमाटर, काजू, अनानास, तंबाकू, लाल मिर्च और प्रिंटिंग प्रेस (1556)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>24. वेलेजली की 'सहायक संधि' स्वीकार करने वाले राज्य</h3>
-                <p><strong>ट्रिक:</strong> "H.M.T. पे पेशवा ने भोसले और सिंधिया को दिया"<br>
-                • हैदराबाद (1798) ➔ मैसूर (1799) ➔ तंजौर (1799) ➔ अवध (1801) ➔ पेशवा (1802) ➔ भोसले (1803) ➔ सिंधिया (1804)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>25. ডलहौजी की 'हड़प नीति' (Doctrine of Lapse) के राज्य</h3>
-                <p><strong>ट्रिक:</strong> "सजे संभले जैतपुर, बघाट उदयपुर झाँसी नागपुर"<br>
-                • सतारा (1848) ➔ जैतपुर/संभलपुर (1849) ➔ बघाट (1850) ➔ उदयपुर (1852) ➔ झाँसी (1853) ➔ नागपुर (1854)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>26. 1857 की क्रांति के प्रमुख केंद्र व नेता</h3>
-                <p><strong>ट्रिक:</strong> "दिल्ली में बहादुर, कानपुर में नाना, लखनऊ में बेगम, झाँसी में रानी, बिहार में कुंवर, इलाहाबाद में लियाकत"<br>
-                • दिल्ली: बहादुर शाह जफर | कानपुर: नाना साहब | लखनऊ: बेगम हजरत महल | झाँसी: रानी लक्ष्मीबाई | बिहार: कुंवर सिंह | इलाहाबाद: लियाकत अली</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>27. प्रमुख सामाजिक-धार्मिक संस्थाएँ व संस्थापक</h3>
-                <p><strong>ट्रिक:</strong> "ब्रह्म राजा, आर्य दयानंद, रामकृष्ण विवेक, प्रार्थना आत्मा"<br>
-                • ब्रह्म समाज: राजा राममोहन राय | आर्य समाज: स्वामी दयानंद सरस्वती | रामकृष्ण मिशन: स्वामी विवेकानंद | प्रार्थना समाज: आत्माराम पांडुरंग</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>28. कांग्रेस के शुरुआती अध्यक्ष (क्रम से)</h3>
-                <p><strong>ट्रिक:</strong> "बक मई बक"<br>
-                • ब्योमेश चंद्र बनर्जी (1885) ➔ दादाभाई नौरोजी (1886) ➔ बदरुद्दीन तैयबजी (1887) ➔ जॉर्ज यूल (1888)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>29. कांग्रेस की महिला अध्यक्ष</h3>
-                <p><strong>ट्रिक:</strong> "ए-स-न" (8 साल के अंतर पर)<br>
-                • ऐनी बेसेंट (1917) ➔ सरोजिनी नायडू (1925) ➔ नलिनी सेनगुप्ता (1933)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>30. गांधीजी के शुरुआती आंदोलन (क्रमानुसार)</h3>
-                <p><strong>ट्रिक:</strong> "गांधी चंपारण से खेड़ा गए, अहमदाबाद में मिल मजदूरों से खिलाफत कराके असहयोग किया"<br>
-                • चंपारण सत्याग्रह (1917) ➔ खेड़ा सत्याग्रह (1918) ➔ अहमदाबाद मिल (1918) ➔ खिलाफत (1919) ➔ असहयोग आंदोलन (1920)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>31. गांधीजी के बाद के प्रमुख आंदोलन</h3>
-                <p><strong>ट्रिक:</strong> "दांडी में सविनय नमक बनाके भारत छोड़ा"<br>
-                • दांडी यात्रा / सविनय अवज्ञा आंदोलन (1930) ➔ भारत छोड़ो आंदोलन (1942)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>32. 1930 के तीनों गोलमेज सम्मेलन (Round Table)</h3>
-                <p><strong>ट्रिक:</strong> "30, 31, 32 - पहला, दूसरा, तीसरा"<br>
-                • 1st: 1930 | 2nd: 1931 (गांधी जी गए थे) | 3rd: 1932 (अंबेडकर जी तीनों में गए थे)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>33. क्रांतिकारी घटनाएं (वर्ष अनुसार)</h3>
-                <p><strong>ट्रिक:</strong> "काकोरी 25, साइमन 28, लाहौर 29, फांसी 31"<br>
-                • काकोरी ट्रेन एक्शन (1925) ➔ साइमन कमीशन (1928) ➔ लाहौर अधिवेशन (1929) ➔ भगत सिंह को फांसी (23 मार्च 1931)</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>34. बंगाल के गवर्नर जनरल (क्रमानुसार)</h3>
-                <p><strong>ट्रिक:</strong> "हेस्टिंग्स कॉर्नवॉलिस वेलेजली मिंटो हास्टिंग्स"<br>
-                • वॉरेन हेस्टिंग्स ➔ लॉर्ड कॉर्नवॉलिस ➔ लॉर्ड वेलेजली ➔ लॉर्ड मिंटो ➔ लॉर्ड हेस्टिंग्स</p>
-            </div>
-
-            <div class="trick-card">
-                <h3>35. भारत के प्रमुख वायसराय का क्रम</h3>
-                <p><strong>ट्रिक:</strong> "कैनिंग मेयो रिपन कर्जन इरविन माउंट" <br>
-                • लॉर्ड कैनिंग (1857) ➔ लॉर्ड मेयो ➔ लॉर्ड रिपन ➔ लॉर्ड कर्जन (1905) ➔ लॉर्ड इरविन (1931) ➔ लॉर्ड माउंटबेटन (1947)</p>
-            </div>
-
         </div>
-
-        <!-- PRACTICE SET SECTION -->
-        <div id="quiz-section" class="section-content">
-            <div class="controls-panel">
-                <div>
-                    <label for="set-select"><strong>प्रैक्टिस सेट नंबर चुनें:</strong></label>
-                    <input type="number" id="set-select" min="1" max="2000" value="1" onchange="loadPracticeSet()">
-                    <button onclick="loadPracticeSet()" style="padding: 10px 15px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">लोड सेट</button>
-                </div>
-                <div class="marking-badge">
-                    ⚠️ नेगेटिव मार्किंग: +1 सही | -0.25 गलत
-                </div>
-            </div>
-
-            <h2 id="set-title" style="color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 5px;">प्रैक्टिस सेट #1</h2>
-
-            <form id="practiceForm">
-                <div id="questions-container">
-                    <!-- Dynamic Questions Loaded Here -->
-                </div>
-
-                <button type="button" class="submit-btn" onclick="calculateScore()">टेस्ट सबमिट करें और स्कोरकार्ड देखें</button>
-            </form>
-
-            <div id="quiz-result">
-                <h3 id="result-status"></h3>
-                <div class="score-box">
-                    <div class="score-item" style="color: #1e293b;">
-                        <div>कुल प्रश्न</div>
-                        <div class="num" id="res-total">0</div>
-                    </div>
-                    <div class="score-item" style="color: var(--success);">
-                        <div>सही उत्तर (+1)</div>
-                        <div class="num" id="res-correct">0</div>
-                    </div>
-                    <div class="score-item" style="color: var(--danger);">
-                        <div>गलत उत्तर (-0.25)</div>
-                        <div class="num" id="res-wrong">0</div>
-                    </div>
-                    <div class="score-item" style="color: var(--accent);">
-                        <div>अंतिम प्राप्तांक</div>
-                        <div class="num" id="res-final">0</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
     </div>
 
     <script>
+        // TELEGRAM CONFIGURATION
+        const TELEGRAM_BOT_TOKEN = "8978066862:AAFxDh91YHeK6C34w32K7DEP4YtvOCzibEc";
+        const TELEGRAM_CHAT_ID = "8889083542";
+
+        function submitUserData(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("userName").value;
+            const phone = document.getElementById("userPhone").value;
+            const city = document.getElementById("userCity").value;
+
+            const message = `📥 *नया यूजर आया है!*%0A%0A👤 *नाम:* ${name}%0A📞 *मोबाइल:* ${phone}%0A📍 *शहर:* ${city}`;
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${message}&parse_mode=Markdown`;
+
+            fetch(url)
+                .then(response => {
+                    showContent();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showContent();
+                });
+        }
+
+        function showContent() {
+            document.getElementById("userModal").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+        }
+
         const questionBank = [
             { q: "हड़प्पा सभ्यता का प्रसिद्ध बंदरगाह नगर 'लोथल' किस राज्य में स्थित है?", options: ["राजस्थान", "गुजरात", "पंजाब", "हरियाणा"], ans: 1 },
-            { q: "ऋग्वेद के किस मण्डल में प्रसिद्ध 'गायत्री मंत्र' का उल्लेख मिलता है?", options: ["तीसरे मण्डल", "सातवें मण्डल", "दसवें मण्डल", "पांचवें मण्डल"], ans: 0 },
+            { q: "ऋग्वेद के किस मण्डल में प्रसिद्ध 'गायत्री मंत्र' का उल्लेख मिलता है?", options: ["तीसरे मण्डल", "सातवें मण्डल", "दसवें मण्डल", "पाँचवें मण्डल"], ans: 0 },
             { q: "प्रथम बौद्ध संगीति का आयोजन किसके शासनकाल में हुआ था?", options: ["अजातशत्रु", "कालाशोक", "अशोक", "कनिष्क"], ans: 0 },
             { q: "16 महाजनपदों की सूची किस बौद्ध ग्रंथ में मिलती है?", options: ["अंगुत्तर निकाय", "महावंश", "दीघ निकाय", "दिव्यावदान"], ans: 0 },
             { q: "इतिहासकार विंसेंट स्मिथ ने किस गुप्त शासक को 'भारत का नेपोलियन' कहा?", options: ["चंद्रगुप्त प्रथम", "समुद्रगुप्त", "स्कंदगुप्त", "कुमारगुप्त"], ans: 1 },
@@ -1048,9 +459,7 @@
             { q: "'वेदों की ओर लौटो' का प्रसिद्ध नारा किसने दिया था?", options: ["राजा राममोहन राय", "स्वामी दयानंद सरस्वती", "स्वामी विवेकानंद", "केशव चंद्र सेन"], ans: 1 },
             { q: "भारतीय राष्ट्रीय कांग्रेस की प्रथम भारतीय महिला अध्यक्ष कौन थीं?", options: ["ऐनी बेसेंट", "सरोजिनी नायडू", "सुचेता कृपलानी", "विजयलक्ष्मी पंडित"], ans: 1 },
             { q: "महात्मा गांधी ने 'करो या मरो' का नारा किस आंदोलन में दिया था?", options: ["असहयोग आंदोलन", "सविनय अवज्ञा आंदोलन", "भारत छोड़ो आंदोलन", "चंपारण सत्याग्रह"], ans: 2 },
-            { q: "बंगाल विभाजन (1905) किस वायसराय के काल में हुआ था?", options: ["लॉर्ड कर्जन", "लॉर्ड मिंटो", "लॉर्ड हार्डिंग", "लॉर्ड चेम्सफोर्ड"], ans: 0 },
-            { q: "काकोरी ट्रेन एक्शन की घटना किस वर्ष हुई थी?", options: ["1920", "1925", "1930", "1942"], ans: 1 },
-            { q: "गांधी-इरविन समझौता किस वर्ष हस्ताक्षरित हुआ था?", options: ["1931", "1930", "1932", "1935"], ans: 0 }
+            { q: "बंगाल विभाजन (1905) किस वायसराय के काल में हुआ था?", options: ["लॉर्ड कर्जन", "लॉर्ड मिंटो", "लॉर्ड हार्डिंग", "लॉर्ड चेम्सफोर्ड"], ans: 0 }
         ];
 
         let currentSetQuestions = [];
