@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>संपूर्ण भारतीय इतिहास - अल्टीमेट मास्टर नोट्स & क्विज़</title>
+    <style>
+        :root {
+            --primary: #1b2a47;
+            --secondary: #d9534f;
+            --accent: #f0ad4e;
+            --success: #28a745;
+            --light-bg: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a, var(--primary));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 8px;
+            font-size: 1.1rem;
+            color: #cbd5e1;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: var(--card-bg);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(27, 42, 71, 0.3);
+        }
+
+        .section-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        .era-header {
+            background: var(--primary);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Trick Cards */
+        .trick-card {
+            background: #fff8f0;
+            border-left: 6px solid var(--accent);
+            padding: 16px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .trick-card h3 {
+            margin: 0 0 8px;
+            color: #b45309;
+            font-size: 1.15rem;
+        }
+
+        .trick-card p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* One-Liner Table */
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .one-liner-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .one-liner-table th, .one-liner-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .one-liner-table th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: 600;
+        }
+
+        .one-liner-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Quiz Styling */
+        .quiz-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 18px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .quiz-card p {
+            font-weight: bold;
+            font-size: 1.05rem;
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0;
+            padding: 10px 14px;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .options label:hover {
+            background: #e2e8f0;
+        }
+
+        .submit-btn {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+
+        #quiz-result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #155724;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.7rem; }
+            .tab-btn { width: 100%; text-align: center; }
+            .section-content { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🏛️ संपूर्ण भारतीय इतिहास (Master History Guide)</h1>
+        <p>प्राचीन, मध्यकालीन एवं आधुनिक भारत — ट्रिक्स, वन-लाइनर्स और मॉक टेस्ट</p>
+    </header>
+
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'tricks')">🔥 शॉर्टकट GK ट्रिक्स</button>
+            <button class="tab-btn" onclick="openTab(event, 'oneliners')">⚡ महत्वपूर्ण वन-लाइनर्स (Full)</button>
+            <button class="tab-btn" onclick="openTab(event, 'quiz')">📝 मास्टर प्रैक्टिस टेस्ट</button>
+        </div>
+
+        <!-- TAB 1: TRICKS -->
+        <div id="tricks" class="section-content active">
+            <h2>🔥 ऑल-इन-वन इतिहास ट्रिक्स (History Master Tricks)</h2>
+
+            <div class="era-header">📜 1. प्राचीन भारत की ट्रिक्स (Ancient History Tricks)</div>
+            
+            <div class="trick-card">
+                <h3>1. बौद्ध संगीतियों के स्थान याद रखने की ट्रिक</h3>
+                <p><strong>ट्रिक:</strong> "रा - वै - पा - कु"<br>
+                • <strong>रा:</strong> राजगृह (प्रथम संगीति - अजातशत्रु)<br>
+                • <strong>वै:</strong> वैशाली (द्वितीय संगीति - कालाशोक)<br>
+                • <strong>पा:</strong> पाटलिपुत्र (तृतीय संगीति - अशोक)<br>
+                • <strong>कु:</strong> कुण्डलवन (चतुर्थ संगीति - कनिष्क)</p>
+            </div>
+
+            <div class="trick-card">
+                <h3>2. मगध के राजवंशों का कालानुक्रम</h3>
+                <p><strong>ट्रिक:</strong> "हसीन माशूक शाह"<br>
+                • <strong>ह:</strong> हर्यक वंश | <strong>सी:</strong> शिशुनाग वंश | <strong>न:</strong> नंद वंश<br>
+                • <strong>मा:</strong> मौर्य वंश | <strong>शु:</strong> शुंग वंश | <strong>क:</strong> कण्व वंश | <strong>शाह:</strong> सातवाहन वंश</p>
+            </div>
+
+            <div class="trick-card">
+                <h3>3. कनिष्क के दरबार के प्रमुख विद्वान</h3>
+                <p><strong>ट्रिक:</strong> "अश्व नाचे पांव पे"<br>
+                • <strong>अश्व:</strong> अश्वघोष | <strong>ना:</strong> नागार्जुन | <strong>चे:</strong> चरक | <strong>पांव:</strong> पार्श्व | <strong>पे:</strong> वसुमित्र</p>
+            </div>
+
+            <div class="era-header">⚔️ 2. मध्यकालीन भारत की ट्रिक्स (Medieval History Tricks)</div>
+
+            <div class="trick-card">
+                <h3>4. दिल्ली सल्तनत के वंशों का क्रम</h3>
+                <p><strong>ट्रिक:</strong> "गुलाब खिले तो सांस लो"<br>
+                • <strong>गुलाब:</strong> गुलाम वंश | <strong>खिले:</strong> खिलजी वंश | <strong>तो:</strong> तुगलक वंश<br>
+                • <strong>सांस:</strong> सैयद वंश | <strong>लो:</strong> लोदी वंश</p>
+            </div>
+
+            <div class="trick-card">
+                <h3>5. मुगल सम्राटों के नाम का सही क्रम</h3>
+                <p><strong>ट्रिक:</strong> "BHAJSA" (भजसा)<br>
+                • <strong>B:</strong> बाबर | <strong>H:</strong> हुमायूँ | <strong>A:</strong> अकबर | <strong>J:</strong> जहांगीर | <strong>S:</strong> शाहजहाँ | <strong>A:</strong> औरंगजेब</p>
+            </div>
+
+            <div class="trick-card">
+                <h3>6. बाबर द्वारा लड़े गए प्रमुख युद्ध (क्रम से)</h3>
+                <p><strong>ट्रिक:</strong> "पान खा, घर चल, मर जा"<br>
+                • <strong>पान (1526):</strong> पानीपत का पहला युद्ध (विजेता: बाबर)<br>
+                • <strong>खा (1527):</strong> खानवा का युद्ध (राणा सांगा को हराया)<br>
+                • <strong>चल (1528):</strong> चंदेरी का युद्ध (मेदिनीराय को हराया)<br>
+                • <strong>घर (1529):</strong> घाघरा का युद्ध (अफ़गानों को हराया)<br>
+                • <strong>मर जा (1530):</strong> बाबर की मृत्यु</p>
+            </div>
+
+            <div class="era-header">🚩 3. आधुनिक भारत की ट्रिक्स (Modern History Tricks)</div>
+
+            <div class="trick-card">
+                <h3>7. भारत में यूरोपीय कंपनियों के आगमन का क्रम</h3>
+                <p><strong>ट्रिक:</strong> "पुत्र अड़ा, डेड फंसा"<br>
+                • <strong>पुत्र:</strong> पुर्तगाली (1498) | <strong>अ:</strong> अंग्रेज (1600) | <strong>ड़ा:</strong> डच (1602)<br>
+                • <strong>डेड:</strong> डेनिश (1616) | <strong>फं:</strong> फ्रांसीसी (1664) | <strong>सा:</strong> स्वीडिश (1731)</p>
+            </div>
+
+            <div class="trick-card">
+                <h3>8. महात्मा गांधी के शुरुआती आंदोलनों का क्रम</h3>
+                <p><strong>ट्रिक:</strong> "गांधी चंपारण से खेड़ा गए, अहमदाबाद में मिल मजदूरों के साथ खिलाफत करके असहयोग किया"<br>
+                • चंपारण सत्याग्रह (1917) ➔ खेड़ा सत्याग्रह (1918) ➔ अहमदाबाद मिल हड़ताल (1918) ➔ खिलाफत आंदोलन (1919) ➔ असहयोग आंदोलन (1920)</p>
+            </div>
+        </div>
+
+        <!-- TAB 2: ONE LINERS -->
+        <div id="oneliners" class="section-content">
+            <h2>⚡ सम्पूर्ण इतिहास के मास्टर वन-लाइनर्स (Master One-Liners)</h2>
+
+            <!-- ANCIENT HISTORY -->
+            <div class="era-header">📜 प्राचीन भारत (Ancient History)</div>
+            <div class="table-responsive">
+                <table class="one-liner-table">
+                    <tr><th>विषय / काल</th><th>महत्वपूर्ण तथ्य (परीक्षा में सीधे पूछे जाने वाले)</th></tr>
+                    <tr><td>प्रागैतिहासिक काल</td><td>मानव द्वारा खोजी गई पहली धातु **तांबा** थी। पहला पालतू पशु **कुत्ता** था।</td></tr>
+                    <tr><td>सिंधु घाटी सभ्यता</td><td>हड़प्पा की खोज **दयाराम साहनी (1921)** तथा मोहनजोदड़ों की खोज **राखालदास बनर्जी (1922)** ने की।</td></tr>
+                    <tr><td>सिंधु सभ्यता बंदरगाह</td><td>**लोथल** (गुजरात) सिंधु घाटी सभ्यता का प्रमुख बंदरगाह था।</td></tr>
+                    <tr><td>वैदिक सभ्यता</td><td>ऋग्वेद सबसे प्राचीन वेद है। गायत्री मंत्र ऋग्वेद के **तीसरे मंडल** में स्थित है।</td></tr>
+                    <tr><td>सत्यमेव जयते</td><td>भारत का राष्ट्रीय वाक्य 'सत्यमेव जयते' **मुंडकोपनिषद** से लिया गया है।</td></tr>
+                    <tr><td>जैन धर्म</td><td>प्रथम तीर्थंकर **ऋषभदेव** थे तथा 24वें एवं अंतिम तीर्थंकर **महावीर स्वामी** थे।</td></tr>
+                    <tr><td>बौद्ध धर्म</td><td>गौतम बुद्ध का जन्म **लुम्बिनी (563 ई.पू.)** में हुआ। इन्होंने पहला उपदेश **सारनाथ** में दिया।</td></tr>
+                    <tr><td>मौर्य साम्राज्य</td><td>चंद्रगुप्त मौर्य ने **चाणक्य (कौटिल्य)** की सहायता से नंद वंश के घनानंद को हराकर मौर्य साम्राज्य की स्थापना की।</td></tr>
+                    <tr><td>अशोक एवं कलिंग युद्ध</td><td>अशोक ने **261 ई.पू.** में कलिंग युद्ध लड़ा। इसका वर्णन उनके **13वें शिलालेख** में है।</td></tr>
+                    <tr><td>गुप्त काल</td><td>गुप्त वंश का संस्थापक **श्रीगुप्त** था। **समुद्रगुप्त** को 'भारत का नेपोलियन' कहा जाता है।</td></tr>
+                    <tr><td>हर्षवर्धन का काल</td><td>हर्षवर्धन के शासनकाल में चीनी यात्री **ह्वेनसांग** भारत आया था। बाणभट्ट हर्ष के दरबारी कवि थे।</td></tr>
+                </table>
+            </div>
+
+            <!-- MEDIEVAL HISTORY -->
+            <div class="era-header">⚔️ मध्यकालीन भारत (Medieval History)</div>
+            <div class="table-responsive">
+                <table class="one-liner-table">
+                    <tr><th>विषय / काल</th><th>महत्वपूर्ण तथ्य</th></tr>
+                    <tr><td>अरब-तुर्क आक्रमण</td><td>भारत पर पहला सफल मुस्लिम आक्रमण **712 ई. में मोहम्मद बिन कासिम** द्वारा किया गया।</td></tr>
+                    <tr><td>तराइन का युद्ध</td><td>प्रथम युद्ध (1191): पृथ्वीराज चौहान जीते। द्वितीय युद्ध (1192): मोहम्मद गोरी जीता।</td></tr>
+                    <tr><td>गुलाम वंश (1206-1290)</td><td>संस्थापक **कुतुबुद्दीन ऐबक** (लाखबख्श)। भारत की पहली महिला शासिका **रज़िया सुल्तान** थी।</td></tr>
+                    <tr><td>खिलजी वंश</td><td>**अलाउद्दीन खिलजी** ने बाजार नियंत्रण प्रणाली और मूल्य नियंत्रण नीति लागू की।</td></tr>
+                    <tr><td>तुगलक वंश</td><td>**मोहम्मद बिन तुगलक** ने अपनी राजधानी दिल्ली से 'दौलताबाद' स्थानांतरित की थी।</td></tr>
+                    <tr><td>विजयनगर साम्राज्य</td><td>1336 ई. में **हरिहर और बुक्का** नामक दो भाइयों ने विजयनगर साम्राज्य की नींव रखी।</td></tr>
+                    <tr><td>पानीपत की पहली लड़ाई</td><td>**21 अप्रैल 1526** को बाबर ने इब्राहिम लोदी को हराकर मुगल साम्राज्य स्थापित किया।</td></tr>
+                    <tr><td>शेरशाह सूरी</td><td>जीटी रोड (Grand Trunk Road) का निर्माण करवाया और **रुपया** नामक सिक्का चलाया।</td></tr>
+                    <tr><td>अकबर (1556-1605)</td><td>1582 ई. में **दीन-ए-इलाही** धर्म चलाया। मनसबदारी प्रथा की शुरुआत की।</td></tr>
+                    <tr><td>सिख धर्म के गुरु</td><td>सिख धर्म की स्थापना **गुरु नानक देव जी** ने की। खालसा पंथ की स्थापना **गुरु गोविंद सिंह** ने की।</td></tr>
+                    <tr><td>मराठा साम्राज्य</td><td>**छत्रपति शिवाजी महाराज** ने मराठा साम्राज्य की स्थापना की। उनका राज्याभिषेक रायगढ़ में हुआ।</td></tr>
+                </table>
+            </div>
+
+            <!-- MODERN HISTORY -->
+            <div class="era-header">🚩 आधुनिक भारत (Modern History)</div>
+            <div class="table-responsive">
+                <table class="one-liner-table">
+                    <tr><th>विषय / काल</th><th>महत्वपूर्ण तथ्य</th></tr>
+                    <tr><td>प्लासी एवं बक्सर का युद्ध</td><td>प्लासी (1757) में रॉबर्ट क्लाइव ने सिराजुद्दौला को हराया। बक्सर युद्ध (1764) में अंग्रेजों का अधिकार पक्का हो गया।</td></tr>
+                    <tr><td>1857 की क्रांति</td><td>शुरुआत **10 मई 1857 को मेरठ** से हुई। तत्कालीन कारण: एनफील्ड राइफल में चर्बी वाले कारतूस का प्रयोग।</td></tr>
+                    <tr><td>सामाजिक-धार्मिक सुधार</td><td>• राजा राममोहन राय: **ब्रह्म समाज (1828)** & सती प्रथा अंत (1829)<br>• स्वामी दयानंद सरस्वती: **आर्य समाज (1875)** ('वेदों की ओर लौटो')</td></tr>
+                    <tr><td>कांग्रेस की स्थापना</td><td>**28 दिसंबर 1885** को ए.ओ. ह्यूम द्वारा। प्रथम अध्यक्ष: **व्योमेश चंद्र बनर्जी**।</td></tr>
+                    <tr><td>बंगाल विभाजन</td><td>1905 में **लॉर्ड कर्जन** द्वारा किया गया। इसके विरोध में स्वदेशी आंदोलन शुरू हुआ।</td></tr>
+                    <tr><td>गांधी जी का भारत आगमन</td><td>**9 जनवरी 1915** को दक्षिण अफ्रीका से वापस आए (इसी दिन प्रवासी भारतीय दिवस मनाया जाता है)।</td></tr>
+                    <tr><td>जलियांवाला बाग हत्याकांड</td><td>**13 अप्रैल 1919** को अमृतसर में जनरल डायर ने अंधाधुंध गोलियां चलवाईं।</td></tr>
+                    <tr><td>काकोरी ट्रेन एक्शन</td><td>**9 अगस्त 1925** को रामप्रसाद बिस्मिल, अशफाक उल्ला खां आदि द्वारा निष्पादित।</td></tr>
+                    <tr><td>साइमन कमीशन</td><td>1928 में भारत आया ('साइमन गो बैक' के नारे लगे)। लाला लाजपत राय पर लाठीचार्ज हुआ।</td></tr>
+                    <tr><td>दांडी मार्च & सविनय अवज्ञा</td><td>12 मार्च 1230 से 6 अप्रैल 1930 तक नमक कानून तोड़ने हेतु दांडी यात्रा निकाली गई।</td></tr>
+                    <tr><td>भारत छोड़ो आंदोलन</td><td>**8 अगस्त 1942** को शुरू हुआ। महात्मा गांधी ने **"करो या मरो"** का नारा दिया।</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 3: QUIZ -->
+        <div id="quiz" class="section-content">
+            <h2>📝 संपूर्ण भारतीय इतिहास - मॉक टेस्ट (Practice Quiz)</h2>
+            <p>अपने अध्ययन का परीक्षण करें! नीचे दिए गए प्रश्नों के उत्तर चुनें और रिजल्ट देखें:</p>
+
+            <form id="masterQuizForm">
+                
+                <div class="quiz-card">
+                    <p>Q1. हड़प्पा सभ्यता का प्रमुख बंदरगाह 'लोथल' किस राज्य में स्थित है?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="wrong"> राजस्थान</label>
+                        <label><input type="radio" name="q1" value="correct"> गुजरात</label>
+                        <label><input type="radio" name="q1" value="wrong"> पंजाब</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q2. तृतीय बौद्ध संगीति का आयोजन किसके शासनकाल में पाटलिपुत्र में हुआ था?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="wrong"> अजातशत्रु</label>
+                        <label><input type="radio" name="q2" value="wrong"> कनिष्क</label>
+                        <label><input type="radio" name="q2" value="correct"> सम्राट अशोक</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q3. 'भारत का नेपोलियन' किस गुप्त शासक को कहा जाता है?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="wrong"> चंद्रगुप्त मौर्य</label>
+                        <label><input type="radio" name="q3" value="correct"> समुद्रगुप्त</label>
+                        <label><input type="radio" name="q3" value="wrong"> चंद्रगुप्त द्वितीय</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q4. दिल्ली सल्तनत की पहली और अंतिम महिला शासिका कौन थी?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="correct"> रज़िया सुल्तान</label>
+                        <label><input type="radio" name="q4" value="wrong"> नूरजहाँ</label>
+                        <label><input type="radio" name="q4" value="wrong"> मुमताज़ महल</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q5. पानीपत का प्रथम युद्ध (1526) किसके मध्य लड़ा गया था?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="correct"> बाबर और इब्राहिम लोदी</label>
+                        <label><input type="radio" name="q5" value="wrong"> अकबर और हेमू</label>
+                        <label><input type="radio" name="q5" value="wrong"> हुमायूँ और शेरशाह सूरी</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q6. 'दीन-ए-इलाही' नामक नया धर्म किस मुगल शासक ने शुरू किया था?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="wrong"> शाहजहाँ</label>
+                        <label><input type="radio" name="q6" value="correct"> अकबर</label>
+                        <label><input type="radio" name="q6" value="wrong"> औरंगजेब</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q7. भारतीय राष्ट्रीय कांग्रेस (INC) की स्थापना 1885 में किसके द्वारा की गई थी?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="correct"> ए.ओ. ह्यूम (A.O. Hume)</label>
+                <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>संपूर्ण भारतीय इतिहास - अल्टीमेट मास्टर नोट्स & क्विज़</title>
+    <style>
+        :root {
+            --primary: #1b2a47;
+            --secondary: #d9534f;
+            --accent: #f0ad4e;
+            --success: #28a745;
+            --light-bg: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a, var(--primary));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 8px;
+            font-size: 1.1rem;
+            color: #cbd5e1;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: var(--card-bg);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(27, 42, 71, 0.3);
+        }
+
+        .section-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        .era-header {
+            background: var(--primary);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Trick Cards */
+        .trick-card {
+            background: #fff8f0;
+            border-left: 6px solid var(--accent);
+            padding: 16px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .trick-card h3 {
+            margin: 0 0 8px;
+            color: #b45309;
+            font-size: 1.15rem;
+        }
+
+        .trick-card p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* One-Liner Table */
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .one-liner-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .one-liner-table th, .one-liner-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .one-liner-table th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: 600;
+        }
+
+        .one-liner-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Quiz Styling */
+        .quiz-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 18px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .quiz-card p {
+            font-weight: bold;
+            font-size: 1.05rem;
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0;
+            padding: 10px 14px;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .options label:hover {
+            background: #e2e8f0;
+        }
+
+        .submit-btn {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+
+        #quiz-result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #155724;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.7rem; }
+            .tab-btn { width: 100%; text-align: center; }
+            .section-content { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🏛️ संपूर्ण भारतीय इतिहास (Master History Guide)</h1>
+        <p>प्राचीन, मध्यकालीन एवं आधुनिक भारत — ट्रिक्स, वन-लाइनर्स और मॉक टेस्ट</p>
+    </header>
+
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'tricks')">🔥 शॉर्टकट GK ट्रिक्स</button>
+            <button class="tab-btn" onclick="openTab(event, 'oneliners')">⚡ महत्वपूर्ण वन-लाइनर्स (Full)</button>
+            <button class="tab-btn" onclick="openTab(event, 'quiz')">📝 मास्टर प्रैक्टिस टेस्ट</button>
+        </div>
+
+        <!-- TAB 1: TRICKS -->
+        <div id="tricks" class="section-content active">
+            <h2>🔥 ऑल-इन-वन इतिहास ट्रिक्स (History Master Tricks)</h2>
+
+            <div class="era-header">📜 1. प्राचीन भारत की ट्रिक्स (Ancient History Tricks)</div>
+            
+            <div class="trick-card">
+                <h3>1. बौद्ध संगीतियों के स्थान याद रखने की ट्रिक</h3>
+                <p><strong>ट्रिक:</strong> "रा - वै - पा - कु"<br>
+                • <strong>रा:</strong> राजगृह (प्रथम संगीति - अजातशत्रु)<br>
+                • <strong>वै:</strong> वैशाली (द्वितीय संगीति - कालाशोक)<br>
+                • <strong>पा:</strong> पाटलिपुत्र (तृतीय संगीति - अशोक)<br>
+                • <strong>कु:</strong> कुण्डलवन (चतुर्थ संगीति - कनिष्क)</p>
+            </div>
+
+            <div class="trick-card">
+                <h3>2. मगध के राजवंशों का कालानुक्रम</h3>
+                <p><strong>ट्रिक:</strong> "हसीन माशूक शाह"<br>
+                • <strong>ह:</strong> हर्यक वंश | <strong>सी:</strong> शिशुनाग वंश | <strong>न:</strong> नंद वंश<br>
+                • <strong>मा:</strong> मौर्य वंश | <strong>शु:</strong> शुंग वंश | <strong>क:</strong> कण्व वंश | <strong>शाह:</strong> सातवाहन वंश</p>
+            </div>
+
+            <div class="trick-card">
+                <h3>3. कनिष्क के दरबार के प्रमुख विद्वान</h3>
+                <p><strong>ट्रिक:</strong> "अश्व नाचे पांव पे"<br>
+                • <strong>अश्व:</strong> अश्वघोष | <strong>ना:</strong> नागार्जुन | <strong>चे:</strong> चरक | <strong>पांव:</strong> पार्श्व | <strong>पे:</strong> वसुमित्र</p>
+            </div>
+
+            <div class="era-header">⚔️ 2. मध्यकालीन भारत की ट्रिक्स (Medieval History Tricks)</div>
+
+            <div class="trick-card">
+                <h3>4. दिल्ली सल्तनत के वंशों का क्रम</h3>
+                <p><strong>ट्रिक:</strong> "गुलाब खिले तो सांस लो"<br>
+                • <strong>गुलाब:</strong> गुलाम वंश | <strong>खिले:</strong> खिलजी वंश | <strong>तो:</strong> तुगलक वंश<br>
+                • <strong>सांस:</strong> सैयद वंश | <strong>लो:</strong> लोदी वंश</p>
+            </div>
+
+            <div class="trick-card">
+                <h3>5. मुगल सम्राटों के नाम का सही क्रम</h3>
+                <p><strong>ट्रिक:</strong> "BHAJSA" (भजसा)<br>
+                • <strong>B:</strong> बाबर | <strong>H:</strong> हुमायूँ | <strong>A:</strong> अकबर | <strong>J:</strong> जहांगीर | <strong>S:</strong> शाहजहाँ | <strong>A:</strong> औरंगजेब</p>
+            </div>
+
+            <div class="trick-card">
+                <h3>6. बाबर द्वारा लड़े गए प्रमुख युद्ध (क्रम से)</h3>
+                <p><strong>ट्रिक:</strong> "पान खा, घर चल, मर जा"<br>
+                • <strong>पान (1526):</strong> पानीपत का पहला युद्ध (विजेता: बाबर)<br>
+                • <strong>खा (1527):</strong> खानवा का युद्ध (राणा सांगा को हराया)<br>
+                • <strong>चल (1528):</strong> चंदेरी का युद्ध (मेदिनीराय को हराया)<br>
+                • <strong>घर (1529):</strong> घाघरा का युद्ध (अफ़गानों को हराया)<br>
+                • <strong>मर जा (1530):</strong> बाबर की मृत्यु</p>
+            </div>
+
+            <div class="era-header">🚩 3. आधुनिक भारत की ट्रिक्स (Modern History Tricks)</div>
+
+            <div class="trick-card">
+                <h3>7. भारत में यूरोपीय कंपनियों के आगमन का क्रम</h3>
+                <p><strong>ट्रिक:</strong> "पुत्र अड़ा, डेड फंसा"<br>
+                • <strong>पुत्र:</strong> पुर्तगाली (1498) | <strong>अ:</strong> अंग्रेज (1600) | <strong>ड़ा:</strong> डच (1602)<br>
+                • <strong>डेड:</strong> डेनिश (1616) | <strong>फं:</strong> फ्रांसीसी (1664) | <strong>सा:</strong> स्वीडिश (1731)</p>
+            </div>
+
+            <div class="trick-card">
+                <h3>8. महात्मा गांधी के शुरुआती आंदोलनों का क्रम</h3>
+                <p><strong>ट्रिक:</strong> "गांधी चंपारण से खेड़ा गए, अहमदाबाद में मिल मजदूरों के साथ खिलाफत करके असहयोग किया"<br>
+                • चंपारण सत्याग्रह (1917) ➔ खेड़ा सत्याग्रह (1918) ➔ अहमदाबाद मिल हड़ताल (1918) ➔ खिलाफत आंदोलन (1919) ➔ असहयोग आंदोलन (1920)</p>
+            </div>
+        </div>
+
+        <!-- TAB 2: ONE LINERS -->
+        <div id="oneliners" class="section-content">
+            <h2>⚡ सम्पूर्ण इतिहास के मास्टर वन-लाइनर्स (Master One-Liners)</h2>
+
+            <!-- ANCIENT HISTORY -->
+            <div class="era-header">📜 प्राचीन भारत (Ancient History)</div>
+            <div class="table-responsive">
+                <table class="one-liner-table">
+                    <tr><th>विषय / काल</th><th>महत्वपूर्ण तथ्य (परीक्षा में सीधे पूछे जाने वाले)</th></tr>
+                    <tr><td>प्रागैतिहासिक काल</td><td>मानव द्वारा खोजी गई पहली धातु **तांबा** थी। पहला पालतू पशु **कुत्ता** था।</td></tr>
+                    <tr><td>सिंधु घाटी सभ्यता</td><td>हड़प्पा की खोज **दयाराम साहनी (1921)** तथा मोहनजोदड़ों की खोज **राखालदास बनर्जी (1922)** ने की।</td></tr>
+                    <tr><td>सिंधु सभ्यता बंदरगाह</td><td>**लोथल** (गुजरात) सिंधु घाटी सभ्यता का प्रमुख बंदरगाह था।</td></tr>
+                    <tr><td>वैदिक सभ्यता</td><td>ऋग्वेद सबसे प्राचीन वेद है। गायत्री मंत्र ऋग्वेद के **तीसरे मंडल** में स्थित है।</td></tr>
+                    <tr><td>सत्यमेव जयते</td><td>भारत का राष्ट्रीय वाक्य 'सत्यमेव जयते' **मुंडकोपनिषद** से लिया गया है।</td></tr>
+                    <tr><td>जैन धर्म</td><td>प्रथम तीर्थंकर **ऋषभदेव** थे तथा 24वें एवं अंतिम तीर्थंकर **महावीर स्वामी** थे।</td></tr>
+                    <tr><td>बौद्ध धर्म</td><td>गौतम बुद्ध का जन्म **लुम्बिनी (563 ई.पू.)** में हुआ। इन्होंने पहला उपदेश **सारनाथ** में दिया।</td></tr>
+                    <tr><td>मौर्य साम्राज्य</td><td>चंद्रगुप्त मौर्य ने **चाणक्य (कौटिल्य)** की सहायता से नंद वंश के घनानंद को हराकर मौर्य साम्राज्य की स्थापना की।</td></tr>
+                    <tr><td>अशोक एवं कलिंग युद्ध</td><td>अशोक ने **261 ई.पू.** में कलिंग युद्ध लड़ा। इसका वर्णन उनके **13वें शिलालेख** में है।</td></tr>
+                    <tr><td>गुप्त काल</td><td>गुप्त वंश का संस्थापक **श्रीगुप्त** था। **समुद्रगुप्त** को 'भारत का नेपोलियन' कहा जाता है।</td></tr>
+                    <tr><td>हर्षवर्धन का काल</td><td>हर्षवर्धन के शासनकाल में चीनी यात्री **ह्वेनसांग** भारत आया था। बाणभट्ट हर्ष के दरबारी कवि थे।</td></tr>
+                </table>
+            </div>
+
+            <!-- MEDIEVAL HISTORY -->
+            <div class="era-header">⚔️ मध्यकालीन भारत (Medieval History)</div>
+            <div class="table-responsive">
+                <table class="one-liner-table">
+                    <tr><th>विषय / काल</th><th>महत्वपूर्ण तथ्य</th></tr>
+                    <tr><td>अरब-तुर्क आक्रमण</td><td>भारत पर पहला सफल मुस्लिम आक्रमण **712 ई. में मोहम्मद बिन कासिम** द्वारा किया गया।</td></tr>
+                    <tr><td>तराइन का युद्ध</td><td>प्रथम युद्ध (1191): पृथ्वीराज चौहान जीते। द्वितीय युद्ध (1192): मोहम्मद गोरी जीता।</td></tr>
+                    <tr><td>गुलाम वंश (1206-1290)</td><td>संस्थापक **कुतुबुद्दीन ऐबक** (लाखबख्श)। भारत की पहली महिला शासिका **रज़िया सुल्तान** थी।</td></tr>
+                    <tr><td>खिलजी वंश</td><td>**अलाउद्दीन खिलजी** ने बाजार नियंत्रण प्रणाली और मूल्य नियंत्रण नीति लागू की।</td></tr>
+                    <tr><td>तुगलक वंश</td><td>**मोहम्मद बिन तुगलक** ने अपनी राजधानी दिल्ली से 'दौलताबाद' स्थानांतरित की थी।</td></tr>
+                    <tr><td>विजयनगर साम्राज्य</td><td>1336 ई. में **हरिहर और बुक्का** नामक दो भाइयों ने विजयनगर साम्राज्य की नींव रखी।</td></tr>
+                    <tr><td>पानीपत की पहली लड़ाई</td><td>**21 अप्रैल 1526** को बाबर ने इब्राहिम लोदी को हराकर मुगल साम्राज्य स्थापित किया।</td></tr>
+                    <tr><td>शेरशाह सूरी</td><td>जीटी रोड (Grand Trunk Road) का निर्माण करवाया और **रुपया** नामक सिक्का चलाया।</td></tr>
+                    <tr><td>अकबर (1556-1605)</td><td>1582 ई. में **दीन-ए-इलाही** धर्म चलाया। मनसबदारी प्रथा की शुरुआत की।</td></tr>
+                    <tr><td>सिख धर्म के गुरु</td><td>सिख धर्म की स्थापना **गुरु नानक देव जी** ने की। खालसा पंथ की स्थापना **गुरु गोविंद सिंह** ने की।</td></tr>
+                    <tr><td>मराठा साम्राज्य</td><td>**छत्रपति शिवाजी महाराज** ने मराठा साम्राज्य की स्थापना की। उनका राज्याभिषेक रायगढ़ में हुआ।</td></tr>
+                </table>
+            </div>
+
+            <!-- MODERN HISTORY -->
+            <div class="era-header">🚩 आधुनिक भारत (Modern History)</div>
+            <div class="table-responsive">
+                <table class="one-liner-table">
+                    <tr><th>विषय / काल</th><th>महत्वपूर्ण तथ्य</th></tr>
+                    <tr><td>प्लासी एवं बक्सर का युद्ध</td><td>प्लासी (1757) में रॉबर्ट क्लाइव ने सिराजुद्दौला को हराया। बक्सर युद्ध (1764) में अंग्रेजों का अधिकार पक्का हो गया।</td></tr>
+                    <tr><td>1857 की क्रांति</td><td>शुरुआत **10 मई 1857 को मेरठ** से हुई। तत्कालीन कारण: एनफील्ड राइफल में चर्बी वाले कारतूस का प्रयोग।</td></tr>
+                    <tr><td>सामाजिक-धार्मिक सुधार</td><td>• राजा राममोहन राय: **ब्रह्म समाज (1828)** & सती प्रथा अंत (1829)<br>• स्वामी दयानंद सरस्वती: **आर्य समाज (1875)** ('वेदों की ओर लौटो')</td></tr>
+                    <tr><td>कांग्रेस की स्थापना</td><td>**28 दिसंबर 1885** को ए.ओ. ह्यूम द्वारा। प्रथम अध्यक्ष: **व्योमेश चंद्र बनर्जी**।</td></tr>
+                    <tr><td>बंगाल विभाजन</td><td>1905 में **लॉर्ड कर्जन** द्वारा किया गया। इसके विरोध में स्वदेशी आंदोलन शुरू हुआ।</td></tr>
+                    <tr><td>गांधी जी का भारत आगमन</td><td>**9 जनवरी 1915** को दक्षिण अफ्रीका से वापस आए (इसी दिन प्रवासी भारतीय दिवस मनाया जाता है)।</td></tr>
+                    <tr><td>जलियांवाला बाग हत्याकांड</td><td>**13 अप्रैल 1919** को अमृतसर में जनरल डायर ने अंधाधुंध गोलियां चलवाईं।</td></tr>
+                    <tr><td>काकोरी ट्रेन एक्शन</td><td>**9 अगस्त 1925** को रामप्रसाद बिस्मिल, अशफाक उल्ला खां आदि द्वारा निष्पादित।</td></tr>
+                    <tr><td>साइमन कमीशन</td><td>1928 में भारत आया ('साइमन गो बैक' के नारे लगे)। लाला लाजपत राय पर लाठीचार्ज हुआ।</td></tr>
+                    <tr><td>दांडी मार्च & सविनय अवज्ञा</td><td>12 मार्च 1230 से 6 अप्रैल 1930 तक नमक कानून तोड़ने हेतु दांडी यात्रा निकाली गई।</td></tr>
+                    <tr><td>भारत छोड़ो आंदोलन</td><td>**8 अगस्त 1942** को शुरू हुआ। महात्मा गांधी ने **"करो या मरो"** का नारा दिया।</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 3: QUIZ -->
+        <div id="quiz" class="section-content">
+            <h2>📝 संपूर्ण भारतीय इतिहास - मॉक टेस्ट (Practice Quiz)</h2>
+            <p>अपने अध्ययन का परीक्षण करें! नीचे दिए गए प्रश्नों के उत्तर चुनें और रिजल्ट देखें:</p>
+
+            <form id="masterQuizForm">
+                
+                <div class="quiz-card">
+                    <p>Q1. हड़प्पा सभ्यता का प्रमुख बंदरगाह 'लोथल' किस राज्य में स्थित है?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="wrong"> राजस्थान</label>
+                        <label><input type="radio" name="q1" value="correct"> गुजरात</label>
+                        <label><input type="radio" name="q1" value="wrong"> पंजाब</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q2. तृतीय बौद्ध संगीति का आयोजन किसके शासनकाल में पाटलिपुत्र में हुआ था?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="wrong"> अजातशत्रु</label>
+                        <label><input type="radio" name="q2" value="wrong"> कनिष्क</label>
+                        <label><input type="radio" name="q2" value="correct"> सम्राट अशोक</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q3. 'भारत का नेपोलियन' किस गुप्त शासक को कहा जाता है?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="wrong"> चंद्रगुप्त मौर्य</label>
+                        <label><input type="radio" name="q3" value="correct"> समुद्रगुप्त</label>
+                        <label><input type="radio" name="q3" value="wrong"> चंद्रगुप्त द्वितीय</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q4. दिल्ली सल्तनत की पहली और अंतिम महिला शासिका कौन थी?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="correct"> रज़िया सुल्तान</label>
+                        <label><input type="radio" name="q4" value="wrong"> नूरजहाँ</label>
+                        <label><input type="radio" name="q4" value="wrong"> मुमताज़ महल</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q5. पानीपत का प्रथम युद्ध (1526) किसके मध्य लड़ा गया था?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="correct"> बाबर और इब्राहिम लोदी</label>
+                        <label><input type="radio" name="q5" value="wrong"> अकबर और हेमू</label>
+                        <label><input type="radio" name="q5" value="wrong"> हुमायूँ और शेरशाह सूरी</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q6. 'दीन-ए-इलाही' नामक नया धर्म किस मुगल शासक ने शुरू किया था?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="wrong"> शाहजहाँ</label>
+                        <label><input type="radio" name="q6" value="correct"> अकबर</label>
+                        <label><input type="radio" name="q6" value="wrong"> औरंगजेब</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q7. भारतीय राष्ट्रीय कांग्रेस (INC) की स्थापना 1885 में किसके द्वारा की गई थी?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="correct"> ए.ओ. ह्यूम (A.O. Hume)</label>
+                        <label><input type="radio" name="q7" value="wrong"> महात्मा गांधी</label>
+                        <label><input type="radio" name="q7" value="wrong"> दादाभाई नौरोजी</label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <p>Q8. "करो या मरो" का प्रसिद्ध नारा गांधी जी ने किस आंदोलन में दिया था?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="wrong"> असहयोग आंदोलन (1920)</label>
+                        <label><input type="radio" name="q8" value="wrong"> सविनय अवज्ञा आंदोलन (1930)</label>
+                        <label><input type="radio" name="q8" value="correct"> भारत छोड़ो आंदोलन (1942)</label>
+                    </div>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="evalQuiz()">सबमिट करें और अपना स्कोर देखें</button>
+            </form>
+
+            <div id="quiz-result"></div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            const contents = document.getElementsByClassName("section-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+            const buttons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function evalQuiz() {
+            const totalQuestions = 8;
+            let score = 0;
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const checkedObj = document.querySelector(`input[name="q${i}"]:checked`);
+                if (checkedObj && checkedObj.value === 'correct') {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById("quiz-result");
+            resultDiv.style.display = "block";
+            
+            let message = "";
+            if (score === totalQuestions) {
+                message = "🏆 शानदार! आपने पूरा 100% स्कोर किया है! इतिहास की तैयारी बेहतरीन है।";
+            } else if (score >= 5) {
+                message = "👍 अच्छा प्रयास! आपका स्कोर काफी अच्छा है, लेकिन थोड़े और अभ्यास की आवश्यकता है।";
+            } else {
+                message = "📚 फिर से प्रयास करें! ट्रिक्स और वन-लाइनर्स को एक बार दोबारा पढ़ें।";
+            }
+
+            resultDiv.innerHTML = `आपका कुल स्कोर: <strong>${score} / ${totalQuestions}</strong><br><span style="font-size: 1rem; font-weight: normal;">${message}</span>`;
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
