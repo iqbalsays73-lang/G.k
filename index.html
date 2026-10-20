@@ -3,1124 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GS Halwa - Ancient History Master Portal</title>
+    <title>Prachin Bharat Master Portal - Complete Edition</title>
     <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: #111827;
-            --accent: #38bdf8;
-            --accent-hover: #0ea5e9;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --success: #10b981;
-            --danger: #ef4444;
-            --border: #1f2937;
-            --trick-bg: #1e1b4b;
-            --trick-border: #6366f1;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            padding: 15px;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 980px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        header h1 {
-            font-size: 2.2rem;
-            color: var(--accent);
-            margin-bottom: 5px;
-        }
-        header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-        .control-bar {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 12px 18px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        .select-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        select, button.lang-toggle {
-            background-color: #1f2937;
-            color: var(--text-main);
-            border: 1px solid var(--border);
-            padding: 8px 14px;
-            border-radius: 6px;
-            outline: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        button.lang-toggle {
-            background-color: var(--accent);
-            color: #0b0f19;
-            border: none;
-        }
-        .phase-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 22px;
-            margin-bottom: 25px;
-            position: relative;
-        }
-        .phase-card.locked {
-            opacity: 0.55;
-            background-color: #0d111c;
-            border-color: #1e1b4b;
-        }
-        .lock-banner {
-            display: none;
-            background-color: #312e81;
-            color: #c7d2fe;
-            padding: 10px 14px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .phase-card.locked .lock-banner {
-            display: block;
-        }
-        .phase-title {
-            color: var(--accent);
-            font-size: 1.4rem;
-            margin-bottom: 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
-        }
-        .chapter-box {
-            background-color: #1f2937;
-            border-left: 4px solid var(--accent);
-            padding: 18px;
-            border-radius: 8px;
-            margin-bottom: 18px;
-        }
-        .chapter-box h3 {
-            color: #f3f4f6;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        .content-block {
-            color: #d1d5db;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .content-block ul {
-            margin-left: 20px;
-            margin-bottom: 10px;
-        }
-        .content-block li {
-            margin-bottom: 6px;
-        }
-        .trick-box {
-            background-color: var(--trick-bg);
-            border: 1px solid var(--trick-border);
-            color: #c7d2fe;
-            padding: 10px 14px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        .trick-box strong {
-            color: #818cf8;
-        }
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-            font-size: 0.88rem;
-        }
-        .data-table th, .data-table td {
-            border: 1px solid #374151;
-            padding: 8px 10px;
-            text-align: left;
-        }
-        .data-table th {
-            background-color: #111827;
-            color: var(--accent);
-        }
-        .test-btn {
-            background-color: var(--accent);
-            color: #0b0f19;
-            border: none;
-            padding: 14px;
-            width: 100%;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1.05rem;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: 0.2s;
-        }
-        .test-btn:hover:not(:disabled) {
-            background-color: var(--accent-hover);
-        }
-        .test-btn:disabled {
-            background-color: #374151 !important;
-            color: #9ca3af !important;
-            cursor: not-allowed !important;
-        }
-        .quiz-modal {
-            display: none;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 22px;
-            border-radius: 12px;
-            margin-top: 20px;
-        }
-        .quiz-modal.active {
-            display: block;
-        }
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
-        }
-        .question-text {
-            font-size: 1.15rem;
-            margin-bottom: 18px;
-            line-height: 1.5;
-        }
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-        @media(max-width: 600px) {
-            .options-grid { grid-template-columns: 1fr; }
-        }
-        .opt-btn {
-            background-color: #1f2937;
-            color: var(--text-main);
-            border: 1px solid #374151;
-            padding: 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.92rem;
-            text-align: left;
-        }
-        .opt-btn.correct { background-color: var(--success) !important; color: #fff !important; }
-        .opt-btn.wrong { background-color: var(--danger) !important; color: #fff !important; }
-        .explanation-box {
-            background-color: #0b0f19;
-            border-left: 3px solid var(--accent);
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 18px;
-            display: none;
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            line-height: 1.5;
-        }
-        .badge {
-            background-color: #0284c7;
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
+        .container { max-width: 850px; margin: auto; background: #1e293b; padding: 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        h1, h2 { color: #38bdf8; text-align: center; }
+        .subject-tabs { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap; }
+        .tab-btn { background: #334155; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .tab-btn.active { background: #0284c7; }
+        .card { background: #334155; padding: 18px; margin: 12px 0; border-radius: 8px; border-left: 5px solid #38bdf8; }
+        .btn { background: #0284c7; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .btn:hover { background: #0369a1; }
+        .btn-test { background: #16a34a; }
+        .btn-test:hover { background: #15803d; }
+        .locked { opacity: 0.5; pointer-events: none; }
+        .option-label { display: block; background: #475569; padding: 10px; margin: 6px 0; border-radius: 5px; cursor: pointer; }
+        .option-label:hover { background: #64748b; }
     </style>
+    <!-- Dynamic JS Data Files Included -->
+    <script src="history.js"></script>
+    <script src="geography.js"></script>
+    <script src="polity.js"></script>
+    <script src="economics.js"></script>
 </head>
 <body>
-
     <div class="container">
-        <header>
-            <h1 id="txt-title">🏛️ Prachin Bharat Master Portal</h1>
-            <p id="txt-subtitle">Complete SSC CGL, CHSL & CPO Exam Prep (TCS Pattern)</p>
-        </header>
-
-        <div class="control-bar">
-            <div class="select-group">
-                <label for="exam-select" id="lbl-exam">🎯 Exam Target:</label>
-                <select id="exam-select">
-                    <option value="cgl">SSC CGL</option>
-                    <option value="chsl">SSC CHSL</option>
-                    <option value="cpo">SSC CPO</option>
-                </select>
-            </div>
-
-            <div class="select-group">
-                <span id="lbl-lang">🌐 Choose Language:</span>
-                <button class="lang-toggle" onclick="toggleLanguage()" id="btn-lang">English</button>
-            </div>
+        <h1>Prachin Bharat & GS Master Portal 🚀</h1>
+        <p style="text-align:center;">SSC / UPSSSC PET Complete One-Liners & PYQ Tests</p>
+        
+        <div class="subject-tabs">
+            <button class="tab-btn active" onclick="switchSubject('history')">History</button>
+            <button class="tab-btn" onclick="switchSubject('geography')">Geography</button>
+            <button class="tab-btn" onclick="switchSubject('polity')">Polity</button>
+            <button class="tab-btn" onclick="switchSubject('economics')">Economics</button>
         </div>
 
-        <div id="content-area"></div>
-
-        <div class="quiz-modal" id="quiz-modal">
-            <div class="quiz-header">
-                <div>
-                    <h3 id="quiz-title" style="color:var(--accent);">Phase Test</h3>
-                    <span id="q-counter" style="color:var(--text-muted); font-size: 0.88rem;">Question 1 of 5</span>
-                </div>
-                <span>Score: <strong id="score" style="color:var(--accent); font-size:1.3rem;">0</strong></span>
-            </div>
-
-            <div class="question-text" id="question">Loading PYQ...</div>
-            <div class="options-grid" id="options"></div>
-            <div class="explanation-box" id="explanation"></div>
-
-            <div style="text-align: right;">
-                <button class="test-btn" style="width: auto; padding: 10px 22px;" id="btn-next" onclick="nextQuestion()">Next Question ➔</button>
-            </div>
+        <div id="app-body">
+            <!-- Content will be rendered dynamically -->
         </div>
-
     </div>
 
     <script>
-        let currentLang = 'hi';
+        let currentSubject = 'history';
 
-        const fullContent = {
-            hi: {
-                title: "🏛️ प्राचीन भारत (Ancient History) संपूर्ण मास्टर पोर्टल",
-                subtitle: "SSC CGL, CHSL, CPO (2020-2025) आधिकारिक TCS पैटर्न नोट्स एवं PYQs",
-                lblExam: "🎯 लक्षित परीक्षा:",
-                lblLang: "🌐 भाषा चुनें:",
-                lockMsg: "🔒 लॉक: अगले चरण को अनलॉक करने के लिए पिछले टेस्ट में 70% अंक प्राप्त करें।",
-                unlocked: "अनलॉक्ड",
-                locked: "लॉक है",
-                btnTest: "📝 चरण PYQ टेस्ट शुरू करें (अनलॉक हेतु 70% अंक आवश्यक)",
-                btnNext: "अगला प्रश्न ➔",
-                phases: [
-                    {
-                        id: 1,
-                        name: "Phase 1: पाषाण काल से वैदिक सभ्यता (अध्याय 1 - 3)",
-                        chapters: [
-                            {
-                                title: "अध्याय 1: पाषाण काल (Stone Age)",
-                                html: `<div class="content-block">
-                                    <p>भारत में पाषाण काल को तीन मुख्य भागों में विभाजित किया गया है:</p>
-                                    <ul>
-                                        <li><strong>1. पुरापाषाण काल (Paleolithic Age):</strong> मानव मुख्य रूप से शिकारी एवं खाद्य संग्राहक था। आग की खोज इसी काल में हुई। <em>भीमबेटका (MP):</em> शैल चित्रों के लिए प्रसिद्ध।</li>
-                                        <li><strong>2. मध्यपाषाण काल (Mesolithic Age):</strong> सूक्ष्म पाषाण औजार (Microliths) का प्रयोग शुरू हुआ। पशुपालन का प्रथम साक्ष्य <em>आदमगढ़ (MP)</em> तथा <em>बागोर (राजस्थान)</em> से मिला।</li>
-                                        <li><strong>3. नवपाषाण काल (Neolithic Age):</strong> कृषि एवं पहिए का आविष्कार हुआ। <em>मेहरगढ़ (पाकिस्तान):</em> कृषि का प्रथम साक्ष्य। <em>बुर्जहोम (कश्मीर):</em> गर्तवास तथा कुत्ते को दफनाने के साक्ष्य।</li>
-                                    </ul>
-                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "मेहरगढ़ से अन्न मिला, बुर्जहोम के गड्ढे में कुत्ता सोया।"</div>
-                                </div>`
-                            },
-                            {
-                                title: "अध्याय 2: सिंधु घाटी सभ्यता (Indus Valley Civilization - 2500-1750 BC)",
-                                html: `<div class="content-block">
-                                    <p>यह कांस्ययुगीन एवं नगरीय सभ्यता थी। नगर नियोजन ग्रिड पद्धति पर आधारित था।</p>
-                                    <table class="data-table">
-                                        <tr><th>स्थल</th><th>नदी</th><th>उत्खननकर्ता</th><th>अवशेष</th></tr>
-                                        <tr><td>हड़प्पा</td><td>रावी</td><td>दयाराम साहनी (1921)</td><td>अन्नागार (Granary)</td></tr>
-                                        <tr><td>मोहनजोदड़ो</td><td>सिंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार, कांस्य नर्तकी</td></tr>
-                                        <tr><td>लोथल</td><td>भोगवा</td><td>एस.आर. राव (1954)</td><td>गोदीवाड़ा (Dockyard)</td></tr>
-                                        <tr><td>कालीबंगन</td><td>घग्गर</td><td>बी.बी. लाल / ए. घोष</td><td>जूते हुए खेत के साक्ष्य</td></tr>
-                                    </table>
-                                </div>`
-                            },
-                            {
-                                title: "अध्याय 3: वैदिक संस्कृति एवं वेद (1500 - 600 BC)",
-                                html: `<div class="content-block">
-                                    <ul>
-                                        <li><strong>ऋग्वेद:</strong> सबसे प्राचीन वेद (10 मण्डल, 1028 सूक्त)। तीसरे मण्डल में <em>गायत्री मन्त्र</em>।</li>
-                                        <li><strong>सामवेद:</strong> भारतीय संगीत का जनक।</li>
-                                        <li><strong>यजुर्वेद:</strong> गद्य एवं पद्य दोनों में रचित (यज्ञीय अनुष्ठान)।</li>
-                                        <li><strong>अथर्ववेद:</strong> औषधि, जादू-टोना से संबंधित।</li>
-                                    </ul>
-                                </div>`
-                            }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        name: "Phase 2: महाजनपद काल से मौर्य साम्राज्य (अध्याय 4 - 6)",
-                        chapters: [
-                            {
-                                title: "अध्याय 4: 16 महाजनपद एवं मगध का उत्कर्ष",
-                                html: `<div class="content-block">
-                                    <p><strong>मगध साम्राज्य के राजवंश (Trick: HASIN MASHUKA):</strong></p>
-                                    <ul>
-                                        <li><strong>1. हर्यक वंश:</strong> बिम्बिसार (संस्थापक), अजातशत्रु, उदयन (पाटलिपुत्र की स्थापना)।</li>
-                                        <li><strong>2. शिशुनाग वंश:</strong> शिशुनाग, कालाशोक।</li>
-                                        <li><strong>3. नंद वंश:</strong> महापद्मानंद, घनानंद।</li>
-                                    </ul>
-                                </div>`
-                            },
-                            {
-                                title: "अध्याय 5: बौद्ध एवं जैन धर्म",
-                                html: `<div class="content-block">
-                                    <p><strong>गौतम बुद्ध:</strong> जन्म - लुम्बिनी, ज्ञान - बोधगया, प्रथम उपदेश - सारनाथ, महापरिनिर्वाण - कुशीनगर।</p>
-                                    <table class="data-table">
-                                        <tr><th>संगीति</th><th>स्थान</th><th>शासक</th></tr>
-                                        <tr><td>प्रथम (483 BC)</td><td>राजगृह</td><td>अजातशत्रु</td></tr>
-                                        <tr><td>द्वितीय (383 BC)</td><td>वैशाली</td><td>कालाशोक</td></tr>
-                                        <tr><td>तृतीय (250 BC)</td><td>पाटलिपुत्र</td><td>अशोक</td></tr>
-                                        <tr><td>चतुर्थ (1st AD)</td><td>कुण्डलवन</td><td>कनिष्क</td></tr>
-                                    </table>
-                                </div>`
-                            },
-                            {
-                                title: "अध्याय 6: मौर्य साम्राज्य (322 - 185 BC)",
-                                html: `<div class="content-block">
-                                    <ul>
-                                        <li><strong>चंद्रगुप्त मौर्य:</strong> चाणक्य की सहायता से घनानंद को पराजित किया। <em>मेगस्थनीज</em> ने <strong>इण्डिका</strong> लिखी।</li>
-                                        <li><strong>अशोक:</strong> 261 BC में <em>कलिंग युद्ध</em> लड़ा (13वें शिलालेख में वर्णन)।</li>
-                                    </ul>
-                                </div>`
-                            }
-                        ]
-                    },
-                    {
-                        id: 3,
-                        name: "Phase 3: गुप्त साम्राज्य एवं दक्षिण भारत के राजवंश (अध्याय 7 - 8)",
-                        chapters: [
-                            {
-                                title: "अध्याय 7: गुप्त साम्राज्य एवं हर्षवर्धन",
-                                html: `<div class="content-block">
-                                    <ul>
-                                        <li><strong>समुद्रगुप्त:</strong> 'भारत का नेपोलियन'। प्रयाग प्रशस्ति की रचना हरिषेण ने की।</li>
-                                        <li><strong>चंद्रगुप्त द्वितीय:</strong> नवरत्न दरबारी। चीनी यात्री फाह्यान भारत आया।</li>
-                                        <li><strong>हर्षवर्धन:</strong> चीनी यात्री ह्वेनसांग (Si-Yu-Ki) इसी के काल में आया।</li>
-                                    </ul>
-                                </div>`
-                            },
-                            {
-                                title: "अध्याय 8: दक्षिण भारत के राजवंश",
-                                html: `<div class="content-block">
-                                    <ul>
-                                        <li><strong>राष्ट्रकूट:</strong> कृष्ण प्रथम ने एलोरा का कैलाश मंदिर बनवाया।</li>
-                                        <li><strong>चोल वंश:</strong> राजराज I ने तंजावुर का बृहदीश्वर मंदिर बनवाया।</li>
-                                    </ul>
-                                </div>`
-                            }
-                        ]
-                    }
-                ]
-            },
-            en: {
-                title: "🏛️ Ancient History Master Portal",
-                subtitle: "Comprehensive SSC CGL, CHSL, CPO (2020-2025) TCS Pattern Notes & Official PYQs",
-                lblExam: "🎯 Target Exam:",
-                lblLang: "🌐 Choose Language:",
-                lockMsg: "🔒 Locked: Score 70%+ in the previous phase test to unlock this section.",
-                unlocked: "Unlocked",
-                locked: "Locked",
-                btnTest: "📝 Start Phase PYQ Test (70% Passing Marks Required)",
-                btnNext: "Next Question ➔",
-                phases: [
-                    {
-                        id: 1,
-                        name: "Phase 1: Stone Age to Vedic Period (Chapters 1 - 3)",
-                        chapters: [
-                            {
-                                title: "Chapter 1: Stone Age (Pashan Kaal)",
-                                html: `<div class="content-block">
-                                    <p>The Stone Age in India is classified into three distinct periods:</p>
-                                    <ul>
-                                        <li><strong>1. Paleolithic Age:</strong> Humans were hunters and food gatherers. Discovery of Fire occurred.</li>
-                                        <li><strong>2. Mesolithic Age:</strong> Use of Microliths began. First evidence of Animal Husbandry at Adamgarh and Bagor.</li>
-                                        <li><strong>3. Neolithic Age:</strong> Invention of Agriculture and Wheel. Mehrgarh: Agriculture evidence. Burzahom: Pit dwellings.</li>
-                                    </ul>
-                                </div>`
-                            },
-                            {
-                                title: "Chapter 2: Indus Valley Civilization (2500 - 1750 BC)",
-                                html: `<div class="content-block">
-                                    <table class="data-table">
-                                        <tr><th>Major Site</th><th>River</th><th>Excavator</th><th>Key Findings</th></tr>
-                                        <tr><td>Harappa</td><td>Ravi</td><td>Daya Ram S<!DOCTYPE html>
-<html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GS Halwa - Ancient History Master Portal</title>
-    <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: #111827;
-            --accent: #38bdf8;
-            --accent-hover: #0ea5e9;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --success: #10b981;
-            --danger: #ef4444;
-            --border: #1f2937;
-            --trick-bg: #1e1b4b;
-            --trick-border: #6366f1;
+        function switchSubject(subject) {
+            currentSubject = subject;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            renderDashboard();
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            padding: 15px;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 980px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        header h1 {
-            font-size: 2.2rem;
-            color: var(--accent);
-            margin-bottom: 5px;
-        }
-        header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-        .control-bar {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 12px 18px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        .select-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        select, button.lang-toggle {
-            background-color: #1f2937;
-            color: var(--text-main);
-            border: 1px solid var(--border);
-            padding: 8px 14px;
-            border-radius: 6px;
-            outline: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        button.lang-toggle {
-            background-color: var(--accent);
-            color: #0b0f19;
-            border: none;
-        }
-        .phase-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 22px;
-            margin-bottom: 25px;
-            position: relative;
-        }
-        .phase-card.locked {
-            opacity: 0.55;
-            background-color: #0d111c;
-            border-color: #1e1b4b;
-        }
-        .lock-banner {
-            display: none;
-            background-color: #312e81;
-            color: #c7d2fe;
-            padding: 10px 14px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .phase-card.locked .lock-banner {
-            display: block;
-        }
-        .phase-title {
-            color: var(--accent);
-            font-size: 1.4rem;
-            margin-bottom: 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
-        }
-        .chapter-box {
-            background-color: #1f2937;
-            border-left: 4px solid var(--accent);
-            padding: 18px;
-            border-radius: 8px;
-            margin-bottom: 18px;
-        }
-        .chapter-box h3 {
-            color: #f3f4f6;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        .content-block {
-            color: #d1d5db;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .content-block ul {
-            margin-left: 20px;
-            margin-bottom: 10px;
-        }
-        .content-block li {
-            margin-bottom: 6px;
-        }
-        .trick-box {
-            background-color: var(--trick-bg);
-            border: 1px solid var(--trick-border);
-            color: #c7d2fe;
-            padding: 10px 14px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        .trick-box strong {
-            color: #818cf8;
-        }
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-            font-size: 0.88rem;
-        }
-        .data-table th, .data-table td {
-            border: 1px solid #374151;
-            padding: 8px 10px;
-            text-align: left;
-        }
-        .data-table th {
-            background-color: #111827;
-            color: var(--accent);
-        }
-        .test-btn {
-            background-color: var(--accent);
-            color: #0b0f19;
-            border: none;
-            padding: 14px;
-            width: 100%;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1.05rem;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: 0.2s;
-        }
-        .test-btn:hover:not(:disabled) {
-            background-color: var(--accent-hover);
-        }
-        .test-btn:disabled {
-            background-color: #374151 !important;
-            color: #9ca3af !important;
-            cursor: not-allowed !important;
-        }
-        .quiz-modal {
-            display: none;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 22px;
-            border-radius: 12px;
-            margin-top: 20px;
-        }
-        .quiz-modal.active {
-            display: block;
-        }
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
-        }
-        .question-text {
-            font-size: 1.15rem;
-            margin-bottom: 18px;
-            line-height: 1.5;
-        }
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-        @media(max-width: 600px) {
-            .options-grid { grid-template-columns: 1fr; }
-        }
-        .opt-btn {
-            background-color: #1f2937;
-            color: var(--text-main);
-            border: 1px solid #374151;
-            padding: 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.92rem;
-            text-align: left;
-        }
-        .opt-btn.correct { background-color: var(--success) !important; color: #fff !important; }
-        .opt-btn.wrong { background-color: var(--danger) !important; color: #fff !important; }
-        .explanation-box {
-            background-color: #0b0f19;
-            border-left: 3px solid var(--accent);
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 18px;
-            display: none;
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            line-height: 1.5;
-        }
-        .badge {
-            background-color: #0284c7;
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
 
-    <div class="container">
-        <header>
-            <h1 id="txt-title">🏛️ Prachin Bharat Master Portal</h1>
-            <p id="txt-subtitle">Complete SSC CGL, CHSL & CPO Exam Prep (TCS Pattern)</p>
-        </header>
-
-        <div class="control-bar">
-            <div class="select-group">
-                <label for="exam-select" id="lbl-exam">🎯 Exam Target:</label>
-                <select id="exam-select">
-                    <option value="cgl">SSC CGL</option>
-                    <option value="chsl">SSC CHSL</option>
-                    <option value="cpo">SSC CPO</option>
-                </select>
-            </div>
-
-            <div class="select-group">
-                <span id="lbl-lang">🌐 Choose Language:</span>
-                <button class="lang-toggle" onclick="toggleLanguage()" id="btn-lang">English</button>
-            </div>
-        </div>
-
-        <div id="content-area"></div>
-
-        <div class="quiz-modal" id="quiz-modal">
-            <div class="quiz-header">
-                <div>
-                    <h3 id="quiz-title" style="color:var(--accent);">Phase Test</h3>
-                    <span id="q-counter" style="color:var(--text-muted); font-size: 0.88rem;">Question 1 of 5</span>
-                </div>
-                <span>Score: <strong id="score" style="color:var(--accent); font-size:1.3rem;">0</strong></span>
-            </div>
-
-            <div class="question-text" id="question">Loading PYQ...</div>
-            <div class="options-grid" id="options"></div>
-            <div class="explanation-box" id="explanation"></div>
-
-            <div style="text-align: right;">
-                <button class="test-btn" style="width: auto; padding: 10px 22px;" id="btn-next" onclick="nextQuestion()">Next Question ➔</button>
-            </div>
-        </div>
-
-    </div>
-
-    <script>
-        let currentLang = 'hi';
-
-        const fullContent = {
-            hi: {
-                title: "🏛️ प्राचीन भारत (Ancient History) संपूर्ण मास्टर पोर्टल",
-                subtitle: "SSC CGL, CHSL, CPO (2020-2025) आधिकारिक TCS पैटर्न नोट्स एवं PYQs",
-                lblExam: "🎯 लक्षित परीक्षा:",
-                lblLang: "🌐 भाषा चुनें:",
-                lockMsg: "🔒 लॉक: अगले चरण को अनलॉक करने के लिए पिछले टेस्ट में 70% अंक प्राप्त करें।",
-                unlocked: "अनलॉक्ड",
-                locked: "लॉक है",
-                btnTest: "📝 चरण PYQ टेस्ट शुरू करें (अनलॉक हेतु 70% अंक आवश्यक)",
-                btnNext: "अगला प्रश्न ➔",
-                phases: [
-                    {
-                        id: 1,
-                        name: "Phase 1: पाषाण काल से वैदिक सभ्यता (अध्याय 1 - 3)",
-                        chapters: [
-                            {
-                                title: "अध्याय 1: पाषाण काल (Stone Age)",
-                                html: `<div class="content-block">
-                                    <p>भारत में पाषाण काल को तीन मुख्य भागों में विभाजित किया गया है:</p>
-                                    <ul>
-                                        <li><strong>1. पुरापाषाण काल (Paleolithic Age):</strong> मानव मुख्य रूप से शिकारी एवं खाद्य संग्राहक था। आग की खोज इसी काल में हुई। <em>भीमबेटका (MP):</em> शैल चित्रों के लिए प्रसिद्ध।</li>
-                                        <li><strong>2. मध्यपाषाण काल (Mesolithic Age):</strong> सूक्ष्म पाषाण औजार (Microliths) का प्रयोग शुरू हुआ। पशुपालन का प्रथम साक्ष्य <em>आदमगढ़ (MP)</em> तथा <em>बागोर (राजस्थान)</em> से मिला।</li>
-                                        <li><strong>3. नवपाषाण काल (Neolithic Age):</strong> कृषि एवं पहिए का आविष्कार हुआ। <em>मेहरगढ़ (पाकिस्तान):</em> कृषि का प्रथम साक्ष्य। <em>बुर्जहोम (कश्मीर):</em> गर्तवास तथा कुत्ते को दफनाने के साक्ष्य।</li>
-                                    </ul>
-                                    <div class="trick-box"><strong>💡 Memory Trick:</strong> "मेहरगढ़ से अन्न मिला, बुर्जहोम के गड्ढे में कुत्ता सोया।"</div>
-                                </div>`
-                            },
-                            {
-                                title: "अध्याय 2: सिंधु घाटी सभ्यता (Indus Valley Civilization - 2500-1750 BC)",
-                                html: `<div class="content-block">
-                                    <p>यह कांस्ययुगीन एवं नगरीय सभ्यता थी। नगर नियोजन ग्रिड पद्धति पर आधारित था।</p>
-                                    <table class="data-table">
-                                        <tr><th>स्थल</th><th>नदी</th><th>उत्खननकर्ता</th><th>अवशेष</th></tr>
-                                        <tr><td>हड़प्पा</td><td>रावी</td><td>दयाराम साहनी (1921)</td><td>अन्नागार (Granary)</td></tr>
-                                        <tr><td>मोहनजोदड़ो</td><td>सिंधु</td><td>राखालदास बनर्जी (1922)</td><td>विशाल स्नानागार, कांस्य नर्तकी</td></tr>
-                                        <tr><td>लोथल</td><td>भोगवा</td><td>एस.आर. राव (1954)</td><td>गोदीवाड़ा (Dockyard)</td></tr>
-                                        <tr><td>कालीबंगन</td><td>घग्गर</td><td>बी.बी. लाल / ए. घोष</td><td>जूते हुए खेत के साक्ष्य</td></tr>
-                                    </table>
-                                </div>`
-                            },
-                            {
-                                title: "अध्याय 3: वैदिक संस्कृति एवं वेद (1500 - 600 BC)",
-                                html: `<div class="content-block">
-                                    <ul>
-                                        <li><strong>ऋग्वेद:</strong> सबसे प्राचीन वेद (10 मण्डल, 1028 सूक्त)। तीसरे मण्डल में <em>गायत्री मन्त्र</em>।</li>
-                                        <li><strong>सामवेद:</strong> भारतीय संगीत का जनक।</li>
-                                        <li><strong>यजुर्वेद:</strong> गद्य एवं पद्य दोनों में रचित (यज्ञीय अनुष्ठान)।</li>
-                                        <li><strong>अथर्ववेद:</strong> औषधि, जादू-टोना से संबंधित।</li>
-                                    </ul>
-                                </div>`
-                            }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        name: "Phase 2: महाजनपद काल से मौर्य साम्राज्य (अध्याय 4 - 6)",
-                        chapters: [
-                            {
-                                title: "अध्याय 4: 16 महाजनपद एवं मगध का उत्कर्ष",
-                                html: `<div class="content-block">
-                                    <p><strong>मगध साम्राज्य के राजवंश (Trick: HASIN MASHUKA):</strong></p>
-                                    <ul>
-                                        <li><strong>1. हर्यक वंश:</strong> बिम्बिसार (संस्थापक), अजातशत्रु, उदयन (पाटलिपुत्र की स्थापना)।</li>
-                                        <li><strong>2. शिशुनाग वंश:</strong> शिशुनाग, कालाशोक।</li>
-                                        <li><strong>3. नंद वंश:</strong> महापद्मानंद, घनानंद।</li>
-                                    </ul>
-                                </div>`
-                            },
-                            {
-                                title: "अध्याय 5: बौद्ध एवं जैन धर्म",
-                                html: `<div class="content-block">
-                                    <p><strong>गौतम बुद्ध:</strong> जन्म - लुम्बिनी, ज्ञान - बोधगया, प्रथम उपदेश - सारनाथ, महापरिनिर्वाण - कुशीनगर।</p>
-                                    <table class="data-table">
-                                        <tr><th>संगीति</th><th>स्थान</th><th>शासक</th></tr>
-                                        <tr><td>प्रथम (483 BC)</td><td>राजगृह</td><td>अजातशत्रु</td></tr>
-                                        <tr><td>द्वितीय (383 BC)</td><td>वैशाली</td><td>कालाशोक</td></tr>
-                                        <tr><td>तृतीय (250 BC)</td><td>पाटलिपुत्र</td><td>अशोक</td></tr>
-                                        <tr><td>चतुर्थ (1st AD)</td><td>कुण्डलवन</td><td>कनिष्क</td></tr>
-                                    </table>
-                                </div>`
-                            },
-                            {
-                                title: "अध्याय 6: मौर्य साम्राज्य (322 - 185 BC)",
-                                html: `<div class="content-block">
-                                    <ul>
-                                        <li><strong>चंद्रगुप्त मौर्य:</strong> चाणक्य की सहायता से घनानंद को पराजित किया। <em>मेगस्थनीज</em> ने <strong>इण्डिका</strong> लिखी।</li>
-                                        <li><strong>अशोक:</strong> 261 BC में <em>कलिंग युद्ध</em> लड़ा (13वें शिलालेख में वर्णन)।</li>
-                                    </ul>
-                                </div>`
-                            }
-                        ]
-                    },
-                    {
-                        id: 3,
-                        name: "Phase 3: गुप्त साम्राज्य एवं दक्षिण भारत के राजवंश (अध्याय 7 - 8)",
-                        chapters: [
-                            {
-                                title: "अध्याय 7: गुप्त साम्राज्य एवं हर्षवर्धन",
-                                html: `<div class="content-block">
-                                    <ul>
-                                        <li><strong>समुद्रगुप्त:</strong> 'भारत का नेपोलियन'। प्रयाग प्रशस्ति की रचना हरिषेण ने की।</li>
-                                        <li><strong>चंद्रगुप्त द्वितीय:</strong> नवरत्न दरबारी। चीनी यात्री फाह्यान भारत आया।</li>
-                                        <li><strong>हर्षवर्धन:</strong> चीनी यात्री ह्वेनसांग (Si-Yu-Ki) इसी के काल में आया।</li>
-                                    </ul>
-                                </div>`
-                            },
-                            {
-                                title: "अध्याय 8: दक्षिण भारत के राजवंश",
-                                html: `<div class="content-block">
-                                    <ul>
-                                        <li><strong>राष्ट्रकूट:</strong> कृष्ण प्रथम ने एलोरा का कैलाश मंदिर बनवाया।</li>
-                                        <li><strong>चोल वंश:</strong> राजराज I ने तंजावुर का बृहदीश्वर मंदिर बनवाया।</li>
-                                    </ul>
-                                </div>`
-                            }
-                        ]
-                    }
-                ]
-            },
-            en: {
-                title: "🏛️ Ancient History Master Portal",
-                subtitle: "Comprehensive SSC CGL, CHSL, CPO (2020-2025) TCS Pattern Notes & Official PYQs",
-                lblExam: "🎯 Target Exam:",
-                lblLang: "🌐 Choose Language:",
-                lockMsg: "🔒 Locked: Score 70%+ in the previous phase test to unlock this section.",
-                unlocked: "Unlocked",
-                locked: "Locked",
-                btnTest: "📝 Start Phase PYQ Test (70% Passing Marks Required)",
-                btnNext: "Next Question ➔",
-                phases: [
-                    {
-                        id: 1,
-                        name: "Phase 1: Stone Age to Vedic Period (Chapters 1 - 3)",
-                        chapters: [
-                            {
-                                title: "Chapter 1: Stone Age (Pashan Kaal)",
-                                html: `<div class="content-block">
-                                    <p>The Stone Age in India is classified into three distinct periods:</p>
-                                    <ul>
-                                        <li><strong>1. Paleolithic Age:</strong> Humans were hunters and food gatherers. Discovery of Fire occurred.</li>
-                                        <li><strong>2. Mesolithic Age:</strong> Use of Microliths began. First evidence of Animal Husbandry at Adamgarh and Bagor.</li>
-                                        <li><strong>3. Neolithic Age:</strong> Invention of Agriculture and Wheel. Mehrgarh: Agriculture evidence. Burzahom: Pit dwellings.</li>
-                                    </ul>
-                                </div>`
-                            },
-                            {
-                                title: "Chapter 2: Indus Valley Civilization (2500 - 1750 BC)",
-                                html: `<div class="content-block">
-                                    <table class="data-table">
-                                        <tr><th>Major Site</th><th>River</th><th>Excavator</th><th>Key Findings</th></tr>
-                                        <tr><td>Harappa</td><td>Ravi</td><td>Daya Ram Sahni (1921)</td><td>Great Granary</td></tr>
-                                        <tr><td>Mohenjodaro</td><td>Indus</td><td>R.D. Banerji (1922)</td><td>Great Bath, Bronze Dancing Girl</td></tr>
-                                        <tr><td>Lothal</td><td>Bhogava</td><td>S.R. Rao (1954)</td><td>Tidal Dockyard</td></tr>
-                                    </table>
-                                </div>`
-                            },
-                            {
-                                title: "Chapter 3: Vedic Culture & Vedas (1500 - 600 BC)",
-                                html: `<div class="content-block">
-                                    <ul>
-                                        <li><strong>Rigveda:</strong> Oldest Veda. Gayatri Mantra in 3rd Mandala.</li>
-                                        <li><strong>Samaveda:</strong> Origin of Indian Classical Music.</li>
-                                    </ul>
-                                </div>`
-                            }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        name: "Phase 2: Mahajanapadas to Mauryan Empire (Chapters 4 - 6)",
-                        chapters: [
-                            {
-                                title: "Chapter 4: 16 Mahajanapadas & Magadha",
-                                html: `<div class="content-block"><p>Magadha Dynasties: Haryanka, Shishunaga, Nanda.</p></div>`
-                            },
-                            {
-                                title: "Chapter 5: Buddhism & Jainism",
-                                html: `<div class="content-block"><p>Gautama Buddha: Birth - Lumbini, Sermon - Sarnath, Death - Kushinagar.</p></div>`
-                            },
-                            {
-                                title: "Chapter 6: Mauryan Empire (322 - 185 BC)",
-                                html: `<div class="content-block"><p>Chandragupta Maurya & Ashoka (Kalinga War 261 BC).</p></div>`
-                            }
-                        ]
-                    },
-                    {
-                        id: 3,
-                        name: "Phase 3: Gupta Empire & South Dynasties (Chapters 7 - 8)",
-                        chapters: [
-                            {
-                                title: "Chapter 7: Gupta Empire & Harshavardhana",
-                                html: `<div class="content-block"><p>Samudragupta (Napoleon of India) & Chandragupta II.</p></div>`
-                            },
-                            {
-                                title: "Chapter 8: South Indian Dynasties",
-                                html: `<div class="content-block"><p>Rashtrakuta (Kailash Temple) & Cholas (Brihadeeswarar Temple).</p></div>`
-                            }
-                        ]
-                    }
-                ]
-            }
-        };
-
-        const pyqTests = {
-            1: [
-                { q: "Harappan site 'Lothal' was situated on the banks of which river? (SSC CGL 2023)", options: ["Bhogava", "Ravi", "Indus", "Ghaggar"], correct: 0, exp: "Lothal in Gujarat was situated on the Bhogava river." },
-                { q: "Gayatri Mantra is in which Mandal of Rigveda? (SSC CGL 2021)", options: ["1st Mandal", "3rd Mandal", "7th Mandal", "10th Mandal"], correct: 1, exp: "Gayatri Mantra is in 3rd Mandal, composed by Vishwamitra." },
-                { q: "Bhimbetka cave paintings are located in which state? (SSC CHSL 2022)", options: ["Madhya Pradesh", "Rajasthan", "Uttar Pradesh", "Bihar"], correct: 0, exp: "Bhimbetka is in MP." },
-                { q: "Ploughed fields evidence was found at: (SSC CPO 2023)", options: ["Mohenjodaro", "Kalibangan", "Dholavira", "Lothal"], correct: 1, exp: "Kalibangan (Rajasthan) yielded ploughed fields." },
-                { q: "Ancient Vedic name of Jhelum River? (SSC CGL 2024)", options: ["Vitasta", "Parushni", "Asikni", "Sutudri"], correct: 0, exp: "Jhelum = Vitasta." }
-            ],
-            2: [
-                { q: "First Buddhist Council in 483 BC was held under? (SSC CGL 2024)", options: ["Ajatashatru", "Kalasoka", "Ashoka", "Kanishka"], correct: 0, exp: "Held at Rajgir under Ajatashatru." },
-                { q: "Megasthenes was ambassador of: (SSC CHSL 2023)", options: ["Seleucus Nicator", "Alexander", "Darius", "Antiochus"], correct: 0, exp: "Megasthenes wrote Indica." },
-                { q: "Ashoka fought Kalinga War in: (SSC CGL 2022)", options: ["261 BC", "326 BC", "232 BC", "185 BC"], correct: 0, exp: "Kalinga War was fought in 261 BC." },
-                { q: "Information about 16 Mahajanapadas is in: (SSC CPO 2022)", options: ["Anguttara Nikaya", "Tripitaka", "Mahavamsa", "Jataka"], correct: 0, exp: "Mentioned in Anguttara Nikaya." },
-                { q: "24th Tirthankara Mahavira was born at: (SSC CGL 2020)", options: ["Vaishali (Kundagrama)", "Lumbini", "Pataliputra", "Bodh Gaya"], correct: 0, exp: "Born at Kundagrama near Vaishali." }
-            ],
-            3: [
-                { q: "Which Gupta ruler was referred to as 'Napoleon of India'? (SSC CGL 2023)", options: ["Samudragupta", "Chandragupta II", "Skandagupta", "Kumaragupta"], correct: 0, exp: "Samudragupta was titled Napoleon of India." },
-                { q: "Kailash Temple at Ellora was built by: (SSC CGL 2021)", options: ["Krishna I", "Amoghavarsha", "Dantidurga", "Govinda III"], correct: 0, exp: "Built by Rashtrakuta king Krishna I." },
-                { q: "Hiuen Tsang visited India during the reign of: (SSC CHSL 2022)", options: ["Harshavardhana", "Chandragupta II", "Samudragupta", "Kanishka"], correct: 0, exp: "Visited during Harshavardhana's reign." },
-                { q: "Nalanda University was established by: (SSC CPO 2023)", options: ["Kumaragupta I", "Skandagupta", "Chandragupta I", "Bhanugupta"], correct: 0, exp: "Founded by Kumaragupta I." },
-                { q: "Brihadeeswarar Temple at Thanjavur was built by: (SSC CGL 2024)", options: ["Rajaraja Chola I", "Rajendra Chola", "Karikala", "Narasimhavarman"], correct: 0, exp: "Constructed by Rajaraja Chola I." }
-            ]
-        };
-
-        let currentActivePhase = 1;
-        let currentQIndex = 0;
-        let currentScore = 0;
-
-        function renderPage() {
-            const data = fullContent[currentLang];
-            document.getElementById('txt-title').innerText = data.title;
-            document.getElementById('txt-subtitle').innerText = data.subtitle;
-            document.getElementById('lbl-exam').innerText = data.lblExam;
-            document.getElementById('lbl-lang').innerText = data.lblLang;
-            document.getElementById('btn-lang').innerText = (currentLang === 'hi') ? 'English' : 'हिंदी';
-            document.getElementById('btn-next').innerText = data.btnNext;
-
-            const area = document.getElementById('content-area');
-            area.innerHTML = '';
-
-            data.phases.forEach(phase => {
-                const isUnlocked = phase.id === 1 || localStorage.getItem(`phase${phase.id}_unlocked`) === 'true';
-                
-                let chsHtml = '';
-                phase.chapters.forEach(ch => {
-                    chsHtml += `
-                        <div class="chapter-box">
-                            <h3>${ch.title}</h3>
-                            ${ch.html}
-                        </div>
-                    `;
+        function renderDashboard() {
+            let data = window[currentSubject + 'Data'] || { chapters: [] };
+            let html = `<h2>${currentSubject.toUpperCase()} Chapters</h2><div class="grid">`;
+            
+            if (!data.chapters || data.chapters.length === 0) {
+                html += `<div class="card"><p>Data load ho raha hai... Kripya file link check karein.</p></div>`;
+            } else {
+                data.chapters.forEach(ch => {
+                    html += `<div class="card ${ch.unlocked ? '' : 'locked'}">
+                        <h3>Chapter ${ch.id}: ${ch.title} ${ch.unlocked ? '🔓' : '🔒'}</h3>
+                        <p>${ch.unlocked ? 'Padhne aur Practice ke liye shuru karein.' : 'Unlock karne ke liye pichla 3-Chapter Test (70%+) paas karein.'}</p>
+                        <button class="btn" ${ch.unlocked ? '' : 'disabled'} onclick="startChapter(${ch.id})">Start Chapter</button>
+                    </div>`;
                 });
-
-                const phaseCard = document.createElement('div');
-                phaseCard.className = `phase-card ${isUnlocked ? '' : 'locked'}`;
-                phaseCard.id = `phase${phase.id}-card`;
-
-                phaseCard.innerHTML = `
-                    <div class="lock-banner">${data.lockMsg}</div>
-                    <div class="phase-title">
-                        <span>${phase.name}</span>
-                        <span class="badge" style="background-color: ${isUnlocked ? 'var(--success)' : '#4b5563'};">
-                            ${isUnlocked ? data.unlocked : data.locked}
-                        </span>
-                    </div>
-                    ${chsHtml}
-                    <button class="test-btn" ${isUnlocked ? '' : 'disabled'} onclick="startPhaseTest(${phase.id})">
-                        ${data.btnTest}
-                    </button>
-                `;
-                area.appendChild(phaseCard);
-            });
+            }
+            html += `</div>`;
+            document.getElementById('app-body').innerHTML = html;
         }
 
-        function toggleLanguage() {
-            currentLang = (currentLang === 'hi') ? 'en' : 'hi';
-            renderPage();
-        }
+        function startChapter(chId) {
+            let data = window[currentSubject + 'Data'];
+            let ch = data.chapters.find(c => c.id === chId);
+            
+            let html = `<h2>${ch.title}</h2>
+                <div class="card">
+                    <h3>💡 Short Trick / Concept</h3>
+                    <p>${ch.trick || 'Iss chapter ko dhyan se padhein.'}</p>
+                </div>
+                <h3>One-Liner Questions & Practice</h3>`;
 
-        function startPhaseTest(phaseNum) {
-            currentActivePhase = phaseNum;
-            currentQIndex = 0;
-            currentScore = 0;
-
-            const modal = document.getElementById('quiz-modal');
-            modal.classList.add('active');
-            document.getElementById('quiz-title').innerText = `Phase ${phaseNum} TCS PYQ Test`;
-            modal.scrollIntoView({ behavior: 'smooth' });
-
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            const qList = pyqTests[currentActivePhase];
-            const qData = qList[currentQIndex];
-
-            document.getElementById('q-counter').innerText = `Question ${currentQIndex + 1} of ${qList.length}`;
-            document.getElementById('score').innerText = currentScore;
-            document.getElementById('question').innerText = `${currentQIndex + 1}. ${qData.q}`;
-
-            const optDiv = document.getElementById('options');
-            optDiv.innerHTML = '';
-
-            qData.options.forEach((opt, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'opt-btn';
-                btn.innerText = opt;
-                btn.onclick = () => checkAns(idx, btn);
-                optDiv.appendChild(btn);
+            ch.questions.forEach((q, idx) => {
+                html += `<div class="card"><p><b>Q${idx + 1}: ${q.q}</b></p><p style="color:#38bdf8;">Ans: ${q.a}</p></div>`;
             });
 
-            document.getElementById('explanation').style.display = 'none';
-        }
-
-        function checkAns(selected, btn) {
-            const qData = pyqTests[currentActivePhase][currentQIndex];
-            const allBtns = document.querySelectorAll('.opt-btn');
-
-            if(selected === qData.correct) {
-                btn.classList.add('correct');
-                currentScore += 20;
-                document.getElementById('score').innerText = currentScore;
-            } else {
-                btn.classList.add('wrong');
-                allBtns[qData.correct].classList.add('correct');
+            html += `<button class="btn" onclick="renderDashboard()">Back to Dashboard</button>`;
+            
+            if (chId % 3 === 0) {
+                html += ` <button class="btn btn-test" onclick="startTest(${chId})">Take 3-Chapter PYQ Test</button>`;
             }
 
-            allBtns.forEach(b => b.disabled = true);
-            const exp = document.getElementById('explanation');
-            exp.innerHTML = `<strong>Official TCS Explanation:</strong> ${qData.exp}`;
-            exp.style.display = 'block';
+            document.getElementById('app-body').innerHTML = html;
         }
 
-        function nextQuestion() {
-            const totalQ = pyqTests[currentActivePhase].length;
-            if(currentQIndex < totalQ - 1) {
-                currentQIndex++;
-                loadQuestion();
-            } else {
-                const percentage = (currentScore / 100) * 100;
-                if(percentage >= 70) {
-                    alert(`🎉 Shaandar! Aapne ${percentage}% score karke Phase ${currentActivePhase} clear kar liya!`);
-                    localStorage.setItem(`phase${currentActivePhase + 1}_unlocked`, "true");
-                    renderPage();
-                } else {
-                    alert(`❌ Aapka score ${percentage}% hai. Phase unlock karne ke liye minimum 70% chahiye. Phir se attempt karein!`);
+        function startTest(chId) {
+            let data = window[currentSubject + 'Data'];
+            let testQuestions = data.tests ? data.tests[chId] : [];
+
+            if (!testQuestions || testQuestions.length === 0) {
+                alert("Is test ke questions add ho rahe hain!");
+                return;
+            }
+
+            let html = `<h2>PYQ Test (Chapters ${chId - 2} to ${chId})</h2><form id="testForm">`;
+            testQuestions.forEach((q, idx) => {
+                html += `<div class="card"><p><b>Q${idx + 1}: ${q.q}</b></p>`;
+                q.options.forEach((opt, oIdx) => {
+                    html += `<label class="option-label"><input type="radio" name="q${idx}" value="${oIdx}"> ${opt}</label>`;
+                });
+                html += `</div>`;
+            });
+            html += `</form><button class="btn btn-test" onclick="submitTest(${chId})">Submit Test</button>`;
+            document.getElementById('app-body').innerHTML = html;
+        }
+
+        function submitTest(chId) {
+            let data = window[currentSubject + 'Data'];
+            let testQuestions = data.tests[chId];
+            let score = 0;
+
+            testQuestions.forEach((q, idx) => {
+                let selected = document.querySelector(`input[name="q${idx}"]:checked`);
+                if (selected && parseInt(selected.value) === q.ans) {
+                    score++;
                 }
-                document.getElementById('quiz-modal').classList.remove('active');
+            });
+
+            let percentage = (score / testQuestions.length) * 100;
+
+            if (percentage >= 70) {
+                alert(`🎉 MUBARAK HO! Aapne ${percentage.toFixed(0)}% score kiya hai. Agle chapters UNLOCK ho gaye hain!`);
+                data.chapters.forEach(ch => {
+                    if (ch.id > chId && ch.id <= chId + 3) ch.unlocked = true;
+                });
+                renderDashboard();
+            } else {
+                alert(`❌ Aapka score ${percentage.toFixed(0)}% hai. Agla level unlock karne ke liye kam se kam 70% chahiye. Phir se try karein!`);
+                startTest(chId);
             }
         }
 
-        window.onload = function() {
-            renderPage();
-        };
+        // Initialize portal on load
+        window.onload = renderDashboard;
     </script>
 </body>
 </html>
