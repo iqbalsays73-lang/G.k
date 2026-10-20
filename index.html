@@ -15,135 +15,137 @@
         .btn { background: #0284c7; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
         .btn:hover { background: #0369a1; }
         .btn-test { background: #16a34a; }
-        .btn-test:hover { background: #15803d; }
         .locked { opacity: 0.5; pointer-events: none; }
         .option-label { display: block; background: #475569; padding: 10px; margin: 6px 0; border-radius: 5px; cursor: pointer; }
         .option-label:hover { background: #64748b; }
     </style>
-    <!-- Dynamic JS Data Files Included -->
-    <script src="history.js"></script>
-    <script src="geography.js"></script>
-    <script src="polity.js"></script>
-    <script src="economics.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Prachin Bharat & GS Master Portal 🚀</h1>
-        <p style="text-align:center;">SSC / UPSSSC PET Complete One-Liners & PYQ Tests</p>
+        <p style="text-align:center;">Pehle History, fir Geography, aur baaki subjects ke alag-alag practice sets!</p>
         
+        <!-- Alag-alag Subjects ke Options / Tabs -->
         <div class="subject-tabs">
-            <button class="tab-btn active" onclick="switchSubject('history')">History</button>
-            <button class="tab-btn" onclick="switchSubject('geography')">Geography</button>
-            <button class="tab-btn" onclick="switchSubject('polity')">Polity</button>
-            <button class="tab-btn" onclick="switchSubject('economics')">Economics</button>
+            <button class="tab-btn active" onclick="switchSubject('history')">📜 History (इतिहास)</button>
+            <button class="tab-btn" onclick="switchSubject('geography')">🌍 Geography (भूगोल)</button>
+            <button class="tab-btn" onclick="switchSubject('polity')">⚖️ Polity (संविधान)</button>
+            <button class="tab-btn" onclick="switchSubject('economics')">📈 Economics (अर्थशास्त्र)</button>
         </div>
 
         <div id="app-body">
-            <!-- Content will be rendered dynamically -->
+            <!-- Dynamic Content -->
         </div>
     </div>
 
     <script>
+        // Subject-wise Data Structure
+        const portalData = {
+            history: {
+                name: "History",
+                chapters: [
+                    { id: 1, title: "सिंधु घाटी सभ्यता एवं वैदिक काल", unlocked: true, trick: "लोथल-भोगवा नदी, हड़प्पा-रावी नदी।" },
+                    { id: 2, title: "महाजनपद काल एवं जैन/बौद्ध धर्म", unlocked: false, trick: "16 महाजनपद की सूची 'अंगुत्तर निकाय' में है।" },
+                    { id: 3, title: "मगध साम्राज्य एवं मौर्य वंश", unlocked: false, trick: "चन्द्रगुप्त मौर्य के गुरु चाणक्य (कौटिल्य) थे।" }
+                ]
+            },
+            geography: {
+                name: "Geography",
+                chapters: [
+                    { id: 1, title: "सौरमंडल एवं ब्रह्मांड", unlocked: true, trick: "सूर्य के सबसे निकट ग्रह बुध (Mercury) है।" },
+                    { id: 2, title: "पृथ्वी की संरचना एवं अक्षांश-देशांतर", unlocked: false, trick: "कुल अक्षांश रेखाएं 181 हैं।" },
+                    { id: 3, title: "विश्व एवं भारत की नदियाँ और पर्वत", unlocked: false, trick: "गंगा नदी की लंबाई 2525 किमी है।" }
+                ]
+            },
+            polity: {
+                name: "Polity",
+                chapters: [
+                    { id: 1, title: "संविधान सभा एवं प्रस्तावना", unlocked: true, trick: "संविधान बनने में 2 वर्ष 11 महीने 18 दिन लगे।" },
+                    { id: 2, title: "मौलिक अधिकार एवं नीति निर्देशक तत्व", unlocked: false, trick: "भाग 3 को भारत का मैग्नाकार्टा कहा जाता है।" },
+                    { id: 3, title: "राष्ट्रपति, प्रधानमंत्री एवं संसद", unlocked: false, trick: "संसद के 3 अंग: राष्ट्रपति, लोकसभा, राज्यसभा।" }
+                ]
+            },
+            economics: {
+                name: "Economics",
+                chapters: [
+                    { id: 1, title: "राष्ट्रीय आय एवं पंचवर्षीय योजनाएं", unlocked: true, trick: "दूसरी योजना महालनोबिस मॉडल पर आधारित थी।" },
+                    { id: 2, title: "बैंकिंग प्रणाली एवं RBI", unlocked: false, trick: "RBI की स्थापना 1 अप्रैल 1935 को हुई थी।" },
+                    { id: 3, title: "बजट, कर प्रणाली (GST) एवं संगठन", unlocked: false, trick: "GST भारत में 1 जुलाई 2017 से लागू हुआ।" }
+                ]
+            }
+        };
+
         let currentSubject = 'history';
 
-        function switchSubject(subject) {
-            currentSubject = subject;
+        function switchSubject(subjectKey) {
+            currentSubject = subjectKey;
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
             renderDashboard();
         }
 
         function renderDashboard() {
-            let data = window[currentSubject + 'Data'] || { chapters: [] };
-            let html = `<h2>${currentSubject.toUpperCase()} Chapters</h2><div class="grid">`;
+            let sub = portalData[currentSubject];
+            let html = `<h2>${sub.name} Chapters & Practice</h2><div class="grid">`;
             
-            if (!data.chapters || data.chapters.length === 0) {
-                html += `<div class="card"><p>Data load ho raha hai... Kripya file link check karein.</p></div>`;
-            } else {
-                data.chapters.forEach(ch => {
-                    html += `<div class="card ${ch.unlocked ? '' : 'locked'}">
-                        <h3>Chapter ${ch.id}: ${ch.title} ${ch.unlocked ? '🔓' : '🔒'}</h3>
-                        <p>${ch.unlocked ? 'Padhne aur Practice ke liye shuru karein.' : 'Unlock karne ke liye pichla 3-Chapter Test (70%+) paas karein.'}</p>
-                        <button class="btn" ${ch.unlocked ? '' : 'disabled'} onclick="startChapter(${ch.id})">Start Chapter</button>
-                    </div>`;
-                });
-            }
+            sub.chapters.forEach(ch => {
+                html += `<div class="card ${ch.unlocked ? '' : 'locked'}">
+                    <h3>Chapter ${ch.id}: ${ch.title} ${ch.unlocked ? '🔓' : '🔒'}</h3>
+                    <p>${ch.unlocked ? 'Padhne aur practice karne ke liye shuru karein.' : 'Unlock karne ke liye pichla test paas karein (70%+).'}</p>
+                    <button class="btn" ${ch.unlocked ? '' : 'disabled'} onclick="startChapter(${ch.id})">Shuru Karein</button>
+                </div>`;
+            });
             html += `</div>`;
             document.getElementById('app-body').innerHTML = html;
         }
 
         function startChapter(chId) {
-            let data = window[currentSubject + 'Data'];
-            let ch = data.chapters.find(c => c.id === chId);
+            let sub = portalData[currentSubject];
+            let ch = sub.chapters.find(c => c.id === chId);
             
-            let html = `<h2>${ch.title}</h2>
+            let html = `<h2>${sub.name} - Chapter ${chId}</h2>
                 <div class="card">
                     <h3>💡 Short Trick / Concept</h3>
-                    <p>${ch.trick || 'Iss chapter ko dhyan se padhein.'}</p>
+                    <p>${ch.trick}</p>
                 </div>
-                <h3>One-Liner Questions & Practice</h3>`;
-
-            ch.questions.forEach((q, idx) => {
-                html += `<div class="card"><p><b>Q${idx + 1}: ${q.q}</b></p><p style="color:#38bdf8;">Ans: ${q.a}</p></div>`;
-            });
-
-            html += `<button class="btn" onclick="renderDashboard()">Back to Dashboard</button>`;
+                <div class="card">
+                    <p>Yahan is chapter ke important questions aur one-liners display honge.</p>
+                </div>
+                <button class="btn" onclick="renderDashboard()">Wapas Dashboard</button>`;
             
-            if (chId % 3 === 0) {
-                html += ` <button class="btn btn-test" onclick="startTest(${chId})">Take 3-Chapter PYQ Test</button>`;
+            if (chId === 3) {
+                html += ` <button class="btn btn-test" onclick="startTest()">3-Chapter PYQ Test Dein (70% to Unlock Next)</button>`;
             }
 
             document.getElementById('app-body').innerHTML = html;
         }
 
-        function startTest(chId) {
-            let data = window[currentSubject + 'Data'];
-            let testQuestions = data.tests ? data.tests[chId] : [];
-
-            if (!testQuestions || testQuestions.length === 0) {
-                alert("Is test ke questions add ho rahe hain!");
-                return;
-            }
-
-            let html = `<h2>PYQ Test (Chapters ${chId - 2} to ${chId})</h2><form id="testForm">`;
-            testQuestions.forEach((q, idx) => {
-                html += `<div class="card"><p><b>Q${idx + 1}: ${q.q}</b></p>`;
-                q.options.forEach((opt, oIdx) => {
-                    html += `<label class="option-label"><input type="radio" name="q${idx}" value="${oIdx}"> ${opt}</label>`;
-                });
-                html += `</div>`;
-            });
-            html += `</form><button class="btn btn-test" onclick="submitTest(${chId})">Submit Test</button>`;
+        function startTest() {
+            let html = `<h2>${portalData[currentSubject].name} - 3 Chapter Practice Test</h2>
+                <div class="card">
+                    <p><b>Q1: Is subject ke pehle 3 chapters se related mahatvapurna prashn yahan aayega?</b></p>
+                    <label class="option-label"><input type="radio" name="tq1" value="0"> A) Option A (Sahi Uttar)</label>
+                    <label class="option-label"><input type="radio" name="tq1" value="1"> B) Option B</label>
+                </div>
+                <button class="btn btn-test" onclick="submitTest()">Test Submit Karein</button>`;
             document.getElementById('app-body').innerHTML = html;
         }
 
-        function submitTest(chId) {
-            let data = window[currentSubject + 'Data'];
-            let testQuestions = data.tests[chId];
-            let score = 0;
-
-            testQuestions.forEach((q, idx) => {
-                let selected = document.querySelector(`input[name="q${idx}"]:checked`);
-                if (selected && parseInt(selected.value) === q.ans) {
-                    score++;
-                }
-            });
-
-            let percentage = (score / testQuestions.length) * 100;
-
-            if (percentage >= 70) {
-                alert(`🎉 MUBARAK HO! Aapne ${percentage.toFixed(0)}% score kiya hai. Agle chapters UNLOCK ho gaye hain!`);
-                data.chapters.forEach(ch => {
-                    if (ch.id > chId && ch.id <= chId + 3) ch.unlocked = true;
-                });
+        function submitTest() {
+            // Mock evaluation for 70% passing
+            let passed = confirm("Test evaluate ho gaya! Kya aapke 70% ya usse zyada marks aaye hain? (OK dabayein pass hone ke liye)");
+            
+            let sub = portalData[currentSubject];
+            if (passed) {
+                alert("🎉 Badhai ho! Agle chapters unlock ho gaye hain.");
+                sub.chapters.forEach(ch => ch.unlocked = true);
                 renderDashboard();
             } else {
-                alert(`❌ Aapka score ${percentage.toFixed(0)}% hai. Agla level unlock karne ke liye kam se kam 70% chahiye. Phir se try karein!`);
-                startTest(chId);
+                alert("❌ Kam se kam 70% marks chahiye. Dobara koshish karein!");
             }
         }
 
-        // Initialize portal on load
+        // Load initial dashboard
         window.onload = renderDashboard;
     </script>
 </body>
