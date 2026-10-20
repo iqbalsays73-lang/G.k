@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>संपूर्ण इतिहास - महा ब्रह्मास्त्र (ट्रिक्स & प्रैक्टिस हब)</title>
+    <title>भारतीय इतिहास 2,000 प्रैक्टिस सेट्स - महा ब्रह्मास्त्र</title>
     <style>
         :root {
             --primary: #0f172a;
@@ -25,80 +25,6 @@
             line-height: 1.6;
         }
 
-        /* User Login Modal */
-        #userModal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.92);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .modal-box {
-            background: white;
-            padding: 2.2rem;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-            text-align: center;
-        }
-
-        .modal-box h2 {
-            margin-top: 0;
-            color: var(--primary);
-            font-size: 1.6rem;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 0.95rem;
-            color: #334155;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 1rem;
-        }
-
-        .start-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 10px;
-        }
-
-        .start-btn:hover {
-            background: #1d4ed8;
-        }
-
-        #mainContent {
-            display: none;
-        }
-
         header {
             background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
             color: white;
@@ -107,8 +33,17 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        header h1 { margin: 0; font-size: 2.3rem; color: #fbbf24; }
-        header p { margin-top: 8px; font-size: 1.1rem; color: #cbd5e1; }
+        header h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            color: #fbbf24;
+        }
+
+        header p {
+            margin-top: 8px;
+            font-size: 1.1rem;
+            color: #cbd5e1;
+        }
 
         .container {
             max-width: 1100px;
@@ -154,37 +89,7 @@
             display: block;
         }
 
-        .era-header {
-            background: var(--primary);
-            color: #fbbf24;
-            padding: 12px 18px;
-            border-radius: 8px;
-            margin-top: 2rem;
-            margin-bottom: 1.2rem;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        .trick-card {
-            background: #fffbebf8;
-            border-left: 6px solid var(--secondary);
-            padding: 16px;
-            margin-bottom: 16px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-        }
-
-        .trick-card h3 {
-            margin: 0 0 8px;
-            color: #b45309;
-            font-size: 1.15rem;
-        }
-
-        .trick-card p {
-            margin: 0;
-            font-size: 1rem;
-        }
-
+        /* Controls Panel */
         .controls-panel {
             background: #e2e8f0;
             padding: 18px;
@@ -197,7 +102,7 @@
             gap: 15px;
         }
 
-        .controls-panel input {
+        .controls-panel select, .controls-panel input {
             padding: 10px 15px;
             border-radius: 6px;
             border: 1px solid #cbd5e1;
@@ -215,6 +120,7 @@
             border: 1px solid #fca5a5;
         }
 
+        /* Quiz Card Styling */
         .quiz-card {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
@@ -225,7 +131,7 @@
 
         .quiz-card p {
             font-weight: bold;
-            font-size: 1.05rem;
+            font-size: 1.08rem;
             margin-top: 0;
             color: var(--primary);
         }
@@ -233,7 +139,7 @@
         .options label {
             display: block;
             margin: 8px 0;
-            padding: 10px 14px;
+            padding: 12px 16px;
             background: white;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
@@ -262,6 +168,7 @@
             background-color: #15803d;
         }
 
+        /* Result Panel */
         #quiz-result {
             margin-top: 25px;
             padding: 20px;
@@ -300,166 +207,109 @@
 </head>
 <body>
 
-    <!-- USER REGISTRATION MODAL FORM -->
-    <div id="userModal">
-        <div class="modal-box">
-            <h2>🏛️ इतिहास पोर्टल प्रवेश</h2>
-            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 20px;">पढ़ाई और प्रैक्टिस शुरू करने से पहले अपनी जानकारी दर्ज करें:</p>
-            <form id="userDataForm" onsubmit="submitUserData(event)">
-                <div class="input-group">
-                    <label>आपका नाम (Name):</label>
-                    <input type="text" id="userName" placeholder="उदाहरण: सुहैल" required>
+    <header>
+        <h1>🏛️ भारतीय इतिहास: 2,000 प्रैक्टिस सेट्स हब</h1>
+        <p>प्राचीन, मध्यकालीन एवं आधुनिक भारत — नेगेविट मार्किंग (-0.25) सिमुलेटर के साथ</p>
+    </header>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchSection('quiz-section')">📝 2000 प्रैक्टिस सेट्स (Quiz Engine)</button>
+            <button class="tab-btn" onclick="switchSection('tricks-section')">🔥 क्विक Revision ट्रिक्स</button>
+        </div>
+
+        <!-- PRACTICE SET SECTION -->
+        <div id="quiz-section" class="section-content active">
+            
+            <div class="controls-panel">
+                <div>
+                    <label for="set-select"><strong>सेट सेलेक्ट करें (Set 1 to 2000):</strong></label>
+                    <input type="number" id="set-select" min="1" max="2000" value="1" onchange="loadPracticeSet()">
+                    <button onclick="loadPracticeSet()" style="padding: 10px 15px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">लोड सेट</button>
                 </div>
-                <div class="input-group">
-                    <label>मोबाइल नंबर (Mobile No):</label>
-                    <input type="tel" id="userPhone" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर" required>
+                <div class="marking-badge">
+                    ⚠️ नेगेटिव मार्किंग: +1 सही | -0.25 गलत
                 </div>
-                <div class="input-group">
-                    <label>शहर / राज्य (City/State):</label>
-                    <input type="text" id="userCity" placeholder="उदाहरण: प्रयागराज, यूपी" required>
+            </div>
+
+            <h2 id="set-title" style="color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 5px;">प्रैक्टिस सेट #1</h2>
+
+            <form id="practiceForm">
+                <div id="questions-container">
+                    <!-- Dynamic Questions Loaded Here -->
                 </div>
-                <button type="submit" class="start-btn">एंट्री करें & पढ़ाई शुरू करें</button>
+
+                <button type="button" class="submit-btn" onclick="calculateScore()">टेस्ट सबमिट करें और स्कोरकार्ड देखें</button>
             </form>
+
+            <div id="quiz-result">
+                <h3 id="result-status"></h3>
+                <div class="score-box">
+                    <div class="score-item" style="color: #1e293b;">
+                        <div>कुल प्रश्न</div>
+                        <div class="num" id="res-total">0</div>
+                    </div>
+                    <div class="score-item" style="color: var(--success);">
+                        <div>सही उत्तर (+1)</div>
+                        <div class="num" id="res-correct">0</div>
+                    </div>
+                    <div class="score-item" style="color: var(--danger);">
+                        <div>गलत उत्तर (-0.25)</div>
+                        <div class="num" id="res-wrong">0</div>
+                    </div>
+                    <div class="score-item" style="color: var(--accent);">
+                        <div>अंतिम प्राप्तांक</div>
+                        <div class="num" id="res-final">0</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </div>
 
-    <!-- MAIN STUDY CONTENT -->
-    <div id="mainContent">
-        <header>
-            <h1>🏛️ संपूर्ण इतिहास: ट्रिक महासागर & प्रैक्टिस हब</h1>
-            <p>प्राचीन, मध्यकालीन एवं आधुनिक भारत की मास्टर ट्रिक्स एवं 2000+ प्रैक्टिस सेट्स</p>
-        </header>
-
-        <div class="container">
-            <div class="nav-tabs">
-                <button class="tab-btn active" onclick="switchSection('tricks-section')">🔥 इतिहास की 35+ मास्टर ट्रिक्स</button>
-                <button class="tab-btn" onclick="switchSection('quiz-section')">📝 प्रैक्टिस टेस्ट (नेगेटिव मार्किंग)</button>
+        <!-- TRICKS REVISION SECTION -->
+        <div id="tricks-section" class="section-content">
+            <h2>🔥 अति-महत्वपूर्ण शॉर्टकट ट्रिक्स</h2>
+            <div style="background: #fffbebf8; border-left: 5px solid var(--secondary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                <h3 style="margin: 0 0 5px; color: #b45309;">1. मगध साम्राज्य के राजवंश (क्रमानुसार)</h3>
+                <p style="margin:0;"><strong>ट्रिक:</strong> "हसीन माशूक शाह"<br>हर्यक ➔ शिशुनाग ➔ नंद ➔ मौर्य ➔ शुंग ➔ कण्व ➔ सातवाहन</p>
             </div>
-
-            <!-- TRICKS REVISION SECTION -->
-            <div id="tricks-section" class="section-content active">
-                <h2>🔥 इतिहास के हर एक टॉपिक की शॉर्ट ट्रिक्स</h2>
-
-                <div class="era-header">📜 1. प्राचीन भारत की ट्रिक्स (Ancient History)</div>
-                <div class="trick-card">
-                    <h3>1. सिंधु सभ्यता के प्रमुख स्थल व नदियाँ</h3>
-                    <p><strong>ट्रिक:</strong> "लोभ मौसी का हरा कंघा रमा ने ले लिया तो वो रोष में आ गई और उसे बस से कुचल दिया"<br>
-                    • लोभ: लोथल (भोगवा) | मौसी: मोहनजोदड़ो (सिंधु) | हरा: हड़प्पा (रावी)<br>
-                    • कंघा: कालीबंगा (घग्घर) | रमा: रंगपुर (भादर) | रोष: रोपड़ (सतलज) | बस: बनमाली (सरस्वती)</p>
-                </div>
-                <div class="trick-card">
-                    <h3>2. मगध साम्राज्य के राजवंश (क्रमानुसार)</h3>
-                    <p><strong>ट्रिक:</strong> "हसीन माशूक शाह"<br>हर्यक ➔ शिशुनाग ➔ नंद ➔ मौर्य ➔ शुंग ➔ कण्व ➔ सातवाहन</p>
-                </div>
-
-                <div class="era-header">⚔️ 2. मध्यकालीन भारत की ट्रिक्स (Medieval History)</div>
-                <div class="trick-card">
-                    <h3>3. दिल्ली सल्तनत के वंश (क्रमानुसार)</h3>
-                    <p><strong>ट्रिक:</strong> "गुलाब खिले तो सांस लो"<br>गुलाम ➔ खिलजी ➔ तुगलक ➔ सैयद ➔ लोदी</p>
-                </div>
-                <div class="trick-card">
-                    <h3>4. मुगल बादशाहों का क्रमानुसार नाम</h3>
-                    <p><strong>ट्रिक:</strong> "BHAJSA" (भजसा)<br>बाबर ➔ हुमायूँ ➔ अकबर ➔ जहांगीर ➔ शाहजहाँ ➔ औरंगजेब</p>
-                </div>
-
-                <div class="era-header">🚩 3. आधुनिक भारत की ट्रिक्स (Modern History)</div>
-                <div class="trick-card">
-                    <h3>5. गांधीजी के शुरुआती आंदोलन (क्रमानुसार)</h3>
-                    <p><strong>ट्रिक:</strong> "गांधी चंपारण से खेड़ा गए, अहमदाबाद में मिल मजदूरों से खिलाफत कराके असहयोग किया"<br>चंपारण (1917) ➔ खेड़ा (1918) ➔ अहमदाबाद मिल (1918) ➔ खिलाफत (1919) ➔ असहयोग (1920)</p>
-                </div>
+            <div style="background: #fffbebf8; border-left: 5px solid var(--secondary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                <h3 style="margin: 0 0 5px; color: #b45309;">2. दिल्ली सल्तनत के वंश (क्रमानुसार)</h3>
+                <p style="margin:0;"><strong>ट्रिक:</strong> "गुलाब खिले तो सांस लो"<br>गुलाम ➔ खिलजी ➔ तुगलक ➔ सैयद ➔ लोदी</p>
             </div>
-
-            <!-- PRACTICE SET SECTION -->
-            <div id="quiz-section" class="section-content">
-                <div class="controls-panel">
-                    <div>
-                        <label for="set-select"><strong>प्रैक्टिस सेट नंबर चुनें (1 से 2000):</strong></label>
-                        <input type="number" id="set-select" min="1" max="2000" value="1" onchange="loadPracticeSet()">
-                        <button onclick="loadPracticeSet()" style="padding: 10px 15px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">लोड सेट</button>
-                    </div>
-                    <div class="marking-badge">
-                        ⚠️ नेगेटिव मार्किंग: +1 सही | -0.25 गलत
-                    </div>
-                </div>
-
-                <h2 id="set-title" style="color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 5px;">प्रैक्टिस सेट #1</h2>
-
-                <form id="practiceForm">
-                    <div id="questions-container"></div>
-                    <button type="button" class="submit-btn" onclick="calculateScore()">टेस्ट सबमिट करें और स्कोरकार्ड देखें</button>
-                </form>
-
-                <div id="quiz-result">
-                    <h3 id="result-status"></h3>
-                    <div class="score-box">
-                        <div class="score-item" style="color: #1e293b;">
-                            <div>कुल प्रश्न</div>
-                            <div class="num" id="res-total">0</div>
-                        </div>
-                        <div class="score-item" style="color: var(--success);">
-                            <div>सही उत्तर (+1)</div>
-                            <div class="num" id="res-correct">0</div>
-                        </div>
-                        <div class="score-item" style="color: var(--danger);">
-                            <div>गलत उत्तर (-0.25)</div>
-                            <div class="num" id="res-wrong">0</div>
-                        </div>
-                        <div class="score-item" style="color: var(--accent);">
-                            <div>अंतिम प्राप्तांक</div>
-                            <div class="num" id="res-final">0</div>
-                        </div>
-                    </div>
-                </div>
+            <div style="background: #fffbebf8; border-left: 5px solid var(--secondary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                <h3 style="margin: 0 0 5px; color: #b45309;">3. गांधीजी के मुख्य आंदोलन (क्रमानुसार)</h3>
+                <p style="margin:0;"><strong>ट्रिक:</strong> "चंपारण से खेड़ा, अहमदाबाद में मिल, खिलाफत से असहयोग, नमक बनाकर भारत छोड़ा"<br>चंपारण (1917) ➔ खेड़ा (1918) ➔ अहमदाबाद मिल (1918) ➔ खिलाफत (1919) ➔ असहयोग (1920) ➔ दांडी/नमक (1930) ➔ भारत छोड़ो (1942)</p>
             </div>
         </div>
+
     </div>
 
     <script>
-        // NEW SECURE TELEGRAM CONFIGURATION
-        const TELEGRAM_BOT_TOKEN = "8978066862:AAHZmEqRdKUy38lC-cQZ3fR5P5XfFIVk5es";
-        const TELEGRAM_CHAT_ID = "8889083542";
-
-        function submitUserData(event) {
-            event.preventDefault();
-
-            const name = document.getElementById("userName").value;
-            const phone = document.getElementById("userPhone").value;
-            const city = document.getElementById("userCity").value;
-
-            const message = `📥 *नया यूजर आया है!*%0A%0A👤 *नाम:* ${name}%0A📞 *मोबाइल:* ${phone}%0A📍 *शहर:* ${city}`;
-            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${message}&parse_mode=Markdown`;
-
-            fetch(url)
-                .then(response => {
-                    showContent();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showContent();
-                });
-        }
-
-        function showContent() {
-            document.getElementById("userModal").style.display = "none";
-            document.getElementById("mainContent").style.display = "block";
-        }
-
+        // MASTER QUESTION BANK DATABASE
         const questionBank = [
+            // ANCIENT
             { q: "हड़प्पा सभ्यता का प्रसिद्ध बंदरगाह नगर 'लोथल' किस राज्य में स्थित है?", options: ["राजस्थान", "गुजरात", "पंजाब", "हरियाणा"], ans: 1 },
-            { q: "ऋग्वेद के किस मण्डल में प्रसिद्ध 'गायत्री मंत्र' का उल्लेख मिलता है?", options: ["तीसरे मण्डल", "सातवें मण्डल", "दसवें मण्डल", "पाँचवें मण्डल"], ans: 0 },
+            { q: "ऋग्वेद के किस मण्डल में प्रसिद्ध 'गायत्री मंत्र' का उल्लेख मिलता है?", options: ["तीसरे मण्डल", "सातवें मण्डल", "दसवें मण्डल", "पांचवें मण्डल"], ans: 0 },
             { q: "प्रथम बौद्ध संगीति का आयोजन किसके शासनकाल में हुआ था?", options: ["अजातशत्रु", "कालाशोक", "अशोक", "कनिष्क"], ans: 0 },
             { q: "16 महाजनपदों की सूची किस बौद्ध ग्रंथ में मिलती है?", options: ["अंगुत्तर निकाय", "महावंश", "दीघ निकाय", "दिव्यावदान"], ans: 0 },
             { q: "इतिहासकार विंसेंट स्मिथ ने किस गुप्त शासक को 'भारत का नेपोलियन' कहा?", options: ["चंद्रगुप्त प्रथम", "समुद्रगुप्त", "स्कंदगुप्त", "कुमारगुप्त"], ans: 1 },
+            
+            // MEDIEVAL
             { q: "दिल्ली सल्तनत की पहली और अंतिम महिला मुस्लिम शासिका कौन थी?", options: ["रज़िया सुल्तान", "नूरजहाँ", "चांद बीबी", "मुमताज़ महल"], ans: 0 },
             { q: "प्रसिद्ध यात्री इब्नबतूता किस देश का निवासी था?", options: ["मोरक्को", "फारस", "तुर्की", "अरब"], ans: 0 },
             { q: "विजयनगर साम्राज्य के 'अष्टदिग्गज' किसके दरबार में रहते थे?", options: ["कृष्णदेव राय", "देवराय प्रथम", "हरिहर द्वितीय", "अच्युत देव राय"], ans: 0 },
             { q: "पानीपत का प्रथम युद्ध (1526 ई.) किसके बीच लड़ा गया था?", options: ["बाबर और इब्राहिम लोदी", "अकबर और हेमू", "हुमायूँ और शेरशाह", "बाबर और राणा सांगा"], ans: 0 },
             { q: "1582 ई. में 'दीन-ए-इलाही' धर्म की शुरुआत किसने की थी?", options: ["अकबर", "जहांगीर", "शाहजहाँ", "औरंगजेब"], ans: 0 },
+
+            // MODERN
             { q: "1857 की क्रांति के समय भारत का गवर्नर जनरल कौन था?", options: ["लॉर्ड डलहौजी", "लॉर्ड कैनिंग", "लॉर्ड कर्जन", "लॉर्ड रिपन"], ans: 1 },
             { q: "'वेदों की ओर लौटो' का प्रसिद्ध नारा किसने दिया था?", options: ["राजा राममोहन राय", "स्वामी दयानंद सरस्वती", "स्वामी विवेकानंद", "केशव चंद्र सेन"], ans: 1 },
             { q: "भारतीय राष्ट्रीय कांग्रेस की प्रथम भारतीय महिला अध्यक्ष कौन थीं?", options: ["ऐनी बेसेंट", "सरोजिनी नायडू", "सुचेता कृपलानी", "विजयलक्ष्मी पंडित"], ans: 1 },
             { q: "महात्मा गांधी ने 'करो या मरो' का नारा किस आंदोलन में दिया था?", options: ["असहयोग आंदोलन", "सविनय अवज्ञा आंदोलन", "भारत छोड़ो आंदोलन", "चंपारण सत्याग्रह"], ans: 2 },
-            { q: "बंगाल विभाजन (1905) किस वायसराय के काल में हुआ था?", options: ["लॉर्ड कर्जन", "लॉर्ड मिंटो", "लॉर्ड हार्डिंग", "लॉर्ड चेम्सफोर्ड"], ans: 0 }
+            { q: "बंगाल विभाजन (1905) किस वायसराय के काल में हुआ था?", options: ["लॉर्ड कर्जन", "लॉर्ड मिंटो", "लॉर्ड हार्डिंग", "लॉर्ड चेम्सफोर्ड"], ans: 0 },
+            { q: "काकोरी ट्रेन एक्शन की घटना किस वर्ष हुई थी?", options: ["1920", "1925", "1930", "1942"], ans: 1 },
+            { q: "गांधी-इरविन समझौता किस वर्ष हस्ताक्षरित हुआ था?", options: ["1931", "1930", "1932", "1935"], ans: 0 }
         ];
 
         let currentSetQuestions = [];
@@ -471,6 +321,7 @@
             event.currentTarget.classList.add('active');
         }
 
+        // DYNAMIC PSEUDO-RANDOM GENERATOR FOR 2000 SETS
         function loadPracticeSet() {
             const setNum = parseInt(document.getElementById('set-select').value) || 1;
             document.getElementById('set-title').innerText = `प्रैक्टिस सेट #${setNum}`;
@@ -479,6 +330,7 @@
             container.innerHTML = '';
             document.getElementById('quiz-result').style.display = 'none';
 
+            // Deterministic Shuffle using Set Number as seed
             let seededBank = [...questionBank];
             let seed = setNum;
             for (let i = seededBank.length - 1; i > 0; i--) {
@@ -487,528 +339,7 @@
                 seed = (seed * 9301 + 49297) % 233280;
             }
 
-            currentSetQuestions = seededBank.slice(0, 10);
-
-            currentSetQuestions.forEach((item, idx) => {
-                let qHtml = `
-                    <div class="quiz-card">
-                        <p>Q${idx + 1}. ${item.q}</p>
-                        <div class="options">
-                `;
-                item.options.forEach((opt, optIdx) => {
-                    qHtml += `
-                        <label>
-                            <input type="radio" name="q_${idx}" value="${optIdx}">
-                            ${opt}
-                        </label>
-                    `;
-                });
-                qHtml += `</div></div>`;
-                container.innerHTML += qHtml;
-            });
-        }
-
-        function calculateScore() {
-            let correct = 0;
-            let wrong = 0;
-            let total = currentSetQuestions.length;
-
-            currentSetQuestions.forEach((item, idx) => {
-                const selected = document.querySelector(`input[name="q_${idx}"]:checked`);
-                if (selected) {
-                    if (parseInt(selected.value) === item.ans) {
-                        correct++;
-                    } else {
-                        wrong++;
-       <!DOCTYPE html>
-<html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>संपूर्ण इतिहास - महा ब्रह्मास्त्र (ट्रिक्स & प्रैक्टिस हब)</title>
-    <style>
-        :root {
-            --primary: #0f172a;
-            --secondary: #d97706;
-            --accent: #2563eb;
-            --success: #16a34a;
-            --danger: #dc2626;
-            --light-bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-color: #0f172a;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        /* User Login Modal */
-        #userModal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.92);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .modal-box {
-            background: white;
-            padding: 2.2rem;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-            text-align: center;
-        }
-
-        .modal-box h2 {
-            margin-top: 0;
-            color: var(--primary);
-            font-size: 1.6rem;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 0.95rem;
-            color: #334155;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 1rem;
-        }
-
-        .start-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 10px;
-        }
-
-        .start-btn:hover {
-            background: #1d4ed8;
-        }
-
-        #mainContent {
-            display: none;
-        }
-
-        header {
-            background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
-            color: white;
-            text-align: center;
-            padding: 2.5rem 1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        header h1 { margin: 0; font-size: 2.3rem; color: #fbbf24; }
-        header p { margin-top: 8px; font-size: 1.1rem; color: #cbd5e1; }
-
-        .container {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background-color: var(--card-bg);
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            padding: 12px 24px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            background-color: var(--primary);
-            color: #fbbf24;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
-        }
-
-        .section-content {
-            display: none;
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-
-        .section-content.active {
-            display: block;
-        }
-
-        .era-header {
-            background: var(--primary);
-            color: #fbbf24;
-            padding: 12px 18px;
-            border-radius: 8px;
-            margin-top: 2rem;
-            margin-bottom: 1.2rem;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        .trick-card {
-            background: #fffbebf8;
-            border-left: 6px solid var(--secondary);
-            padding: 16px;
-            margin-bottom: 16px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-        }
-
-        .trick-card h3 {
-            margin: 0 0 8px;
-            color: #b45309;
-            font-size: 1.15rem;
-        }
-
-        .trick-card p {
-            margin: 0;
-            font-size: 1rem;
-        }
-
-        .controls-panel {
-            background: #e2e8f0;
-            padding: 18px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .controls-panel input {
-            padding: 10px 15px;
-            border-radius: 6px;
-            border: 1px solid #cbd5e1;
-            font-size: 1rem;
-            font-weight: bold;
-        }
-
-        .marking-badge {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            border: 1px solid #fca5a5;
-        }
-
-        .quiz-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-
-        .quiz-card p {
-            font-weight: bold;
-            font-size: 1.05rem;
-            margin-top: 0;
-            color: var(--primary);
-        }
-
-        .options label {
-            display: block;
-            margin: 8px 0;
-            padding: 10px 14px;
-            background: white;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .options label:hover {
-            background: #f1f5f9;
-        }
-
-        .submit-btn {
-            background-color: var(--success);
-            color: white;
-            border: none;
-            padding: 16px 30px;
-            font-size: 1.15rem;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .submit-btn:hover {
-            background-color: #15803d;
-        }
-
-        #quiz-result {
-            margin-top: 25px;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            display: none;
-        }
-
-        .score-box {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .score-item {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            min-width: 120px;
-        }
-
-        .score-item .num {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 1.8rem; }
-            .tab-btn { width: 100%; text-align: center; }
-            .controls-panel { flex-direction: column; align-items: stretch; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- USER REGISTRATION MODAL FORM -->
-    <div id="userModal">
-        <div class="modal-box">
-            <h2>🏛️ इतिहास पोर्टल प्रवेश</h2>
-            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 20px;">पढ़ाई और प्रैक्टिस शुरू करने से पहले अपनी जानकारी दर्ज करें:</p>
-            <form id="userDataForm" onsubmit="submitUserData(event)">
-                <div class="input-group">
-                    <label>आपका नाम (Name):</label>
-                    <input type="text" id="userName" placeholder="उदाहरण: सुहैल" required>
-                </div>
-                <div class="input-group">
-                    <label>मोबाइल नंबर (Mobile No):</label>
-                    <input type="tel" id="userPhone" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर" required>
-                </div>
-                <div class="input-group">
-                    <label>शहर / राज्य (City/State):</label>
-                    <input type="text" id="userCity" placeholder="उदाहरण: प्रयागराज, यूपी" required>
-                </div>
-                <button type="submit" class="start-btn">एंट्री करें & पढ़ाई शुरू करें</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- MAIN STUDY CONTENT -->
-    <div id="mainContent">
-        <header>
-            <h1>🏛️ संपूर्ण इतिहास: ट्रिक महासागर & प्रैक्टिस हब</h1>
-            <p>प्राचीन, मध्यकालीन एवं आधुनिक भारत की मास्टर ट्रिक्स एवं 2000+ प्रैक्टिस सेट्स</p>
-        </header>
-
-        <div class="container">
-            <div class="nav-tabs">
-                <button class="tab-btn active" onclick="switchSection('tricks-section')">🔥 इतिहास की 35+ मास्टर ट्रिक्स</button>
-                <button class="tab-btn" onclick="switchSection('quiz-section')">📝 प्रैक्टिस टेस्ट (नेगेटिव मार्किंग)</button>
-            </div>
-
-            <!-- TRICKS REVISION SECTION -->
-            <div id="tricks-section" class="section-content active">
-                <h2>🔥 इतिहास के हर एक टॉपिक की शॉर्ट ट्रिक्स</h2>
-
-                <div class="era-header">📜 1. प्राचीन भारत की ट्रिक्स (Ancient History)</div>
-                <div class="trick-card">
-                    <h3>1. सिंधु सभ्यता के प्रमुख स्थल व नदियाँ</h3>
-                    <p><strong>ट्रिक:</strong> "लोभ मौसी का हरा कंघा रमा ने ले लिया तो वो रोष में आ गई और उसे बस से कुचल दिया"<br>
-                    • लोभ: लोथल (भोगवा) | मौसी: मोहनजोदड़ो (सिंधु) | हरा: हड़प्पा (रावी)<br>
-                    • कंघा: कालीबंगा (घग्घर) | रमा: रंगपुर (भादर) | रोष: रोपड़ (सतलज) | बस: बनमाली (सरस्वती)</p>
-                </div>
-                <div class="trick-card">
-                    <h3>2. मगध साम्राज्य के राजवंश (क्रमानुसार)</h3>
-                    <p><strong>ट्रिक:</strong> "हसीन माशूक शाह"<br>हर्यक ➔ शिशुनाग ➔ नंद ➔ मौर्य ➔ शुंग ➔ कण्व ➔ सातवाहन</p>
-                </div>
-
-                <div class="era-header">⚔️ 2. मध्यकालीन भारत की ट्रिक्स (Medieval History)</div>
-                <div class="trick-card">
-                    <h3>3. दिल्ली सल्तनत के वंश (क्रमानुसार)</h3>
-                    <p><strong>ट्रिक:</strong> "गुलाब खिले तो सांस लो"<br>गुलाम ➔ खिलजी ➔ तुगलक ➔ सैयद ➔ लोदी</p>
-                </div>
-                <div class="trick-card">
-                    <h3>4. मुगल बादशाहों का क्रमानुसार नाम</h3>
-                    <p><strong>ट्रिक:</strong> "BHAJSA" (भजसा)<br>बाबर ➔ हुमायूँ ➔ अकबर ➔ जहांगीर ➔ शाहजहाँ ➔ औरंगजेब</p>
-                </div>
-
-                <div class="era-header">🚩 3. आधुनिक भारत की ट्रिक्स (Modern History)</div>
-                <div class="trick-card">
-                    <h3>5. गांधीजी के शुरुआती आंदोलन (क्रमानुसार)</h3>
-                    <p><strong>ट्रिक:</strong> "गांधी चंपारण से खेड़ा गए, अहमदाबाद में मिल मजदूरों से खिलाफत कराके असहयोग किया"<br>चंपारण (1917) ➔ खेड़ा (1918) ➔ अहमदाबाद मिल (1918) ➔ खिलाफत (1919) ➔ असहयोग (1920)</p>
-                </div>
-            </div>
-
-            <!-- PRACTICE SET SECTION -->
-            <div id="quiz-section" class="section-content">
-                <div class="controls-panel">
-                    <div>
-                        <label for="set-select"><strong>प्रैक्टिस सेट नंबर चुनें (1 से 2000):</strong></label>
-                        <input type="number" id="set-select" min="1" max="2000" value="1" onchange="loadPracticeSet()">
-                        <button onclick="loadPracticeSet()" style="padding: 10px 15px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">लोड सेट</button>
-                    </div>
-                    <div class="marking-badge">
-                        ⚠️ नेगेटिव मार्किंग: +1 सही | -0.25 गलत
-                    </div>
-                </div>
-
-                <h2 id="set-title" style="color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 5px;">प्रैक्टिस सेट #1</h2>
-
-                <form id="practiceForm">
-                    <div id="questions-container"></div>
-                    <button type="button" class="submit-btn" onclick="calculateScore()">टेस्ट सबमिट करें और स्कोरकार्ड देखें</button>
-                </form>
-
-                <div id="quiz-result">
-                    <h3 id="result-status"></h3>
-                    <div class="score-box">
-                        <div class="score-item" style="color: #1e293b;">
-                            <div>कुल प्रश्न</div>
-                            <div class="num" id="res-total">0</div>
-                        </div>
-                        <div class="score-item" style="color: var(--success);">
-                            <div>सही उत्तर (+1)</div>
-                            <div class="num" id="res-correct">0</div>
-                        </div>
-                        <div class="score-item" style="color: var(--danger);">
-                            <div>गलत उत्तर (-0.25)</div>
-                            <div class="num" id="res-wrong">0</div>
-                        </div>
-                        <div class="score-item" style="color: var(--accent);">
-                            <div>अंतिम प्राप्तांक</div>
-                            <div class="num" id="res-final">0</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // NEW SECURE TELEGRAM CONFIGURATION
-        const TELEGRAM_BOT_TOKEN = "8978066862:AAHZmEqRdKUy38lC-cQZ3fR5P5XfFIVk5es";
-        const TELEGRAM_CHAT_ID = "8889083542";
-
-        function submitUserData(event) {
-            event.preventDefault();
-
-            const name = document.getElementById("userName").value;
-            const phone = document.getElementById("userPhone").value;
-            const city = document.getElementById("userCity").value;
-
-            const message = `📥 *नया यूजर आया है!*%0A%0A👤 *नाम:* ${name}%0A📞 *मोबाइल:* ${phone}%0A📍 *शहर:* ${city}`;
-            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${message}&parse_mode=Markdown`;
-
-            fetch(url)
-                .then(response => {
-                    showContent();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showContent();
-                });
-        }
-
-        function showContent() {
-            document.getElementById("userModal").style.display = "none";
-            document.getElementById("mainContent").style.display = "block";
-        }
-
-        const questionBank = [
-            { q: "हड़प्पा सभ्यता का प्रसिद्ध बंदरगाह नगर 'लोथल' किस राज्य में स्थित है?", options: ["राजस्थान", "गुजरात", "पंजाब", "हरियाणा"], ans: 1 },
-            { q: "ऋग्वेद के किस मण्डल में प्रसिद्ध 'गायत्री मंत्र' का उल्लेख मिलता है?", options: ["तीसरे मण्डल", "सातवें मण्डल", "दसवें मण्डल", "पाँचवें मण्डल"], ans: 0 },
-            { q: "प्रथम बौद्ध संगीति का आयोजन किसके शासनकाल में हुआ था?", options: ["अजातशत्रु", "कालाशोक", "अशोक", "कनिष्क"], ans: 0 },
-            { q: "16 महाजनपदों की सूची किस बौद्ध ग्रंथ में मिलती है?", options: ["अंगुत्तर निकाय", "महावंश", "दीघ निकाय", "दिव्यावदान"], ans: 0 },
-            { q: "इतिहासकार विंसेंट स्मिथ ने किस गुप्त शासक को 'भारत का नेपोलियन' कहा?", options: ["चंद्रगुप्त प्रथम", "समुद्रगुप्त", "स्कंदगुप्त", "कुमारगुप्त"], ans: 1 },
-            { q: "दिल्ली सल्तनत की पहली और अंतिम महिला मुस्लिम शासिका कौन थी?", options: ["रज़िया सुल्तान", "नूरजहाँ", "चांद बीबी", "मुमताज़ महल"], ans: 0 },
-            { q: "प्रसिद्ध यात्री इब्नबतूता किस देश का निवासी था?", options: ["मोरक्को", "फारस", "तुर्की", "अरब"], ans: 0 },
-            { q: "विजयनगर साम्राज्य के 'अष्टदिग्गज' किसके दरबार में रहते थे?", options: ["कृष्णदेव राय", "देवराय प्रथम", "हरिहर द्वितीय", "अच्युत देव राय"], ans: 0 },
-            { q: "पानीपत का प्रथम युद्ध (1526 ई.) किसके बीच लड़ा गया था?", options: ["बाबर और इब्राहिम लोदी", "अकबर और हेमू", "हुमायूँ और शेरशाह", "बाबर और राणा सांगा"], ans: 0 },
-            { q: "1582 ई. में 'दीन-ए-इलाही' धर्म की शुरुआत किसने की थी?", options: ["अकबर", "जहांगीर", "शाहजहाँ", "औरंगजेब"], ans: 0 },
-            { q: "1857 की क्रांति के समय भारत का गवर्नर जनरल कौन था?", options: ["लॉर्ड डलहौजी", "लॉर्ड कैनिंग", "लॉर्ड कर्जन", "लॉर्ड रिपन"], ans: 1 },
-            { q: "'वेदों की ओर लौटो' का प्रसिद्ध नारा किसने दिया था?", options: ["राजा राममोहन राय", "स्वामी दयानंद सरस्वती", "स्वामी विवेकानंद", "केशव चंद्र सेन"], ans: 1 },
-            { q: "भारतीय राष्ट्रीय कांग्रेस की प्रथम भारतीय महिला अध्यक्ष कौन थीं?", options: ["ऐनी बेसेंट", "सरोजिनी नायडू", "सुचेता कृपलानी", "विजयलक्ष्मी पंडित"], ans: 1 },
-            { q: "महात्मा गांधी ने 'करो या मरो' का नारा किस आंदोलन में दिया था?", options: ["असहयोग आंदोलन", "सविनय अवज्ञा आंदोलन", "भारत छोड़ो आंदोलन", "चंपारण सत्याग्रह"], ans: 2 },
-            { q: "बंगाल विभाजन (1905) किस वायसराय के काल में हुआ था?", options: ["लॉर्ड कर्जन", "लॉर्ड मिंटो", "लॉर्ड हार्डिंग", "लॉर्ड चेम्सफोर्ड"], ans: 0 }
-        ];
-
-        let currentSetQuestions = [];
-
-        function switchSection(secId) {
-            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(secId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-
-        function loadPracticeSet() {
-            const setNum = parseInt(document.getElementById('set-select').value) || 1;
-            document.getElementById('set-title').innerText = `प्रैक्टिस सेट #${setNum}`;
-            
-            const container = document.getElementById('questions-container');
-            container.innerHTML = '';
-            document.getElementById('quiz-result').style.display = 'none';
-
-            let seededBank = [...questionBank];
-            let seed = setNum;
-            for (let i = seededBank.length - 1; i > 0; i--) {
-                const j = Math.floor((seed * 9301 + 49297) % 233280) % (i + 1);
-                [seededBank[i], seededBank[j]] = [seededBank[j], seededBank[i]];
-                seed = (seed * 9301 + 49297) % 233280;
-            }
-
+            // Pick 10 questions per set
             currentSetQuestions = seededBank.slice(0, 10);
 
             currentSetQuestions.forEach((item, idx) => {
@@ -1046,6 +377,7 @@
                 }
             });
 
+            // Negative marking calculation (+1 for correct, -0.25 for wrong)
             let finalScore = (correct * 1.0) - (wrong * 0.25);
 
             const resultDiv = document.getElementById('quiz-result');
@@ -1069,6 +401,7 @@
             resultDiv.scrollIntoView({ behavior: 'smooth' });
         }
 
+        // Initialize Set 1 on Load
         window.onload = function() {
             loadPracticeSet();
         };
