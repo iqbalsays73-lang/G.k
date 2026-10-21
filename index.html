@@ -3,688 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GS Selection Engine 🚀 - Master Tricks & PYQs</title>
+    <title>GS Selection Engine</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background: #070a12; color: #f1f5f9; padding: 15px; line-height: 1.7; }
-        .container { max-width: 1100px; margin: auto; background: #0f172a; padding: 22px; border-radius: 16px; border: 1px solid #1e293b; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background: #0f172a; color: #fff; padding: 15px; line-height: 1.6; }
+        .header { text-align: center; border-bottom: 2px solid #38bdf8; padding-bottom: 10px; margin-bottom: 20px; }
+        .header h1 { color: #38bdf8; font-size: 22px; }
         
-        .header { text-align: center; border-bottom: 2px solid #1e293b; padding-bottom: 20px; margin-bottom: 20px; }
-        .header h1 { color: #38bdf8; font-size: 26px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-        .header p { color: #10b981; font-weight: 800; font-size: 15px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
+        .btn-exam { background: #1e293b; color: #fff; border: 2px solid #334155; padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .btn-exam.active { background: #0284c7; border-color: #38bdf8; }
 
-        .banner { background: #022c22; border: 2px dashed #10b981; border-radius: 10px; padding: 12px; text-align: center; color: #6ee7b7; font-weight: bold; margin-bottom: 22px; font-size: 14px; }
+        .flex-sub { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 15px; }
+        .btn-sub { background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; white-space: nowrap; }
+        .btn-sub.active { background: #10b981; color: #0f172a; }
 
-        .section-title { font-size: 15px; font-weight: bold; color: #facc15; margin-bottom: 10px; }
-
-        /* Exam Grid */
-        .exam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-bottom: 20px; }
-        .exam-btn { background: #1e293b; color: #cbd5e1; border: 2px solid #334155; padding: 12px 10px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; text-align: center; transition: 0.3s; }
-        .exam-btn:hover, .exam-btn.active { border-color: #38bdf8; background: #0284c7; color: #fff; box-shadow: 0 0 12px rgba(56, 189, 248, 0.4); }
-
-        /* Subject Tabs */
-        .sub-grid { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 22px; }
-        .sub-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.3s; }
-        .sub-btn:hover, .sub-btn.active { background: #10b981; color: #0f172a; border-color: #10b981; font-size: 15px; }
-
-        /* Cards */
-        .card { background: #1e293b; border: 1px solid #334155; border-left: 6px solid #38bdf8; padding: 20px; border-radius: 10px; margin-bottom: 16px; }
-        .card h3 { color: #f8fafc; font-size: 18px; margin-bottom: 8px; }
-        .card p { color: #94a3b8; font-size: 14px; margin-bottom: 14px; }
-
-        /* Buttons */
-        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
-        .btn { background: #059669; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.2s; }
-        .btn:hover { background: #047857; }
-        .btn-test { background: #d97706; }
-        .btn-test:hover { background: #b45309; }
-        .btn-back { background: #475569; margin-bottom: 15px; }
-
-        /* Detail Boxes */
-        .box-trick { background: #022c22; border-left: 4px solid #10b981; color: #6ee7b7; padding: 16px; border-radius: 8px; margin: 15px 0; font-weight: bold; line-height: 1.8; font-size: 15px; }
-        .box-pyq { background: #172554; border-left: 4px solid #3b82f6; color: #93c5fd; padding: 16px; border-radius: 8px; margin: 15px 0; font-size: 14px; }
-        .box-theory { background: #0f172a; border: 1px solid #334155; padding: 20px; border-radius: 8px; margin: 15px 0; font-size: 15px; line-height: 1.8; }
-        .box-theory h4 { color: #facc15; font-size: 16px; border-bottom: 1px dashed #334155; padding-bottom: 6px; margin: 15px 0 8px 0; }
-        
-        ul { padding-left: 20px; margin-top: 6px; }
-        li { margin-bottom: 8px; }
-        
-        .opt-label { display: block; background: #334155; padding: 12px 14px; margin: 10px 0; border-radius: 8px; cursor: pointer; font-size: 15px; }
-        .opt-label:hover { background: #475569; }
+        .card { background: #1e293b; border-left: 4px solid #38bdf8; padding: 15px; border-radius: 6px; margin-bottom: 12px; }
+        .btn-act { background: #059669; color: #fff; border: none; padding: 8px 12px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 8px; }
+        .box { background: #022c22; color: #6ee7b7; padding: 12px; border-radius: 6px; margin: 10px 0; font-weight: bold; }
+        .box-pyq { background: #172554; color: #93c5fd; padding: 12px; border-radius: 6px; margin: 10px 0; }
+        ul { padding-left: 20px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>GS SELECTION ENGINE 🚀</h1>
-            <p>"इतिहास, भूगोल, संविधान व अर्थशास्त्र का मास्टर सिलेक्शन हब!"</p>
-        </div>
 
-        <div class="banner">
-            🔥 100% Free Portal — मास्टर ट्रिक्स, विस्तृत नोट्स और 2020-2025 के असली PYQs!
-        </div>
-
-        <!-- 1. Exam Target Selector -->
-        <div class="section-title">🎯 कदम 1: अपनी लक्षित परीक्षा चुनें:</div>
-        <div class="exam-grid">
-            <button class="exam-btn active" id="ex-upssssc" onclick="changeExam('upssssc')">🎯 UPSSSC (PET / VDO)</button>
-            <button class="exam-btn" id="ex-ssc" onclick="changeExam('ssc')">🏆 SSC (CGL / CHSL / GD)</button>
-            <button class="exam-btn" id="ex-upsi" onclick="changeExam('upsi')">👮 UP SI / Police Constable</button>
-            <button class="exam-btn" id="ex-upsc" onclick="changeExam('upsc')">🏛️ UPSC Pre / State PCS</button>
-        </div>
-
-        <!-- 2. Subject Selector -->
-        <div class="section-title">📚 कदम 2: विषय चुनें:</div>
-        <div class="sub-grid">
-            <button class="sub-btn active" id="sub-history" onclick="changeSub('history')">📜 History (इतिहास)</button>
-            <button class="sub-btn" id="sub-geography" onclick="changeSub('geography')">🌍 Geography (भूगोल)</button>
-            <button class="sub-btn" id="sub-polity" onclick="changeSub('polity')">⚖️ Polity (संविधान)</button>
-            <button class="sub-btn" id="sub-economics" onclick="changeSub('economics')">📈 Economics (अर्थशास्त्र)</button>
-        </div>
-
-        <div id="main-area"></div>
+    <div class="header">
+        <h1>GS SELECTION ENGINE 🚀</h1>
     </div>
 
-    <script>
-        let selectedExam = 'upssssc';
-        let selectedSub = 'history';
-
-        const dataset = {
-            history: [
-                {
-                    id: 1,
-                    title: "1. प्राचीन भारत: पाषाण काल, सिंधु सभ्यता व महाजनपद",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>पाषाण काल:</b> पुरापाषाण (आग) ➔ मध्यपाषाण (पशुपालन: <i>आदमगढ़/बागौर</i>) ➔ नवपाषाण (पहिया व कृषि: <i>मेहरगढ़</i>)<br>
-                    • <b>सिंधु नदियाँ:</b> <i>'लोथल-भोगवा, हड़प्पा-रावी, मोहनजोदड़ो-सिंधु, कालीबंगा-घग्घर'</i><br>
-                    • <b>बौद्ध संगीती स्थान:</b> <i>'रा-वै-पा-कु'</i> (राजगृह, वैशाली, पाटलिपुत्र, कुंडलवन)`,
-                    pyqs: {
-                        upssssc: [
-                            "धान/चावल की खेती का प्राचीनतम साक्ष्य ➔ लहुरादेव / कोल्डिहवा",
-                            "हड़प्पा सभ्यता का प्रसिद्ध बंदरगाह ➔ लोथल (गुजरात)",
-                            "मानव द्वारा प्रयुक्त प्रथम धातु ➔ तांबा"
-                        ],
-                        ssc: [
-                            "माइक्रोलिथ (सूक्ष्म औज़ार) किस काल के हैं? ➔ मध्यपाषाण काल (SSC CGL)",
-                            "गर्तवास (मानव के साथ कुत्ता दफनाने) के साक्ष्य ➔ बुर्जहोम, J&K (SSC CHSL)",
-                            "प्रथम हस्तकुठार कहाँ से मिला? ➔ पल्लवरम, तमिलनाडु (SSC GD)"
-                        ],
-                        upsi: [
-                            "भारत में पशुपालन के प्रथम साक्ष्य ➔ आदमगढ़ (MP) एवं बागौर (राजस्थान)",
-                            "जूते हुए खेत के साक्ष्य कहाँ से मिले? ➔ कालीबंगा (राजस्थान)",
-                            "विशाल स्नानागार व कांस्य नर्तकी मूर्ति ➔ मोहनजोदड़ो"
-                        ],
-                        upsc: [
-                            "कृषि के प्राचीनतम साक्ष्य का सही कालक्रम ➔ लहुरादेव ➔ मेहरगढ़",
-                            "धौलावीरा स्थल प्रसिद्ध है ➔ उन्नत जल प्रबंधन प्रणाली हेतु"
-                        ]
-                    },
-                    theory: `<h4>1. प्रागैतिहासिक काल:</h4>• जिस काल का कोई लिखित साक्ष्य नहीं है। जनक: <b>रॉबर्ट ब्रूस फुट (1863)</b>।<br>• पुरापाषाण (आग), मध्यपाषाण (पशुपालन), नवपाषाण (कृषि व पहिया)।<br><br><h4>2. सिंधु घाटी सभ्यता:</h4>• कांस्ययुगीन नगरीय सभ्यता। खोज: 1921 में दयाराम साहनी (हड़प्पा) व 1922 में राखालदास बनर्जी (मोहनजोदड़ो)।`,
-                    questions: [
-                        { q: "मानव द्वारा प्रयोग में लाई गई सबसे पहली धातु कौन-सी थी?", opts: ["लोहा", "तांबा", "कांसा", "सोना"], ans: 1 },
-                        { q: "पहिए का आविष्कार किस काल में हुआ था?", opts: ["पुरापाषाण", "मध्यपाषाण", "नवपाषाण", "ताम्रपाषाण"], ans: 2 }
-                    ]
-                },
-                {
-                    id: 2,
-                    title: "2. बौद्ध, जैन धर्म, मौर्य एवं गुप्त साम्राज्य",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>जैन तीर्थंकर:</b> प्रथम (ऋषभनाथ), 23वें (पार्श्वनाथ), 24वें (महावीर स्वामी)<br>
-                    • <b>गुप्त नवरत्न:</b> कालिदास, धनवंतरी, वराहमिहिर (चंद्रगुप्त द्वितीय के दरबार में)<br>
-                    • <b>सत्यमेव जयते:</b> मुण्डकोपनिषद से लिया गया है।`,
-                    pyqs: {
-                        upssssc: [
-                            "गौतम बुद्ध ने प्रथम उपदेश कहाँ दिया? ➔ सारनाथ (धर्मचक्रप्रवर्तन)",
-                            "कलिंग युद्ध का वर्णन किस शिलालेख में है? ➔ 13वां शिलालेख",
-                            "मेगस्थनीज किसका राजदूत था? ➔ सेल्युकस निकेटर"
-                        ],
-                        ssc: [
-                            "इंडिका पुस्तक के रचयिता ➔ मेगस्थनीज (SSC CGL)",
-                            "भारत का नेपोलियन ➔ समुद्रगुप्त (SSC CHSL)",
-                            "नालंदा विश्वविद्यालय के संस्थापक ➔ कुमारगुप्त प्रथम (SSC GD)"
-                        ],
-                        upsi: [
-                            "प्रथम बौद्ध संगीती के शासक ➔ अजातशत्रु (राजगृह)",
-                            "ऋग्वेद के किस मण्डल में गायत्री मंत्र है? ➔ तीसरे मण्डल में",
-                            "जैन धर्म के 24वें तीर्थंकर ➔ महावीर स्वामी"
-                        ],
-                        upsc: [
-                            "अशोक के अभिलेखों को सर्वप्रथम किसने पढ़ा? ➔ जेम्स प्रिंसेप (1837)",
-                            "मौर्य काल में 'सन्निधाता' ➔ राजकीय कोषाध्यक्ष"
-                        ]
-                    },
-                    theory: `<h4>1. बौद्ध व जैन धर्म:</h4>• बुद्ध ने सारनाथ में पहला उपदेश दिया। महावीर स्वामी जैन धर्म के 24वें तीर्थंकर थे।<br><br><h4>2. मौर्य व गुप्त काल:</h4>• चंद्रगुप्त मौर्य ने मौर्य साम्राज्य की स्थापना की। समुद्रगुप्त को 'भारत का नेपोलियन' कहा जाता है।`,
-                    questions: [
-                        { q: "सत्यमेव जयते किस उपनिषद से लिया गया है?", opts: ["कठोपनिषद", "मुण्डकोपनिषद", "छांदोग्य", "केन"], ans: 1 },
-                        { q: "भारत का नेपोलियन किसे कहा जाता है?", opts: ["समुद्रगुप्त", "चंद्रगुप्त प्रथम", "स्कंदगुप्त", "अशोक"], ans: 0 }
-                    ]
-                },
-                {
-                    id: 3,
-                    title: "3. मध्यकालीन भारत: दिल्ली सल्तनत एवं मुगल साम्राज्य",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>सल्तनत क्रम:</b> <i>'गु-खिल-तू-सै-लो'</i> (गुलाम ➔ खिलजी ➔ तुगलक ➔ सैयद ➔ लोदी)<br>
-                    • <b>बाबर के युद्ध:</b> <i>'पान खा घर चल'</i> (पानीपत 1526, खानवा 1527, चंदेरी 1528, घाघरा 1529)<br>
-                    • <b>अकबर के सुधार:</b> दास प्रथा अंत (1562), जजिया अंत (1564), दीन-ए-इलाही (1582)`,
-                    pyqs: {
-                        upssssc: [
-                            "प्रथम महिला मुस्लिम शासिका ➔ रजिया सुल्तान",
-                            "पानीपत का प्रथम युद्ध ➔ 1526 (बाबर बनाम इब्राहिम लोदी)",
-                            "GT रोड का निर्माण ➔ शेरशाह सूरी"
-                        ],
-                        ssc: [
-                            "बाजार नियंत्रण प्रणाली ➔ अलाउद्दीन खिलजी (SSC CGL)",
-                            "इब्नबतूता किस देश से आया? ➔ मोरक्को (SSC CHSL)",
-                            "चित्रकला का स्वर्ण काल ➔ जहांगीर (SSC GD)"
-                        ],
-                        upsi: [
-                            "इक्ता प्रणाली की शुरुआत ➔ इल्तुतमिश",
-                            "दीन-ए-इलाही धर्म की स्थापना ➔ अकबर (1582)",
-                            "स्थापत्य कला का स्वर्ण काल ➔ शाहजहाँ"
-                        ],
-                        upsc: [
-                            "मुगल काल में 'अहादी' कौन थे? ➔ व्यक्तिगत घुड़सवार सैनिक",
-                            "मनसबदारी प्रणाली का उद्देश्य ➔ स्वच्छ प्रशासन व सैन्य व्यवस्था"
-                        ]
-                    },
-                    theory: `<h4>1. दिल्ली सल्तनत (1206-1526):</h4>• संस्थापक: कुतुबुद्दीन ऐबक। अलाउद्दीन खिलजी ने मूल्य नियंत्रण लागू किया।<br><br><h4>2. मुगल साम्राज्य (1526-1857):</h4>• पानीपत के प्रथम युद्ध (1526) से शुरुआत। औरंगजेब को 'जिंदा पीर' कहा जाता था।`,
-                    questions: [
-                        { q: "प्रथम महिला मुस्लिम शासिका कौन थीं?", opts: ["चांद बीबी", "रजिया सुल्तान", "नूरजहाँ", "मुमताज"], ans: 1 },
-                        { q: "पानीपत का प्रथम युद्ध कब हुआ?", opts: ["1526", "1556", "1761", "1527"], ans: 0 }
-                    ]
-                },
-                {
-                    id: 4,
-                    title: "4. आधुनिक भारत: 1857 की क्रांति व स्वतंत्रता संग्राम",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>1857 नेता:</b> लखनऊ (बेगम हजरत महल), कानपुर (नाना साहेब), बिहार (कुंवर सिंह)<br>
-                    • <b>संस्थाएं:</b> ब्रह्म समाज (1828 - राजा राममोहन राय), आर्य समाज (1875 - दयानंद सरस्वती)<br>
-                    • <b>गांधी आंदोलन:</b> चंपारण (1917) ➔ असहयोग (1920) ➔ सविनय अवज्ञा (1930) ➔ भारत छोड़ो (1942)`,
-                    pyqs: {
-                        upssssc: [
-                            "1857 क्रांति की शुरुआत ➔ 10 मई 1857 (मेरठ)",
-                            "ब्रह्म समाज की स्थापना ➔ राजा राममोहन राय (1828)",
-                            "गांधी जी का एकमात्र कांग्रेस अधिवेशन ➔ 1924 (बेलगांव)"
-                        ],
-                        ssc: [
-                            "सती प्रथा का अंत ➔ लॉर्ड विलियम बैंटिक (1829)",
-                            "हड़प नीति (Doctrine of Lapse) ➔ लॉर्ड डलहौजी",
-                            "जलियांवाला बाग हत्याकांड ➔ 13 अप्रैल 1919"
-                        ],
-                        upsi: [
-                            "1857 बिहार नेतृत्व ➔ कुंवर सिंह (जगदीशपुर)",
-                            "कांग्रेस की स्थापना ➔ 28 दिसंबर 1885",
-                            "काकोरी ट्रेन एक्शन ➔ 9 अगस्त 1925"
-                        ],
-                        upsc: [
-                            "लखनऊ समझौता ➔ 1916 (कांग्रेस-मुस्लिम लीग विलय)",
-                            "गांधी-इरविन समझौता ➔ 5 मार्च 1931"
-                        ]
-                    },
-                    theory: `<h4>1. 1857 की क्रांति:</h4>• मेरठ से शुरुआत। राजा राममोहन राय को 'भारतीय पुनर्जागरण का पिता' कहा जाता है।<br><br><h4>2. स्वतंत्रता आंदोलन:</h4>• 1885 में कांग्रेस स्थापना। 1905 में बंगाल विभाजन। 1917 में चंपारण सत्याग्रह।`,
-                    questions: [
-                        { q: "1857 की क्रांति कहाँ से शुरू हुई थी?", opts: ["झांसी", "कानपुर", "मेरठ", "दिल्ली"], ans: 2 },
-                        { q: "ब्रह्म समाज की स्थापना किसने की?", opts: ["दयानंद सरस्वती", "राजा राममोहन राय", "विवेकानंद", "ईश्वरचंद्र"], ans: 1 }
-                    ]
-                }
-            ],
-            geography: [
-                {
-                    id: 1,
-                    title: "1. सौरमंडल, वायुमंडल व भारत के भौतिक प्रदेश",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>ग्रह क्रम:</b> <i>'बुध, शुक्र, पृथ्वी, मंगल, बृहस्पति, शनि, अरुण, वरुण'</i><br>
-                    • <b>वायुमंडल परतें:</b> क्षोभमंडल (मौसम) ➔ समतापमंडल (ओजोन/वायुयान) ➔ आयनमंडल (रेडियो तरंगें)`,
-                    pyqs: {
-                        upssssc: ["मौसम घटनाएं किस परत में होती हैं? ➔ क्षोभमंडल", "भारत की सबसे लंबी नदी ➔ गंगा"],
-                        ssc: ["पृथ्वी की जुड़वां बहन ➔ शुक्र (Venus)", "क्षेत्रफल में भारत का स्थान ➔ 7वां"],
-                        upsi: ["दक्षिण भारत की लंबी नदी ➔ गोदावरी (1465 km)", "स्थलीय सीमा ➔ 7 देश"],
-                        upsc: ["भारत का अक्षांश विस्तार ➔ 8°4' N से 37°6' N"]
-                    },
-                    theory: `<h4>सौरमंडल व वायुमंडल:</h4>• सबसे बड़ा ग्रह बृहस्पति है। शुक्र सबसे चमकीला ग्रह है। क्षोभमंडल में मौसम की घटनाएं होती हैं।`,
-                    questions: [{ q: "सौरमंडल का सबसे बड़ा ग्रह कौन-सा है?", opts: ["शुक्र", "बृहस्पति", "शनि", "मंगल"], ans: 1 }]
-                }
-            ],
-            polity: [
-                {
-                    id: 1,
-                    title: "1. संविधान सभा, अनुसूचियाँ व मौलिक अधिकार",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>संसद ट्रिक:</b> <i>'सरल'</i> ➔ स=संसद (79), र=राज्यसभा (80), ल=लोकसभा (81)<br>
-                    • <b>मौलिक अधिकार:</b> अमेरिका से लिए गए हैं (भाग 3, अनु. 12-35)`,
-                    pyqs: {
-                        upssssc: ["प्रारूप समिति के अध्यक्ष ➔ डॉ. बी.आर. अम्बेडकर", "कुल अनुसूचियाँ ➔ 12"],
-                        ssc: ["संपत्ति का अधिकार ➔ कानूनी अधिकार (अनु. 300A)", "संविधान का मैग्नाकार्टा ➔ भाग 3"],
-                        upsi: ["ग्राम पंचायत गठन ➔ अनुच्छेद 40", "संविधान की आत्मा ➔ अनुच्छेद 32"],
-                        upsc: ["प्रस्तावना में संशोधन ➔ केवल 1 बार (42वां संशोधन 1976)"]
-                    },
-                    theory: `<h4>संविधान निर्माण:</h4>• प्रथम बैठक 9 दिसंबर 1946। भाग 3 को मैग्नाकार्टा कहते हैं। अनुच्छेद 32 के तहत सुप्रीम कोर्ट 5 प्रकार की रिट जारी करता है।`,
-                    questions: [{ q: "प्रारूप समिति के अध्यक्ष कौन थे?", opts: ["डॉ. राजेंद्र प्रसाद", "पंडित नेहरू", "डॉ. बी.आर. अम्बेडकर", "सच्चिदानंद"], ans: 2 }]
-                }
-            ],
-            economics: [
-                {
-                    id: 1,
-                    title: "1. बैंकिंग, नीति आयोग व GST",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>तिथियां:</b> RBI=1935 | नीति आयोग=2015 | GST=1 जुलाई 2017`,
-                    pyqs: {
-                        upssssc: ["GST कब लागू हुआ? ➔ 1 जुलाई 2017", "नीति आयोग अध्यक्ष ➔ प्रधानमंत्री"],
-                        ssc: ["द्वितीय योजना मॉडल ➔ पीसी महालनोबिस", "योजना आयोग के स्थान पर ➔ नीति आयोग"],
-                        upsi: ["रेपो रेट कौन तय करता है? ➔ RBI", "श्वेत क्रांति ➔ दुग्ध उत्पादन"],
-                        upsc: ["राष्ट्रीय आय की पहली गणना ➔ दादाभाई नौरोजी (1868)"]
-                    },
-                    theory: `<h4>अर्थव्यवस्था:</h4>• भारत में मिश्रित अर्थव्यवस्था है। राष्ट्रीय आय की गणना NSO द्वारा की जाती है।`,
-                    questions: [{ q: "नीति आयोग की स्थापना कब हुई थी?", opts: ["2014", "2015", "2016", "2017"], ans: 1 }]
-                }
-            ]
-        };
-
-        function changeExam(exKey) {
-            selectedExam = exKey;
-            document.querySelectorAll('.exam-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('ex-' + exKey).classList.add('active');
-            renderCards();
-        }
-
-        function changeSub(subKey) {
-            selectedSub = subKey;
-            document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('sub-' + subKey).classList.add('active');
-            renderCards();
-        }
-
-        function renderCards() {
-            let list = dataset[selectedSub] || [];
-            let html = `<h2 style="color:#38bdf8; font-size:18px; margin-bottom:14px;">🎯 टारगेट: ${selectedExam.toUpperCase()} | विषय: ${selectedSub.toUpperCase()}</h2>`;
-            
-            list.forEach(ch => {
-                html += `<div class="card">
-                    <h3>${ch.title}</h3>
-                    <p>मास्टर ट्रिक्स, ${selectedExam.toUpperCase()} PYQs, नोट्स और टेस्ट उपलब्ध हैं।</p>
-                    <div class="btn-group">
-                        <button class="btn" onclick="showDetails(${ch.id})">💡 थ्योरी नोट्स + शॉर्ट ट्रिक्स</button>
-                        <button class="btn btn-test" onclick="showTest(${ch.id})">📝 Practice Test Set</button>
-                    </div>
-                </div>`;
-      <!DOCTYPE html>
-<html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GS Selection Engine 🚀 - Master Tricks & PYQs</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background: #070a12; color: #f1f5f9; padding: 15px; line-height: 1.7; }
-        .container { max-width: 1100px; margin: auto; background: #0f172a; padding: 22px; border-radius: 16px; border: 1px solid #1e293b; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
-        
-        .header { text-align: center; border-bottom: 2px solid #1e293b; padding-bottom: 20px; margin-bottom: 20px; }
-        .header h1 { color: #38bdf8; font-size: 26px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-        .header p { color: #10b981; font-weight: 800; font-size: 15px; }
-
-        .banner { background: #022c22; border: 2px dashed #10b981; border-radius: 10px; padding: 12px; text-align: center; color: #6ee7b7; font-weight: bold; margin-bottom: 22px; font-size: 14px; }
-
-        .section-title { font-size: 15px; font-weight: bold; color: #facc15; margin-bottom: 10px; }
-
-        /* Exam Grid */
-        .exam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-bottom: 20px; }
-        .exam-btn { background: #1e293b; color: #cbd5e1; border: 2px solid #334155; padding: 12px 10px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; text-align: center; transition: 0.3s; }
-        .exam-btn:hover, .exam-btn.active { border-color: #38bdf8; background: #0284c7; color: #fff; box-shadow: 0 0 12px rgba(56, 189, 248, 0.4); }
-
-        /* Subject Tabs */
-        .sub-grid { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 22px; }
-        .sub-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.3s; }
-        .sub-btn:hover, .sub-btn.active { background: #10b981; color: #0f172a; border-color: #10b981; font-size: 15px; }
-
-        /* Cards */
-        .card { background: #1e293b; border: 1px solid #334155; border-left: 6px solid #38bdf8; padding: 20px; border-radius: 10px; margin-bottom: 16px; }
-        .card h3 { color: #f8fafc; font-size: 18px; margin-bottom: 8px; }
-        .card p { color: #94a3b8; font-size: 14px; margin-bottom: 14px; }
-
-        /* Buttons */
-        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
-        .btn { background: #059669; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.2s; }
-        .btn:hover { background: #047857; }
-        .btn-test { background: #d97706; }
-        .btn-test:hover { background: #b45309; }
-        .btn-back { background: #475569; margin-bottom: 15px; }
-
-        /* Detail Boxes */
-        .box-trick { background: #022c22; border-left: 4px solid #10b981; color: #6ee7b7; padding: 16px; border-radius: 8px; margin: 15px 0; font-weight: bold; line-height: 1.8; font-size: 15px; }
-        .box-pyq { background: #172554; border-left: 4px solid #3b82f6; color: #93c5fd; padding: 16px; border-radius: 8px; margin: 15px 0; font-size: 14px; }
-        .box-theory { background: #0f172a; border: 1px solid #334155; padding: 20px; border-radius: 8px; margin: 15px 0; font-size: 15px; line-height: 1.8; }
-        .box-theory h4 { color: #facc15; font-size: 16px; border-bottom: 1px dashed #334155; padding-bottom: 6px; margin: 15px 0 8px 0; }
-        
-        ul { padding-left: 20px; margin-top: 6px; }
-        li { margin-bottom: 8px; }
-        
-        .opt-label { display: block; background: #334155; padding: 12px 14px; margin: 10px 0; border-radius: 8px; cursor: pointer; font-size: 15px; }
-        .opt-label:hover { background: #475569; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>GS SELECTION ENGINE 🚀</h1>
-            <p>"इतिहास, भूगोल, संविधान व अर्थशास्त्र का मास्टर सिलेक्शन हब!"</p>
-        </div>
-
-        <div class="banner">
-            🔥 100% Free Portal — मास्टर ट्रिक्स, विस्तृत नोट्स और 2020-2025 के असली PYQs!
-        </div>
-
-        <!-- 1. Exam Target Selector -->
-        <div class="section-title">🎯 कदम 1: अपनी लक्षित परीक्षा चुनें:</div>
-        <div class="exam-grid">
-            <button class="exam-btn active" id="ex-upssssc" onclick="changeExam('upssssc')">🎯 UPSSSC (PET / VDO)</button>
-            <button class="exam-btn" id="ex-ssc" onclick="changeExam('ssc')">🏆 SSC (CGL / CHSL / GD)</button>
-            <button class="exam-btn" id="ex-upsi" onclick="changeExam('upsi')">👮 UP SI / Police Constable</button>
-            <button class="exam-btn" id="ex-upsc" onclick="changeExam('upsc')">🏛️ UPSC Pre / State PCS</button>
-        </div>
-
-        <!-- 2. Subject Selector -->
-        <div class="section-title">📚 कदम 2: विषय चुनें:</div>
-        <div class="sub-grid">
-            <button class="sub-btn active" id="sub-history" onclick="changeSub('history')">📜 History (इतिहास)</button>
-            <button class="sub-btn" id="sub-geography" onclick="changeSub('geography')">🌍 Geography (भूगोल)</button>
-            <button class="sub-btn" id="sub-polity" onclick="changeSub('polity')">⚖️ Polity (संविधान)</button>
-            <button class="sub-btn" id="sub-economics" onclick="changeSub('economics')">📈 Economics (अर्थशास्त्र)</button>
-        </div>
-
-        <div id="main-area"></div>
+    <div class="grid">
+        <button class="btn-exam active" onclick="setExam('upssssc', this)">UPSSSC</button>
+        <button class="btn-exam" onclick="setExam('ssc', this)">SSC</button>
+        <button class="btn-exam" onclick="setExam('upsi', this)">UP SI</button>
+        <button class="btn-exam" onclick="setExam('upsc', this)">UPSC</button>
     </div>
 
-    <script>
-        let selectedExam = 'upssssc';
-        let selectedSub = 'history';
+    <div class="flex-sub">
+        <button class="btn-sub active" onclick="setSub('history', this)">📜 History</button>
+        <button class="btn-sub" onclick="setSub('geography', this)">🌍 Geography</button>
+        <button class="btn-sub" onclick="setSub('polity', this)">⚖️ Polity</button>
+        <button class="btn-sub" onclick="setSub('economics', this)">📈 Economics</button>
+    </div>
 
-        const dataset = {
+    <div id="app"></div>
+
+    <script>
+        var currentExam = 'upssssc';
+        var currentSub = 'history';
+
+        var db = {
             history: [
-                {
-                    id: 1,
-                    title: "1. प्राचीन भारत: पाषाण काल, सिंधु सभ्यता व महाजनपद",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>पाषाण काल:</b> पुरापाषाण (आग) ➔ मध्यपाषाण (पशुपालन: <i>आदमगढ़/बागौर</i>) ➔ नवपाषाण (पहिया व कृषि: <i>मेहरगढ़</i>)<br>
-                    • <b>सिंधु नदियाँ:</b> <i>'लोथल-भोगवा, हड़प्पा-रावी, मोहनजोदड़ो-सिंधु, कालीबंगा-घग्घर'</i><br>
-                    • <b>बौद्ध संगीती स्थान:</b> <i>'रा-वै-पा-कु'</i> (राजगृह, वैशाली, पाटलिपुत्र, कुंडलवन)`,
-                    pyqs: {
-                        upssssc: [
-                            "धान/चावल की खेती का प्राचीनतम साक्ष्य ➔ लहुरादेव / कोल्डिहवा",
-                            "हड़प्पा सभ्यता का प्रसिद्ध बंदरगाह ➔ लोथल (गुजरात)",
-                            "मानव द्वारा प्रयुक्त प्रथम धातु ➔ तांबा"
-                        ],
-                        ssc: [
-                            "माइक्रोलिथ (सूक्ष्म औज़ार) किस काल के हैं? ➔ मध्यपाषाण काल (SSC CGL)",
-                            "गर्तवास (मानव के साथ कुत्ता दफनाने) के साक्ष्य ➔ बुर्जहोम, J&K (SSC CHSL)",
-                            "प्रथम हस्तकुठार कहाँ से मिला? ➔ पल्लवरम, तमिलनाडु (SSC GD)"
-                        ],
-                        upsi: [
-                            "भारत में पशुपालन के प्रथम साक्ष्य ➔ आदमगढ़ (MP) एवं बागौर (राजस्थान)",
-                            "जूते हुए खेत के साक्ष्य कहाँ से मिले? ➔ कालीबंगा (राजस्थान)",
-                            "विशाल स्नानागार व कांस्य नर्तकी मूर्ति ➔ मोहनजोदड़ो"
-                        ],
-                        upsc: [
-                            "कृषि के प्राचीनतम साक्ष्य का सही कालक्रम ➔ लहुरादेव ➔ मेहरगढ़",
-                            "धौलावीरा स्थल प्रसिद्ध है ➔ उन्नत जल प्रबंधन प्रणाली हेतु"
-                        ]
-                    },
-                    theory: `<h4>1. प्रागैतिहासिक काल:</h4>• जिस काल का कोई लिखित साक्ष्य नहीं है। जनक: <b>रॉबर्ट ब्रूस फुट (1863)</b>।<br>• पुरापाषाण (आग), मध्यपाषाण (पशुपालन), नवपाषाण (कृषि व पहिया)।<br><br><h4>2. सिंधु घाटी सभ्यता:</h4>• कांस्ययुगीन नगरीय सभ्यता। खोज: 1921 में दयाराम साहनी (हड़प्पा) व 1922 में राखालदास बनर्जी (मोहनजोदड़ो)।`,
-                    questions: [
-                        { q: "मानव द्वारा प्रयोग में लाई गई सबसे पहली धातु कौन-सी थी?", opts: ["लोहा", "तांबा", "कांसा", "सोना"], ans: 1 },
-                        { q: "पहिए का आविष्कार किस काल में हुआ था?", opts: ["पुरापाषाण", "मध्यपाषाण", "नवपाषाण", "ताम्रपाषाण"], ans: 2 }
-                    ]
-                },
-                {
-                    id: 2,
-                    title: "2. बौद्ध, जैन धर्म, मौर्य एवं गुप्त साम्राज्य",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>जैन तीर्थंकर:</b> प्रथम (ऋषभनाथ), 23वें (पार्श्वनाथ), 24वें (महावीर स्वामी)<br>
-                    • <b>गुप्त नवरत्न:</b> कालिदास, धनवंतरी, वराहमिहिर (चंद्रगुप्त द्वितीय के दरबार में)<br>
-                    • <b>सत्यमेव जयते:</b> मुण्डकोपनिषद से लिया गया है।`,
-                    pyqs: {
-                        upssssc: [
-                            "गौतम बुद्ध ने प्रथम उपदेश कहाँ दिया? ➔ सारनाथ (धर्मचक्रप्रवर्तन)",
-                            "कलिंग युद्ध का वर्णन किस शिलालेख में है? ➔ 13वां शिलालेख",
-                            "मेगस्थनीज किसका राजदूत था? ➔ सेल्युकस निकेटर"
-                        ],
-                        ssc: [
-                            "इंडिका पुस्तक के रचयिता ➔ मेगस्थनीज (SSC CGL)",
-                            "भारत का नेपोलियन ➔ समुद्रगुप्त (SSC CHSL)",
-                            "नालंदा विश्वविद्यालय के संस्थापक ➔ कुमारगुप्त प्रथम (SSC GD)"
-                        ],
-                        upsi: [
-                            "प्रथम बौद्ध संगीती के शासक ➔ अजातशत्रु (राजगृह)",
-                            "ऋग्वेद के किस मण्डल में गायत्री मंत्र है? ➔ तीसरे मण्डल में",
-                            "जैन धर्म के 24वें तीर्थंकर ➔ महावीर स्वामी"
-                        ],
-                        upsc: [
-                            "अशोक के अभिलेखों को सर्वप्रथम किसने पढ़ा? ➔ जेम्स प्रिंसेप (1837)",
-                            "मौर्य काल में 'सन्निधाता' ➔ राजकीय कोषाध्यक्ष"
-                        ]
-                    },
-                    theory: `<h4>1. बौद्ध व जैन धर्म:</h4>• बुद्ध ने सारनाथ में पहला उपदेश दिया। महावीर स्वामी जैन धर्म के 24वें तीर्थंकर थे।<br><br><h4>2. मौर्य व गुप्त काल:</h4>• चंद्रगुप्त मौर्य ने मौर्य साम्राज्य की स्थापना की। समुद्रगुप्त को 'भारत का नेपोलियन' कहा जाता है।`,
-                    questions: [
-                        { q: "सत्यमेव जयते किस उपनिषद से लिया गया है?", opts: ["कठोपनिषद", "मुण्डकोपनिषद", "छांदोग्य", "केन"], ans: 1 },
-                        { q: "भारत का नेपोलियन किसे कहा जाता है?", opts: ["समुद्रगुप्त", "चंद्रगुप्त प्रथम", "स्कंदगुप्त", "अशोक"], ans: 0 }
-                    ]
-                },
-                {
-                    id: 3,
-                    title: "3. मध्यकालीन भारत: दिल्ली सल्तनत एवं मुगल साम्राज्य",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>सल्तनत क्रम:</b> <i>'गु-खिल-तू-सै-लो'</i> (गुलाम ➔ खिलजी ➔ तुगलक ➔ सैयद ➔ लोदी)<br>
-                    • <b>बाबर के युद्ध:</b> <i>'पान खा घर चल'</i> (पानीपत 1526, खानवा 1527, चंदेरी 1528, घाघरा 1529)<br>
-                    • <b>अकबर के सुधार:</b> दास प्रथा अंत (1562), जजिया अंत (1564), दीन-ए-इलाही (1582)`,
-                    pyqs: {
-                        upssssc: [
-                            "प्रथम महिला मुस्लिम शासिका ➔ रजिया सुल्तान",
-                            "पानीपत का प्रथम युद्ध ➔ 1526 (बाबर बनाम इब्राहिम लोदी)",
-                            "GT रोड का निर्माण ➔ शेरशाह सूरी"
-                        ],
-                        ssc: [
-                            "बाजार नियंत्रण प्रणाली ➔ अलाउद्दीन खिलजी (SSC CGL)",
-                            "इब्नबतूता किस देश से आया? ➔ मोरक्को (SSC CHSL)",
-                            "चित्रकला का स्वर्ण काल ➔ जहांगीर (SSC GD)"
-                        ],
-                        upsi: [
-                            "इक्ता प्रणाली की शुरुआत ➔ इल्तुतमिश",
-                            "दीन-ए-इलाही धर्म की स्थापना ➔ अकबर (1582)",
-                            "स्थापत्य कला का स्वर्ण काल ➔ शाहजहाँ"
-                        ],
-                        upsc: [
-                            "मुगल काल में 'अहादी' कौन थे? ➔ व्यक्तिगत घुड़सवार सैनिक",
-                            "मनसबदारी प्रणाली का उद्देश्य ➔ स्वच्छ प्रशासन व सैन्य व्यवस्था"
-                        ]
-                    },
-                    theory: `<h4>1. दिल्ली सल्तनत (1206-1526):</h4>• संस्थापक: कुतुबुद्दीन ऐबक। अलाउद्दीन खिलजी ने मूल्य नियंत्रण लागू किया।<br><br><h4>2. मुगल साम्राज्य (1526-1857):</h4>• पानीपत के प्रथम युद्ध (1526) से शुरुआत। औरंगजेब को 'जिंदा पीर' कहा जाता था।`,
-                    questions: [
-                        { q: "प्रथम महिला मुस्लिम शासिका कौन थीं?", opts: ["चांद बीबी", "रजिया सुल्तान", "नूरजहाँ", "मुमताज"], ans: 1 },
-                        { q: "पानीपत का प्रथम युद्ध कब हुआ?", opts: ["1526", "1556", "1761", "1527"], ans: 0 }
-                    ]
-                },
-                {
-                    id: 4,
-                    title: "4. आधुनिक भारत: 1857 की क्रांति व स्वतंत्रता संग्राम",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>1857 नेता:</b> लखनऊ (बेगम हजरत महल), कानपुर (नाना साहेब), बिहार (कुंवर सिंह)<br>
-                    • <b>संस्थाएं:</b> ब्रह्म समाज (1828 - राजा राममोहन राय), आर्य समाज (1875 - दयानंद सरस्वती)<br>
-                    • <b>गांधी आंदोलन:</b> चंपारण (1917) ➔ असहयोग (1920) ➔ सविनय अवज्ञा (1930) ➔ भारत छोड़ो (1942)`,
-                    pyqs: {
-                        upssssc: [
-                            "1857 क्रांति की शुरुआत ➔ 10 मई 1857 (मेरठ)",
-                            "ब्रह्म समाज की स्थापना ➔ राजा राममोहन राय (1828)",
-                            "गांधी जी का एकमात्र कांग्रेस अधिवेशन ➔ 1924 (बेलगांव)"
-                        ],
-                        ssc: [
-                            "सती प्रथा का अंत ➔ लॉर्ड विलियम बैंटिक (1829)",
-                            "हड़प नीति (Doctrine of Lapse) ➔ लॉर्ड डलहौजी",
-                            "जलियांवाला बाग हत्याकांड ➔ 13 अप्रैल 1919"
-                        ],
-                        upsi: [
-                            "1857 बिहार नेतृत्व ➔ कुंवर सिंह (जगदीशपुर)",
-                            "कांग्रेस की स्थापना ➔ 28 दिसंबर 1885",
-                            "काकोरी ट्रेन एक्शन ➔ 9 अगस्त 1925"
-                        ],
-                        upsc: [
-                            "लखनऊ समझौता ➔ 1916 (कांग्रेस-मुस्लिम लीग विलय)",
-                            "गांधी-इरविन समझौता ➔ 5 मार्च 1931"
-                        ]
-                    },
-                    theory: `<h4>1. 1857 की क्रांति:</h4>• मेरठ से शुरुआत। राजा राममोहन राय को 'भारतीय पुनर्जागरण का पिता' कहा जाता है।<br><br><h4>2. स्वतंत्रता आंदोलन:</h4>• 1885 में कांग्रेस स्थापना। 1905 में बंगाल विभाजन। 1917 में चंपारण सत्याग्रह।`,
-                    questions: [
-                        { q: "1857 की क्रांति कहाँ से शुरू हुई थी?", opts: ["झांसी", "कानपुर", "मेरठ", "दिल्ली"], ans: 2 },
-                        { q: "ब्रह्म समाज की स्थापना किसने की?", opts: ["दयानंद सरस्वती", "राजा राममोहन राय", "विवेकानंद", "ईश्वरचंद्र"], ans: 1 }
-                    ]
-                }
+                { id: 1, title: "1. प्राचीन भारत (पाषाण व सिंधु सभ्यता)", trick: "पुरापाषाण (आग) ➔ मध्यपाषाण (पशुपालन) ➔ नवपाषाण (कृषि व पहिया)", pyq: "धान साक्ष्य ➔ लहुरादेव | बंदरगाह ➔ लोथल" },
+                { id: 2, title: "2. मध्यकालीन भारत (सल्तनत व मुगल)", trick: "सल्तनत: गु-खिल-तू-सै-लो | बाबर: पान खा घर चल", pyq: "रजिया सुल्तान ➔ प्रथम महिला शासिका | 1526 ➔ पानीपत" }
             ],
-            geography: [
-                {
-                    id: 1,
-                    title: "1. सौरमंडल, वायुमंडल व भारत के भौतिक प्रदेश",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>ग्रह क्रम:</b> <i>'बुध, शुक्र, पृथ्वी, मंगल, बृहस्पति, शनि, अरुण, वरुण'</i><br>
-                    • <b>वायुमंडल परतें:</b> क्षोभमंडल (मौसम) ➔ समतापमंडल (ओजोन/वायुयान) ➔ आयनमंडल (रेडियो तरंगें)`,
-                    pyqs: {
-                        upssssc: ["मौसम घटनाएं किस परत में होती हैं? ➔ क्षोभमंडल", "भारत की सबसे लंबी नदी ➔ गंगा"],
-                        ssc: ["पृथ्वी की जुड़वां बहन ➔ शुक्र (Venus)", "क्षेत्रफल में भारत का स्थान ➔ 7वां"],
-                        upsi: ["दक्षिण भारत की लंबी नदी ➔ गोदावरी (1465 km)", "स्थलीय सीमा ➔ 7 देश"],
-                        upsc: ["भारत का अक्षांश विस्तार ➔ 8°4' N से 37°6' N"]
-                    },
-                    theory: `<h4>सौरमंडल व वायुमंडल:</h4>• सबसे बड़ा ग्रह बृहस्पति है। शुक्र सबसे चमकीला ग्रह है। क्षोभमंडल में मौसम की घटनाएं होती हैं।`,
-                    questions: [{ q: "सौरमंडल का सबसे बड़ा ग्रह कौन-सा है?", opts: ["शुक्र", "बृहस्पति", "शनि", "मंगल"], ans: 1 }]
-                }
-            ],
-            polity: [
-                {
-                    id: 1,
-                    title: "1. संविधान सभा, अनुसूचियाँ व मौलिक अधिकार",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>संसद ट्रिक:</b> <i>'सरल'</i> ➔ स=संसद (79), र=राज्यसभा (80), ल=लोकसभा (81)<br>
-                    • <b>मौलिक अधिकार:</b> अमेरिका से लिए गए हैं (भाग 3, अनु. 12-35)`,
-                    pyqs: {
-                        upssssc: ["प्रारूप समिति के अध्यक्ष ➔ डॉ. बी.आर. अम्बेडकर", "कुल अनुसूचियाँ ➔ 12"],
-                        ssc: ["संपत्ति का अधिकार ➔ कानूनी अधिकार (अनु. 300A)", "संविधान का मैग्नाकार्टा ➔ भाग 3"],
-                        upsi: ["ग्राम पंचायत गठन ➔ अनुच्छेद 40", "संविधान की आत्मा ➔ अनुच्छेद 32"],
-                        upsc: ["प्रस्तावना में संशोधन ➔ केवल 1 बार (42वां संशोधन 1976)"]
-                    },
-                    theory: `<h4>संविधान निर्माण:</h4>• प्रथम बैठक 9 दिसंबर 1946। भाग 3 को मैग्नाकार्टा कहते हैं। अनुच्छेद 32 के तहत सुप्रीम कोर्ट 5 प्रकार की रिट जारी करता है।`,
-                    questions: [{ q: "प्रारूप समिति के अध्यक्ष कौन थे?", opts: ["डॉ. राजेंद्र प्रसाद", "पंडित नेहरू", "डॉ. बी.आर. अम्बेडकर", "सच्चिदानंद"], ans: 2 }]
-                }
-            ],
-            economics: [
-                {
-                    id: 1,
-                    title: "1. बैंकिंग, नीति आयोग व GST",
-                    trick: `💡 <b>मास्टर शॉर्ट ट्रिक्स:</b><br>
-                    • <b>तिथियां:</b> RBI=1935 | नीति आयोग=2015 | GST=1 जुलाई 2017`,
-                    pyqs: {
-                        upssssc: ["GST कब लागू हुआ? ➔ 1 जुलाई 2017", "नीति आयोग अध्यक्ष ➔ प्रधानमंत्री"],
-                        ssc: ["द्वितीय योजना मॉडल ➔ पीसी महालनोबिस", "योजना आयोग के स्थान पर ➔ नीति आयोग"],
-                        upsi: ["रेपो रेट कौन तय करता है? ➔ RBI", "श्वेत क्रांति ➔ दुग्ध उत्पादन"],
-                        upsc: ["राष्ट्रीय आय की पहली गणना ➔ दादाभाई नौरोजी (1868)"]
-                    },
-                    theory: `<h4>अर्थव्यवस्था:</h4>• भारत में मिश्रित अर्थव्यवस्था है। राष्ट्रीय आय की गणना NSO द्वारा की जाती है।`,
-                    questions: [{ q: "नीति आयोग की स्थापना कब हुई थी?", opts: ["2014", "2015", "2016", "2017"], ans: 1 }]
-                }
-            ]
+            geography: [{ id: 1, title: "1. सौरमंडल व वायुमंडल", trick: "क्षोभमंडल (मौसम) ➔ समतापमंडल (ओजोन)", pyq: "मौसम घटना ➔ क्षोभमंडल" }],
+            polity: [{ id: 1, title: "1. संविधान व मौलिक अधिकार", trick: "संसद: 'सरल' (79, 80, 81)", pyq: "प्रारूप समिति ➔ अम्बेडकर" }],
+            economics: [{ id: 1, title: "1. बैंकिंग व GST", trick: "RBI=1935 | GST=1 जुलाई 2017", pyq: "GST ➔ 1 जुलाई 2017" }]
         };
 
-        function changeExam(exKey) {
-            selectedExam = exKey;
-            document.querySelectorAll('.exam-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('ex-' + exKey).classList.add('active');
-            renderCards();
+        function setExam(e, btn) {
+            currentExam = e;
+            var els = document.querySelectorAll('.btn-exam');
+            for(var i=0; i<els.length; i++) els[i].classList.remove('active');
+            btn.classList.add('active');
+            render();
         }
 
-        function changeSub(subKey) {
-            selectedSub = subKey;
-            document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('sub-' + subKey).classList.add('active');
-            renderCards();
+        function setSub(s, btn) {
+            currentSub = s;
+            var els = document.querySelectorAll('.btn-sub');
+            for(var i=0; i<els.length; i++) els[i].classList.remove('active');
+            btn.classList.add('active');
+            render();
         }
 
-        function renderCards() {
-            let list = dataset[selectedSub] || [];
-            let html = `<h2 style="color:#38bdf8; font-size:18px; margin-bottom:14px;">🎯 टारगेट: ${selectedExam.toUpperCase()} | विषय: ${selectedSub.toUpperCase()}</h2>`;
-            
-            list.forEach(ch => {
-                html += `<div class="card">
-                    <h3>${ch.title}</h3>
-                    <p>मास्टर ट्रिक्स, ${selectedExam.toUpperCase()} PYQs, नोट्स और टेस्ट उपलब्ध हैं।</p>
-                    <div class="btn-group">
-                        <button class="btn" onclick="showDetails(${ch.id})">💡 थ्योरी नोट्स + शॉर्ट ट्रिक्स</button>
-                        <button class="btn btn-test" onclick="showTest(${ch.id})">📝 Practice Test Set</button>
-                    </div>
-                </div>`;
-            });
-            document.getElementById('main-area').innerHTML = html;
+        function render() {
+            var list = db[currentSub] || [];
+            var html = '';
+            for(var i=0; i<list.length; i++) {
+                html += '<div class="card"><h3>' + list[i].title + '</h3><button class="btn-act" onclick="openCh(' + list[i].id + ')">📖 थ्योरी नोट्स + ट्रिक्स पढ़ें</button></div>';
+            }
+            document.getElementById('app').innerHTML = html;
         }
 
-        function showDetails(id) {
-            let ch = dataset[selectedSub].find(c => c.id === id);
-            let pyqArr = ch.pyqs[selectedExam] || ["डेटा उपलब्ध नहीं है।"];
-            let pyqHtml = "<ul>";
-            pyqArr.forEach(p => { pyqHtml += `<li><b>[${selectedExam.toUpperCase()}]</b> ${p}</li>`; });
-            pyqHtml += "</ul>";
+        function openCh(id) {
+            var list = db[currentSub] || [];
+            var item = null;
+            for(var i=0; i<list.length; i++) { if(list[i].id === id) item = list[i]; }
+            if(!item) return;
 
-            let html = `<div>
-                <button class="btn btn-back" onclick="renderCards()">⬅️ वापस सूची पर लौटें</button>
-                <h2 style="color:#38bdf8; margin-bottom:12px;">${ch.title}</h2>
-                <div class="box-trick">${ch.trick}</div>
-                <div class="box-pyq">
-                    <h4 style="margin-bottom:6px; color:#60a5fa;">🔥 2020-2025 Real One-Liner PYQs (${selectedExam.toUpperCase()})</h4>
-                    ${pyqHtml}
-                </div>
-                <div class="box-theory">
-                    <h4>📖 Complete In-Depth Theory Notes</h4>
-                    ${ch.theory}
-                </div>
-                <button class="btn btn-test" onclick="showTest(${id})" style="margin-top:12px;">📝 इस चैप्टर का ऑनलाइन टेस्ट दें</button>
-            </div>`;
-            document.getElementById('main-area').innerHTML = html;
+            var html = '<div>' +
+                '<button class="btn-act" style="background:#475569;" onclick="render()">⬅️ वापस जाएँ</button>' +
+                '<h2 style="color:#38bdf8; margin-top:10px;">' + item.title + '</h2>' +
+                '<div class="box">💡 ट्रिक्स:<br>' + item.trick + '</div>' +
+                '<div class="box-pyq">🔥 Real PYQs [' + currentExam.toUpperCase() + ']:<br>' + item.pyq + '</div>' +
+            '</div>';
+            document.getElementById('app').innerHTML = html;
         }
 
-        function showTest(id) {
-            let ch = dataset[selectedSub].find(c => c.id === id);
-            let qList = ch.questions || [];
-
-            let html = `<div>
-                <button class="btn btn-back" onclick="renderCards()">⬅️ वापस सूची पर लौटें</button>
-                <h2 style="color:#38bdf8; margin-bottom:12px;">${ch.title} - Real Exam Test</h2>
-                <form id="quizForm">`;
-
-            qList.forEach((q, idx) => {
-                html += `<div style="background:#1e293b; padding:15px; border-radius:8px; margin-bottom:14px; border:1px solid #334155;">
-                    <p style="font-weight:bold; margin-bottom:8px;">Q${idx + 1}: ${q.q}</p>`;
-                q.opts.forEach((opt, oIdx) => {
-                    html += `<label class="opt-label"><input type="radio" name="q${idx}" value="${oIdx}"> ${opt}</label>`;
-                });
-                html += `</div>`;
-            });
-
-            html += `</form>
-                <button class="btn" onclick="submitQuiz(${id})" style="padding:12px 24px; font-size:15px;">उत्तर सबमिट करें</button>
-            </div>`;
-
-            document.getElementById('main-area').innerHTML = html;
-        }
-
-        function submitQuiz(id) {
-            let ch = dataset[selectedSub].find(c => c.id === id);
-            let qList = ch.questions || [];
-            let score = 0;
-
-            qList.forEach((q, idx) => {
-                let sel = document.querySelector(`input[name="q${idx}"]:checked`);
-                if(sel && parseInt(sel.value) === q.ans) score++;
-            });
-
-            let percentage = (score / qList.length) * 100;
-            alert(`आपका स्कोर: ${score}/${qList.length} (${percentage.toFixed(0)}%)\n\nशानदार! अभ्यास निरंतर जारी रखें।`);
-            renderCards();
-        }
-
-        window.onload = renderCards;
+        window.onload = render;
     </script>
 </body>
 </html>
