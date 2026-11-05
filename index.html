@@ -1,25 +1,90 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBSE Class 12 Economics - Board Challenge Paper</title>
+    <title>CBSE Class 12th Economics — Board Challenge Paper</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; margin: 0; padding: 15px; color: #2c3e50; }
-        .container { max-width: 800px; margin: auto; background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-        h1 { text-align: center; font-size: 22px; color: #1a365d; margin-bottom: 5px; }
-        .subtitle { text-align: center; font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 25px; border-bottom: 2px solid #edf2f7; padding-bottom: 12px; }
-        .info-box { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; }
-        .info-box div { flex: 1; min-width: 220px; }
-        label { display: block; font-weight: bold; margin-bottom: 6px; font-size: 14px; color: #4a5568; }
-        input[type="text"], textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 14px; background: #fff; transition: border-color 0.2s; }
-        input[type="text"]:focus, textarea:focus { border-color: #3182ce; outline: none; box-shadow: 0 0 0 3px rgba(49,130,206,0.1); }
-        textarea { resize: vertical; height: 100px; }
-        .section-title { font-size: 16px; font-weight: bold; color: #2b6cb0; margin: 25px 0 15px 0; border-left: 4px solid #2b6cb0; padding-left: 10px; }
-        .question-card { background: #fafbfc; border: 1px solid #e2e8f0; padding: 18px; border-radius: 8px; margin-bottom: 18px; }
-        .q-title { font-weight: bold; font-size: 14px; margin-bottom: 10px; color: #1a202c; line-height: 1.5; }
-        .submit-btn { background: #2b6cb0; color: white; border: none; padding: 14px 20px; font-size: 16px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 25px; transition: background 0.2s; }
-        .submit-btn:hover { background: #2c5282; }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #e67e22;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .meta-box {
+            display: flex;
+            justify-content: space-between;
+            background: #ecf0f1;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .section-title {
+            background: #34495e;
+            color: #fff;
+            padding: 8px 12px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        textarea {
+            width: 100%;
+            height: 60px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background: #27ae60;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .submit-btn:hover {
+            background: #219653;
+        }
     </style>
 </head>
 <body>
@@ -28,73 +93,122 @@
     <h1>CBSE CLASS 12TH ECONOMICS — BOARD CHALLENGE PAPER</h1>
     <div class="subtitle">Target: 80+ Marks Guarantee Series | Most Repeated Board Exam Topics (Delhi Region Trend)</div>
 
-    <form action="mailto:Iqbalsays73@gmail.com" method="POST" enctype="text/plain">
-        
-        <div class="info-box">
-            <div>
-                <label>Student Name:</label>
-                <input type="text" name="Student_Name" required placeholder="Apna poora naam likhein">
-            </div>
-            <div>
-                <label>School / Batch:</label>
-                <input type="text" name="Batch" required placeholder="Batch ya School ka naam">
-            </div>
-        </div>
+    <div class="meta-box">
+        <div><strong>Student Name:</strong> <input type="text" placeholder="Apna poora naam likhein" style="border:none; background:transparent; border-bottom:1px solid #999;"></div>
+        <div><strong>Max. Marks:</strong> 80</div>
+    </div>
+    <div class="meta-box">
+        <div><strong>School / Batch:</strong> <input type="text" placeholder="Batch ya School ka naam" style="border:none; background:transparent; border-bottom:1px solid #999;"></div>
+        <div><strong>Time Allowed:</strong> 3 Hours</div>
+    </div>
 
-        <div class="section-title">PART A: MACROECONOMICS (40 MARKS)</div>
+    <!-- PART A -->
+    <div class="section-title">PART A: MACROECONOMICS (40 MARKS)</div>
 
-        <div class="question-card">
-            <div class="q-title">Q1. Define Involuntary Unemployment. [1 Mark]</div>
-            <textarea name="Q1_Answer" placeholder="Yahan apna jawab likhein..." required></textarea>
-        </div>
+    <div class="question">
+        <p>Q1. Define Involuntary Unemployment. [1 Mark]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
 
-        <div class="question-card">
-            <div class="q-title">Q2. If the Marginal Propensity to Save (MPS) is 0.2, calculate the value of the Investment Multiplier (k). [1 Mark]</div>
-            <textarea name="Q2_Answer" placeholder="Yahan apna jawab likhein..." required></textarea>
-        </div>
+    <div class="question">
+        <p>Q2. If the Marginal Propensity to Save (MPS) is 0.2, calculate the value of the Investment Multiplier (k). [1 Mark]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
 
-        <div class="question-card">
-            <div class="q-title">Q3. State whether true/false with reason: "Ex-ante Savings and Ex-ante Investments are always equal at equilibrium level of income." [1 Mark]</div>
-            <textarea name="Q3_Answer" placeholder="Yahan apna jawab likhein..." required></textarea>
-        </div>
+    <div class="question">
+        <p>Q3. State whether the following statement is true or false, with valid reason: "Ex-ante Savings and Ex-ante Investments are always equal at equilibrium level of income." [1 Mark]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
 
-        <div class="question-card">
-            <div class="q-title">Q4. Categorize government receipts into Revenue and Capital receipts with reasons: (i) Recovery of loans (ii) Corporation tax [3 Marks]</div>
-            <textarea name="Q4_Answer" placeholder="Yahan apna jawab likhein..." required></textarea>
-        </div>
+    <div class="question">
+        <p>Q4. Categorize the following government receipts into Revenue Receipts and Capital Receipts, giving valid reasons: (i) Recovery of loans (ii) Corporation tax [3 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
 
-        <div class="question-card">
-            <div class="q-title">Q5. Explain the 'Store of Value' function of money. How has it solved the major limitation of the barter system? [3 Marks]</div>
-            <textarea name="Q5_Answer" placeholder="Yahan apna jawab likhein..." required></textarea>
-        </div>
+    <div class="question">
+        <p>Q5. Explain the 'Store of Value' function of money. How has it solved the major limitation of the barter system? [3 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
 
-        <div class="question-card">
-            <div class="q-title">Q6. Distinguish between <b>Balance of Trade</b> and <b>Balance on Current Account</b> of BoP on the basis of components. [3 Marks]</div>
-            <textarea name="Q6_Answer" placeholder="Yahan apna jawab likhein..." required></textarea>
-        </div>
+    <div class="question">
+        <p>Q6. Distinguish between **Balance of Trade** and **Balance on Current Account** of Balance of Payments on the basis of components. [3 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
 
-        <div class="question-card">
-            <div class="q-title">Q7. Consumption function: C = 100 + 0.6Y, Planned Investment = ₹300 crore. Calculate: (i) Equilibrium income (ii) Value of saving at equilibrium. [4 Marks]</div>
-            <textarea name="Q7_Answer" placeholder="Yahan apna jawab likhein..." required></textarea>
-        </div>
+    <div class="question">
+        <p>Q7. In an economy, the Consumption function is given as: $C = 100 + 0.6Y$ (where $C$ = consumption expenditure, $Y$ = national income). If planned investment is ₹300 crore, calculate: (i) Equilibrium level of income (ii) Value of saving at equilibrium. [4 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
 
-        <div class="question-card">
-            <div class="q-title">Q8. Explain the role of 'Repo Rate' and 'Open Market Operations' in controlling excess demand (inflation) during an inflationary gap. [4 Marks]</div>
-            <textarea name="Q8_Answer" placeholder="Yahan apna jawab likhein..." required></textarea>
-        </div>
+    <div class="question">
+        <p>Q8. Explain the role of the **Repo Rate** and **Open Market Operations** in controlling excess demand (inflation) during an inflationary gap. [4 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
 
-        <div class="question-card">
-            <div class="q-title">Q9. Explain steps in calculating National Income using 'Income Method'. State any two precautions. [6 Marks]</div>
-            <textarea name="Q9_Answer" placeholder="Yahan apna jawab likhein..." required></textarea>
-        </div>
+    <div class="question">
+        <p>Q9. Explain the steps involved in calculating National Income using the **Income Method**. State any two precautions that must be taken while estimating it. [6 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
 
-        <div class="question-card">
-            <div class="q-title">Q10. What is meant by <b>Deficient Demand</b>? Explain its impact on output, employment, and general price level, and explain any one fiscal measure to correct it. [6 Marks]</div>
-            <textarea name="Q10_Answer" placeholder="Yahan apna jawab likhein..." required></textarea>
-        </div>
+    <div class="question">
+        <p>Q10. *(Option 1)* Explain the components of Aggregate Demand in a two-sector economy with the help of a suitable schedule or diagram. <br><strong>OR</strong><br> *(Option 2)* What is meant by **Deficient Demand**? Explain its impact on output, employment, and general price level, and explain any one fiscal measure to correct it. [6 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
 
-        <button type="submit" class="submit-btn">Submit Test & Send to Teacher's Email 🚀</button>
-    </form>
+    <!-- PART B -->
+    <div class="section-title">PART B: INDIAN ECONOMIC DEVELOPMENT (40 MARKS)</div>
+
+    <div class="question">
+        <p>Q1. What was the primary objective of India's Five-Year Plans regarding **Equity**? [1 Mark]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
+
+    <div class="question">
+        <p>Q2. State the meaning of **Subsidies** in the context of agricultural policy. [1 Mark]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
+
+    <div class="question">
+        <p>Q3. Name two institutional reforms initiated in Indian agriculture under the Green Revolution era. [1 Mark]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
+
+    <div class="question">
+        <p>Q4. Discuss any two major drawbacks of the **Licensing Policy** implemented during the industrial planning period (1950–1990). [3 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
+
+    <div class="question">
+        <p>Q5. Why is **Human Capital Formation** considered vital for the economic growth of a developing nation? Give three arguments. [3 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
+
+    <div class="question">
+        <p>Q6. Distinguish between **Formal sector** and **Informal sector** employment with examples. [3 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
+
+    <div class="question">
+        <p>Q7. Explain the main causes of **rural poverty** in India. State any two steps taken by the government for poverty alleviation. [4 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
+
+    <div class="question">
+        <p>Q8. State and discuss the salient features of India's **Foreign Trade Policy** during the pre-1991 period (Import Substitution Strategy). [4 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
+
+    <div class="question">
+        <p>Q9. Critically evaluate the **New Economic Policy of 1991 (LPG)** with reference to its impact on the agricultural and industrial sectors. [6 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
+
+    <div class="question">
+        <p>Q10. *(Option 1)* Discuss the emergence of **Organic Farming** as a sustainable livelihood option for Indian agriculture, highlighting its benefits and challenges. <br><strong>OR</strong><br> *(Option 2)* Compare and analyze the developmental strategies and economic growth path of **India and Pakistan** with respect to demographic indicators and sectoral growth. [6 Marks]</p>
+        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    </div>
+
+    <button class="submit-btn" onclick="alert('Test submitted successfully!')">Submit Test 🚀</button>
 </div>
 
 </body>
