@@ -4,212 +4,532 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CBSE Class 12th Economics — Board Challenge Paper</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: 22px;
-            margin-bottom: 5px;
-        }
-        .subtitle {
-            text-align: center;
-            color: #e67e22;
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        .meta-box {
-            display: flex;
-            justify-content: space-between;
-            background: #ecf0f1;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        .section-title {
-            background: #34495e;
-            color: #fff;
-            padding: 8px 12px;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-size: 16px;
-            border-radius: 4px;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        .question p {
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-        textarea {
-            width: 100%;
-            height: 60px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-            font-family: inherit;
-        }
-        .submit-btn {
-            display: block;
-            width: 100%;
-            background: #27ae60;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 30px;
-            text-align: center;
-        }
-        .submit-btn:hover {
-            background: #219653;
+        .timer-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-100 text-gray-800 font-sans min-h-screen">
 
-<div class="container">
-    <h1>CBSE CLASS 12TH ECONOMICS — BOARD CHALLENGE PAPER</h1>
-    <div class="subtitle">Target: 80+ Marks Guarantee Series | Most Repeated Board Exam Topics (Delhi Region Trend)</div>
-
-    <div class="meta-box">
-        <div><strong>Student Name:</strong> <input type="text" placeholder="Apna poora naam likhein" style="border:none; background:transparent; border-bottom:1px solid #999;"></div>
-        <div><strong>Max. Marks:</strong> 80</div>
-    </div>
-    <div class="meta-box">
-        <div><strong>School / Batch:</strong> <input type="text" placeholder="Batch ya School ka naam" style="border:none; background:transparent; border-bottom:1px solid #999;"></div>
-        <div><strong>Time Allowed:</strong> 3 Hours</div>
-    </div>
-
-    <!-- PART A -->
-    <div class="section-title">PART A: MACROECONOMICS (40 MARKS)</div>
-
-    <div class="question">
-        <p>Q1. Define Involuntary Unemployment. [1 Mark]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    <!-- Sticky Live Timer & Header Bar -->
+    <div class="timer-sticky bg-slate-900 text-white shadow-md border-b border-slate-700 py-3 px-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div>
+                <span class="text-xs uppercase tracking-wider text-slate-400 block">CBSE Official Timing</span>
+                <span class="text-sm font-semibold text-emerald-400">10:30 AM – 01:30 PM (3 Hours)</span>
+            </div>
+            <div class="text-right">
+                <span class="text-xs uppercase tracking-wider text-slate-400 block">Time Remaining</span>
+                <span id="timer" class="text-xl font-mono font-bold text-amber-400">03:00:00</span>
+            </div>
+        </div>
     </div>
 
-    <div class="question">
-        <p>Q2. If the Marginal Propensity to Save (MPS) is 0.2, calculate the value of the Investment Multiplier (k). [1 Mark]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    <!-- Main Test Container -->
+    <div id="test-container" class="max-w-4xl mx-auto p-4 sm:p-6 my-6 bg-white rounded-xl shadow-lg border border-slate-200">
+        
+        <!-- Header -->
+        <div class="text-center border-b pb-6 mb-6">
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 uppercase">CBSE Class 12th Economics — Board Challenge Paper</h1>
+            <p class="text-amber-600 font-bold text-sm sm:text-base mt-1">Target: 80+ Marks Guarantee Series | Most Repeated Board Exam Topics (Delhi Region Trend)</p>
+        </div>
+
+        <!-- Student Info Fields -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <div>
+                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Student Full Name *</label>
+                <input type="text" id="student-name" placeholder="Enter your full name" class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-slate-800 outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">School / Batch Name *</label>
+                <input type="text" id="student-school" placeholder="Enter your school or batch name" class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-slate-800 outline-none">
+            </div>
+        </div>
+
+        <form id="quiz-form">
+            <!-- PART A: MACROECONOMICS -->
+            <div class="bg-slate-800 text-white p-3 rounded-lg font-bold text-lg mb-6 shadow">
+                PART A: MACROECONOMICS (40 MARKS)
+            </div>
+
+            <div class="space-y-6 mb-8">
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q1. Define Involuntary Unemployment. <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q1. Define Involuntary Unemployment." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q2. If the Marginal Propensity to Save (MPS) is 0.2, calculate the value of the Investment Multiplier (k). <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q2. Value of Investment Multiplier (k) calculation." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q3. State whether the following statement is true or false, with valid reason: "Ex-ante Savings and Ex-ante Investments are always equal at equilibrium level of income." <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q3. Ex-ante Savings and Investments equilibrium statement." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q4. Categorize the following government receipts into Revenue Receipts and Capital Receipts, giving valid reasons: (i) Recovery of loans (ii) Corporation tax. <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q4. Categorize government receipts (Recovery of loans & Corporation tax)." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q5. Explain the 'Store of Value' function of money. How has it solved the major limitation of the barter system? <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q5. Store of Value function of money vs Barter system." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q6. Distinguish between Balance of Trade and Balance on Current Account of Balance of Payments on the basis of components. <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q6. Difference between Balance of Trade and Current Account." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q7. In an economy, C = 100 + 0.6Y and Planned Investment = ₹300 crore. Calculate: (i) Equilibrium level of income (ii) Value of saving at equilibrium. <span class="text-xs text-slate-500 font-normal">[4 Marks]</span></label>
+                    <textarea data-q="Q7. Numerical: Equilibrium Income and Saving calculation." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-32" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q8. Explain the role of the Repo Rate and Open Market Operations in controlling excess demand (inflation) during an inflationary gap. <span class="text-xs text-slate-500 font-normal">[4 Marks]</span></label>
+                    <textarea data-q="Q8. Repo Rate & OMO in controlling Excess Demand." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-32" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q9. Explain the steps involved in calculating National Income using the Income Method. State any two precautions. <span class="text-xs text-slate-500 font-normal">[6 Marks]</span></label>
+                    <textarea data-q="Q9. National Income calculation via Income Method & Precautions." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-36" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q10. Explain components of Aggregate Demand in a two-sector economy OR Explain Deficient Demand, its impacts, and one fiscal measure. <span class="text-xs text-slate-500 font-normal">[6 Marks]</span></label>
+                    <textarea data-q="Q10. Aggregate Demand components OR Deficient Demand & Fiscal measure." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-36" placeholder="Write your answer here..."></textarea>
+                </div>
+            </div>
+
+            <!-- PART B: INDIAN ECONOMIC DEVELOPMENT -->
+            <div class="bg-emerald-800 text-white p-3 rounded-lg font-bold text-lg mb-6 shadow">
+                PART B: INDIAN ECONOMIC DEVELOPMENT (40 MARKS)
+            </div>
+
+            <div class="space-y-6 mb-8">
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q11. What was the primary objective of India's Five-Year Plans regarding Equity? <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q11. Five-Year Plans objective regarding Equity." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q12. State the meaning of Subsidies in the context of agricultural policy. <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q12. Meaning of Subsidies in agriculture." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q13. Name two institutional reforms initiated in Indian agriculture under the Green Revolution era. <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q13. Two institutional reforms in Green Revolution era." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q14. Discuss any two major drawbacks of the Licensing Policy during 1950–1990. <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q14. Two drawbacks of Licensing Policy (1950-1990)." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q15. Why is Human Capital Formation vital for economic growth? Give three arguments. <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q15. Importance of Human Capital Formation (3 arguments)." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q16. Distinguish between Formal sector and Informal sector employment with examples. <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q16. Difference between Formal and Informal sector employment." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q17. Explain main causes of rural poverty in India and state two government steps for alleviation. <span class="text-xs text-slate-500 font-normal">[4 Marks]</span></label>
+                    <textarea data-q="Q17. Rural poverty causes and government alleviation steps." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-32" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q18. Discuss salient features of India's Foreign Trade Policy pre-1991 (Import Substitution Strategy). <span class="text-xs text-slate-500 font-normal">[4 Marks]</span></label>
+                    <textarea data-q="Q18. Foreign Trade Policy pre-1991 (Import Substitution)." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-32" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q19. Critically evaluate New Economic Policy of 1991 (LPG) regarding agriculture and industrial sectors. <span class="text-xs text-slate-500 font-normal">[6 Marks]</span></label>
+                    <textarea data-q="Q19. Evaluation of NEP 1991 (LPG) on agriculture and industry." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-36" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q20. Organic Farming benefits & challenges OR Compare developmental strategies of India and Pakistan. <span class="text-xs text-slate-500 font-normal">[6 Marks]</span></label>
+                    <textarea data-q="Q20. Organic Farming OR India vs Pakistan growth comparison." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-36" placeholder="Write your answer here..."></textarea>
+                </div>
+            </div>
+
+            <button type="button" onclick="submitTest()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl text-lg shadow-lg transition">
+                Submit Test & Generate Final Sheet 🚀
+            </button>
+        </form>
     </div>
 
-    <div class="question">
-        <p>Q3. State whether the following statement is true or false, with valid reason: "Ex-ante Savings and Ex-ante Investments are always equal at equilibrium level of income." [1 Mark]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    <!-- Final Result / Screenshot View (Hidden initially) -->
+    <div id="result-container" class="hidden max-w-4xl mx-auto p-6 my-6 bg-white rounded-xl shadow-2xl border-2 border-emerald-500">
+        <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-lg mb-6 text-center">
+            <h2 class="text-2xl font-bold text-emerald-800">✅ TEST SUBMITTED SUCCESSFULLY</h2>
+            <p class="text-sm text-emerald-700 font-medium mt-1">Please take a screenshot of this page and send it to your teacher!</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 bg-slate-100 p-4 rounded-lg mb-6 text-sm">
+            <div><strong>Student Name:</strong> <span id="res-name" class="text-slate-900 font-semibold"></span></div>
+            <div><strong>School / Batch:</strong> <span id="res-school" class="text-slate-900 font-semibold"></span></div>
+            <div><strong>Submission Time:</strong> <span id="res-time" class="text-slate-900 font-semibold"></span></div>
+            <div><strong>Total Questions Attempted:</strong> <span id="res-count" class="text-emerald-700 font-bold"></span></div>
+        </div>
+
+        <h3 class="text-lg font-bold border-b pb-2 mb-4 text-slate-800">Student Response Sheet</h3>
+        <div id="answers-summary" class="space-y-4 text-sm"></div>
+
+        <div class="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg text-center text-xs text-amber-800">
+            📸 <strong>Take a Screenshot Now</strong> and share it with your instructor for evaluation.
+        </div>
     </div>
 
-    <div class="question">
-        <p>Q4. Categorize the following government receipts into Revenue Receipts and Capital Receipts, giving valid reasons: (i) Recovery of loans (ii) Corporation tax [3 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    <script>
+        // 3 Hours Timer Setup (10800 seconds)
+        let totalSeconds = 10800; 
+        const timerElement = document.getElementById('timer');
+
+        const countdown = setInterval(() => {
+            if (totalSeconds <= 0) {
+                clearInterval(countdown);
+                alert("⏰ Time is Over! Your test is submitting automatically.");
+                submitTest();
+            } else {
+                totalSeconds--;
+                let hours = Math.floor(totalSeconds / 3600);
+                let minutes = Math.floor((totalSeconds % 3600) / 60);
+                let seconds = totalSeconds % 60;
+
+                timerElement.innerText = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
+
+        function submitTest() {
+            const sName = document.getElementById('student-name').value.trim();
+            const sSchool = document.getElementById('student-school').value.trim();
+
+            if (!sName || !sSchool) {
+                alert("Kripya apna Name aur School/Batch ka naam zaroor bharein!");
+                return;
+            }
+
+            clearInterval(countdown);
+
+            document.getElementById('res-name').innerText = sName;
+            document.getElementById('res-school').innerText = sSchool;
+            document.getElementById('res-time').innerText = new Date().toLocaleString();
+
+            const textareas = document.querySelectorAll('#quiz-form textarea');
+            const summaryDiv = document.getElementById('answers-summary');
+            summaryDiv.innerHTML = '';
+
+            let attemptedCount = 0;
+
+            textareas.forEach((ta, index) => {
+                const questionTitle = ta.getAttribute('data-q');
+                const answerValue = ta.value.trim();
+
+                const qBox = document.createElement('div');
+                qBox.className = 'p-3 rounded border ' + (answerValue ? 'bg-slate-50 border-slate-200' : 'bg-red-50 border-red-200');
+
+                if (answerValue) {
+                    attemptedCount++;
+                    qBox.innerHTML = `
+                        <p class="font-bold text-slate-800">${index + 1}. ${questionTitle}</p>
+                        <p class="text-slate-700 mt-1 whitespace-pre-wrap"><strong>Answer:</strong> ${answerValue}</p>
+                    `;
+                } else {
+                    qBox.innerHTML = `
+                        <p class="font-bold text-slate-800">${index + 1}. ${questionTitle}</p>
+                        <p class="text-red-600 font-semibold mt-1">❌ Not Attempted</p>
+                    `;
+                }
+
+                summaryDiv.appendChild(qBox);
+            });
+
+            document.getElementById('res-count').innerText = `${attemptedCount} / ${textareas.length}`;
+
+            // Hide Test Form & Show Final Review Summary
+            document.getElementById('test-container').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSE Class 12th Economics — Board Challenge Paper</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .timer-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-gray-800 font-sans min-h-screen">
+
+    <!-- Sticky Live Timer & Header Bar -->
+    <div class="timer-sticky bg-slate-900 text-white shadow-md border-b border-slate-700 py-3 px-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div>
+                <span class="text-xs uppercase tracking-wider text-slate-400 block">CBSE Official Timing</span>
+                <span class="text-sm font-semibold text-emerald-400">10:30 AM – 01:30 PM (3 Hours)</span>
+            </div>
+            <div class="text-right">
+                <span class="text-xs uppercase tracking-wider text-slate-400 block">Time Remaining</span>
+                <span id="timer" class="text-xl font-mono font-bold text-amber-400">03:00:00</span>
+            </div>
+        </div>
     </div>
 
-    <div class="question">
-        <p>Q5. Explain the 'Store of Value' function of money. How has it solved the major limitation of the barter system? [3 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    <!-- Main Test Container -->
+    <div id="test-container" class="max-w-4xl mx-auto p-4 sm:p-6 my-6 bg-white rounded-xl shadow-lg border border-slate-200">
+        
+        <!-- Header -->
+        <div class="text-center border-b pb-6 mb-6">
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 uppercase">CBSE Class 12th Economics — Board Challenge Paper</h1>
+            <p class="text-amber-600 font-bold text-sm sm:text-base mt-1">Target: 80+ Marks Guarantee Series | Most Repeated Board Exam Topics (Delhi Region Trend)</p>
+        </div>
+
+        <!-- Student Info Fields -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <div>
+                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Student Full Name *</label>
+                <input type="text" id="student-name" placeholder="Enter your full name" class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-slate-800 outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">School / Batch Name *</label>
+                <input type="text" id="student-school" placeholder="Enter your school or batch name" class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-slate-800 outline-none">
+            </div>
+        </div>
+
+        <form id="quiz-form">
+            <!-- PART A: MACROECONOMICS -->
+            <div class="bg-slate-800 text-white p-3 rounded-lg font-bold text-lg mb-6 shadow">
+                PART A: MACROECONOMICS (40 MARKS)
+            </div>
+
+            <div class="space-y-6 mb-8">
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q1. Define Involuntary Unemployment. <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q1. Define Involuntary Unemployment." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q2. If the Marginal Propensity to Save (MPS) is 0.2, calculate the value of the Investment Multiplier (k). <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q2. Value of Investment Multiplier (k) calculation." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q3. State whether the following statement is true or false, with valid reason: "Ex-ante Savings and Ex-ante Investments are always equal at equilibrium level of income." <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q3. Ex-ante Savings and Investments equilibrium statement." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q4. Categorize the following government receipts into Revenue Receipts and Capital Receipts, giving valid reasons: (i) Recovery of loans (ii) Corporation tax. <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q4. Categorize government receipts (Recovery of loans & Corporation tax)." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q5. Explain the 'Store of Value' function of money. How has it solved the major limitation of the barter system? <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q5. Store of Value function of money vs Barter system." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q6. Distinguish between Balance of Trade and Balance on Current Account of Balance of Payments on the basis of components. <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q6. Difference between Balance of Trade and Current Account." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q7. In an economy, C = 100 + 0.6Y and Planned Investment = ₹300 crore. Calculate: (i) Equilibrium level of income (ii) Value of saving at equilibrium. <span class="text-xs text-slate-500 font-normal">[4 Marks]</span></label>
+                    <textarea data-q="Q7. Numerical: Equilibrium Income and Saving calculation." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-32" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q8. Explain the role of the Repo Rate and Open Market Operations in controlling excess demand (inflation) during an inflationary gap. <span class="text-xs text-slate-500 font-normal">[4 Marks]</span></label>
+                    <textarea data-q="Q8. Repo Rate & OMO in controlling Excess Demand." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-32" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q9. Explain the steps involved in calculating National Income using the Income Method. State any two precautions. <span class="text-xs text-slate-500 font-normal">[6 Marks]</span></label>
+                    <textarea data-q="Q9. National Income calculation via Income Method & Precautions." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-36" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q10. Explain components of Aggregate Demand in a two-sector economy OR Explain Deficient Demand, its impacts, and one fiscal measure. <span class="text-xs text-slate-500 font-normal">[6 Marks]</span></label>
+                    <textarea data-q="Q10. Aggregate Demand components OR Deficient Demand & Fiscal measure." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-36" placeholder="Write your answer here..."></textarea>
+                </div>
+            </div>
+
+            <!-- PART B: INDIAN ECONOMIC DEVELOPMENT -->
+            <div class="bg-emerald-800 text-white p-3 rounded-lg font-bold text-lg mb-6 shadow">
+                PART B: INDIAN ECONOMIC DEVELOPMENT (40 MARKS)
+            </div>
+
+            <div class="space-y-6 mb-8">
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q11. What was the primary objective of India's Five-Year Plans regarding Equity? <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q11. Five-Year Plans objective regarding Equity." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q12. State the meaning of Subsidies in the context of agricultural policy. <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q12. Meaning of Subsidies in agriculture." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q13. Name two institutional reforms initiated in Indian agriculture under the Green Revolution era. <span class="text-xs text-slate-500 font-normal">[1 Mark]</span></label>
+                    <textarea data-q="Q13. Two institutional reforms in Green Revolution era." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q14. Discuss any two major drawbacks of the Licensing Policy during 1950–1990. <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q14. Two drawbacks of Licensing Policy (1950-1990)." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q15. Why is Human Capital Formation vital for economic growth? Give three arguments. <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q15. Importance of Human Capital Formation (3 arguments)." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q16. Distinguish between Formal sector and Informal sector employment with examples. <span class="text-xs text-slate-500 font-normal">[3 Marks]</span></label>
+                    <textarea data-q="Q16. Difference between Formal and Informal sector employment." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q17. Explain main causes of rural poverty in India and state two government steps for alleviation. <span class="text-xs text-slate-500 font-normal">[4 Marks]</span></label>
+                    <textarea data-q="Q17. Rural poverty causes and government alleviation steps." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-32" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q18. Discuss salient features of India's Foreign Trade Policy pre-1991 (Import Substitution Strategy). <span class="text-xs text-slate-500 font-normal">[4 Marks]</span></label>
+                    <textarea data-q="Q18. Foreign Trade Policy pre-1991 (Import Substitution)." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-32" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q19. Critically evaluate New Economic Policy of 1991 (LPG) regarding agriculture and industrial sectors. <span class="text-xs text-slate-500 font-normal">[6 Marks]</span></label>
+                    <textarea data-q="Q19. Evaluation of NEP 1991 (LPG) on agriculture and industry." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-36" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="block font-semibold mb-2">Q20. Organic Farming benefits & challenges OR Compare developmental strategies of India and Pakistan. <span class="text-xs text-slate-500 font-normal">[6 Marks]</span></label>
+                    <textarea data-q="Q20. Organic Farming OR India vs Pakistan growth comparison." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none h-36" placeholder="Write your answer here..."></textarea>
+                </div>
+            </div>
+
+            <button type="button" onclick="submitTest()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl text-lg shadow-lg transition">
+                Submit Test & Generate Final Sheet 🚀
+            </button>
+        </form>
     </div>
 
-    <div class="question">
-        <p>Q6. Distinguish between **Balance of Trade** and **Balance on Current Account** of Balance of Payments on the basis of components. [3 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
+    <!-- Final Result / Screenshot View (Hidden initially) -->
+    <div id="result-container" class="hidden max-w-4xl mx-auto p-6 my-6 bg-white rounded-xl shadow-2xl border-2 border-emerald-500">
+        <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-lg mb-6 text-center">
+            <h2 class="text-2xl font-bold text-emerald-800">✅ TEST SUBMITTED SUCCESSFULLY</h2>
+            <p class="text-sm text-emerald-700 font-medium mt-1">Please take a screenshot of this page and send it to your teacher!</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 bg-slate-100 p-4 rounded-lg mb-6 text-sm">
+            <div><strong>Student Name:</strong> <span id="res-name" class="text-slate-900 font-semibold"></span></div>
+            <div><strong>School / Batch:</strong> <span id="res-school" class="text-slate-900 font-semibold"></span></div>
+            <div><strong>Submission Time:</strong> <span id="res-time" class="text-slate-900 font-semibold"></span></div>
+            <div><strong>Total Questions Attempted:</strong> <span id="res-count" class="text-emerald-700 font-bold"></span></div>
+        </div>
+
+        <h3 class="text-lg font-bold border-b pb-2 mb-4 text-slate-800">Student Response Sheet</h3>
+        <div id="answers-summary" class="space-y-4 text-sm"></div>
+
+        <div class="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg text-center text-xs text-amber-800">
+            📸 <strong>Take a Screenshot Now</strong> and share it with your instructor for evaluation.
+        </div>
     </div>
 
-    <div class="question">
-        <p>Q7. In an economy, the Consumption function is given as: $C = 100 + 0.6Y$ (where $C$ = consumption expenditure, $Y$ = national income). If planned investment is ₹300 crore, calculate: (i) Equilibrium level of income (ii) Value of saving at equilibrium. [4 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+    <script>
+        // 3 Hours Timer Setup (10800 seconds)
+        let totalSeconds = 10800; 
+        const timerElement = document.getElementById('timer');
 
-    <div class="question">
-        <p>Q8. Explain the role of the **Repo Rate** and **Open Market Operations** in controlling excess demand (inflation) during an inflationary gap. [4 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+        const countdown = setInterval(() => {
+            if (totalSeconds <= 0) {
+                clearInterval(countdown);
+                alert("⏰ Time is Over! Your test is submitting automatically.");
+                submitTest();
+            } else {
+                totalSeconds--;
+                let hours = Math.floor(totalSeconds / 3600);
+                let minutes = Math.floor((totalSeconds % 3600) / 60);
+                let seconds = totalSeconds % 60;
 
-    <div class="question">
-        <p>Q9. Explain the steps involved in calculating National Income using the **Income Method**. State any two precautions that must be taken while estimating it. [6 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+                timerElement.innerText = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
 
-    <div class="question">
-        <p>Q10. *(Option 1)* Explain the components of Aggregate Demand in a two-sector economy with the help of a suitable schedule or diagram. <br><strong>OR</strong><br> *(Option 2)* What is meant by **Deficient Demand**? Explain its impact on output, employment, and general price level, and explain any one fiscal measure to correct it. [6 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+        function submitTest() {
+            const sName = document.getElementById('student-name').value.trim();
+            const sSchool = document.getElementById('student-school').value.trim();
 
-    <!-- PART B -->
-    <div class="section-title">PART B: INDIAN ECONOMIC DEVELOPMENT (40 MARKS)</div>
+            if (!sName || !sSchool) {
+                alert("Kripya apna Name aur School/Batch ka naam zaroor bharein!");
+                return;
+            }
 
-    <div class="question">
-        <p>Q1. What was the primary objective of India's Five-Year Plans regarding **Equity**? [1 Mark]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+            clearInterval(countdown);
 
-    <div class="question">
-        <p>Q2. State the meaning of **Subsidies** in the context of agricultural policy. [1 Mark]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+            document.getElementById('res-name').innerText = sName;
+            document.getElementById('res-school').innerText = sSchool;
+            document.getElementById('res-time').innerText = new Date().toLocaleString();
 
-    <div class="question">
-        <p>Q3. Name two institutional reforms initiated in Indian agriculture under the Green Revolution era. [1 Mark]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+            const textareas = document.querySelectorAll('#quiz-form textarea');
+            const summaryDiv = document.getElementById('answers-summary');
+            summaryDiv.innerHTML = '';
 
-    <div class="question">
-        <p>Q4. Discuss any two major drawbacks of the **Licensing Policy** implemented during the industrial planning period (1950–1990). [3 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+            let attemptedCount = 0;
 
-    <div class="question">
-        <p>Q5. Why is **Human Capital Formation** considered vital for the economic growth of a developing nation? Give three arguments. [3 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+            textareas.forEach((ta, index) => {
+                const questionTitle = ta.getAttribute('data-q');
+                const answerValue = ta.value.trim();
 
-    <div class="question">
-        <p>Q6. Distinguish between **Formal sector** and **Informal sector** employment with examples. [3 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+                const qBox = document.createElement('div');
+                qBox.className = 'p-3 rounded border ' + (answerValue ? 'bg-slate-50 border-slate-200' : 'bg-red-50 border-red-200');
 
-    <div class="question">
-        <p>Q7. Explain the main causes of **rural poverty** in India. State any two steps taken by the government for poverty alleviation. [4 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+                if (answerValue) {
+                    attemptedCount++;
+                    qBox.innerHTML = `
+                        <p class="font-bold text-slate-800">${index + 1}. ${questionTitle}</p>
+                        <p class="text-slate-700 mt-1 whitespace-pre-wrap"><strong>Answer:</strong> ${answerValue}</p>
+                    `;
+                } else {
+                    qBox.innerHTML = `
+                        <p class="font-bold text-slate-800">${index + 1}. ${questionTitle}</p>
+                        <p class="text-red-600 font-semibold mt-1">❌ Not Attempted</p>
+                    `;
+                }
 
-    <div class="question">
-        <p>Q8. State and discuss the salient features of India's **Foreign Trade Policy** during the pre-1991 period (Import Substitution Strategy). [4 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+                summaryDiv.appendChild(qBox);
+            });
 
-    <div class="question">
-        <p>Q9. Critically evaluate the **New Economic Policy of 1991 (LPG)** with reference to its impact on the agricultural and industrial sectors. [6 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
+            document.getElementById('res-count').innerText = `${attemptedCount} / ${textareas.length}`;
 
-    <div class="question">
-        <p>Q10. *(Option 1)* Discuss the emergence of **Organic Farming** as a sustainable livelihood option for Indian agriculture, highlighting its benefits and challenges. <br><strong>OR</strong><br> *(Option 2)* Compare and analyze the developmental strategies and economic growth path of **India and Pakistan** with respect to demographic indicators and sectoral growth. [6 Marks]</p>
-        <textarea placeholder="Yahan apna jawab likhein..."></textarea>
-    </div>
-
-    <button class="submit-btn" onclick="alert('Test submitted successfully!')">Submit Test 🚀</button>
-</div>
-
+            // Hide Test Form & Show Final Review Summary
+            document.getElementById('test-container').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
