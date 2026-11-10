@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBSE Class 12 Political Science - Master Mock Test</title>
+    <title>CBSE Class 12 Political Science - Master Mock Test (Bilingual)</title>
     <style>
         :root {
             --primary: #4f46e5;
@@ -143,7 +143,6 @@
         .btn-submit:hover {
             background: var(--primary-dark);
         }
-        /* Result Screen Styling */
         #result-screen {
             display: none;
             text-align: center;
@@ -184,19 +183,19 @@
 <div class="container">
     <header>
         <h1>CBSE Class 12 Political Science</h1>
-        <p>Part-A (MCQs) & Part-B (Subjective Board Special Test)</p>
+        <p>Part-A (MCQs) & Part-B (Board Special Test) - Bilingual (English & Hindi)</p>
         <div class="timer-box" id="timer">Time Left: 60:00</div>
     </header>
 
     <!-- Test Form -->
     <div id="test-form">
         <div class="student-info">
-            <label for="studentName">Apna Poora Naam Likhein (Enter Your Full Name):</label>
-            <input type="text" id="studentName" placeholder="Jaise: Aman Kumar" required>
+            <label for="studentName">Enter Your Full Name / अपना पूरा नाम लिखें:</label>
+            <input type="text" id="studentName" placeholder="e.g., Aman Kumar" required>
         </div>
 
         <div class="instruction-banner">
-            💡 <strong>Instructions:</strong> Pehle saare MCQs solve karein. Neeche diye gaye Subjective Questions ko apni notebook mein likhein. Phir 'View Results' par click karke MCQ ka score dekhein aur iska screenshot apne Sir ko WhatsApp par bhejein!
+            💡 <strong>Instructions:</strong> First complete all MCQs. Write Subjective questions in your notebook. Click 'View Results' to check MCQ score and send the screenshot to your Sir on WhatsApp!
         </div>
 
         <!-- SECTION 1: MCQs -->
@@ -205,36 +204,39 @@
             <!-- MCQs injected via JavaScript -->
         </div>
 
-        <!-- SECTION 2: SUBJECTIVE QUESTIONS (Screenshot to Sir) -->
-        <div class="section-header">Section B: Important Subjective Questions (Notebook mein likhkar Sir ko bhejein)</div>
+        <!-- SECTION 2: SUBJECTIVE QUESTIONS -->
+        <div class="section-header">Section B: Important Subjective Questions (Write in Notebook & Send to Sir)</div>
         
         <div class="subjective-box">
-            <p>Q1. What was Shock Therapy? Mention any three major consequences of it on the former Soviet Union. (4 Marks)</p>
-            <span style="font-size: 13px; color: #78350f;">✏️ *Iska jawab apni copy me likhein.*</span>
+            <p>Q1. What was Shock Therapy? Mention any three major consequences of it on the former Soviet Union.<br>
+            <span style="font-weight: normal; font-size: 14px;">(शॉक थेरेपी क्या थी? भूतपूर्व सोवियत संघ पर इसके किन्हीं तीन प्रमुख परिणामों का उल्लेख कीजिए।)</span> (4 Marks)</p>
+            <span style="font-size: 13px; color: #78350f;">✏️ *Write answer in your notebook / अपनी कॉपी में लिखें।*</span>
         </div>
 
         <div class="subjective-box">
-            <p>Q2. Explain any four reasons for the dominance of the Congress Party in the first three general elections. (4 Marks)</p>
-            <span style="font-size: 13px; color: #78350f;">✏️ *Iska jawab apni copy me likhein.*</span>
+            <p>Q2. Explain any four reasons for the dominance of the Congress Party in the first three general elections.<br>
+            <span style="font-weight: normal; font-size: 14px;">(पहले तीन आम चुनावों में कांग्रेस पार्टी के प्रभुत्व के किन्हीं चार कारणों की व्याख्या कीजिए।)</span> (4 Marks)</p>
+            <span style="font-size: 13px; color: #78350f;">✏️ *Write answer in your notebook / अपनी कॉपी में लिखें।*</span>
         </div>
 
         <div class="subjective-box">
-            <p>Q3. What led to the imposition of emergency in India in 1975? Explain any three major causes. (6 Marks)</p>
-            <span style="font-size: 13px; color: #78350f;">✏️ *Iska jawab apni copy me likhein.*</span>
+            <p>Q3. What led to the imposition of emergency in India in 1975? Explain any three major causes.<br>
+            <span style="font-weight: normal; font-size: 14px;">(1975 में भारत में आपातकाल लागू करने के पीछे क्या कारण थे? किन्हीं तीन प्रमुख कारणों की व्याख्या कीजिए।)</span> (6 Marks)</p>
+            <span style="font-size: 13px; color: #78350f;">✏️ *Write answer in your notebook / अपनी कॉपी में लिखें।*</span>
         </div>
 
-        <button class="btn-submit" onclick="calculateResult()">View MCQ Results (Score Dekhein)</button>
+        <button class="btn-submit" onclick="calculateResult()">View MCQ Results (परिणाम देखें)</button>
     </div>
 
     <!-- Result Screen -->
     <div id="result-screen">
         <h2>🎉 MCQ Test Scorecard</h2>
-        <p><strong>Student Name:</strong> <span id="resName"></span></p>
+        <p><strong>Student Name / छात्र का नाम:</strong> <span id="resName"></span></p>
         <div class="score-badge" id="resScore">0 / 15</div>
         <p id="resStatus" style="font-weight: bold; font-size: 18px;"></p>
         
         <div style="background: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 8px; margin: 20px 0; color: #92400e;">
-            📸 <strong>Action Required:</strong> Is scorecard ka screenshot lo aur Section B (Subjective) ke likhe huye answers ke sath apne Sir ko WhatsApp par bhej do!
+            📸 <strong>Action Required:</strong> Take a screenshot of this scorecard and send it along with Section B subjective answers to your Sir on WhatsApp!
         </div>
         
         <div class="result-details" id="detailedAnswers">
@@ -244,81 +246,81 @@
 </div>
 
 <script>
-    // CBSE Favorite Core MCQs Dataset
+    // Bilingual CBSE Core MCQs Dataset
     const quizData = [
         {
-            q: "1. Non-Aligned Movement (NAM) ka pehla summit kahan aur kis varsh mein hua tha?",
-            options: ["Bandung, 1955", "Belgrade, 1961", "New Delhi, 1983", "Cairo, 1964"],
+            q: "1. Where and in which year was the first summit of the Non-Aligned Movement (NAM) held?<br><small style='color:#555;'>निसंरग आंदोलन (NAM) का पहला शिखर सम्मेलन कहाँ और किस वर्ष में हुआ था?</small>",
+            options: ["Bandung, 1955 / बांडुंग, 1955", "Belgrade, 1961 / बेलग्रेड, 1961", "New Delhi, 1983 / नई दिल्ली, 1983", "Cairo, 1964 / काहिरा, 1964"],
             answer: 1
         },
         {
-            q: "2. Soviet Union (USSR) ka formal dissolution / vightan kis varsh mein hua tha?",
+            q: "2. In which year did the formal dissolution / breakup of the Soviet Union (USSR) take place?<br><small style='color:#555;'>सोवियत संघ (USSR) का औपचारिक विघटन किस वर्ष में हुआ था?</small>",
             options: ["1989", "1990", "1991", "1992"],
             answer: 2
         },
         {
-            q: "3. 'Shock Therapy' ki aarthik pranali kiske dwara nirdeshit thi?",
-            options: ["World Bank aur IMF", "United Nations", "NATO", "ASEAN"],
+            q: "3. The economic model of 'Shock Therapy' was directed by whom?<br><small style='color:#555;'>'शॉक थेरेपी' (Shock Therapy) की आर्थिक प्रणाली किसके द्वारा निर्देशित थी?</small>",
+            options: ["World Bank and IMF / विश्व बैंक और IMF", "United Nations / संयुक्त राष्ट्र", "NATO / नाटो", "ASEAN / आसियान"],
             answer: 0
         },
         {
-            q: "4. ASEAN ki sthapna kis ghoshna patra (Declaration) ke tahat ki gayi thi?",
-            options: ["Bangkok Declaration", "Jakarta Declaration", "Manila Declaration", "Singapore Declaration"],
+            q: "4. Under which declaration was ASEAN established in 1967?<br><small style='color:#555;'>आसियान (ASEAN) की स्थापना किस घोषणा पत्र (Declaration) के तहत की गई थी?</small>",
+            options: ["Bangkok Declaration / बैंकॉक घोषणा", "Jakarta Declaration / जकार्ता घोषणा", "Manila Declaration / मनीला घोषणा", "Singapore Declaration / सिंगापुर घोषणा"],
             answer: 0
         },
         {
-            q: "5. UN Security Council mein permanent members ki kul sankhya kitni hai?",
+            q: "5. What is the total number of permanent members in the UN Security Council?<br><small style='color:#555;'>संयुक्त राष्ट्र सुरक्षा परिषद (UNSC) में स्थायी सदस्यों की कुल संख्या कितनी है?</small>",
             options: ["5", "10", "15", "6"],
             answer: 0
         },
         {
-            q: "6. Bharat aur Pakistan ke beech 'Shimla Agreement' kis varsh hastakshar (signed) kiya gaya tha?",
+            q: "6. In which year was the 'Shimla Agreement' signed between India and Pakistan?<br><small style='color:#555;'>भारत और पाकिस्तान के बीच 'शिमला समझौता' (Shimla Agreement) किस वर्ष हस्ताक्षर किया गया था?</small>",
             options: ["1965", "1971", "1972", "1974"],
             answer: 2
         },
         {
-            q: "7. States Reorganisation Commission (Rajya Punargathan Aayog) ki sthapna kis varsh hui thi jinhone 1956 mein report di?",
+            q: "7. In which year was the States Reorganisation Commission established, which submitted its report in 1956?<br><small style='color:#555;'>राज्य पुनर्गठन आयोग (States Reorganisation Commission) की स्थापना किस वर्ष हुई थी?</small>",
             options: ["1950", "1953", "1955", "1956"],
             answer: 1
         },
         {
-            q: "8. 1967 ke aam chunavon mein kis rajya mein Congress party pehli baar haari aur 'Samyukta Vidhayak Dal' (SVD) ki sarkar bani?",
-            options: ["Kerala", "Tamil Nadu (Madras)", "Bihar", "West Bengal"],
+            q: "8. In the 1967 general elections, in which state did the Congress party lose for the first time and 'Samyukta Vidhayak Dal' (SVD) government was formed?<br><small style='color:#555;'>1967 के आम चुनावों में किस राज्य में कांग्रेस पार्टी पहली बार हारी और 'संयुक्त विधायक दल' की सरकार बनी?</small>",
+            options: ["Kerala / केरल", "Tamil Nadu (Madras) / तमिलनाडु (मद्रास)", "Bihar / बिहार", "West Bengal / पश्चिम बंगाल"],
             answer: 1
         },
         {
-            q: "9. 'Aaya Ram, Gaya Ram' ka prasiddh jumla kis rajya ke ek vidhayak Gaya Lal ke dal-badal se juda hai?",
-            options: ["Punjab", "Haryana", "Uttar Pradesh", "Bihar"],
+            q: "9. The famous phrase 'Aaya Ram, Gaya Ram' is associated with the floor-crossing of MLA Gaya Lal from which state?<br><small style='color:#555;'>'आया राम, गया राम' का प्रसिद्ध जुमला किस राज्य के विधायक गया लाल के दल-बदल से जुड़ा है?</small>",
+            options: ["Punjab / पंजाब", "Haryana / हरियाणा", "Uttar Pradesh / उत्तर प्रदेश", "Bihar / बिहार"],
             answer: 1
         },
         {
-            q: "10. Bharat mein desh ke pehle aam chunav (First General Elections) kis varsh sampann hue the?",
+            q: "10. In which years were the First General Elections held in India?<br><small style='color:#555;'>भारत में देश के पहले आम चुनाव (First General Elections) किस वर्ष संपन्न हुए थे?</small>",
             options: ["1950-51", "1951-52", "1952-53", "1947-48"],
             answer: 1
         },
         {
-            q: "11. 1975 mein desh mein aapatkal (Emergency) lagane ke samay desh ke Pradhan Mantri kaun the?",
-            options: ["Morarji Desai", "Indira Gandhi", "Jawaharlal Nehru", "Charan Singh"],
+            q: "11. Who was the Prime Minister of India when Emergency was imposed in the country in 1975?<br><small style='color:#555;'>1975 में देश में आपातकाल (Emergency) लगाने के समय देश के प्रधानमंत्री कौन थे?</small>",
+            options: ["Morarji Desai / मोरारजी देसाई", "Indira Gandhi / इंदिरा गांधी", "Jawaharlal Nehru / जवाहरलाल नेहरू", "Charan Singh / चरण सिंह"],
             answer: 1
         },
         {
-            q: "12. 'Green Revolution' (Harit Kranti) ka sabse adhik laabh kis fasal ke utpadan mein dekhne ko mila?",
-            options: ["Chawal (Rice)", "Gehu aur Chawal (Wheat & Rice)", "Dal (Pulses)", "Ganna (Sugarcane)"],
+            q: "12. The 'Green Revolution' gave maximum benefit to the production of which crop in India?<br><small style='color:#555;'>'हरित क्रांति' (Green Revolution) का सबसे अधिक लाभ किस फसल के उत्पादन में देखने को मिला?</small>",
+            options: ["Rice / चावल", "Wheat & Rice / गेहूं और चावल", "Pulses / दाल", "Sugarcane / गन्ना"],
             answer: 1
         },
         {
-            q: "13. Anandpur Sahib Resolution (1973) mukhya roop se kis rajya ke rajnitik, aarthik aur dharmik hakon se sambandhit tha?",
-            options: ["Jammu & Kashmir", "Punjab", "Assam", "Tamil Nadu"],
+            q: "13. The Anandpur Sahib Resolution (1973) was primarily related to the political, economic, and religious rights of which state?<br><small style='color:#555;'>आनंदपुर साहिब प्रस्ताव (1973) मुख्य रूप से किस राज्य के राजनीतिक, आर्थिक और धार्मिक हकों से संबंधित था?</small>",
+            options: ["Jammu & Kashmir / जम्मू और कश्मीर", "Punjab / पंजाब", "Assam / असम", "Tamil Nadu / तमिलनाडु"],
             answer: 1
         },
         {
-            q: "14. 1990 mein kis aayog ki sifarishon ke aadhar par OBC (Other Backward Classes) ko aarakshan (reservation) diya gaya?",
-            options: ["Sarkaria Commission", "Mandal Commission", "Shah Commission", "Election Commission"],
+            q: "14. Based on whose recommendations was reservation given to OBCs in 1990?<br><small style='color:#555;'>1990 में किस आयोग की सिफारिशों के आधार पर OBC को आरक्षण दिया गया?</small>",
+            options: ["Sarkaria Commission / सरकारिया आयोग", "Mandal Commission / मंडल आयोग", "Shah Commission / शाह आयोग", "Election Commission / निर्वाचन आयोग"],
             answer: 1
         },
         {
-            q: "15. 'Panchsheel' ke paanch siddhant kin do deshon ke beech huye samjhote ka hissa the?",
-            options: ["India aur Pakistan", "India aur China", "India aur USSR", "India aur USA"],
+            q: "15. The five principles of 'Panchsheel' were part of the agreement signed between which two countries?<br><small style='color:#555;'>'पंचशील' के पांच सिद्धांत किन दो देशों के बीच हुए समझौते का हिस्सा थे?</small>",
+            options: ["India and Pakistan / भारत और पाकिस्तान", "India and China / भारत और चीन", "India and USSR / भारत और सोवियत संघ", "India and USA / भारत और अमेरिका"],
             answer: 1
         }
     ];
@@ -353,7 +355,7 @@
         document.getElementById("timer").innerText = `Time Left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            alert("Samay samapt ho gaya hai! Aapka MCQ test auto-evaluate ho raha hai.");
+            alert("Time is up! Your MCQ test is auto-submitting. / समय समाप्त हो गया है!");
             calculateResult();
         }
         timeLeft--;
@@ -363,7 +365,7 @@
     function calculateResult() {
         const studentName = document.getElementById("studentName").value.trim();
         if(!studentName) {
-            alert("Kripya apna poora naam pehle enter karein!");
+            alert("Please enter your full name first! / कृपया अपना पूरा नाम पहले दर्ज करें!");
             document.getElementById("studentName").focus();
             return;
         }
@@ -379,14 +381,17 @@
 
             if(isCorrect) score++;
 
-            let userText = userAns !== -1 ? item.options[userAns] : "Attempt nahi kiya";
+            let userText = userAns !== -1 ? item.options[userAns] : "Not Attempted / प्रयास नहीं किया";
             let correctText = item.options[item.answer];
+
+            // Clean plain text for result summary
+            let cleanQ = item.q.replace(/<[^>]*>?/gm, '');
 
             detailedHtml += `
                 <div class="res-item">
-                    <strong>Q${index+1}: ${item.q}</strong><br>
-                    Aapka jawab: <span class="${isCorrect ? 'correct-ans' : 'wrong-ans'}">${userText}</span><br>
-                    Sahi jawab: <span class="correct-ans">${correctText}</span>
+                    <strong>Q${index+1}: ${cleanQ}</strong><br>
+                    Your Answer: <span class="${isCorrect ? 'correct-ans' : 'wrong-ans'}">${userText}</span><br>
+                    Correct Answer: <span class="correct-ans">${correctText}</span>
                 </div>
             `;
         });
@@ -399,7 +404,7 @@
         document.getElementById("resScore").innerText = `${score} / ${quizData.length}`;
         
         let percentage = (score / quizData.length) * 100;
-        let statusText = percentage >= 70 ? "🔥 Shandar! Aapka MCQ preparation bahut accha hai!" : "⚠️ Thodi aur mehnat ki zaroorat hai, concepts revise karein!";
+        let statusText = percentage >= 70 ? "🔥 Excellent! Your board preparation level is top-notch!" : "⚠️ Keep revising concepts, you can do better!";
         document.getElementById("resStatus").innerText = statusText;
 
         document.getElementById("detailedAnswers").innerHTML = detailedHtml;
