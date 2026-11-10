@@ -1,222 +1,411 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBSE Class 12th Economics — Board Challenge Paper</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CBSE Class 12 Political Science - Master Mock Test</title>
     <style>
-        .timer-sticky {
-            position: sticky;
-            top: 0;
-            z-index: 50;
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --border-color: #e2e8f0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        header h1 {
+            color: var(--primary);
+            margin: 0 0 5px 0;
+            font-size: 24px;
+        }
+        header p {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+        .timer-box {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        .student-info {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .student-info label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .student-info input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .section-header {
+            background: #e0e7ff;
+            color: #312e81;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 6px;
+            margin: 25px 0 15px 0;
+        }
+        .question-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .question-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+        .options-list label {
+            display: block;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .options-list label:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+        .options-list input {
+            margin-right: 10px;
+        }
+        .subjective-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .subjective-box p {
+            margin: 0 0 8px 0;
+            font-weight: 600;
+            color: #92400e;
+        }
+        .btn-submit {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+            margin-top: 20px;
+        }
+        .btn-submit:hover {
+            background: var(--primary-dark);
+        }
+        /* Result Screen Styling */
+        #result-screen {
+            display: none;
+            text-align: center;
+        }
+        .score-badge {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+        .result-details {
+            text-align: left;
+            margin-top: 25px;
+            border-top: 2px solid var(--border-color);
+            padding-top: 15px;
+        }
+        .res-item {
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+        .correct-ans { color: #16a34a; font-weight: 600; }
+        .wrong-ans { color: #dc2626; font-weight: 600; }
+        .instruction-banner {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #1e40af;
+            margin-bottom: 20px;
+            text-align: center;
         }
     </style>
 </head>
-<body class="bg-slate-100 text-gray-800 font-sans min-h-screen">
+<body>
 
-    <!-- Sticky Live Timer & Header Bar -->
-    <div class="timer-sticky bg-slate-900 text-white shadow-md border-b border-slate-700 py-3 px-4">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <div>
-                <span class="text-xs uppercase tracking-wider text-slate-400 block">Combined Test Duration</span>
-                <span class="text-sm font-semibold text-emerald-400">1.5 Hours (90 Mins)</span>
-            </div>
-            <div class="text-right">
-                <span class="text-xs uppercase tracking-wider text-slate-400 block">Time Remaining</span>
-                <span id="timer" class="text-xl font-mono font-bold text-amber-400">01:30:00</span>
-            </div>
+<div class="container">
+    <header>
+        <h1>CBSE Class 12 Political Science</h1>
+        <p>Part-A (MCQs) & Part-B (Subjective Board Special Test)</p>
+        <div class="timer-box" id="timer">Time Left: 60:00</div>
+    </header>
+
+    <!-- Test Form -->
+    <div id="test-form">
+        <div class="student-info">
+            <label for="studentName">Apna Poora Naam Likhein (Enter Your Full Name):</label>
+            <input type="text" id="studentName" placeholder="Jaise: Aman Kumar" required>
         </div>
-    </div>
 
-    <!-- Main Test Container -->
-    <div id="test-container" class="max-w-4xl mx-auto p-4 sm:p-6 my-6 bg-white rounded-xl shadow-lg border border-slate-200">
+        <div class="instruction-banner">
+            💡 <strong>Instructions:</strong> Pehle saare MCQs solve karein. Neeche diye gaye Subjective Questions ko apni notebook mein likhein. Phir 'View Results' par click karke MCQ ka score dekhein aur iska screenshot apne Sir ko WhatsApp par bhejein!
+        </div>
+
+        <!-- SECTION 1: MCQs -->
+        <div class="section-header">Section A: High-Yield MCQs (Auto-Checked)</div>
+        <div id="questions-container">
+            <!-- MCQs injected via JavaScript -->
+        </div>
+
+        <!-- SECTION 2: SUBJECTIVE QUESTIONS (Screenshot to Sir) -->
+        <div class="section-header">Section B: Important Subjective Questions (Notebook mein likhkar Sir ko bhejein)</div>
         
-        <!-- Header -->
-        <div class="text-center border-b pb-6 mb-6">
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 uppercase">CBSE CLASS 12TH ECONOMICS — BOARD CHALLENGE PAPER</h1>
-            <p class="text-amber-600 font-bold text-sm sm:text-base mt-1">Target: 80+ Marks Series | Macroeconomics & IED Combined (10 Questions)</p>
+        <div class="subjective-box">
+            <p>Q1. What was Shock Therapy? Mention any three major consequences of it on the former Soviet Union. (4 Marks)</p>
+            <span style="font-size: 13px; color: #78350f;">✏️ *Iska jawab apni copy me likhein.*</span>
         </div>
 
-        <!-- Student Info Fields -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 bg-slate-50 p-4 rounded-lg border border-slate-200">
-            <div>
-                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Student Full Name *</label>
-                <input type="text" id="student-name" placeholder="Enter your full name" class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-slate-800 outline-none">
-            </div>
-            <div>
-                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">School / Batch Name *</label>
-                <input type="text" id="student-school" placeholder="Enter your school or batch name" class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-slate-800 outline-none">
-            </div>
+        <div class="subjective-box">
+            <p>Q2. Explain any four reasons for the dominance of the Congress Party in the first three general elections. (4 Marks)</p>
+            <span style="font-size: 13px; color: #78350f;">✏️ *Iska jawab apni copy me likhein.*</span>
         </div>
 
-        <form id="quiz-form">
-            <div class="bg-slate-800 text-white p-3 rounded-lg font-bold text-lg mb-6 shadow">
-                MIXED PRACTICE TEST (MACRO + IED)
-            </div>
+        <div class="subjective-box">
+            <p>Q3. What led to the imposition of emergency in India in 1975? Explain any three major causes. (6 Marks)</p>
+            <span style="font-size: 13px; color: #78350f;">✏️ *Iska jawab apni copy me likhein.*</span>
+        </div>
 
-            <div class="space-y-6 mb-8">
-                <!-- Q1: Macro (1 Mark) -->
-                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <label class="block font-semibold mb-2">Q1. Define Involuntary Unemployment. <span class="text-xs text-slate-500 font-normal">[Macro - 1 Mark]</span></label>
-                    <textarea data-q="Q1. Define Involuntary Unemployment." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
-                </div>
-
-                <!-- Q2: IED (1 Mark) -->
-                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <label class="block font-semibold mb-2">Q2. What was the primary objective of India's Five-Year Plans regarding Equity? <span class="text-xs text-slate-500 font-normal">[IED - 1 Mark]</span></label>
-                    <textarea data-q="Q2. Five-Year Plans objective regarding Equity." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
-                </div>
-
-                <!-- Q3: Macro (1 Mark) -->
-                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <label class="block font-semibold mb-2">Q3. If the Marginal Propensity to Save (MPS) is 0.2, calculate the value of the Investment Multiplier (k). <span class="text-xs text-slate-500 font-normal">[Macro - 1 Mark]</span></label>
-                    <textarea data-q="Q3. Value of Investment Multiplier (k) calculation." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
-                </div>
-
-                <!-- Q4: IED (1 Mark) -->
-                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <label class="block font-semibold mb-2">Q4. State the meaning of Subsidies in the context of agricultural policy. <span class="text-xs text-slate-500 font-normal">[IED - 1 Mark]</span></label>
-                    <textarea data-q="Q4. Meaning of Subsidies in agriculture." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-24" placeholder="Write your answer here..."></textarea>
-                </div>
-
-                <!-- Q5: Macro (3 Marks) -->
-                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <label class="block font-semibold mb-2">Q5. Explain the 'Store of Value' function of money. How has it solved the major limitation of the barter system? <span class="text-xs text-slate-500 font-normal">[Macro - 3 Marks]</span></label>
-                    <textarea data-q="Q5. Store of Value function of money vs Barter system." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
-                </div>
-
-                <!-- Q6: IED (3 Marks) -->
-                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <label class="block font-semibold mb-2">Q6. Discuss any two major drawbacks of the Licensing Policy implemented during the industrial planning period (1950–1990). <span class="text-xs text-slate-500 font-normal">[IED - 3 Marks]</span></label>
-                    <textarea data-q="Q6. Two drawbacks of Licensing Policy (1950-1990)." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-28" placeholder="Write your answer here..."></textarea>
-                </div>
-
-                <!-- Q7: Macro (4 Marks) -->
-                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <label class="block font-semibold mb-2">Q7. In an economy, C = 100 + 0.6Y and Planned Investment = ₹300 crore. Calculate: (i) Equilibrium level of income (ii) Value of saving at equilibrium. <span class="text-xs text-slate-500 font-normal">[Macro - 4 Marks]</span></label>
-                    <textarea data-q="Q7. Numerical: Equilibrium Income and Saving calculation." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-32" placeholder="Write your answer here..."></textarea>
-                </div>
-
-                <!-- Q8: IED (4 Marks) -->
-                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <label class="block font-semibold mb-2">Q8. Explain the main causes of rural poverty in India. State any two steps taken by the government for poverty alleviation. <span class="text-xs text-slate-500 font-normal">[IED - 4 Marks]</span></label>
-                    <textarea data-q="Q8. Rural poverty causes and government alleviation steps." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-32" placeholder="Write your answer here..."></textarea>
-                </div>
-
-                <!-- Q9: Macro (6 Marks) -->
-                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <label class="block font-semibold mb-2">Q9. Explain the steps involved in calculating National Income using the Income Method. State any two precautions. <span class="text-xs text-slate-500 font-normal">[Macro - 6 Marks]</span></label>
-                    <textarea data-q="Q9. National Income calculation via Income Method & Precautions." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-36" placeholder="Write your answer here..."></textarea>
-                </div>
-
-                <!-- Q10: IED (6 Marks) -->
-                <div class="q-card bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <label class="block font-semibold mb-2">Q10. Critically evaluate the New Economic Policy of 1991 (LPG) with reference to its impact on the agricultural and industrial sectors. <span class="text-xs text-slate-500 font-normal">[IED - 6 Marks]</span></label>
-                    <textarea data-q="Q10. Evaluation of NEP 1991 (LPG) on agriculture and industry." class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-36" placeholder="Write your answer here..."></textarea>
-                </div>
-            </div>
-
-            <button type="button" onclick="submitTest()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl text-lg shadow-lg transition">
-                Submit Test & Generate Summary 🚀
-            </button>
-        </form>
+        <button class="btn-submit" onclick="calculateResult()">View MCQ Results (Score Dekhein)</button>
     </div>
 
-    <!-- Final Result / Screenshot View (Hidden initially) -->
-    <div id="result-container" class="hidden max-w-4xl mx-auto p-6 my-6 bg-white rounded-xl shadow-2xl border-2 border-emerald-500">
-        <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-lg mb-6 text-center">
-            <h2 class="text-2xl font-bold text-emerald-800">✅ TEST SUBMITTED SUCCESSFULLY</h2>
-            <p class="text-sm text-emerald-700 font-medium mt-1">Please take a screenshot of this page and send it to your teacher!</p>
+    <!-- Result Screen -->
+    <div id="result-screen">
+        <h2>🎉 MCQ Test Scorecard</h2>
+        <p><strong>Student Name:</strong> <span id="resName"></span></p>
+        <div class="score-badge" id="resScore">0 / 15</div>
+        <p id="resStatus" style="font-weight: bold; font-size: 18px;"></p>
+        
+        <div style="background: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 8px; margin: 20px 0; color: #92400e;">
+            📸 <strong>Action Required:</strong> Is scorecard ka screenshot lo aur Section B (Subjective) ke likhe huye answers ke sath apne Sir ko WhatsApp par bhej do!
         </div>
-
-        <div class="grid grid-cols-2 gap-4 bg-slate-100 p-4 rounded-lg mb-6 text-sm">
-            <div><strong>Student Name:</strong> <span id="res-name" class="text-slate-900 font-semibold"></span></div>
-            <div><strong>School / Batch:</strong> <span id="res-school" class="text-slate-900 font-semibold"></span></div>
-            <div><strong>Submission Time:</strong> <span id="res-time" class="text-slate-900 font-semibold"></span></div>
-            <div><strong>Questions Attempted:</strong> <span id="res-count" class="text-emerald-700 font-bold"></span></div>
-        </div>
-
-        <h3 class="text-lg font-bold border-b pb-2 mb-4 text-slate-800">Student Response Sheet (Mixed Test)</h3>
-        <div id="answers-summary" class="space-y-4 text-sm"></div>
-
-        <div class="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg text-center text-xs text-amber-800">
-            📸 <strong>Take a Screenshot Now</strong> and share it with your instructor for evaluation.
+        
+        <div class="result-details" id="detailedAnswers">
+            <!-- Detailed breakdown -->
         </div>
     </div>
+</div>
 
-    <script>
-        // 1.5 Hours Timer Setup (5400 seconds)
-        let totalSeconds = 5400; 
-        const timerElement = document.getElementById('timer');
-
-        const countdown = setInterval(() => {
-            if (totalSeconds <= 0) {
-                clearInterval(countdown);
-                alert("⏰ Time is Over! Your test is submitting automatically.");
-                submitTest();
-            } else {
-                totalSeconds--;
-                let hours = Math.floor(totalSeconds / 3600);
-                let minutes = Math.floor((totalSeconds % 3600) / 60);
-                let seconds = totalSeconds % 60;
-
-                timerElement.innerText = 
-                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }
-        }, 1000);
-
-        function submitTest() {
-            const sName = document.getElementById('student-name').value.trim();
-            const sSchool = document.getElementById('student-school').value.trim();
-
-            if (!sName || !sSchool) {
-                alert("Kripya apna Name aur School/Batch ka naam zaroor bharein!");
-                return;
-            }
-
-            clearInterval(countdown);
-
-            document.getElementById('res-name').innerText = sName;
-            document.getElementById('res-school').innerText = sSchool;
-            document.getElementById('res-time').innerText = new Date().toLocaleString();
-
-            const textareas = document.querySelectorAll('#quiz-form textarea');
-            const summaryDiv = document.getElementById('answers-summary');
-            summaryDiv.innerHTML = '';
-
-            let attemptedCount = 0;
-
-            textareas.forEach((ta, index) => {
-                const questionTitle = ta.getAttribute('data-q');
-                const answerValue = ta.value.trim();
-
-                const qBox = document.createElement('div');
-                qBox.className = 'p-3 rounded border ' + (answerValue ? 'bg-slate-50 border-slate-200' : 'bg-red-50 border-red-200');
-
-                if (answerValue) {
-                    attemptedCount++;
-                    qBox.innerHTML = `
-                        <p class="font-bold text-slate-800">${index + 1}. ${questionTitle}</p>
-                        <p class="text-slate-700 mt-1 whitespace-pre-wrap"><strong>Answer:</strong> ${answerValue}</p>
-                    `;
-                } else {
-                    qBox.innerHTML = `
-                        <p class="font-bold text-slate-800">${index + 1}. ${questionTitle}</p>
-                        <p class="text-red-600 font-semibold mt-1">❌ Not Attempted</p>
-                    `;
-                }
-
-                summaryDiv.appendChild(qBox);
-            });
-
-            document.getElementById('res-count').innerText = `${attemptedCount} / ${textareas.length}`;
-
-            // Hide Test Form & Show Final Summary
-            document.getElementById('test-container').classList.add('hidden');
-            document.getElementById('result-container').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+<script>
+    // CBSE Favorite Core MCQs Dataset
+    const quizData = [
+        {
+            q: "1. Non-Aligned Movement (NAM) ka pehla summit kahan aur kis varsh mein hua tha?",
+            options: ["Bandung, 1955", "Belgrade, 1961", "New Delhi, 1983", "Cairo, 1964"],
+            answer: 1
+        },
+        {
+            q: "2. Soviet Union (USSR) ka formal dissolution / vightan kis varsh mein hua tha?",
+            options: ["1989", "1990", "1991", "1992"],
+            answer: 2
+        },
+        {
+            q: "3. 'Shock Therapy' ki aarthik pranali kiske dwara nirdeshit thi?",
+            options: ["World Bank aur IMF", "United Nations", "NATO", "ASEAN"],
+            answer: 0
+        },
+        {
+            q: "4. ASEAN ki sthapna kis ghoshna patra (Declaration) ke tahat ki gayi thi?",
+            options: ["Bangkok Declaration", "Jakarta Declaration", "Manila Declaration", "Singapore Declaration"],
+            answer: 0
+        },
+        {
+            q: "5. UN Security Council mein permanent members ki kul sankhya kitni hai?",
+            options: ["5", "10", "15", "6"],
+            answer: 0
+        },
+        {
+            q: "6. Bharat aur Pakistan ke beech 'Shimla Agreement' kis varsh hastakshar (signed) kiya gaya tha?",
+            options: ["1965", "1971", "1972", "1974"],
+            answer: 2
+        },
+        {
+            q: "7. States Reorganisation Commission (Rajya Punargathan Aayog) ki sthapna kis varsh hui thi jinhone 1956 mein report di?",
+            options: ["1950", "1953", "1955", "1956"],
+            answer: 1
+        },
+        {
+            q: "8. 1967 ke aam chunavon mein kis rajya mein Congress party pehli baar haari aur 'Samyukta Vidhayak Dal' (SVD) ki sarkar bani?",
+            options: ["Kerala", "Tamil Nadu (Madras)", "Bihar", "West Bengal"],
+            answer: 1
+        },
+        {
+            q: "9. 'Aaya Ram, Gaya Ram' ka prasiddh jumla kis rajya ke ek vidhayak Gaya Lal ke dal-badal se juda hai?",
+            options: ["Punjab", "Haryana", "Uttar Pradesh", "Bihar"],
+            answer: 1
+        },
+        {
+            q: "10. Bharat mein desh ke pehle aam chunav (First General Elections) kis varsh sampann hue the?",
+            options: ["1950-51", "1951-52", "1952-53", "1947-48"],
+            answer: 1
+        },
+        {
+            q: "11. 1975 mein desh mein aapatkal (Emergency) lagane ke samay desh ke Pradhan Mantri kaun the?",
+            options: ["Morarji Desai", "Indira Gandhi", "Jawaharlal Nehru", "Charan Singh"],
+            answer: 1
+        },
+        {
+            q: "12. 'Green Revolution' (Harit Kranti) ka sabse adhik laabh kis fasal ke utpadan mein dekhne ko mila?",
+            options: ["Chawal (Rice)", "Gehu aur Chawal (Wheat & Rice)", "Dal (Pulses)", "Ganna (Sugarcane)"],
+            answer: 1
+        },
+        {
+            q: "13. Anandpur Sahib Resolution (1973) mukhya roop se kis rajya ke rajnitik, aarthik aur dharmik hakon se sambandhit tha?",
+            options: ["Jammu & Kashmir", "Punjab", "Assam", "Tamil Nadu"],
+            answer: 1
+        },
+        {
+            q: "14. 1990 mein kis aayog ki sifarishon ke aadhar par OBC (Other Backward Classes) ko aarakshan (reservation) diya gaya?",
+            options: ["Sarkaria Commission", "Mandal Commission", "Shah Commission", "Election Commission"],
+            answer: 1
+        },
+        {
+            q: "15. 'Panchsheel' ke paanch siddhant kin do deshon ke beech huye samjhote ka hissa the?",
+            options: ["India aur Pakistan", "India aur China", "India aur USSR", "India aur USA"],
+            answer: 1
         }
-    </script>
+    ];
+
+    // Render MCQs dynamically
+    const container = document.getElementById("questions-container");
+    quizData.forEach((item, index) => {
+        let card = document.createElement("div");
+        card.className = "question-card";
+        
+        let optionsHtml = "";
+        item.options.forEach((opt, optIndex) => {
+            optionsHtml += `
+                <label>
+                    <input type="radio" name="q${index}" value="${optIndex}"> ${opt}
+                </label>
+            `;
+        });
+
+        card.innerHTML = `
+            <div class="question-title">${item.q}</div>
+            <div class="options-list">${optionsHtml}</div>
+        `;
+        container.appendChild(card);
+    });
+
+    // Timer Logic (60 Minutes)
+    let timeLeft = 60 * 60;
+    const timerInterval = setInterval(() => {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        document.getElementById("timer").innerText = `Time Left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert("Samay samapt ho gaya hai! Aapka MCQ test auto-evaluate ho raha hai.");
+            calculateResult();
+        }
+        timeLeft--;
+    }, 1000);
+
+    // Calculate Result Function
+    function calculateResult() {
+        const studentName = document.getElementById("studentName").value.trim();
+        if(!studentName) {
+            alert("Kripya apna poora naam pehle enter karein!");
+            document.getElementById("studentName").focus();
+            return;
+        }
+
+        clearInterval(timerInterval);
+        let score = 0;
+        let detailedHtml = "";
+
+        quizData.forEach((item, index) => {
+            const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
+            let userAns = selectedOption ? parseInt(selectedOption.value) : -1;
+            let isCorrect = (userAns === item.answer);
+
+            if(isCorrect) score++;
+
+            let userText = userAns !== -1 ? item.options[userAns] : "Attempt nahi kiya";
+            let correctText = item.options[item.answer];
+
+            detailedHtml += `
+                <div class="res-item">
+                    <strong>Q${index+1}: ${item.q}</strong><br>
+                    Aapka jawab: <span class="${isCorrect ? 'correct-ans' : 'wrong-ans'}">${userText}</span><br>
+                    Sahi jawab: <span class="correct-ans">${correctText}</span>
+                </div>
+            `;
+        });
+
+        // Hide Form, Show Result
+        document.getElementById("test-form").style.display = "none";
+        document.getElementById("result-screen").style.display = "block";
+
+        document.getElementById("resName").innerText = studentName;
+        document.getElementById("resScore").innerText = `${score} / ${quizData.length}`;
+        
+        let percentage = (score / quizData.length) * 100;
+        let statusText = percentage >= 70 ? "🔥 Shandar! Aapka MCQ preparation bahut accha hai!" : "⚠️ Thodi aur mehnat ki zaroorat hai, concepts revise karein!";
+        document.getElementById("resStatus").innerText = statusText;
+
+        document.getElementById("detailedAnswers").innerHTML = detailedHtml;
+        window.scrollTo(0, 0);
+    }
+</script>
+
 </body>
 </html>
